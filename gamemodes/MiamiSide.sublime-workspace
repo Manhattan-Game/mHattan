@@ -1,0 +1,853 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"CreatePic",
+				"CreatePickup"
+			],
+			[
+				"sEtPlayerCamera",
+				"SetPlayerCameraLookAt"
+			],
+			[
+				"VEHICLE_PARA",
+				"VEHICLE_PARAMS_OFF"
+			],
+			[
+				"VEHICLE_",
+				"VEHICLE_PARAMS_OFF"
+			],
+			[
+				"attacha",
+				"attachandoA"
+			],
+			[
+				"eligiendo",
+				"eligiendoBaul"
+			],
+			[
+				"DIALOG_STYLE",
+				"DIALOG_STYLE_LIST"
+			],
+			[
+				"INVALID",
+				"INVALID_PLAYER_ID"
+			],
+			[
+				"v_attach",
+				"v_attachobject"
+			],
+			[
+				"OnPlayerClick",
+				"OnPlayerClickPlayerTextDraw"
+			],
+			[
+				"EDIT_RE",
+				"EDIT_RESPONSE_CANCEL"
+			],
+			[
+				"AttachDn",
+				"AttachDynamicObjectToVehicle"
+			],
+			[
+				"EDIT_",
+				"EDIT_RESPONSE_FINAL"
+			],
+			[
+				"PLAYER_STATE",
+				"PLAYER_STATE_DRIVER"
+			],
+			[
+				"reduccion",
+				"reduccion_fuerte"
+			],
+			[
+				"updateVeloci",
+				"updateVelocity"
+			],
+			[
+				"velocimet",
+				"velocimetroTT"
+			],
+			[
+				"ResetP",
+				"ResetPlayerWeapons"
+			],
+			[
+				"GetPlayer",
+				"GetPlayerAmmo"
+			],
+			[
+				"baja",
+				"bajarBateria"
+			],
+			[
+				"Ki",
+				"KillTimer"
+			],
+			[
+				"bajar",
+				"bajarBateriaCel"
+			],
+			[
+				"c_contacto",
+				"c_contactos"
+			],
+			[
+				"DIALOG",
+				"DIALOG_STYLE_INPUT"
+			],
+			[
+				"enviarNo",
+				"enviarNotificacionG"
+			],
+			[
+				"DIALOG_",
+				"DIALOG_STYLE_MSGBOX"
+			],
+			[
+				"inputt",
+				"inputtext"
+			],
+			[
+				"OnPlayerCl",
+				"OnPlayerClickPlayerTextDraw"
+			],
+			[
+				"timerL",
+				"timerLlamada"
+			],
+			[
+				"return",
+				"Y_HOOKS_CONTINUE_RETURN_1"
+			],
+			[
+				"Y",
+				"Y_HOOKS_CONTINUE_RETURN_1"
+			],
+			[
+				"OnPla",
+				"OnPlayerDisconnect"
+			],
+			[
+				"OnPlayer",
+				"OnPlayerConnect"
+			],
+			[
+				"CreateProgressBar",
+				"CreatePlayerProgressBar"
+			],
+			[
+				"maquina",
+				"maquinasInfo"
+			],
+			[
+				"OnPlayerEdit",
+				"OnPlayerEditAttachedObject"
+			],
+			[
+				"maquin",
+				"maquinasInfo"
+			],
+			[
+				"timerBajar",
+				"timerBajar2"
+			],
+			[
+				"enviarNotific",
+				"enviarNotificacionG"
+			],
+			[
+				"CreateDynamic",
+				"CreateDynamicCP"
+			],
+			[
+				"IsPlayeRIn",
+				"IsPlayerInAnyVehicle"
+			],
+			[
+				"Ong",
+				"OnGameModeExit"
+			],
+			[
+				"e_rango",
+				"e_rango1"
+			],
+			[
+				"OnPlayerPick",
+				"OnPlayerPickUpDynamicPickup"
+			],
+			[
+				"e_posz",
+				"e_posz"
+			],
+			[
+				"e_posy",
+				"e_posy2"
+			],
+			[
+				"removePl",
+				"RemovePlayerAttachedObject"
+			],
+			[
+				"SetTimer",
+				"SetTimer"
+			],
+			[
+				"enviarNotifi",
+				"enviarNotificacionG"
+			],
+			[
+				"Create3d",
+				"CreatePlayer3DTextLabel"
+			],
+			[
+				"DIALO",
+				"DIALOG_STYLE_INPUT"
+			],
+			[
+				"inventario",
+				"inventarioInfo"
+			],
+			[
+				"ammunatio",
+				"ammunationn"
+			],
+			[
+				"Agregar",
+				"agregarIttem"
+			],
+			[
+				"SendCli",
+				"SendClientMessageToAll"
+			],
+			[
+				"enviarNoti",
+				"enviarNotificacionG"
+			],
+			[
+				"DIAL",
+				"DIALOG_STYLE_LIST"
+			],
+			[
+				"model_",
+				"model_object"
+			],
+			[
+				"OnPlay",
+				"OnPlayerDisconnect"
+			],
+			[
+				"AttachCam",
+				"AttachCameraToDynamicObject"
+			],
+			[
+				"escondernotificacion",
+				"esconderNotificaciong"
+			],
+			[
+				"PlayerTextDrawSetP",
+				"PlayerTextDrawSetPreviewModel"
+			],
+			[
+				"SetPlayerPro",
+				"SetPlayerProgressBarMaxValue"
+			],
+			[
+				"conseguir",
+				"conseguirMAXexp"
+			],
+			[
+				"consegui",
+				"conseguirNombre"
+			],
+			[
+				"loguear",
+				"loguearUsuario"
+			],
+			[
+				"OnPlaye",
+				"OnPlayerConnect"
+			],
+			[
+				"n_precio",
+				"n_precioaccion"
+			],
+			[
+				"p_bank",
+				"p_bankbalance"
+			],
+			[
+				"CancelSele",
+				"CancelSelectTextDraw"
+			],
+			[
+				"p_bankbalan",
+				"p_bankbalance"
+			],
+			[
+				"comprar",
+				"comprarRopa"
+			],
+			[
+				"SetSkin",
+				"SetPlayerSkin"
+			],
+			[
+				"Cancel",
+				"CancelSelectTextDraw"
+			],
+			[
+				"TextDra",
+				"TextDrawDestroy"
+			],
+			[
+				"n_2pos",
+				"n_2posy"
+			],
+			[
+				"GivePla",
+				"GivePlayerMoney"
+			],
+			[
+				"MAX_PL",
+				"MAX_PLAYERS"
+			],
+			[
+				"OnPlayerPi",
+				"OnPlayerPickUpDynamicPickup"
+			],
+			[
+				"OnPlayerP",
+				"OnPlayerPickUpDynamicPickup"
+			],
+			[
+				"CreatePick",
+				"CreateDynamicPickup"
+			],
+			[
+				"personajep",
+				"personajeplayer"
+			],
+			[
+				"OnGame",
+				"OnGameModeExit"
+			],
+			[
+				"xyl",
+				"xylos"
+			],
+			[
+				"GetPlayerAngle",
+				"GetPlayerFacingAngle"
+			],
+			[
+				"_personajes",
+				"_personajes1"
+			],
+			[
+				"cache_get_",
+				"cache_get_field_name"
+			],
+			[
+				"xylos",
+				"xylosMYSQL"
+			],
+			[
+				"MAX_PLA",
+				"MAX_PLAYER_NAME"
+			],
+			[
+				"xy",
+				"xylosMYSQL"
+			],
+			[
+				"xylos_",
+				"xylos_PSS"
+			],
+			[
+				"OnGa",
+				"OnGameModeExit"
+			],
+			[
+				"print",
+				"printf"
+			],
+			[
+				"cache",
+				"cache_num_rows"
+			],
+			[
+				"mysql",
+				"mysql_errno"
+			],
+			[
+				"mysql_",
+				"mysql_connect"
+			],
+			[
+				"Color_",
+				"Color_Gris"
+			],
+			[
+				"crearpersonaj",
+				"crearpersonajee"
+			],
+			[
+				"MAX_PLAYER",
+				"MAX_PLAYERS"
+			],
+			[
+				"personaje",
+				"personajeglobal"
+			],
+			[
+				"_personaje",
+				"_personaje1"
+			],
+			[
+				"MAX_PLY",
+				"MAX_PLAYER_NAME"
+			],
+			[
+				"WriteInt",
+				"WriteInt"
+			],
+			[
+				"mostrar",
+				"mostrarmenuPJ"
+			],
+			[
+				"notificacion",
+				"notificacionOcupado"
+			],
+			[
+				"TextdrawShow",
+				"PlayerTextDrawShow"
+			],
+			[
+				"loginText",
+				"loginText1"
+			],
+			[
+				"Textdraw",
+				"TextDrawDestroy"
+			],
+			[
+				"OnPlayerClickPlay",
+				"OnPlayerClickPlayerTextDraw"
+			],
+			[
+				"SelecT",
+				"SelectTextDraw"
+			],
+			[
+				"PlayerTextd",
+				"PlayerTextDrawShow"
+			],
+			[
+				"PlayerT",
+				"PlayerTextDrawHide"
+			],
+			[
+				"crearTabla",
+				"crearTablaFaccion"
+			],
+			[
+				"On",
+				"OnPlayerConnect"
+			],
+			[
+				"esconderNotifi",
+				"esconderNotificacion1"
+			],
+			[
+				"personajes",
+				"_personajes"
+			],
+			[
+				"SetTime",
+				"SetTimerEx"
+			],
+			[
+				"SetTi",
+				"SetTimerEx"
+			],
+			[
+				"SQL_TYPE",
+				"SQL_TYPE_INT"
+			],
+			[
+				"MAX_PLAY",
+				"MAX_PLAYER_NAME"
+			],
+			[
+				"territorio",
+				"TerritorioInfo"
+			],
+			[
+				"Gang",
+				"GangZoneShowForPlayer"
+			],
+			[
+				"j",
+				"jMiembro"
+			],
+			[
+				"ShowPlaye",
+				"ShowPlayerDialog"
+			],
+			[
+				"GangZoneShow",
+				"GangZoneShowForAll"
+			],
+			[
+				"GameTextFo",
+				"GameTextForPlayer"
+			],
+			[
+				"Onf",
+				"OnFilterScriptExit"
+			],
+			[
+				"zo",
+				"zonaid"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "MiamiSide.pwn",
+			"settings":
+			{
+				"buffer_size": 39623,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"Arithmetic"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 124.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/WIN-10/Desktop/MiamiSide"
+	],
+	"file_history":
+	[
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosInventario.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/xylosDialog.inc",
+		"/C/Users/WIN-10/Desktop/pawno/include/xylosDialog.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/utils/xylosStock.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosnegocios.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/global/xylosTextdraw.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa12888.47457/mselect.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosVehiculos.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosEmpresas.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/filterscripts/Miamiii.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosNecesidades.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa8920.26844/YSF_tests.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/YSF.inc",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa7128.31636/YSF_examples.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa7128.29449/YSF_tests.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/scriptfiles/barrrr.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/gamemodes/MiamiSide.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/comandos/AdmiCMD.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.1.7/modulos/sistemas/xylosNegocio.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/filterscripts/MCoords.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/filterscripts/MLoad.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosCelular.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/progress3D.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/progress2.inc",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa14836.5945/timerfix.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/a_samp.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosNegocio.pwn",
+		"/C/Users/WIN-10/Desktop/SERVER/pawno/include/progress2.inc",
+		"/C/Users/WIN-10/Desktop/SERVER/gamemodes/bare.pwn",
+		"/C/Users/WIN-10/Desktop/SERVER/filterscripts/editor-emmet.pwn",
+		"/C/Users/WIN-10/Desktop/SERVER/scriptfiles/barvida.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/anticheat/anticheat.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.1.5/modulos/sistemas/xylosInventario.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/utils/xylosNotif.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/utils/xylosActors.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosValores.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosToys.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/global/xylosVariables.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/global/xylosEnum.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/comandos/comandosgenerales.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa5680.41018/test.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa14156.29842/test.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa5328.24284/Furniture.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosAutos.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosValores - copia.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/pCamera.inc",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa12644.29999/MLoad.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa12644.28937/MCoords.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/filterscripts/editor-emmet.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.1.1/modulos/sistemas/xylosNegocio.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.0.8/modulos/xylosNegocio.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.1.1/modulos/global/xylosEnum.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.1.0/modulos/sistemas/xylosNegocio.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.1.1/gamemodes/MiamiSide.pwn",
+		"/C/Users/WIN-10/Desktop/pawno/include/MenuStore.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/global/anticheat.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.1.0/modulos/comandos/AdmiCMD.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa4964.13884/jugador.inc",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa4964.8206/gm.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa8808.7985/c_InventorySystem.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa10012.24338/x2.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/sistemas/xylosFaccion.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosEnum.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/anticheat.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosStock.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosVariables.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosTextdraw.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosNegocio.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/AdmiCMD.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosInventario.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosNotif.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa9276.7683/editor.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosNecesidades.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosValores.pwn",
+		"/C/Users/WIN-10/Downloads/house_r40 (1).pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/scriptfiles/barvida.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa10344.1271/test.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/bar.pwn",
+		"/C/Users/WIN-10/Desktop/pawno/include/progress.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/Pawn.CMD.inc",
+		"/C/Users/WIN-10/Desktop/BaySide Roleplay/gamemodes/x2.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosVariables - copia.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa10500.6250/yRealisticBank.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.0.6/gamemodes/MiamiSide.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.0.6/modulos/xylosEnum.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/xylosEnum.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.0.5/gamemodes/MiamiSide.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.0.2/gamemodes/MiamiSide.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide.pwn",
+		"/C/Users/WIN-10/Desktop/Miamiii.pwn",
+		"/C/Users/WIN-10/Downloads/territorio (1).pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosFaccion.pwn",
+		"/C/Users/WIN-10/Desktop/SERVER/gamemodes/barron.pwn",
+		"/C/Users/WIN-10/Desktop/pawno/include/pCamera.inc",
+		"/C/Users/WIN-10/Desktop/Miamiiii.pwn",
+		"/C/Users/WIN-10/Desktop/Copias miamiside/MiamiSide 0.0.4/gamemodes/MiamiSide.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/fz3temp-2/Miamiiii.pwn",
+		"/C/Users/WIN-10/Desktop/carlos/toSell.pwn",
+		"/C/Users/WIN-10/Desktop/SERVER/filterscripts/TDE.pwn",
+		"/C/Users/WIN-10/Desktop/Texture-Studio-master/filterscripts/tstudio.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide - copia/gamemodes/MiamiSide.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/easy-mysql.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/gamemodes/asdasd.pwn",
+		"/C/Users/WIN-10/Desktop/okplayers-Base-publica-master/pawno/include/kratoz/jugador.inc",
+		"/C/Users/WIN-10/Desktop/okplayers-Base-publica-master/gamemodes/gm.pwn",
+		"/C/Users/WIN-10/Desktop/Gamemode/gamemodes/xylgam.pwn",
+		"/C/Users/WIN-10/Desktop/Gamemode/gamemodes/cerp.pwn",
+		"/C/Users/WIN-10/Desktop/MiamiSide/gamemodes/MiamiSide - copia.pwn",
+		"/C/Users/WIN-10/Downloads/progress.inc",
+		"/C/Users/WIN-10/Desktop/Servidor/gamemodes/GM.pwn",
+		"/C/Users/WIN-10/Desktop/TextDrawCreator/filterscripts/TDE.pwn",
+		"/C/Users/WIN-10/Desktop/trabajo/BaySide Roleplay/gamemodes/x2.pwn",
+		"/C/Users/WIN-10/Desktop/pawno/new.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa17160.5243/rpsqlite.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa11884.24777/simpletdm.pwn",
+		"/C/Users/WIN-10/Downloads/cerp.pwn",
+		"/C/Users/WIN-10/Desktop/trabajo/BaySide Roleplay/scriptfiles/NTD/Exports/personajeselegir.pwn",
+		"/C/Users/WIN-10/Desktop/rpsqlite/rpsqlite.pwn",
+		"/C/Users/WIN-10/AppData/Local/Temp/Rar$DIa9028.21535/cerp1.pwn",
+		"/C/Users/WIN-10/Desktop/trabajo/BaySide Roleplay/scriptfiles/NTD/Exports/crearpersonajebarto.pwn",
+		"/C/Users/WIN-10/Desktop/trabajo/BaySide Roleplay/scriptfiles/NTD/Exports/legin.pwn",
+		"/C/Users/WIN-10/Desktop/rpsqlite/include/zcmd.inc",
+		"/C/Users/WIN-10/Desktop/rpsqlite/include/audio.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/modulos/xylosNotif.inc",
+		"/C/Users/WIN-10/Desktop/pawno/include/xylosNotif.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/xylosNotif.inc",
+		"/C/Users/WIN-10/Desktop/MiamiSide/pawno/include/a_players.inc"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "MiamiSide.pwn",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 39623,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17779,
+								17779
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Pawn syntax/Pawn.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 7605.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/pawncompiler.sublime-build",
+	"project": "MiamiSide.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
