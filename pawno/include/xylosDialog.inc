@@ -9,8 +9,6 @@
 //DEFINE_HOOK_REPLACEMENT(OnPlayer, OP_);
 
 
-forward OnXylosDialogResponse(playerid, dialogid, list);
-
 
 #define MAX_XYLOS_DIALOG 100
 #define TYPE_MODEL 0
@@ -27,17 +25,42 @@ enum objets_info
 // Agregar Objetos
 new objIinfo[][objets_info] =
 {
-//  id   modelo    rotacion          nombre         informacion	
+//  id   modelo    rotacion          nombre         informacion
 	{0, 19382, {0.0, 0.0, 0.0, 1.5}, "nada", "no_tienes_nada"},
-	{1, 3014, {0.0, 0.0, 0.0, 0.0}, "Comun_Box_$5", " h"},
-	{2, 19572, {0.0, 0.0, 0.0, 0.0}, "Silver_Box_$10", " h"},
-	{3, 19918, {0.0, 0.0, 0.0, 0.0}, "Golden_Box_$20", "h "}
+
+	{1, 346, {0.0, -10.0, 0.0, 1.5}, "9mm-comun", "Pistola_9mm_comun"},
+	{2, 347, {0.0, -10.0, 0.0, 1.0}, "9mm-silenciada", "Pistola_9mm_Silenciada"},
+	{3, 348, {0.0, -10.0, 0.0, 1.5}, "Desert-Eagle", "Pistola_Desert-eagle"},
+	{4, 349, {0.0, -10.0, 0.0, 2.5}, "Escopeta", "Escopeta-Comun"},
+	{5, 352, {0.0, -10.0, 0.0, 1.0}, "Micro-Uzi", "SMG___Micro_Uzi"},
+	{6, 353, {0.0, -10.0, 0.0, 1.5}, "MP5", "Subfusil_tipo_mp5"},
+	{7, 356, {0.0, -10.0, 0.0, 2.5}, "M4", "Rifle_de_alto_calibre_m4"},
+	{8, 355, {0.0, -10.0, 0.0, 2.5}, "AK-47", "Rifle_de_alto_calibre_ak-47"},
+	{9, 357, {0.0, -10.0, 0.0, 1.0}, "Rifle", "Rifle_de_caza"},
+	{10, 358, {0.0, -10.0, 0.0, 3.0}, "Rifle_Francotirador", "Rifle_francotirador_con_mira"},
+
+
+	{11, 1210, {0.0, 0.0, 0.0, 0.0}, "Maletin", "Maletin_con_dinero"},
+	{12, 19054, {0.0, 0.0, 0.0, 1.0}, "Regalo", "Regalo_de_miamiside"},
+
+	{13, 19942, {0.0, 0.0, 0.0, 1.0}, "Radio-Comunicador", "Radio-Comunicador-con-frecuencias"},
+
+	{14, 19811, {0.0, 0.0, 0.0, 1.0}, "Hamburgesa", "Hamburgesa_(+20_comida)"},
+	{15, 19570, {0.0, 0.0, 0.0, 1.0}, "Agua", "Botella_de_agua(+20_sed)"},
+	{16, 19577, {0.0, 0.0, 0.0, 1.0}, "Manzana", "Manzana_(+10_sed_y_+10-comida"},
+	{17, 1271, {0.0, 0.0, 0.0, 2.0}, "Caja", "Caja-de-ropa"},
+	{18, 19627, {-50.0, -10.0, 0.0, 0.0}, "Llave", "Llave-francesa"},
+	{19, 18874, {0.0, 0.0, 0.0, 0.0}, "Celular", "Celular-Miami-Phone"},
+	{20, 11746, {0.0, 0.0, 0.0, 0.0}, "Llaves", "Llaves-de-vehiculo"},
+	{21, 11746, {0.0, 0.0, 0.0, 0.0}, "Llaves", "Llaves-de-negocio"},
+	{22, 2912, {0.0, 0.0, 0.0, 0.0}, "Cargamento", "Cargamento_de_pablo"}
 	//KEY_HANDBRAKE
 };
 
 new mirandoDialog[MAX_PLAYERS] = -1;
 new dialogPag[MAX_PLAYERS] = 1;
 new seleccionDialog[MAX_PLAYERS];
+
 
 
 new dialogCount;
@@ -57,7 +80,7 @@ new bool:playerViendoTextDraw[MAX_PLAYERS];
 	dialog_button[80],
 	dialog_used
 };
-new dialogInfo[MAX_XYLOS_DIALOG][_xylos@Dialogs];
+new dialogInfo[MAX_PLAYERS][MAX_XYLOS_DIALOG][_xylos@Dialogs];
 
 hook OnGameModeInit()
 {
@@ -276,11 +299,7 @@ hook OnPlayerConnect(playerid)
 	PlayerTextDrawSetProportional(playerid, dialogPreview[playerid][11], 1);
 	PlayerTextDrawSetShadow(playerid, dialogPreview[playerid][11], 0);
 
-
-
-
-
-
+	
 	dialogMsg[playerid][0] = CreatePlayerTextDraw(playerid, 332.809631, 170.752563, "Mensaje de miamiside probando los nuevos dialogs perraaaaaaa");
 	PlayerTextDrawLetterSize(playerid, dialogMsg[playerid][0], 0.221138, 0.816353);
 	PlayerTextDrawTextSize(playerid, dialogMsg[playerid][0], 0.000000, 144.000000);
@@ -352,11 +371,11 @@ hook OP_ClickPlayerTextDraw(playerid, PlayerText:playertextid)
 	}
 	if(playertextid == dialogMsg[playerid][3])
 	{
-		mirandoDialog[playerid] = -1;
-		OnXylosDialogResponse(playerid, mirandoDialog[playerid], 0);
+		CallLocalFunction("OnXylosDialogResponse", "iii", playerid, mirandoDialog[playerid], 0);
 		for(new h; h<4; h++) PlayerTextDrawHide(playerid, dialogMsg[playerid][h]);
 		TextDrawHideForPlayer(playerid, dialogT[2]);
 		playerViendoTextDraw[playerid] = false;
+		mirandoDialog[playerid] = -1;
 		CancelSelectTextDraw(playerid);
 	}
 	if(playertextid == dialogPreview[playerid][7])
@@ -369,7 +388,7 @@ hook OP_ClickPlayerTextDraw(playerid, PlayerText:playertextid)
 	}
 	if(playertextid == dialogPreview[playerid][8])
 	{
-		if(dialogPag[playerid] != dialogInfo[mirandoDialog[playerid]][dialog_pages])
+		if(dialogPag[playerid] != dialogInfo[playerid][mirandoDialog[playerid]][dialog_pages])
 		{
 			dialogPag[playerid]++;
 			actDialogPagina(playerid, mirandoDialog[playerid]);
@@ -388,7 +407,8 @@ hook OP_ClickPlayerTextDraw(playerid, PlayerText:playertextid)
 	}
 	if(playertextid == dialogPreview[playerid][10])
 	{
-		OnXylosDialogResponse(playerid, mirandoDialog[playerid], seleccionDialog[playerid]);
+		new modelid = dialogInfo[playerid][mirandoDialog[playerid]][dialog_items][seleccionDialog[playerid]];
+		CallLocalFunction("OnXylosDialogResponse", "iiii", playerid, mirandoDialog[playerid], seleccionDialog[playerid], modelid);
 		for(new u;u<12;u++) PlayerTextDrawHide(playerid, dialogPreview[playerid][u]);
 		for(new p;p<2;p++) TextDrawHideForPlayer(playerid, dialogT[p]);
 		playerViendoTextDraw[playerid] = false;
@@ -460,9 +480,9 @@ ShowXylosDialog(playerid, id, tipo, const caption[], const dentro[], const conti
 {
 	if(tipo == TYPE_MSG)
 	{
-		format(dialogInfo[id][dialog_titulo],80, "%s", caption);
-		format(dialogInfo[id][dialog_msg],300, "%s", dentro);
-		format(dialogInfo[id][dialog_button], 80, "%s", continuar);
+		format(dialogInfo[playerid][id][dialog_titulo],80, "%s", caption);
+		format(dialogInfo[playerid][id][dialog_msg],300, "%s", dentro);
+		format(dialogInfo[playerid][id][dialog_button], 80, "%s", continuar);
 		new x, x2;
 		new string = strlen(dentro);
 		switch(string)
@@ -487,7 +507,7 @@ ShowXylosDialog(playerid, id, tipo, const caption[], const dentro[], const conti
 		TextDrawSetProportional(dialogT[2], 0);
 		TextDrawSetShadow(dialogT[2], 0);
 
-		dialogMsg[playerid][3] = CreatePlayerTextDraw(playerid, 311.333465, x2, dialogInfo[id][dialog_button]);
+		dialogMsg[playerid][3] = CreatePlayerTextDraw(playerid, 311.333465, x2, dialogInfo[playerid][id][dialog_button]);
 		PlayerTextDrawLetterSize(playerid, dialogMsg[playerid][3], 0.287999, 1.222517);
 		PlayerTextDrawTextSize(playerid, dialogMsg[playerid][3], 357.000000, 10.000000);
 		PlayerTextDrawAlignment(playerid, dialogMsg[playerid][3], 1);
@@ -502,8 +522,8 @@ ShowXylosDialog(playerid, id, tipo, const caption[], const dentro[], const conti
 		PlayerTextDrawSetShadow(playerid, dialogMsg[playerid][3], 0);
 		PlayerTextDrawSetSelectable(playerid, dialogMsg[playerid][3], true);
 
-		PlayerTextDrawSetString(playerid, dialogMsg[playerid][0], dialogInfo[id][dialog_msg]);
-		PlayerTextDrawSetString(playerid, dialogMsg[playerid][1], dialogInfo[id][dialog_titulo]);
+		PlayerTextDrawSetString(playerid, dialogMsg[playerid][0], dialogInfo[playerid][id][dialog_msg]);
+		PlayerTextDrawSetString(playerid, dialogMsg[playerid][1], dialogInfo[playerid][id][dialog_titulo]);
 
 
 		for(new h; h<4; h++) PlayerTextDrawShow(playerid, dialogMsg[playerid][h]);
@@ -511,61 +531,61 @@ ShowXylosDialog(playerid, id, tipo, const caption[], const dentro[], const conti
 	}
 	else if(tipo == TYPE_MODEL)
 	{
-		format(dialogInfo[id][dialog_titulo],80, "%s", caption);
-		format(dialogInfo[id][dialog_msg],300, "%s", dentro);
-		format(dialogInfo[id][dialog_button], 80, "%s", continuar);
+		format(dialogInfo[playerid][id][dialog_titulo],80, "%s", caption);
+		format(dialogInfo[playerid][id][dialog_msg],300, "%s", dentro);
+		format(dialogInfo[playerid][id][dialog_button], 80, "%s", continuar);
 
 		for(new i;i<5;i++)
 		{
-			PlayerTextDrawSetPreviewModel(playerid, dialogPreview[playerid][i], objIinfo[dialogInfo[id][dialog_items][i]][o_model]);
+			PlayerTextDrawSetPreviewModel(playerid, dialogPreview[playerid][i], objIinfo[dialogInfo[playerid][id][dialog_items][i]][o_model]);
 		}
 
 		new string[10];
-		format(string, 10, "1/%i", dialogInfo[id][dialog_pages]);
-		PlayerTextDrawSetString(playerid, dialogPreview[playerid][6], dialogInfo[id][dialog_titulo]);
+		format(string, 10, "1/%i", dialogInfo[playerid][id][dialog_pages]);
+		PlayerTextDrawSetString(playerid, dialogPreview[playerid][6], dialogInfo[playerid][id][dialog_titulo]);
 		PlayerTextDrawSetString(playerid, dialogPreview[playerid][5], string);
-		PlayerTextDrawSetString(playerid, dialogPreview[playerid][10], dialogInfo[id][dialog_button]);
+		PlayerTextDrawSetString(playerid, dialogPreview[playerid][10], dialogInfo[playerid][id][dialog_button]);
 
 		for(new u;u<12;u++) PlayerTextDrawShow(playerid, dialogPreview[playerid][u]);
 		for(new p;p<2;p++) TextDrawShowForPlayer(playerid, dialogT[p]);
 	}
 
-	dialogInfo[id][dialog_type] = tipo;
+	dialogInfo[playerid][id][dialog_type] = tipo;
 	playerViendoTextDraw[playerid] = true;
 	SelectTextDraw(playerid, 0x87868286);
 	mirandoDialog[playerid] = id;
 
 }
-formatXylosDialog(dialogid, ittem0 = 0, ittem1 = 0, ittem2 = 0 , ittem3 = 0 , ittem4 = 0 , ittem5 = 0,ittem6 = 0,ittem7 = 0,ittem8 = 0,ittem9 = 0,ittem10 = 0,ittem11 = 0,ittem12 = 0,ittem13 = 0,ittem14 = 0,ittem15 = 0, ittem16 = 0, ittem17 = 0, ittem18 = 0, ittem19 = 0)
+formatXylosDialog(playerid, dialogid, ittem0 = 0, ittem1 = 0, ittem2 = 0 , ittem3 = 0 , ittem4 = 0 , ittem5 = 0,ittem6 = 0,ittem7 = 0,ittem8 = 0,ittem9 = 0,ittem10 = 0,ittem11 = 0,ittem12 = 0,ittem13 = 0,ittem14 = 0,ittem15 = 0, ittem16 = 0, ittem17 = 0, ittem18 = 0, ittem19 = 0)
 {
-	dialogInfo[dialogid][dialog_items][0] = ittem0;
-	dialogInfo[dialogid][dialog_items][1] = ittem1;
-	dialogInfo[dialogid][dialog_items][2] = ittem2;
-	dialogInfo[dialogid][dialog_items][3] = ittem3;
-	dialogInfo[dialogid][dialog_items][4] = ittem4;
-	dialogInfo[dialogid][dialog_items][5] = ittem5;
-	dialogInfo[dialogid][dialog_items][6] = ittem6;
-	dialogInfo[dialogid][dialog_items][7] = ittem7;
-	dialogInfo[dialogid][dialog_items][8] = ittem8;
-	dialogInfo[dialogid][dialog_items][9] = ittem9;
-	dialogInfo[dialogid][dialog_items][10] = ittem10;
-	dialogInfo[dialogid][dialog_items][11] = ittem11;
-	dialogInfo[dialogid][dialog_items][12] = ittem12;
-	dialogInfo[dialogid][dialog_items][13] = ittem13;
-	dialogInfo[dialogid][dialog_items][14] = ittem14;
-	dialogInfo[dialogid][dialog_items][15] = ittem15;
-	dialogInfo[dialogid][dialog_items][16] = ittem16;
-	dialogInfo[dialogid][dialog_items][17] = ittem17;
-	dialogInfo[dialogid][dialog_items][18] = ittem18;
-	dialogInfo[dialogid][dialog_items][19] = ittem19;
+	dialogInfo[playerid][dialogid][dialog_items][0] = ittem0;
+	dialogInfo[playerid][dialogid][dialog_items][1] = ittem1;
+	dialogInfo[playerid][dialogid][dialog_items][2] = ittem2;
+	dialogInfo[playerid][dialogid][dialog_items][3] = ittem3;
+	dialogInfo[playerid][dialogid][dialog_items][4] = ittem4;
+	dialogInfo[playerid][dialogid][dialog_items][5] = ittem5;
+	dialogInfo[playerid][dialogid][dialog_items][6] = ittem6;
+	dialogInfo[playerid][dialogid][dialog_items][7] = ittem7;
+	dialogInfo[playerid][dialogid][dialog_items][8] = ittem8;
+	dialogInfo[playerid][dialogid][dialog_items][9] = ittem9;
+	dialogInfo[playerid][dialogid][dialog_items][10] = ittem10;
+	dialogInfo[playerid][dialogid][dialog_items][11] = ittem11;
+	dialogInfo[playerid][dialogid][dialog_items][12] = ittem12;
+	dialogInfo[playerid][dialogid][dialog_items][13] = ittem13;
+	dialogInfo[playerid][dialogid][dialog_items][14] = ittem14;
+	dialogInfo[playerid][dialogid][dialog_items][15] = ittem15;
+	dialogInfo[playerid][dialogid][dialog_items][16] = ittem16;
+	dialogInfo[playerid][dialogid][dialog_items][17] = ittem17;
+	dialogInfo[playerid][dialogid][dialog_items][18] = ittem18;
+	dialogInfo[playerid][dialogid][dialog_items][19] = ittem19;
 
-	new h = countIttems(dialogid);
+	new h = countIttems(playerid, dialogid);
 	switch(h)
 	{
-		case 0..4: dialogInfo[dialogid][dialog_pages] = 1;
-		case 5..10: dialogInfo[dialogid][dialog_pages] = 2;
-		case 11..16: dialogInfo[dialogid][dialog_pages] = 3;
-		case 17..20: dialogInfo[dialogid][dialog_pages] = 4;
+		case 0..4: dialogInfo[playerid][dialogid][dialog_pages] = 1;
+		case 5..10: dialogInfo[playerid][dialogid][dialog_pages] = 2;
+		case 11..16: dialogInfo[playerid][dialogid][dialog_pages] = 3;
+		case 17..20: dialogInfo[playerid][dialogid][dialog_pages] = 4;
 	}
 }
 actDialogPagina(playerid, dialogid)
@@ -575,35 +595,35 @@ actDialogPagina(playerid, dialogid)
 	{
 		case 1:
 		{
-			itens[0] = objIinfo[dialogInfo[dialogid][dialog_items][0]][o_model];
-			itens[1] = objIinfo[dialogInfo[dialogid][dialog_items][1]][o_model];
-			itens[2] = objIinfo[dialogInfo[dialogid][dialog_items][2]][o_model];
-			itens[3] = objIinfo[dialogInfo[dialogid][dialog_items][3]][o_model];
-			itens[4] = objIinfo[dialogInfo[dialogid][dialog_items][4]][o_model];
+			itens[0] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][0]][o_model];
+			itens[1] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][1]][o_model];
+			itens[2] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][2]][o_model];
+			itens[3] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][3]][o_model];
+			itens[4] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][4]][o_model];
 		}
 		case 2:
 		{
-			itens[0] = objIinfo[dialogInfo[dialogid][dialog_items][5]][o_model];
-			itens[1] = objIinfo[dialogInfo[dialogid][dialog_items][6]][o_model];
-			itens[2] = objIinfo[dialogInfo[dialogid][dialog_items][7]][o_model];
-			itens[3] = objIinfo[dialogInfo[dialogid][dialog_items][8]][o_model];
-			itens[4] = objIinfo[dialogInfo[dialogid][dialog_items][9]][o_model];
+			itens[0] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][5]][o_model];
+			itens[1] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][6]][o_model];
+			itens[2] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][7]][o_model];
+			itens[3] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][8]][o_model];
+			itens[4] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][9]][o_model];
 		}
 		case 3:
 		{
-			itens[0] = objIinfo[dialogInfo[dialogid][dialog_items][10]][o_model];
-			itens[1] = objIinfo[dialogInfo[dialogid][dialog_items][11]][o_model];
-			itens[2] = objIinfo[dialogInfo[dialogid][dialog_items][12]][o_model];
-			itens[3] = objIinfo[dialogInfo[dialogid][dialog_items][13]][o_model];
-			itens[4] = objIinfo[dialogInfo[dialogid][dialog_items][14]][o_model];
+			itens[0] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][10]][o_model];
+			itens[1] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][11]][o_model];
+			itens[2] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][12]][o_model];
+			itens[3] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][13]][o_model];
+			itens[4] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][14]][o_model];
 		}
 		case 4:
 		{
-			itens[0] = objIinfo[dialogInfo[dialogid][dialog_items][15]][o_model];
-			itens[1] = objIinfo[dialogInfo[dialogid][dialog_items][16]][o_model];
-			itens[2] = objIinfo[dialogInfo[dialogid][dialog_items][17]][o_model];
-			itens[3] = objIinfo[dialogInfo[dialogid][dialog_items][18]][o_model];
-			itens[4] = objIinfo[dialogInfo[dialogid][dialog_items][19]][o_model];
+			itens[0] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][15]][o_model];
+			itens[1] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][16]][o_model];
+			itens[2] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][17]][o_model];
+			itens[3] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][18]][o_model];
+			itens[4] = objIinfo[dialogInfo[playerid][dialogid][dialog_items][19]][o_model];
 		}
 	}
 
@@ -611,31 +631,34 @@ actDialogPagina(playerid, dialogid)
 	for(new h;h<5;h++) PlayerTextDrawShow(playerid, dialogPreview[playerid][h]);
 	new string[25];
 
-	format(string, 25, "%i/%i",dialogPag[playerid] ,dialogInfo[dialogid][dialog_pages]);
+	format(string, 25, "%i/%i",dialogPag[playerid] ,dialogInfo[playerid][dialogid][dialog_pages]);
 	PlayerTextDrawSetString(playerid, dialogPreview[playerid][5], string);
 }
 actTextoPreview(playerid, dialogid)
 {
 	new string[128];
-	format(string, 128, "%s", objIinfo[dialogInfo[dialogid][dialog_items][seleccionDialog[playerid]]][o_nombre]);
+	format(string, 128, "%s", objIinfo[dialogInfo[playerid][dialogid][dialog_items][seleccionDialog[playerid]]][o_nombre]);
 	PlayerTextDrawSetString(playerid, dialogPreview[playerid][11], string);
 }
-stock countIttems(dialogid)
+stock countIttems(playerid, dialogid)
 {
 	new h;
 	for(new i; i<20; i++)
 	{
-		if(dialogInfo[dialogid][dialog_items][i] != 0) h++;
+		if(dialogInfo[playerid][dialogid][dialog_items][i] != 0) h++;
 	}
 	return h;
 }
+
 stock GetMaxDialogUsed()
 {
-	for(new i;<100;i++)
+	for(new i;<1000;i++)
 	{
-		if(dialogInfo[i][dialog_used] == 1)
+		if(dialogInfo[playerid][i][dialog_used] == 1)
 		{
 			dialogCount++;
 		}
 	}
 }
+
+forward OnXylosDialogResponse(playerid, dialogid, list, modelid);

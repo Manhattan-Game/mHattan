@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -89,7 +90,7 @@ Optional plugins:
 			{
 				case 'l':
 				{
-					if (!str[2] || strcmp(str[2], !"ICE", true, 3))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"ICE", true, 3))
 					{
 						return -1;
 					}
@@ -99,7 +100,7 @@ Optional plugins:
 						{
 							if (str[5])
 							{
-								if (str[6] && !strcmp(str[6], !"BLUE", true, 4))
+								if (str[6] && !strcmp(str[6], __COMPILER_PACK"BLUE", true, 4))
 								{
 									idx += 10;
 									return X11_ALICE_BLUE;
@@ -108,7 +109,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (str[6] && !strcmp(str[6], !"BLUE", true, 4))
+							if (str[6] && !strcmp(str[6], __COMPILER_PACK"BLUE", true, 4))
 							{
 								idx += 10;
 								return X11_ALICE_BLUE;
@@ -116,7 +117,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (str[6] && !strcmp(str[6], !"LUE", true, 3))
+							if (str[6] && !strcmp(str[6], __COMPILER_PACK"LUE", true, 3))
 							{
 								idx += 9;
 								return X11_ALICEBLUE;
@@ -126,7 +127,7 @@ Optional plugins:
 				}
 				case 'n':
 				{
-					if (!str[2] || strcmp(str[2], !"TIQUE", true, 5))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"TIQUE", true, 5))
 					{
 						return -1;
 					}
@@ -136,7 +137,7 @@ Optional plugins:
 						{
 							if (str[7])
 							{
-								if (!str[8] || strcmp(str[8], !"WHITE", true, 5))
+								if (!str[8] || strcmp(str[8], __COMPILER_PACK"WHITE", true, 5))
 								{
 									return -1;
 								}
@@ -204,7 +205,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[8] || strcmp(str[8], !"WHITE", true, 5))
+							if (!str[8] || strcmp(str[8], __COMPILER_PACK"WHITE", true, 5))
 							{
 								return -1;
 							}
@@ -271,7 +272,7 @@ Optional plugins:
 						}
 						case 'w':
 						{
-							if (!str[8] || strcmp(str[8], !"HITE", true, 4))
+							if (!str[8] || strcmp(str[8], __COMPILER_PACK"HITE", true, 4))
 							{
 								return -1;
 							}
@@ -305,7 +306,7 @@ Optional plugins:
 				}
 				case 'q':
 				{
-					if (!str[2] || strcmp(str[2], !"UAMARINE", true, 8))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"UAMARINE", true, 8))
 					{
 						return -1;
 					}
@@ -392,7 +393,7 @@ Optional plugins:
 				}
 				case 'z':
 				{
-					if (!str[2] || strcmp(str[2], !"URE", true, 3))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"URE", true, 3))
 					{
 						return -1;
 					}
@@ -485,7 +486,7 @@ Optional plugins:
 			{
 				case 'e':
 				{
-					if (str[2] && !strcmp(str[2], !"IGE", true, 3))
+					if (str[2] && !strcmp(str[2], __COMPILER_PACK"IGE", true, 3))
 					{
 						idx += 5;
 						return X11_BEIGE;
@@ -493,7 +494,7 @@ Optional plugins:
 				}
 				case 'i':
 				{
-					if (!str[2] || strcmp(str[2], !"SQUE", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"SQUE", true, 4))
 					{
 						return -1;
 					}
@@ -596,7 +597,7 @@ Optional plugins:
 								}
 								case 'n':
 								{
-									if (!str[4] || strcmp(str[4], !"CHED", true, 4))
+									if (!str[4] || strcmp(str[4], __COMPILER_PACK"CHED", true, 4))
 									{
 										return -1;
 									}
@@ -606,7 +607,7 @@ Optional plugins:
 										{
 											if (str[8])
 											{
-												if (str[9] && !strcmp(str[9], !"ALMOND", true, 6))
+												if (str[9] && !strcmp(str[9], __COMPILER_PACK"ALMOND", true, 6))
 												{
 													idx += 15;
 													return X11_BLANCHED_ALMOND;
@@ -615,7 +616,7 @@ Optional plugins:
 										}
 										case '_' | 0x20:
 										{
-											if (str[9] && !strcmp(str[9], !"ALMOND", true, 6))
+											if (str[9] && !strcmp(str[9], __COMPILER_PACK"ALMOND", true, 6))
 											{
 												idx += 15;
 												return X11_BLANCHED_ALMOND;
@@ -623,7 +624,7 @@ Optional plugins:
 										}
 										case 'a':
 										{
-											if (str[9] && !strcmp(str[9], !"LMOND", true, 5))
+											if (str[9] && !strcmp(str[9], __COMPILER_PACK"LMOND", true, 5))
 											{
 												idx += 14;
 												return X11_BLANCHEDALMOND;
@@ -669,7 +670,7 @@ Optional plugins:
 											}
 											case 'v':
 											{
-												if (str[6] && !strcmp(str[6], !"IOLET", true, 5))
+												if (str[6] && !strcmp(str[6], __COMPILER_PACK"IOLET", true, 5))
 												{
 													idx += 11;
 													return X11_BLUE_VIOLET;
@@ -704,7 +705,7 @@ Optional plugins:
 										}
 										case 'v':
 										{
-											if (str[6] && !strcmp(str[6], !"IOLET", true, 5))
+											if (str[6] && !strcmp(str[6], __COMPILER_PACK"IOLET", true, 5))
 											{
 												idx += 11;
 												return X11_BLUE_VIOLET;
@@ -734,7 +735,7 @@ Optional plugins:
 								}
 								case 'v':
 								{
-									if (str[5] && !strcmp(str[5], !"IOLET", true, 5))
+									if (str[5] && !strcmp(str[5], __COMPILER_PACK"IOLET", true, 5))
 									{
 										idx += 10;
 										return X11_BLUEVIOLET;
@@ -748,7 +749,7 @@ Optional plugins:
 				}
 				case 'r':
 				{
-					if (!str[2] || strcmp(str[2], !"OWN", true, 3))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"OWN", true, 3))
 					{
 						return -1;
 					}
@@ -835,7 +836,7 @@ Optional plugins:
 				}
 				case 'u':
 				{
-					if (!str[2] || strcmp(str[2], !"RLYWOOD", true, 7))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"RLYWOOD", true, 7))
 					{
 						return -1;
 					}
@@ -928,7 +929,7 @@ Optional plugins:
 			{
 				case 'a':
 				{
-					if (!str[2] || strcmp(str[2], !"DET", true, 3))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"DET", true, 3))
 					{
 						return -1;
 					}
@@ -938,7 +939,7 @@ Optional plugins:
 						{
 							if (str[5])
 							{
-								if (!str[6] || strcmp(str[6], !"BLUE", true, 4))
+								if (!str[6] || strcmp(str[6], __COMPILER_PACK"BLUE", true, 4))
 								{
 									return -1;
 								}
@@ -1006,7 +1007,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[6] || strcmp(str[6], !"BLUE", true, 4))
+							if (!str[6] || strcmp(str[6], __COMPILER_PACK"BLUE", true, 4))
 							{
 								return -1;
 							}
@@ -1073,7 +1074,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (!str[6] || strcmp(str[6], !"LUE", true, 3))
+							if (!str[6] || strcmp(str[6], __COMPILER_PACK"LUE", true, 3))
 							{
 								return -1;
 							}
@@ -1111,7 +1112,7 @@ Optional plugins:
 					{
 						case 'a':
 						{
-							if (!str[3] || strcmp(str[3], !"RTREUSE", true, 7))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"RTREUSE", true, 7))
 							{
 								return -1;
 							}
@@ -1198,7 +1199,7 @@ Optional plugins:
 						}
 						case 'o':
 						{
-							if (!str[3] || strcmp(str[3], !"COLATE", true, 6))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"COLATE", true, 6))
 							{
 								return -1;
 							}
@@ -1386,7 +1387,7 @@ Optional plugins:
 							{
 								case 'f':
 								{
-									if (!str[5] || strcmp(str[5], !"LOWER", true, 5))
+									if (!str[5] || strcmp(str[5], __COMPILER_PACK"LOWER", true, 5))
 									{
 										return -1;
 									}
@@ -1396,7 +1397,7 @@ Optional plugins:
 										{
 											if (str[10])
 											{
-												if (str[11] && !strcmp(str[11], !"BLUE", true, 4))
+												if (str[11] && !strcmp(str[11], __COMPILER_PACK"BLUE", true, 4))
 												{
 													idx += 15;
 													return X11_CORNFLOWER_BLUE;
@@ -1405,7 +1406,7 @@ Optional plugins:
 										}
 										case '_' | 0x20:
 										{
-											if (str[11] && !strcmp(str[11], !"BLUE", true, 4))
+											if (str[11] && !strcmp(str[11], __COMPILER_PACK"BLUE", true, 4))
 											{
 												idx += 15;
 												return X11_CORNFLOWER_BLUE;
@@ -1413,7 +1414,7 @@ Optional plugins:
 										}
 										case 'b':
 										{
-											if (str[11] && !strcmp(str[11], !"LUE", true, 3))
+											if (str[11] && !strcmp(str[11], __COMPILER_PACK"LUE", true, 3))
 											{
 												idx += 14;
 												return X11_CORNFLOWERBLUE;
@@ -1423,7 +1424,7 @@ Optional plugins:
 								}
 								case 's':
 								{
-									if (!str[5] || strcmp(str[5], !"ILK", true, 3))
+									if (!str[5] || strcmp(str[5], __COMPILER_PACK"ILK", true, 3))
 									{
 										return -1;
 									}
@@ -1514,7 +1515,7 @@ Optional plugins:
 				}
 				case 'y':
 				{
-					if (!str[2] || strcmp(str[2], !"AN", true, 2))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"AN", true, 2))
 					{
 						return -1;
 					}
@@ -1607,7 +1608,7 @@ Optional plugins:
 			{
 				case 'a':
 				{
-					if (!str[2] || strcmp(str[2], !"RK", true, 2))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"RK", true, 2))
 					{
 						return -1;
 					}
@@ -1621,7 +1622,7 @@ Optional plugins:
 								{
 									case 'b':
 									{
-										if (str[6] && !strcmp(str[6], !"LUE", true, 3))
+										if (str[6] && !strcmp(str[6], __COMPILER_PACK"LUE", true, 3))
 										{
 											idx += 9;
 											return X11_DARK_BLUE;
@@ -1629,7 +1630,7 @@ Optional plugins:
 									}
 									case 'c':
 									{
-										if (str[6] && !strcmp(str[6], !"YAN", true, 3))
+										if (str[6] && !strcmp(str[6], __COMPILER_PACK"YAN", true, 3))
 										{
 											idx += 9;
 											return X11_DARK_CYAN;
@@ -1641,7 +1642,7 @@ Optional plugins:
 										{
 											case 'o':
 											{
-												if (!str[7] || strcmp(str[7], !"LDENROD", true, 7))
+												if (!str[7] || strcmp(str[7], __COMPILER_PACK"LDENROD", true, 7))
 												{
 													return -1;
 												}
@@ -1743,7 +1744,7 @@ Optional plugins:
 									}
 									case 'k':
 									{
-										if (str[6] && !strcmp(str[6], !"HAKI", true, 4))
+										if (str[6] && !strcmp(str[6], __COMPILER_PACK"HAKI", true, 4))
 										{
 											idx += 10;
 											return X11_DARK_KHAKI;
@@ -1751,7 +1752,7 @@ Optional plugins:
 									}
 									case 'm':
 									{
-										if (str[6] && !strcmp(str[6], !"AGENTA", true, 6))
+										if (str[6] && !strcmp(str[6], __COMPILER_PACK"AGENTA", true, 6))
 										{
 											idx += 12;
 											return X11_DARK_MAGENTA;
@@ -1763,8 +1764,8 @@ Optional plugins:
 										{
 											case 'l':
 											{
-												if (!str[7] || strcmp(str[7], !"IVE", true, 3) || (!_X11_SPACE_CHECK(10) && str[10] != '_') || strcmp(str[11], !"GREEN", true, 5))
-												//if (!str[7] || strcmp(str[7], !"IVE_GREEN", true, 9))
+												if (!str[7] || strcmp(str[7], __COMPILER_PACK"IVE", true, 3) || (!_X11_SPACE_CHECK(10) && str[10] != '_') || strcmp(str[11], __COMPILER_PACK"GREEN", true, 5))
+												//if (!str[7] || strcmp(str[7], __COMPILER_PACK"IVE_GREEN", true, 9))
 												{
 													return -1;
 												}
@@ -1835,7 +1836,7 @@ Optional plugins:
 												{
 													case 'a':
 													{
-														if (!str[8] || strcmp(str[8], !"NGE", true, 3))
+														if (!str[8] || strcmp(str[8], __COMPILER_PACK"NGE", true, 3))
 														{
 															return -1;
 														}
@@ -1902,7 +1903,7 @@ Optional plugins:
 													}
 													case 'c':
 													{
-														if (!str[8] || strcmp(str[8], !"HID", true, 3))
+														if (!str[8] || strcmp(str[8], __COMPILER_PACK"HID", true, 3))
 														{
 															return -1;
 														}
@@ -1973,7 +1974,7 @@ Optional plugins:
 									}
 									case 'r':
 									{
-										if (str[6] && !strcmp(str[6], !"ED", true, 2))
+										if (str[6] && !strcmp(str[6], __COMPILER_PACK"ED", true, 2))
 										{
 											idx += 8;
 											return X11_DARK_RED;
@@ -1985,7 +1986,7 @@ Optional plugins:
 										{
 											case 'a':
 											{
-												if (str[7] && !strcmp(str[7], !"LMON", true, 4))
+												if (str[7] && !strcmp(str[7], __COMPILER_PACK"LMON", true, 4))
 												{
 													idx += 11;
 													return X11_DARK_SALMON;
@@ -1993,8 +1994,8 @@ Optional plugins:
 											}
 											case 'e':
 											{
-												if (str[7] | 0x20 != 'a' || (!_X11_SPACE_CHECK(8) && str[8] != '_') || strcmp(str[9], !"GREEN", true, 5))
-												//if (!str[7] || strcmp(str[7], !"A_GREEN", true, 7))
+												if (str[7] | 0x20 != 'a' || (!_X11_SPACE_CHECK(8) && str[8] != '_') || strcmp(str[9], __COMPILER_PACK"GREEN", true, 5))
+												//if (!str[7] || strcmp(str[7], __COMPILER_PACK"A_GREEN", true, 7))
 												{
 													return -1;
 												}
@@ -2061,8 +2062,8 @@ Optional plugins:
 											}
 											case 'l':
 											{
-												if (!str[7] || strcmp(str[7], !"ATE", true, 3) || (!_X11_SPACE_CHECK(10) && str[10] != '_'))
-												//if (!str[7] || strcmp(str[7], !"ATE_", true, 4))
+												if (!str[7] || strcmp(str[7], __COMPILER_PACK"ATE", true, 3) || (!_X11_SPACE_CHECK(10) && str[10] != '_'))
+												//if (!str[7] || strcmp(str[7], __COMPILER_PACK"ATE_", true, 4))
 												{
 													return -1;
 												}
@@ -2070,7 +2071,7 @@ Optional plugins:
 												{
 													case 'b':
 													{
-														if (str[12] && !strcmp(str[12], !"LUE", true, 3))
+														if (str[12] && !strcmp(str[12], __COMPILER_PACK"LUE", true, 3))
 														{
 															idx += 15;
 															return X11_DARK_SLATE_BLUE;
@@ -2226,7 +2227,7 @@ Optional plugins:
 									}
 									case 't':
 									{
-										if (str[6] && !strcmp(str[6], !"URQUOISE", true, 8))
+										if (str[6] && !strcmp(str[6], __COMPILER_PACK"URQUOISE", true, 8))
 										{
 											idx += 14;
 											return X11_DARK_TURQUOISE;
@@ -2234,7 +2235,7 @@ Optional plugins:
 									}
 									case 'v':
 									{
-										if (str[6] && !strcmp(str[6], !"IOLET", true, 5))
+										if (str[6] && !strcmp(str[6], __COMPILER_PACK"IOLET", true, 5))
 										{
 											idx += 11;
 											return X11_DARK_VIOLET;
@@ -2249,7 +2250,7 @@ Optional plugins:
 							{
 								case 'b':
 								{
-									if (str[6] && !strcmp(str[6], !"LUE", true, 3))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"LUE", true, 3))
 									{
 										idx += 9;
 										return X11_DARK_BLUE;
@@ -2257,7 +2258,7 @@ Optional plugins:
 								}
 								case 'c':
 								{
-									if (str[6] && !strcmp(str[6], !"YAN", true, 3))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"YAN", true, 3))
 									{
 										idx += 9;
 										return X11_DARK_CYAN;
@@ -2269,7 +2270,7 @@ Optional plugins:
 									{
 										case 'o':
 										{
-											if (!str[7] || strcmp(str[7], !"LDENROD", true, 7))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"LDENROD", true, 7))
 											{
 												return -1;
 											}
@@ -2371,7 +2372,7 @@ Optional plugins:
 								}
 								case 'k':
 								{
-									if (str[6] && !strcmp(str[6], !"HAKI", true, 4))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"HAKI", true, 4))
 									{
 										idx += 10;
 										return X11_DARK_KHAKI;
@@ -2379,7 +2380,7 @@ Optional plugins:
 								}
 								case 'm':
 								{
-									if (str[6] && !strcmp(str[6], !"AGENTA", true, 6))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"AGENTA", true, 6))
 									{
 										idx += 12;
 										return X11_DARK_MAGENTA;
@@ -2391,7 +2392,7 @@ Optional plugins:
 									{
 										case 'l':
 										{
-											if (!str[7] || strcmp(str[7], !"IVE", true, 3) || (!_X11_SPACE_CHECK(10) && str[10] != '_') || strcmp(str[11], !"GREEN", true, 5))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"IVE", true, 3) || (!_X11_SPACE_CHECK(10) && str[10] != '_') || strcmp(str[11], __COMPILER_PACK"GREEN", true, 5))
 											{
 												return -1;
 											}
@@ -2462,7 +2463,7 @@ Optional plugins:
 											{
 												case 'a':
 												{
-													if (!str[8] || strcmp(str[8], !"NGE", true, 3))
+													if (!str[8] || strcmp(str[8], __COMPILER_PACK"NGE", true, 3))
 													{
 														return -1;
 													}
@@ -2529,7 +2530,7 @@ Optional plugins:
 												}
 												case 'c':
 												{
-													if (!str[8] || strcmp(str[8], !"HID", true, 3))
+													if (!str[8] || strcmp(str[8], __COMPILER_PACK"HID", true, 3))
 													{
 														return -1;
 													}
@@ -2600,7 +2601,7 @@ Optional plugins:
 								}
 								case 'r':
 								{
-									if (str[6] && !strcmp(str[6], !"ED", true, 2))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"ED", true, 2))
 									{
 										idx += 8;
 										return X11_DARK_RED;
@@ -2612,7 +2613,7 @@ Optional plugins:
 									{
 										case 'a':
 										{
-											if (str[7] && !strcmp(str[7], !"LMON", true, 4))
+											if (str[7] && !strcmp(str[7], __COMPILER_PACK"LMON", true, 4))
 											{
 												idx += 11;
 												return X11_DARK_SALMON;
@@ -2620,8 +2621,8 @@ Optional plugins:
 										}
 										case 'e':
 										{
-											//if (!str[7] || strcmp(str[7], !"A_GREEN", true, 7))
-											if (str[7] | 0x20 != 'a' || (!_X11_SPACE_CHECK(8) && str[8] != '_') || strcmp(str[9], !"GREEN", true, 5))
+											//if (!str[7] || strcmp(str[7], __COMPILER_PACK"A_GREEN", true, 7))
+											if (str[7] | 0x20 != 'a' || (!_X11_SPACE_CHECK(8) && str[8] != '_') || strcmp(str[9], __COMPILER_PACK"GREEN", true, 5))
 											{
 												return -1;
 											}
@@ -2688,8 +2689,8 @@ Optional plugins:
 										}
 										case 'l':
 										{
-											//if (!str[7] || strcmp(str[7], !"ATE_", true, 4))
-											if (!str[7] || strcmp(str[7], !"ATE", true, 3) || (!_X11_SPACE_CHECK(10) && str[10] != '_'))
+											//if (!str[7] || strcmp(str[7], __COMPILER_PACK"ATE_", true, 4))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"ATE", true, 3) || (!_X11_SPACE_CHECK(10) && str[10] != '_'))
 											{
 												return -1;
 											}
@@ -2697,7 +2698,7 @@ Optional plugins:
 											{
 												case 'b':
 												{
-													if (str[12] && !strcmp(str[12], !"LUE", true, 3))
+													if (str[12] && !strcmp(str[12], __COMPILER_PACK"LUE", true, 3))
 													{
 														idx += 15;
 														return X11_DARK_SLATE_BLUE;
@@ -2853,7 +2854,7 @@ Optional plugins:
 								}
 								case 't':
 								{
-									if (str[6] && !strcmp(str[6], !"URQUOISE", true, 8))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"URQUOISE", true, 8))
 									{
 										idx += 14;
 										return X11_DARK_TURQUOISE;
@@ -2861,7 +2862,7 @@ Optional plugins:
 								}
 								case 'v':
 								{
-									if (str[6] && !strcmp(str[6], !"IOLET", true, 5))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"IOLET", true, 5))
 									{
 										idx += 11;
 										return X11_DARK_VIOLET;
@@ -2871,7 +2872,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (str[5] && !strcmp(str[5], !"LUE", true, 3))
+							if (str[5] && !strcmp(str[5], __COMPILER_PACK"LUE", true, 3))
 							{
 								idx += 8;
 								return X11_DARKBLUE;
@@ -2879,7 +2880,7 @@ Optional plugins:
 						}
 						case 'c':
 						{
-							if (str[5] && !strcmp(str[5], !"YAN", true, 3))
+							if (str[5] && !strcmp(str[5], __COMPILER_PACK"YAN", true, 3))
 							{
 								idx += 8;
 								return X11_DARKCYAN;
@@ -2891,7 +2892,7 @@ Optional plugins:
 							{
 								case 'o':
 								{
-									if (!str[6] || strcmp(str[6], !"LDENROD", true, 7))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"LDENROD", true, 7))
 									{
 										return -1;
 									}
@@ -2958,7 +2959,7 @@ Optional plugins:
 						}
 						case 'k':
 						{
-							if (str[5] && !strcmp(str[5], !"HAKI", true, 4))
+							if (str[5] && !strcmp(str[5], __COMPILER_PACK"HAKI", true, 4))
 							{
 								idx += 9;
 								return X11_DARKKHAKI;
@@ -2966,7 +2967,7 @@ Optional plugins:
 						}
 						case 'm':
 						{
-							if (str[5] && !strcmp(str[5], !"AGENTA", true, 6))
+							if (str[5] && !strcmp(str[5], __COMPILER_PACK"AGENTA", true, 6))
 							{
 								idx += 11;
 								return X11_DARKMAGENTA;
@@ -2978,7 +2979,7 @@ Optional plugins:
 							{
 								case 'l':
 								{
-									if (!str[6] || strcmp(str[6], !"IVEGREEN", true, 8))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"IVEGREEN", true, 8))
 									{
 										return -1;
 									}
@@ -3014,7 +3015,7 @@ Optional plugins:
 									{
 										case 'a':
 										{
-											if (!str[7] || strcmp(str[7], !"NGE", true, 3))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"NGE", true, 3))
 											{
 												return -1;
 											}
@@ -3046,7 +3047,7 @@ Optional plugins:
 										}
 										case 'c':
 										{
-											if (!str[7] || strcmp(str[7], !"HID", true, 3))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"HID", true, 3))
 											{
 												return -1;
 											}
@@ -3082,7 +3083,7 @@ Optional plugins:
 						}
 						case 'r':
 						{
-							if (str[5] && !strcmp(str[5], !"ED", true, 2))
+							if (str[5] && !strcmp(str[5], __COMPILER_PACK"ED", true, 2))
 							{
 								idx += 7;
 								return X11_DARKRED;
@@ -3094,7 +3095,7 @@ Optional plugins:
 							{
 								case 'a':
 								{
-									if (str[6] && !strcmp(str[6], !"LMON", true, 4))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"LMON", true, 4))
 									{
 										idx += 10;
 										return X11_DARKSALMON;
@@ -3102,7 +3103,7 @@ Optional plugins:
 								}
 								case 'e':
 								{
-									if (!str[6] || strcmp(str[6], !"AGREEN", true, 6))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"AGREEN", true, 6))
 									{
 										return -1;
 									}
@@ -3134,7 +3135,7 @@ Optional plugins:
 								}
 								case 'l':
 								{
-									if (!str[6] || strcmp(str[6], !"ATE", true, 3))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"ATE", true, 3))
 									{
 										return -1;
 									}
@@ -3142,7 +3143,7 @@ Optional plugins:
 									{
 										case 'b':
 										{
-											if (str[10] && !strcmp(str[10], !"LUE", true, 3))
+											if (str[10] && !strcmp(str[10], __COMPILER_PACK"LUE", true, 3))
 											{
 												idx += 13;
 												return X11_DARKSLATEBLUE;
@@ -3228,7 +3229,7 @@ Optional plugins:
 						}
 						case 't':
 						{
-							if (str[5] && !strcmp(str[5], !"URQUOISE", true, 8))
+							if (str[5] && !strcmp(str[5], __COMPILER_PACK"URQUOISE", true, 8))
 							{
 								idx += 13;
 								return X11_DARKTURQUOISE;
@@ -3236,7 +3237,7 @@ Optional plugins:
 						}
 						case 'v':
 						{
-							if (str[5] && !strcmp(str[5], !"IOLET", true, 5))
+							if (str[5] && !strcmp(str[5], __COMPILER_PACK"IOLET", true, 5))
 							{
 								idx += 10;
 								return X11_DARKVIOLET;
@@ -3246,7 +3247,7 @@ Optional plugins:
 				}
 				case 'e':
 				{
-					if (!str[2] || strcmp(str[2], !"EP", true, 2))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"EP", true, 2))
 					{
 						return -1;
 					}
@@ -3260,7 +3261,7 @@ Optional plugins:
 								{
 									case 'p':
 									{
-										if (!str[6] || strcmp(str[6], !"INK", true, 3))
+										if (!str[6] || strcmp(str[6], __COMPILER_PACK"INK", true, 3))
 										{
 											return -1;
 										}
@@ -3327,8 +3328,8 @@ Optional plugins:
 									}
 									case 's':
 									{
-										//if (!str[6] || strcmp(str[6], !"KY_BLUE", true, 7))
-										if (!str[6] || strcmp(str[6], !"KY", true, 2) || (!_X11_SPACE_CHECK(8) && str[8] != '_') || strcmp(str[9], !"BLUE", true, 4))
+										//if (!str[6] || strcmp(str[6], __COMPILER_PACK"KY_BLUE", true, 7))
+										if (!str[6] || strcmp(str[6], __COMPILER_PACK"KY", true, 2) || (!_X11_SPACE_CHECK(8) && str[8] != '_') || strcmp(str[9], __COMPILER_PACK"BLUE", true, 4))
 										{
 											return -1;
 										}
@@ -3402,7 +3403,7 @@ Optional plugins:
 							{
 								case 'p':
 								{
-									if (!str[6] || strcmp(str[6], !"INK", true, 3))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"INK", true, 3))
 									{
 										return -1;
 									}
@@ -3469,8 +3470,8 @@ Optional plugins:
 								}
 								case 's':
 								{
-									//if (!str[6] || strcmp(str[6], !"KY_BLUE", true, 7))
-									if (!str[6] || strcmp(str[6], !"KY", true, 2) || (!_X11_SPACE_CHECK(8) && str[8] != '_') || strcmp(str[9], !"BLUE", true, 4))
+									//if (!str[6] || strcmp(str[6], __COMPILER_PACK"KY_BLUE", true, 7))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"KY", true, 2) || (!_X11_SPACE_CHECK(8) && str[8] != '_') || strcmp(str[9], __COMPILER_PACK"BLUE", true, 4))
 									{
 										return -1;
 									}
@@ -3539,7 +3540,7 @@ Optional plugins:
 						}
 						case 'p':
 						{
-							if (!str[5] || strcmp(str[5], !"INK", true, 3))
+							if (!str[5] || strcmp(str[5], __COMPILER_PACK"INK", true, 3))
 							{
 								return -1;
 							}
@@ -3571,7 +3572,7 @@ Optional plugins:
 						}
 						case 's':
 						{
-							if (!str[5] || strcmp(str[5], !"KYBLUE", true, 6))
+							if (!str[5] || strcmp(str[5], __COMPILER_PACK"KYBLUE", true, 6))
 							{
 								return -1;
 							}
@@ -3615,7 +3616,7 @@ Optional plugins:
 						{
 							if (str[3])
 							{
-								if (!str[4] || strcmp(str[4], !"GR", true, 2))
+								if (!str[4] || strcmp(str[4], __COMPILER_PACK"GR", true, 2))
 								{
 									return -1;
 								}
@@ -3642,7 +3643,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[4] || strcmp(str[4], !"GR", true, 2))
+							if (!str[4] || strcmp(str[4], __COMPILER_PACK"GR", true, 2))
 							{
 								return -1;
 							}
@@ -3696,7 +3697,7 @@ Optional plugins:
 				}
 				case 'o':
 				{
-					if (!str[2] || strcmp(str[2], !"DGER", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"DGER", true, 4))
 					{
 						return -1;
 					}
@@ -3706,7 +3707,7 @@ Optional plugins:
 						{
 							if (str[6])
 							{
-								if (!str[7] || strcmp(str[7], !"BLUE", true, 4))
+								if (!str[7] || strcmp(str[7], __COMPILER_PACK"BLUE", true, 4))
 								{
 									return -1;
 								}
@@ -3774,7 +3775,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[7] || strcmp(str[7], !"BLUE", true, 4))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"BLUE", true, 4))
 							{
 								return -1;
 							}
@@ -3841,7 +3842,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (!str[7] || strcmp(str[7], !"LUE", true, 3))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"LUE", true, 3))
 							{
 								return -1;
 							}
@@ -3881,7 +3882,7 @@ Optional plugins:
 			{
 				case 'i':
 				{
-					if (!str[2] || strcmp(str[2], !"REBRICK", true, 7))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"REBRICK", true, 7))
 					{
 						return -1;
 					}
@@ -3968,7 +3969,7 @@ Optional plugins:
 				}
 				case 'l':
 				{
-					if (!str[2] || strcmp(str[2], !"ORAL", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"ORAL", true, 4))
 					{
 						return -1;
 					}
@@ -3978,7 +3979,7 @@ Optional plugins:
 						{
 							if (str[6])
 							{
-								if (str[7] && !strcmp(str[7], !"WHITE", true, 5))
+								if (str[7] && !strcmp(str[7], __COMPILER_PACK"WHITE", true, 5))
 								{
 									idx += 12;
 									return X11_FLORAL_WHITE;
@@ -3987,7 +3988,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (str[7] && !strcmp(str[7], !"WHITE", true, 5))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"WHITE", true, 5))
 							{
 								idx += 12;
 								return X11_FLORAL_WHITE;
@@ -3995,7 +3996,7 @@ Optional plugins:
 						}
 						case 'w':
 						{
-							if (str[7] && !strcmp(str[7], !"HITE", true, 4))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"HITE", true, 4))
 							{
 								idx += 11;
 								return X11_FLORALWHITE;
@@ -4005,7 +4006,7 @@ Optional plugins:
 				}
 				case 'o':
 				{
-					if (!str[2] || strcmp(str[2], !"REST", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"REST", true, 4))
 					{
 						return -1;
 					}
@@ -4015,7 +4016,7 @@ Optional plugins:
 						{
 							if (str[6])
 							{
-								if (str[7] && !strcmp(str[7], !"GREEN", true, 5))
+								if (str[7] && !strcmp(str[7], __COMPILER_PACK"GREEN", true, 5))
 								{
 									idx += 12;
 									return X11_FOREST_GREEN;
@@ -4024,7 +4025,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (str[7] && !strcmp(str[7], !"GREEN", true, 5))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"GREEN", true, 5))
 							{
 								idx += 12;
 								return X11_FOREST_GREEN;
@@ -4032,7 +4033,7 @@ Optional plugins:
 						}
 						case 'g':
 						{
-							if (str[7] && !strcmp(str[7], !"REEN", true, 4))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"REEN", true, 4))
 							{
 								idx += 11;
 								return X11_FORESTGREEN;
@@ -4048,7 +4049,7 @@ Optional plugins:
 			{
 				case 'a':
 				{
-					if (str[2] && !strcmp(str[2], !"INSBORO", true, 7))
+					if (str[2] && !strcmp(str[2], __COMPILER_PACK"INSBORO", true, 7))
 					{
 						idx += 9;
 						return X11_GAINSBORO;
@@ -4056,7 +4057,7 @@ Optional plugins:
 				}
 				case 'h':
 				{
-					if (!str[2] || strcmp(str[2], !"OST", true, 3))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"OST", true, 3))
 					{
 						return -1;
 					}
@@ -4066,7 +4067,7 @@ Optional plugins:
 						{
 							if (str[5])
 							{
-								if (str[6] && !strcmp(str[6], !"WHITE", true, 5))
+								if (str[6] && !strcmp(str[6], __COMPILER_PACK"WHITE", true, 5))
 								{
 									idx += 11;
 									return X11_GHOST_WHITE;
@@ -4075,7 +4076,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (str[6] && !strcmp(str[6], !"WHITE", true, 5))
+							if (str[6] && !strcmp(str[6], __COMPILER_PACK"WHITE", true, 5))
 							{
 								idx += 11;
 								return X11_GHOST_WHITE;
@@ -4083,7 +4084,7 @@ Optional plugins:
 						}
 						case 'w':
 						{
-							if (str[6] && !strcmp(str[6], !"HITE", true, 4))
+							if (str[6] && !strcmp(str[6], __COMPILER_PACK"HITE", true, 4))
 							{
 								idx += 10;
 								return X11_GHOSTWHITE;
@@ -4093,7 +4094,7 @@ Optional plugins:
 				}
 				case 'o':
 				{
-					if (!str[2] || strcmp(str[2], !"LD", true, 2))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"LD", true, 2))
 					{
 						return -1;
 					}
@@ -4176,7 +4177,7 @@ Optional plugins:
 						}
 						case 'e':
 						{
-							if (!str[5] || strcmp(str[5], !"NROD", true, 4))
+							if (!str[5] || strcmp(str[5], __COMPILER_PACK"NROD", true, 4))
 							{
 								return -1;
 							}
@@ -5941,7 +5942,7 @@ Optional plugins:
 													}
 													case 'y':
 													{
-														if (str[7] && !strcmp(str[7], !"ELLOW", true, 5))
+														if (str[7] && !strcmp(str[7], __COMPILER_PACK"ELLOW", true, 5))
 														{
 															idx += 12;
 															return X11_GREEN_YELLOW;
@@ -5976,7 +5977,7 @@ Optional plugins:
 												}
 												case 'y':
 												{
-													if (str[7] && !strcmp(str[7], !"ELLOW", true, 5))
+													if (str[7] && !strcmp(str[7], __COMPILER_PACK"ELLOW", true, 5))
 													{
 														idx += 12;
 														return X11_GREEN_YELLOW;
@@ -6006,7 +6007,7 @@ Optional plugins:
 										}
 										case 'y':
 										{
-											if (str[6] && !strcmp(str[6], !"ELLOW", true, 5))
+											if (str[6] && !strcmp(str[6], __COMPILER_PACK"ELLOW", true, 5))
 											{
 												idx += 11;
 												return X11_GREENYELLOW;
@@ -7660,7 +7661,7 @@ Optional plugins:
 			{
 				case 'n':
 				{
-					if (!str[3] || strcmp(str[3], !"EYDEW", true, 5))
+					if (!str[3] || strcmp(str[3], __COMPILER_PACK"EYDEW", true, 5))
 					{
 						return -1;
 					}
@@ -7753,7 +7754,7 @@ Optional plugins:
 						{
 							if (str[3])
 							{
-								if (!str[4] || strcmp(str[4], !"PINK", true, 4))
+								if (!str[4] || strcmp(str[4], __COMPILER_PACK"PINK", true, 4))
 								{
 									return -1;
 								}
@@ -7821,7 +7822,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[4] || strcmp(str[4], !"PINK", true, 4))
+							if (!str[4] || strcmp(str[4], __COMPILER_PACK"PINK", true, 4))
 							{
 								return -1;
 							}
@@ -7888,7 +7889,7 @@ Optional plugins:
 						}
 						case 'p':
 						{
-							if (!str[4] || strcmp(str[4], !"INK", true, 3))
+							if (!str[4] || strcmp(str[4], __COMPILER_PACK"INK", true, 3))
 							{
 								return -1;
 							}
@@ -7928,7 +7929,7 @@ Optional plugins:
 			{
 				case 'n':
 				{
-					if (!str[2] || strcmp(str[2], !"DIAN", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"DIAN", true, 4))
 					{
 						return -1;
 					}
@@ -7938,7 +7939,7 @@ Optional plugins:
 						{
 							if (str[6])
 							{
-								if (!str[7] || strcmp(str[7], !"RED", true, 3))
+								if (!str[7] || strcmp(str[7], __COMPILER_PACK"RED", true, 3))
 								{
 									return -1;
 								}
@@ -8006,7 +8007,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[7] || strcmp(str[7], !"RED", true, 3))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"RED", true, 3))
 							{
 								return -1;
 							}
@@ -8073,7 +8074,7 @@ Optional plugins:
 						}
 						case 'r':
 						{
-							if (!str[7] || strcmp(str[7], !"ED", true, 2))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"ED", true, 2))
 							{
 								return -1;
 							}
@@ -8107,7 +8108,7 @@ Optional plugins:
 				}
 				case 'v':
 				{
-					if (!str[2] || strcmp(str[2], !"ORY", true, 3))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"ORY", true, 3))
 					{
 						return -1;
 					}
@@ -8196,7 +8197,7 @@ Optional plugins:
 		}
 		case 'k':
 		{
-			if (!str[1] || strcmp(str[1], !"HAKI", true, 4))
+			if (!str[1] || strcmp(str[1], __COMPILER_PACK"HAKI", true, 4))
 			{
 				return -1;
 			}
@@ -8291,7 +8292,7 @@ Optional plugins:
 					{
 						case 'v':
 						{
-							if (!str[3] || strcmp(str[3], !"ENDER", true, 5))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"ENDER", true, 5))
 							{
 								return -1;
 							}
@@ -8301,7 +8302,7 @@ Optional plugins:
 								{
 									if (str[8])
 									{
-										if (!str[9] || strcmp(str[9], !"BLUSH", true, 5))
+										if (!str[9] || strcmp(str[9], __COMPILER_PACK"BLUSH", true, 5))
 										{
 											return -1;
 										}
@@ -8369,7 +8370,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (!str[9] || strcmp(str[9], !"BLUSH", true, 5))
+									if (!str[9] || strcmp(str[9], __COMPILER_PACK"BLUSH", true, 5))
 									{
 										return -1;
 									}
@@ -8436,7 +8437,7 @@ Optional plugins:
 								}
 								case 'b':
 								{
-									if (!str[9] || strcmp(str[9], !"LUSH", true, 4))
+									if (!str[9] || strcmp(str[9], __COMPILER_PACK"LUSH", true, 4))
 									{
 										return -1;
 									}
@@ -8482,7 +8483,7 @@ Optional plugins:
 								{
 									if (str[4])
 									{
-										if (str[5] && !strcmp(str[5], !"GREEN", true, 5))
+										if (str[5] && !strcmp(str[5], __COMPILER_PACK"GREEN", true, 5))
 										{
 											idx += 10;
 											return X11_LAWN_GREEN;
@@ -8491,7 +8492,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (str[5] && !strcmp(str[5], !"GREEN", true, 5))
+									if (str[5] && !strcmp(str[5], __COMPILER_PACK"GREEN", true, 5))
 									{
 										idx += 10;
 										return X11_LAWN_GREEN;
@@ -8499,7 +8500,7 @@ Optional plugins:
 								}
 								case 'g':
 								{
-									if (str[5] && !strcmp(str[5], !"REEN", true, 4))
+									if (str[5] && !strcmp(str[5], __COMPILER_PACK"REEN", true, 4))
 									{
 										idx += 9;
 										return X11_LAWNGREEN;
@@ -8511,7 +8512,7 @@ Optional plugins:
 				}
 				case 'e':
 				{
-					if (!str[2] || strcmp(str[2], !"MON", true, 3))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"MON", true, 3))
 					{
 						return -1;
 					}
@@ -8521,7 +8522,7 @@ Optional plugins:
 						{
 							if (str[5])
 							{
-								if (!str[6] || strcmp(str[6], !"CHIFFON", true, 7))
+								if (!str[6] || strcmp(str[6], __COMPILER_PACK"CHIFFON", true, 7))
 								{
 									return -1;
 								}
@@ -8589,7 +8590,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[6] || strcmp(str[6], !"CHIFFON", true, 7))
+							if (!str[6] || strcmp(str[6], __COMPILER_PACK"CHIFFON", true, 7))
 							{
 								return -1;
 							}
@@ -8656,7 +8657,7 @@ Optional plugins:
 						}
 						case 'c':
 						{
-							if (!str[6] || strcmp(str[6], !"HIFFON", true, 6))
+							if (!str[6] || strcmp(str[6], __COMPILER_PACK"HIFFON", true, 6))
 							{
 								return -1;
 							}
@@ -8694,7 +8695,7 @@ Optional plugins:
 					{
 						case 'g':
 						{
-							if (!str[3] || strcmp(str[3], !"HT", true, 2))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"HT", true, 2))
 							{
 								return -1;
 							}
@@ -8708,7 +8709,7 @@ Optional plugins:
 										{
 											case 'b':
 											{
-												if (!str[7] || strcmp(str[7], !"LUE", true, 3))
+												if (!str[7] || strcmp(str[7], __COMPILER_PACK"LUE", true, 3))
 												{
 													return -1;
 												}
@@ -8779,7 +8780,7 @@ Optional plugins:
 												{
 													case 'o':
 													{
-														if (str[8] && !strcmp(str[8], !"RAL", true, 3))
+														if (str[8] && !strcmp(str[8], __COMPILER_PACK"RAL", true, 3))
 														{
 															idx += 11;
 															return X11_LIGHT_CORAL;
@@ -8787,7 +8788,7 @@ Optional plugins:
 													}
 													case 'y':
 													{
-														if (!str[8] || strcmp(str[8], !"AN", true, 2))
+														if (!str[8] || strcmp(str[8], __COMPILER_PACK"AN", true, 2))
 														{
 															return -1;
 														}
@@ -8860,7 +8861,7 @@ Optional plugins:
 												{
 													case 'o':
 													{
-														if (!str[8] || strcmp(str[8], !"LDENROD", true, 7))
+														if (!str[8] || strcmp(str[8], __COMPILER_PACK"LDENROD", true, 7))
 														{
 															return -1;
 														}
@@ -8894,7 +8895,7 @@ Optional plugins:
 																		}
 																		case 'y':
 																		{
-																			if (str[17] && !strcmp(str[17], !"ELLOW", true, 5))
+																			if (str[17] && !strcmp(str[17], __COMPILER_PACK"ELLOW", true, 5))
 																			{
 																				idx += 22;
 																				return X11_LIGHT_GOLDENROD_YELLOW;
@@ -8929,7 +8930,7 @@ Optional plugins:
 																	}
 																	case 'y':
 																	{
-																		if (str[17] && !strcmp(str[17], !"ELLOW", true, 5))
+																		if (str[17] && !strcmp(str[17], __COMPILER_PACK"ELLOW", true, 5))
 																		{
 																			idx += 22;
 																			return X11_LIGHT_GOLDENROD_YELLOW;
@@ -8978,7 +8979,7 @@ Optional plugins:
 											}
 											case 'p':
 											{
-												if (!str[7] || strcmp(str[7], !"INK", true, 3))
+												if (!str[7] || strcmp(str[7], __COMPILER_PACK"INK", true, 3))
 												{
 													return -1;
 												}
@@ -9049,7 +9050,7 @@ Optional plugins:
 												{
 													case 'a':
 													{
-														if (!str[8] || strcmp(str[8], !"LMON", true, 4))
+														if (!str[8] || strcmp(str[8], __COMPILER_PACK"LMON", true, 4))
 														{
 															return -1;
 														}
@@ -9116,8 +9117,8 @@ Optional plugins:
 													}
 													case 'e':
 													{
-														//if (str[8] && !strcmp(str[8], !"A_GREEN", true, 7))
-														if (str[8] | 0x20 == 'a' && (_X11_SPACE_CHECK(9) || str[9] == '_') && !strcmp(str[10], !"GREEN", true, 5))
+														//if (str[8] && !strcmp(str[8], __COMPILER_PACK"A_GREEN", true, 7))
+														if (str[8] | 0x20 == 'a' && (_X11_SPACE_CHECK(9) || str[9] == '_') && !strcmp(str[10], __COMPILER_PACK"GREEN", true, 5))
 														{
 															idx += 15;
 															return X11_LIGHT_SEA_GREEN;
@@ -9125,8 +9126,8 @@ Optional plugins:
 													}
 													case 'k':
 													{
-														//if (!str[8] || strcmp(str[8], !"Y_BLUE", true, 6))
-														if (str[8] | 0x20 != 'y' || (!_X11_SPACE_CHECK(9) && str[9] != '_') || strcmp(str[10], !"BLUE", true, 4))
+														//if (!str[8] || strcmp(str[8], __COMPILER_PACK"Y_BLUE", true, 6))
+														if (str[8] | 0x20 != 'y' || (!_X11_SPACE_CHECK(9) && str[9] != '_') || strcmp(str[10], __COMPILER_PACK"BLUE", true, 4))
 														{
 															return -1;
 														}
@@ -9193,8 +9194,8 @@ Optional plugins:
 													}
 													case 'l':
 													{
-														//if (!str[8] || strcmp(str[8], !"ATE_", true, 4))
-														if (!str[8] || strcmp(str[8], !"ATE", true, 3) || (!_X11_SPACE_CHECK(11) && str[11] != '_'))
+														//if (!str[8] || strcmp(str[8], __COMPILER_PACK"ATE_", true, 4))
+														if (!str[8] || strcmp(str[8], __COMPILER_PACK"ATE", true, 3) || (!_X11_SPACE_CHECK(11) && str[11] != '_'))
 														{
 															return -1;
 														}
@@ -9202,7 +9203,7 @@ Optional plugins:
 														{
 															case 'b':
 															{
-																if (str[13] && !strcmp(str[13], !"LUE", true, 3))
+																if (str[13] && !strcmp(str[13], __COMPILER_PACK"LUE", true, 3))
 																{
 																	idx += 16;
 																	return X11_LIGHT_SLATE_BLUE;
@@ -9238,8 +9239,8 @@ Optional plugins:
 													}
 													case 't':
 													{
-														//if (!str[8] || strcmp(str[8], !"EEL_BLUE", true, 8))
-														if (!str[8] || strcmp(str[8], !"EEL", true, 3) || (!_X11_SPACE_CHECK(11) && str[11] != '_') || strcmp(str[12], !"BLUE", true, 4))
+														//if (!str[8] || strcmp(str[8], __COMPILER_PACK"EEL_BLUE", true, 8))
+														if (!str[8] || strcmp(str[8], __COMPILER_PACK"EEL", true, 3) || (!_X11_SPACE_CHECK(11) && str[11] != '_') || strcmp(str[12], __COMPILER_PACK"BLUE", true, 4))
 														{
 															return -1;
 														}
@@ -9308,7 +9309,7 @@ Optional plugins:
 											}
 											case 'y':
 											{
-												if (!str[7] || strcmp(str[7], !"ELLOW", true, 5))
+												if (!str[7] || strcmp(str[7], __COMPILER_PACK"ELLOW", true, 5))
 												{
 													return -1;
 												}
@@ -9382,7 +9383,7 @@ Optional plugins:
 									{
 										case 'b':
 										{
-											if (!str[7] || strcmp(str[7], !"LUE", true, 3))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"LUE", true, 3))
 											{
 												return -1;
 											}
@@ -9453,7 +9454,7 @@ Optional plugins:
 											{
 												case 'o':
 												{
-													if (str[8] && !strcmp(str[8], !"RAL", true, 3))
+													if (str[8] && !strcmp(str[8], __COMPILER_PACK"RAL", true, 3))
 													{
 														idx += 11;
 														return X11_LIGHT_CORAL;
@@ -9461,7 +9462,7 @@ Optional plugins:
 												}
 												case 'y':
 												{
-													if (!str[8] || strcmp(str[8], !"AN", true, 2))
+													if (!str[8] || strcmp(str[8], __COMPILER_PACK"AN", true, 2))
 													{
 														return -1;
 													}
@@ -9534,7 +9535,7 @@ Optional plugins:
 											{
 												case 'o':
 												{
-													if (!str[8] || strcmp(str[8], !"LDENROD", true, 7))
+													if (!str[8] || strcmp(str[8], __COMPILER_PACK"LDENROD", true, 7))
 													{
 														return -1;
 													}
@@ -9568,7 +9569,7 @@ Optional plugins:
 																	}
 																	case 'y':
 																	{
-																		if (str[17] && !strcmp(str[17], !"ELLOW", true, 5))
+																		if (str[17] && !strcmp(str[17], __COMPILER_PACK"ELLOW", true, 5))
 																		{
 																			idx += 22;
 																			return X11_LIGHT_GOLDENROD_YELLOW;
@@ -9603,7 +9604,7 @@ Optional plugins:
 																}
 																case 'y':
 																{
-																	if (str[17] && !strcmp(str[17], !"ELLOW", true, 5))
+																	if (str[17] && !strcmp(str[17], __COMPILER_PACK"ELLOW", true, 5))
 																	{
 																		idx += 22;
 																		return X11_LIGHT_GOLDENROD_YELLOW;
@@ -9652,7 +9653,7 @@ Optional plugins:
 										}
 										case 'p':
 										{
-											if (!str[7] || strcmp(str[7], !"INK", true, 3))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"INK", true, 3))
 											{
 												return -1;
 											}
@@ -9723,7 +9724,7 @@ Optional plugins:
 											{
 												case 'a':
 												{
-													if (!str[8] || strcmp(str[8], !"LMON", true, 4))
+													if (!str[8] || strcmp(str[8], __COMPILER_PACK"LMON", true, 4))
 													{
 														return -1;
 													}
@@ -9790,8 +9791,8 @@ Optional plugins:
 												}
 												case 'e':
 												{
-													//if (str[8] && !strcmp(str[8], !"A_GREEN", true, 7))
-													if (str[8] | 0x20 == 'a' && (_X11_SPACE_CHECK(9) || str[9] == '_') && !strcmp(str[10], !"GREEN", true, 5))
+													//if (str[8] && !strcmp(str[8], __COMPILER_PACK"A_GREEN", true, 7))
+													if (str[8] | 0x20 == 'a' && (_X11_SPACE_CHECK(9) || str[9] == '_') && !strcmp(str[10], __COMPILER_PACK"GREEN", true, 5))
 													{
 														idx += 15;
 														return X11_LIGHT_SEA_GREEN;
@@ -9799,8 +9800,8 @@ Optional plugins:
 												}
 												case 'k':
 												{
-													//if (!str[8] || strcmp(str[8], !"Y_BLUE", true, 6))
-													if (str[8] | 0x20 != 'y' || (!_X11_SPACE_CHECK(9) && str[9] != '_') || strcmp(str[10], !"BLUE", true, 4))
+													//if (!str[8] || strcmp(str[8], __COMPILER_PACK"Y_BLUE", true, 6))
+													if (str[8] | 0x20 != 'y' || (!_X11_SPACE_CHECK(9) && str[9] != '_') || strcmp(str[10], __COMPILER_PACK"BLUE", true, 4))
 													{
 														return -1;
 													}
@@ -9867,8 +9868,8 @@ Optional plugins:
 												}
 												case 'l':
 												{
-													//if (!str[8] || strcmp(str[8], !"ATE_", true, 4))
-													if (!str[8] || strcmp(str[8], !"ATE", true, 3) || (!_X11_SPACE_CHECK(11) && str[11] != '_'))
+													//if (!str[8] || strcmp(str[8], __COMPILER_PACK"ATE_", true, 4))
+													if (!str[8] || strcmp(str[8], __COMPILER_PACK"ATE", true, 3) || (!_X11_SPACE_CHECK(11) && str[11] != '_'))
 													{
 														return -1;
 													}
@@ -9876,7 +9877,7 @@ Optional plugins:
 													{
 														case 'b':
 														{
-															if (str[13] && !strcmp(str[13], !"LUE", true, 3))
+															if (str[13] && !strcmp(str[13], __COMPILER_PACK"LUE", true, 3))
 															{
 																idx += 16;
 																return X11_LIGHT_SLATE_BLUE;
@@ -9912,8 +9913,8 @@ Optional plugins:
 												}
 												case 't':
 												{
-													//if (!str[8] || strcmp(str[8], !"EEL_BLUE", true, 8))
-													if (!str[8] || strcmp(str[8], !"EEL", true, 3) || (!_X11_SPACE_CHECK(11) && str[11] != '_') || strcmp(str[12], !"BLUE", true, 4))
+													//if (!str[8] || strcmp(str[8], __COMPILER_PACK"EEL_BLUE", true, 8))
+													if (!str[8] || strcmp(str[8], __COMPILER_PACK"EEL", true, 3) || (!_X11_SPACE_CHECK(11) && str[11] != '_') || strcmp(str[12], __COMPILER_PACK"BLUE", true, 4))
 													{
 														return -1;
 													}
@@ -9982,7 +9983,7 @@ Optional plugins:
 										}
 										case 'y':
 										{
-											if (!str[7] || strcmp(str[7], !"ELLOW", true, 5))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"ELLOW", true, 5))
 											{
 												return -1;
 											}
@@ -10051,7 +10052,7 @@ Optional plugins:
 								}
 								case 'b':
 								{
-									if (!str[6] || strcmp(str[6], !"LUE", true, 3))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"LUE", true, 3))
 									{
 										return -1;
 									}
@@ -10087,7 +10088,7 @@ Optional plugins:
 									{
 										case 'o':
 										{
-											if (str[7] && !strcmp(str[7], !"RAL", true, 3))
+											if (str[7] && !strcmp(str[7], __COMPILER_PACK"RAL", true, 3))
 											{
 												idx += 10;
 												return X11_LIGHTCORAL;
@@ -10095,7 +10096,7 @@ Optional plugins:
 										}
 										case 'y':
 										{
-											if (!str[7] || strcmp(str[7], !"AN", true, 2))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"AN", true, 2))
 											{
 												return -1;
 											}
@@ -10133,7 +10134,7 @@ Optional plugins:
 									{
 										case 'o':
 										{
-											if (!str[7] || strcmp(str[7], !"LDENROD", true, 7))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"LDENROD", true, 7))
 											{
 												return -1;
 											}
@@ -10161,7 +10162,7 @@ Optional plugins:
 												}
 												case 'y':
 												{
-													if (str[15] && !strcmp(str[15], !"ELLOW", true, 5))
+													if (str[15] && !strcmp(str[15], __COMPILER_PACK"ELLOW", true, 5))
 													{
 														idx += 20;
 														return X11_LIGHTGOLDENRODYELLOW;
@@ -10208,7 +10209,7 @@ Optional plugins:
 								}
 								case 'p':
 								{
-									if (!str[6] || strcmp(str[6], !"INK", true, 3))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"INK", true, 3))
 									{
 										return -1;
 									}
@@ -10244,7 +10245,7 @@ Optional plugins:
 									{
 										case 'a':
 										{
-											if (!str[7] || strcmp(str[7], !"LMON", true, 4))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"LMON", true, 4))
 											{
 												return -1;
 											}
@@ -10276,7 +10277,7 @@ Optional plugins:
 										}
 										case 'e':
 										{
-											if (str[7] && !strcmp(str[7], !"AGREEN", true, 6))
+											if (str[7] && !strcmp(str[7], __COMPILER_PACK"AGREEN", true, 6))
 											{
 												idx += 13;
 												return X11_LIGHTSEAGREEN;
@@ -10284,7 +10285,7 @@ Optional plugins:
 										}
 										case 'k':
 										{
-											if (!str[7] || strcmp(str[7], !"YBLUE", true, 5))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"YBLUE", true, 5))
 											{
 												return -1;
 											}
@@ -10316,7 +10317,7 @@ Optional plugins:
 										}
 										case 'l':
 										{
-											if (!str[7] || strcmp(str[7], !"ATE", true, 3))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"ATE", true, 3))
 											{
 												return -1;
 											}
@@ -10324,7 +10325,7 @@ Optional plugins:
 											{
 												case 'b':
 												{
-													if (str[11] && !strcmp(str[11], !"LUE", true, 3))
+													if (str[11] && !strcmp(str[11], __COMPILER_PACK"LUE", true, 3))
 													{
 														idx += 14;
 														return X11_LIGHTSLATEBLUE;
@@ -10360,7 +10361,7 @@ Optional plugins:
 										}
 										case 't':
 										{
-											if (!str[7] || strcmp(str[7], !"EELBLUE", true, 7))
+											if (!str[7] || strcmp(str[7], __COMPILER_PACK"EELBLUE", true, 7))
 											{
 												return -1;
 											}
@@ -10394,7 +10395,7 @@ Optional plugins:
 								}
 								case 'y':
 								{
-									if (!str[6] || strcmp(str[6], !"ELLOW", true, 5))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"ELLOW", true, 5))
 									{
 										return -1;
 									}
@@ -10438,7 +10439,7 @@ Optional plugins:
 								{
 									if (str[4])
 									{
-										if (str[5] && !strcmp(str[5], !"GREEN", true, 5))
+										if (str[5] && !strcmp(str[5], __COMPILER_PACK"GREEN", true, 5))
 										{
 											idx += 10;
 											return X11_LIME_GREEN;
@@ -10447,7 +10448,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (str[5] && !strcmp(str[5], !"GREEN", true, 5))
+									if (str[5] && !strcmp(str[5], __COMPILER_PACK"GREEN", true, 5))
 									{
 										idx += 10;
 										return X11_LIME_GREEN;
@@ -10455,7 +10456,7 @@ Optional plugins:
 								}
 								case 'g':
 								{
-									if (str[5] && !strcmp(str[5], !"REEN", true, 4))
+									if (str[5] && !strcmp(str[5], __COMPILER_PACK"REEN", true, 4))
 									{
 										idx += 9;
 										return X11_LIMEGREEN;
@@ -10465,7 +10466,7 @@ Optional plugins:
 						}
 						case 'n':
 						{
-							if (str[3] && !strcmp(str[3], !"EN", true, 2))
+							if (str[3] && !strcmp(str[3], __COMPILER_PACK"EN", true, 2))
 							{
 								idx += 5;
 								return X11_LINEN;
@@ -10485,7 +10486,7 @@ Optional plugins:
 					{
 						case 'g':
 						{
-							if (!str[3] || strcmp(str[3], !"ENTA", true, 4))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"ENTA", true, 4))
 							{
 								return -1;
 							}
@@ -10572,7 +10573,7 @@ Optional plugins:
 						}
 						case 'r':
 						{
-							if (!str[3] || strcmp(str[3], !"OON", true, 3))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"OON", true, 3))
 							{
 								return -1;
 							}
@@ -10661,7 +10662,7 @@ Optional plugins:
 				}
 				case 'e':
 				{
-					if (!str[2] || strcmp(str[2], !"DIUM", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"DIUM", true, 4))
 					{
 						return -1;
 					}
@@ -10675,7 +10676,7 @@ Optional plugins:
 								{
 									case 'a':
 									{
-										if (str[8] && !strcmp(str[8], !"QUAMARINE", true, 9))
+										if (str[8] && !strcmp(str[8], __COMPILER_PACK"QUAMARINE", true, 9))
 										{
 											idx += 17;
 											return X11_MEDIUM_AQUAMARINE;
@@ -10683,7 +10684,7 @@ Optional plugins:
 									}
 									case 'b':
 									{
-										if (str[8] && !strcmp(str[8], !"LUE", true, 3))
+										if (str[8] && !strcmp(str[8], __COMPILER_PACK"LUE", true, 3))
 										{
 											idx += 11;
 											return X11_MEDIUM_BLUE;
@@ -10691,7 +10692,7 @@ Optional plugins:
 									}
 									case 'o':
 									{
-										if (!str[8] || strcmp(str[8], !"RCHID", true, 5))
+										if (!str[8] || strcmp(str[8], __COMPILER_PACK"RCHID", true, 5))
 										{
 											return -1;
 										}
@@ -10758,7 +10759,7 @@ Optional plugins:
 									}
 									case 'p':
 									{
-										if (!str[8] || strcmp(str[8], !"URPLE", true, 5))
+										if (!str[8] || strcmp(str[8], __COMPILER_PACK"URPLE", true, 5))
 										{
 											return -1;
 										}
@@ -10829,8 +10830,8 @@ Optional plugins:
 										{
 											case 'e':
 											{
-												//if (str[9] && !strcmp(str[9], !"A_GREEN", true, 7))
-												if (str[9] | 0x20 == 'a' && (_X11_SPACE_CHECK(10) || str[10] == '_') && !strcmp(str[11], !"GREEN", true, 5))
+												//if (str[9] && !strcmp(str[9], __COMPILER_PACK"A_GREEN", true, 7))
+												if (str[9] | 0x20 == 'a' && (_X11_SPACE_CHECK(10) || str[10] == '_') && !strcmp(str[11], __COMPILER_PACK"GREEN", true, 5))
 												{
 													idx += 16;
 													return X11_MEDIUM_SEA_GREEN;
@@ -10838,8 +10839,8 @@ Optional plugins:
 											}
 											case 'l':
 											{
-												//if (str[9] && !strcmp(str[9], !"ATE_BLUE", true, 8))
-												if (str[9] && !strcmp(str[9], !"ATE", true, 3) && (_X11_SPACE_CHECK(12) || str[12] == '_') && !strcmp(str[13], !"BLUE", true, 4))
+												//if (str[9] && !strcmp(str[9], __COMPILER_PACK"ATE_BLUE", true, 8))
+												if (str[9] && !strcmp(str[9], __COMPILER_PACK"ATE", true, 3) && (_X11_SPACE_CHECK(12) || str[12] == '_') && !strcmp(str[13], __COMPILER_PACK"BLUE", true, 4))
 												{
 													idx += 17;
 													return X11_MEDIUM_SLATE_BLUE;
@@ -10847,8 +10848,8 @@ Optional plugins:
 											}
 											case 'p':
 											{
-												//if (str[9] && !strcmp(str[9], !"RING_GREEN", true, 10))
-												if (str[9] && !strcmp(str[9], !"RING", true, 4) && (_X11_SPACE_CHECK(13) || str[13] == '_') && !strcmp(str[14], !"GREEN", true, 5))
+												//if (str[9] && !strcmp(str[9], __COMPILER_PACK"RING_GREEN", true, 10))
+												if (str[9] && !strcmp(str[9], __COMPILER_PACK"RING", true, 4) && (_X11_SPACE_CHECK(13) || str[13] == '_') && !strcmp(str[14], __COMPILER_PACK"GREEN", true, 5))
 												{
 													idx += 19;
 													return X11_MEDIUM_SPRING_GREEN;
@@ -10858,7 +10859,7 @@ Optional plugins:
 									}
 									case 't':
 									{
-										if (str[8] && !strcmp(str[8], !"URQUOISE", true, 8))
+										if (str[8] && !strcmp(str[8], __COMPILER_PACK"URQUOISE", true, 8))
 										{
 											idx += 16;
 											return X11_MEDIUM_TURQUOISE;
@@ -10866,8 +10867,8 @@ Optional plugins:
 									}
 									case 'v':
 									{
-										//if (str[8] && !strcmp(str[8], !"IOLET_RED", true, 9))
-										if (str[8] && !strcmp(str[8], !"IOLET", true, 5) && (_X11_SPACE_CHECK(13) || str[13] == '_') && !strcmp(str[14], !"RED", true, 3))
+										//if (str[8] && !strcmp(str[8], __COMPILER_PACK"IOLET_RED", true, 9))
+										if (str[8] && !strcmp(str[8], __COMPILER_PACK"IOLET", true, 5) && (_X11_SPACE_CHECK(13) || str[13] == '_') && !strcmp(str[14], __COMPILER_PACK"RED", true, 3))
 										{
 											idx += 17;
 											return X11_MEDIUM_VIOLET_RED;
@@ -10882,7 +10883,7 @@ Optional plugins:
 							{
 								case 'a':
 								{
-									if (str[8] && !strcmp(str[8], !"QUAMARINE", true, 9))
+									if (str[8] && !strcmp(str[8], __COMPILER_PACK"QUAMARINE", true, 9))
 									{
 										idx += 17;
 										return X11_MEDIUM_AQUAMARINE;
@@ -10890,7 +10891,7 @@ Optional plugins:
 								}
 								case 'b':
 								{
-									if (str[8] && !strcmp(str[8], !"LUE", true, 3))
+									if (str[8] && !strcmp(str[8], __COMPILER_PACK"LUE", true, 3))
 									{
 										idx += 11;
 										return X11_MEDIUM_BLUE;
@@ -10898,7 +10899,7 @@ Optional plugins:
 								}
 								case 'o':
 								{
-									if (!str[8] || strcmp(str[8], !"RCHID", true, 5))
+									if (!str[8] || strcmp(str[8], __COMPILER_PACK"RCHID", true, 5))
 									{
 										return -1;
 									}
@@ -10965,7 +10966,7 @@ Optional plugins:
 								}
 								case 'p':
 								{
-									if (!str[8] || strcmp(str[8], !"URPLE", true, 5))
+									if (!str[8] || strcmp(str[8], __COMPILER_PACK"URPLE", true, 5))
 									{
 										return -1;
 									}
@@ -11036,8 +11037,8 @@ Optional plugins:
 									{
 										case 'e':
 										{
-											//if (str[9] && !strcmp(str[9], !"A_GREEN", true, 7))
-											if (str[9] | 0x20 == 'a' && (_X11_SPACE_CHECK(10) || str[10] == '_') && !strcmp(str[11], !"GREEN", true, 5))
+											//if (str[9] && !strcmp(str[9], __COMPILER_PACK"A_GREEN", true, 7))
+											if (str[9] | 0x20 == 'a' && (_X11_SPACE_CHECK(10) || str[10] == '_') && !strcmp(str[11], __COMPILER_PACK"GREEN", true, 5))
 											{
 												idx += 16;
 												return X11_MEDIUM_SEA_GREEN;
@@ -11045,8 +11046,8 @@ Optional plugins:
 										}
 										case 'l':
 										{
-											//if (str[9] && !strcmp(str[9], !"ATE_BLUE", true, 8))
-											if (str[9] && !strcmp(str[9], !"ATE", true, 3) && (_X11_SPACE_CHECK(12) || str[12] == '_') && !strcmp(str[13], !"BLUE", true, 4))
+											//if (str[9] && !strcmp(str[9], __COMPILER_PACK"ATE_BLUE", true, 8))
+											if (str[9] && !strcmp(str[9], __COMPILER_PACK"ATE", true, 3) && (_X11_SPACE_CHECK(12) || str[12] == '_') && !strcmp(str[13], __COMPILER_PACK"BLUE", true, 4))
 											{
 												idx += 17;
 												return X11_MEDIUM_SLATE_BLUE;
@@ -11054,8 +11055,8 @@ Optional plugins:
 										}
 										case 'p':
 										{
-											//if (str[9] && !strcmp(str[9], !"RING_GREEN", true, 10))
-											if (str[9] && !strcmp(str[9], !"RING", true, 4) && (_X11_SPACE_CHECK(13) || str[13] == '_') && !strcmp(str[14], !"GREEN", true, 5))
+											//if (str[9] && !strcmp(str[9], __COMPILER_PACK"RING_GREEN", true, 10))
+											if (str[9] && !strcmp(str[9], __COMPILER_PACK"RING", true, 4) && (_X11_SPACE_CHECK(13) || str[13] == '_') && !strcmp(str[14], __COMPILER_PACK"GREEN", true, 5))
 											{
 												idx += 19;
 												return X11_MEDIUM_SPRING_GREEN;
@@ -11065,7 +11066,7 @@ Optional plugins:
 								}
 								case 't':
 								{
-									if (str[8] && !strcmp(str[8], !"URQUOISE", true, 8))
+									if (str[8] && !strcmp(str[8], __COMPILER_PACK"URQUOISE", true, 8))
 									{
 										idx += 16;
 										return X11_MEDIUM_TURQUOISE;
@@ -11073,8 +11074,8 @@ Optional plugins:
 								}
 								case 'v':
 								{
-									if (str[8] && !strcmp(str[8], !"IOLET", true, 5) && (_X11_SPACE_CHECK(13) || str[13] == '_') && !strcmp(str[14], !"RED", true, 3))
-									//if (str[8] && !strcmp(str[8], !"IOLET_RED", true, 9))
+									if (str[8] && !strcmp(str[8], __COMPILER_PACK"IOLET", true, 5) && (_X11_SPACE_CHECK(13) || str[13] == '_') && !strcmp(str[14], __COMPILER_PACK"RED", true, 3))
+									//if (str[8] && !strcmp(str[8], __COMPILER_PACK"IOLET_RED", true, 9))
 									{
 										idx += 17;
 										return X11_MEDIUM_VIOLET_RED;
@@ -11084,7 +11085,7 @@ Optional plugins:
 						}
 						case 'a':
 						{
-							if (str[7] && !strcmp(str[7], !"QUAMARINE", true, 9))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"QUAMARINE", true, 9))
 							{
 								idx += 16;
 								return X11_MEDIUMAQUAMARINE;
@@ -11092,7 +11093,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (str[7] && !strcmp(str[7], !"LUE", true, 3))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"LUE", true, 3))
 							{
 								idx += 10;
 								return X11_MEDIUMBLUE;
@@ -11100,7 +11101,7 @@ Optional plugins:
 						}
 						case 'o':
 						{
-							if (!str[7] || strcmp(str[7], !"RCHID", true, 5))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"RCHID", true, 5))
 							{
 								return -1;
 							}
@@ -11132,7 +11133,7 @@ Optional plugins:
 						}
 						case 'p':
 						{
-							if (!str[7] || strcmp(str[7], !"URPLE", true, 5))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"URPLE", true, 5))
 							{
 								return -1;
 							}
@@ -11168,7 +11169,7 @@ Optional plugins:
 							{
 								case 'e':
 								{
-									if (str[8] && !strcmp(str[8], !"AGREEN", true, 6))
+									if (str[8] && !strcmp(str[8], __COMPILER_PACK"AGREEN", true, 6))
 									{
 										idx += 14;
 										return X11_MEDIUMSEAGREEN;
@@ -11176,7 +11177,7 @@ Optional plugins:
 								}
 								case 'l':
 								{
-									if (str[8] && !strcmp(str[8], !"ATEBLUE", true, 7))
+									if (str[8] && !strcmp(str[8], __COMPILER_PACK"ATEBLUE", true, 7))
 									{
 										idx += 15;
 										return X11_MEDIUMSLATEBLUE;
@@ -11184,7 +11185,7 @@ Optional plugins:
 								}
 								case 'p':
 								{
-									if (str[8] && !strcmp(str[8], !"RINGGREEN", true, 9))
+									if (str[8] && !strcmp(str[8], __COMPILER_PACK"RINGGREEN", true, 9))
 									{
 										idx += 17;
 										return X11_MEDIUMSPRINGGREEN;
@@ -11194,7 +11195,7 @@ Optional plugins:
 						}
 						case 't':
 						{
-							if (str[7] && !strcmp(str[7], !"URQUOISE", true, 8))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"URQUOISE", true, 8))
 							{
 								idx += 15;
 								return X11_MEDIUMTURQUOISE;
@@ -11202,7 +11203,7 @@ Optional plugins:
 						}
 						case 'v':
 						{
-							if (str[7] && !strcmp(str[7], !"IOLETRED", true, 8))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"IOLETRED", true, 8))
 							{
 								idx += 15;
 								return X11_MEDIUMVIOLETRED;
@@ -11216,7 +11217,7 @@ Optional plugins:
 					{
 						case 'd':
 						{
-							if (!str[3] || strcmp(str[3], !"NIGHT", true, 5))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"NIGHT", true, 5))
 							{
 								return -1;
 							}
@@ -11226,7 +11227,7 @@ Optional plugins:
 								{
 									if (str[8])
 									{
-										if (str[9] && !strcmp(str[9], !"BLUE", true, 4))
+										if (str[9] && !strcmp(str[9], __COMPILER_PACK"BLUE", true, 4))
 										{
 											idx += 13;
 											return X11_MIDNIGHT_BLUE;
@@ -11235,7 +11236,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (str[9] && !strcmp(str[9], !"BLUE", true, 4))
+									if (str[9] && !strcmp(str[9], __COMPILER_PACK"BLUE", true, 4))
 									{
 										idx += 13;
 										return X11_MIDNIGHT_BLUE;
@@ -11243,7 +11244,7 @@ Optional plugins:
 								}
 								case 'b':
 								{
-									if (str[9] && !strcmp(str[9], !"LUE", true, 3))
+									if (str[9] && !strcmp(str[9], __COMPILER_PACK"LUE", true, 3))
 									{
 										idx += 12;
 										return X11_MIDNIGHTBLUE;
@@ -11263,7 +11264,7 @@ Optional plugins:
 								{
 									if (str[4])
 									{
-										if (str[5] && !strcmp(str[5], !"CREAM", true, 5))
+										if (str[5] && !strcmp(str[5], __COMPILER_PACK"CREAM", true, 5))
 										{
 											idx += 10;
 											return X11_MINT_CREAM;
@@ -11272,7 +11273,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (str[5] && !strcmp(str[5], !"CREAM", true, 5))
+									if (str[5] && !strcmp(str[5], __COMPILER_PACK"CREAM", true, 5))
 									{
 										idx += 10;
 										return X11_MINT_CREAM;
@@ -11280,7 +11281,7 @@ Optional plugins:
 								}
 								case 'c':
 								{
-									if (str[5] && !strcmp(str[5], !"REAM", true, 4))
+									if (str[5] && !strcmp(str[5], __COMPILER_PACK"REAM", true, 4))
 									{
 										idx += 9;
 										return X11_MINTCREAM;
@@ -11290,7 +11291,7 @@ Optional plugins:
 						}
 						case 's':
 						{
-							if (!str[3] || strcmp(str[3], !"TY", true, 2))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"TY", true, 2))
 							{
 								return -1;
 							}
@@ -11300,7 +11301,7 @@ Optional plugins:
 								{
 									if (str[5])
 									{
-										if (!str[6] || strcmp(str[6], !"ROSE", true, 4))
+										if (!str[6] || strcmp(str[6], __COMPILER_PACK"ROSE", true, 4))
 										{
 											return -1;
 										}
@@ -11368,7 +11369,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (!str[6] || strcmp(str[6], !"ROSE", true, 4))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"ROSE", true, 4))
 									{
 										return -1;
 									}
@@ -11435,7 +11436,7 @@ Optional plugins:
 								}
 								case 'r':
 								{
-									if (!str[6] || strcmp(str[6], !"OSE", true, 3))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"OSE", true, 3))
 									{
 										return -1;
 									}
@@ -11471,7 +11472,7 @@ Optional plugins:
 				}
 				case 'o':
 				{
-					if (str[2] && !strcmp(str[2], !"CCASIN", true, 6))
+					if (str[2] && !strcmp(str[2], __COMPILER_PACK"CCASIN", true, 6))
 					{
 						idx += 8;
 						return X11_MOCCASIN;
@@ -11481,7 +11482,7 @@ Optional plugins:
 		}
 		case 'n':
 		{
-			if (!str[1] || strcmp(str[1], !"AV", true, 2))
+			if (!str[1] || strcmp(str[1], __COMPILER_PACK"AV", true, 2))
 			{
 				return -1;
 			}
@@ -11489,7 +11490,7 @@ Optional plugins:
 			{
 				case 'a':
 				{
-					if (!str[4] || strcmp(str[4], !"JO", true, 2))
+					if (!str[4] || strcmp(str[4], __COMPILER_PACK"JO", true, 2))
 					{
 						return -1;
 					}
@@ -11499,7 +11500,7 @@ Optional plugins:
 						{
 							if (str[6])
 							{
-								if (!str[7] || strcmp(str[7], !"WHITE", true, 5))
+								if (!str[7] || strcmp(str[7], __COMPILER_PACK"WHITE", true, 5))
 								{
 									return -1;
 								}
@@ -11567,7 +11568,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[7] || strcmp(str[7], !"WHITE", true, 5))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"WHITE", true, 5))
 							{
 								return -1;
 							}
@@ -11634,7 +11635,7 @@ Optional plugins:
 						}
 						case 'w':
 						{
-							if (!str[7] || strcmp(str[7], !"HITE", true, 4))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"HITE", true, 4))
 							{
 								return -1;
 							}
@@ -11674,7 +11675,7 @@ Optional plugins:
 						{
 							if (str[4])
 							{
-								if (str[5] && !strcmp(str[5], !"BLUE", true, 4))
+								if (str[5] && !strcmp(str[5], __COMPILER_PACK"BLUE", true, 4))
 								{
 									idx += 9;
 									return X11_NAVY_BLUE;
@@ -11683,7 +11684,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (str[5] && !strcmp(str[5], !"BLUE", true, 4))
+							if (str[5] && !strcmp(str[5], __COMPILER_PACK"BLUE", true, 4))
 							{
 								idx += 9;
 								return X11_NAVY_BLUE;
@@ -11691,7 +11692,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (str[5] && !strcmp(str[5], !"LUE", true, 3))
+							if (str[5] && !strcmp(str[5], __COMPILER_PACK"LUE", true, 3))
 							{
 								idx += 8;
 								return X11_NAVYBLUE;
@@ -11719,7 +11720,7 @@ Optional plugins:
 								{
 									if (str[3])
 									{
-										if (str[4] && !strcmp(str[4], !"LACE", true, 4))
+										if (str[4] && !strcmp(str[4], __COMPILER_PACK"LACE", true, 4))
 										{
 											idx += 8;
 											return X11_OLD_LACE;
@@ -11728,7 +11729,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (str[4] && !strcmp(str[4], !"LACE", true, 4))
+									if (str[4] && !strcmp(str[4], __COMPILER_PACK"LACE", true, 4))
 									{
 										idx += 8;
 										return X11_OLD_LACE;
@@ -11736,7 +11737,7 @@ Optional plugins:
 								}
 								case 'l':
 								{
-									if (str[4] && !strcmp(str[4], !"ACE", true, 3))
+									if (str[4] && !strcmp(str[4], __COMPILER_PACK"ACE", true, 3))
 									{
 										idx += 7;
 										return X11_OLDLACE;
@@ -11746,7 +11747,7 @@ Optional plugins:
 						}
 						case 'i':
 						{
-							if (!str[3] || strcmp(str[3], !"VE", true, 2))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"VE", true, 2))
 							{
 								return -1;
 							}
@@ -11756,7 +11757,7 @@ Optional plugins:
 								{
 									if (str[5])
 									{
-										if (!str[6] || strcmp(str[6], !"DRAB", true, 4))
+										if (!str[6] || strcmp(str[6], __COMPILER_PACK"DRAB", true, 4))
 										{
 											return -1;
 										}
@@ -11824,7 +11825,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (!str[6] || strcmp(str[6], !"DRAB", true, 4))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"DRAB", true, 4))
 									{
 										return -1;
 									}
@@ -11891,7 +11892,7 @@ Optional plugins:
 								}
 								case 'd':
 								{
-									if (!str[6] || strcmp(str[6], !"RAB", true, 3))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"RAB", true, 3))
 									{
 										return -1;
 									}
@@ -11931,7 +11932,7 @@ Optional plugins:
 					{
 						case 'a':
 						{
-							if (!str[3] || strcmp(str[3], !"NGE", true, 3))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"NGE", true, 3))
 							{
 								return -1;
 							}
@@ -11965,7 +11966,7 @@ Optional plugins:
 											}
 											case 'r':
 											{
-												if (!str[8] || strcmp(str[8], !"ED", true, 2))
+												if (!str[8] || strcmp(str[8], __COMPILER_PACK"ED", true, 2))
 												{
 													return -1;
 												}
@@ -12059,7 +12060,7 @@ Optional plugins:
 										}
 										case 'r':
 										{
-											if (!str[8] || strcmp(str[8], !"ED", true, 2))
+											if (!str[8] || strcmp(str[8], __COMPILER_PACK"ED", true, 2))
 											{
 												return -1;
 											}
@@ -12148,7 +12149,7 @@ Optional plugins:
 								}
 								case 'r':
 								{
-									if (!str[7] || strcmp(str[7], !"ED", true, 2))
+									if (!str[7] || strcmp(str[7], __COMPILER_PACK"ED", true, 2))
 									{
 										return -1;
 									}
@@ -12184,7 +12185,7 @@ Optional plugins:
 						}
 						case 'c':
 						{
-							if (!str[3] || strcmp(str[3], !"HID", true, 3))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"HID", true, 3))
 							{
 								return -1;
 							}
@@ -12301,7 +12302,7 @@ Optional plugins:
 												{
 													case 'o':
 													{
-														if (str[7] && !strcmp(str[7], !"LDENROD", true, 7))
+														if (str[7] && !strcmp(str[7], __COMPILER_PACK"LDENROD", true, 7))
 														{
 															idx += 14;
 															return X11_PALE_GOLDENROD;
@@ -12309,7 +12310,7 @@ Optional plugins:
 													}
 													case 'r':
 													{
-														if (!str[7] || strcmp(str[7], !"EEN", true, 3))
+														if (!str[7] || strcmp(str[7], __COMPILER_PACK"EEN", true, 3))
 														{
 															return -1;
 														}
@@ -12378,7 +12379,7 @@ Optional plugins:
 											}
 											case 't':
 											{
-												if (!str[6] || strcmp(str[6], !"URQUOISE", true, 8))
+												if (!str[6] || strcmp(str[6], __COMPILER_PACK"URQUOISE", true, 8))
 												{
 													return -1;
 												}
@@ -12445,8 +12446,8 @@ Optional plugins:
 											}
 											case 'v':
 											{
-												if (!str[6] || strcmp(str[6], !"IOLET", true, 5) || (!_X11_SPACE_CHECK(11) && str[11] != '_') || strcmp(str[12], !"RED", true, 3))
-												//if (!str[6] || strcmp(str[6], !"IOLET_RED", true, 9))
+												if (!str[6] || strcmp(str[6], __COMPILER_PACK"IOLET", true, 5) || (!_X11_SPACE_CHECK(11) && str[11] != '_') || strcmp(str[12], __COMPILER_PACK"RED", true, 3))
+												//if (!str[6] || strcmp(str[6], __COMPILER_PACK"IOLET_RED", true, 9))
 												{
 													return -1;
 												}
@@ -12524,7 +12525,7 @@ Optional plugins:
 											{
 												case 'o':
 												{
-													if (str[7] && !strcmp(str[7], !"LDENROD", true, 7))
+													if (str[7] && !strcmp(str[7], __COMPILER_PACK"LDENROD", true, 7))
 													{
 														idx += 14;
 														return X11_PALE_GOLDENROD;
@@ -12532,7 +12533,7 @@ Optional plugins:
 												}
 												case 'r':
 												{
-													if (!str[7] || strcmp(str[7], !"EEN", true, 3))
+													if (!str[7] || strcmp(str[7], __COMPILER_PACK"EEN", true, 3))
 													{
 														return -1;
 													}
@@ -12601,7 +12602,7 @@ Optional plugins:
 										}
 										case 't':
 										{
-											if (!str[6] || strcmp(str[6], !"URQUOISE", true, 8))
+											if (!str[6] || strcmp(str[6], __COMPILER_PACK"URQUOISE", true, 8))
 											{
 												return -1;
 											}
@@ -12668,8 +12669,8 @@ Optional plugins:
 										}
 										case 'v':
 										{
-											if (!str[6] || strcmp(str[6], !"IOLET", true, 5) || (!_X11_SPACE_CHECK(11) && str[11] != '_') || strcmp(str[12], !"RED", true, 3))
-											//if (!str[6] || strcmp(str[6], !"IOLET_RED", true, 9))
+											if (!str[6] || strcmp(str[6], __COMPILER_PACK"IOLET", true, 5) || (!_X11_SPACE_CHECK(11) && str[11] != '_') || strcmp(str[12], __COMPILER_PACK"RED", true, 3))
+											//if (!str[6] || strcmp(str[6], __COMPILER_PACK"IOLET_RED", true, 9))
 											{
 												return -1;
 											}
@@ -12742,7 +12743,7 @@ Optional plugins:
 									{
 										case 'o':
 										{
-											if (str[6] && !strcmp(str[6], !"LDENROD", true, 7))
+											if (str[6] && !strcmp(str[6], __COMPILER_PACK"LDENROD", true, 7))
 											{
 												idx += 13;
 												return X11_PALEGOLDENROD;
@@ -12750,7 +12751,7 @@ Optional plugins:
 										}
 										case 'r':
 										{
-											if (!str[6] || strcmp(str[6], !"EEN", true, 3))
+											if (!str[6] || strcmp(str[6], __COMPILER_PACK"EEN", true, 3))
 											{
 												return -1;
 											}
@@ -12784,7 +12785,7 @@ Optional plugins:
 								}
 								case 't':
 								{
-									if (!str[5] || strcmp(str[5], !"URQUOISE", true, 8))
+									if (!str[5] || strcmp(str[5], __COMPILER_PACK"URQUOISE", true, 8))
 									{
 										return -1;
 									}
@@ -12816,7 +12817,7 @@ Optional plugins:
 								}
 								case 'v':
 								{
-									if (!str[5] || strcmp(str[5], !"IOLETRED", true, 8))
+									if (!str[5] || strcmp(str[5], __COMPILER_PACK"IOLETRED", true, 8))
 									{
 										return -1;
 									}
@@ -12850,7 +12851,7 @@ Optional plugins:
 						}
 						case 'p':
 						{
-							if (!str[3] || strcmp(str[3], !"AYA", true, 3))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"AYA", true, 3))
 							{
 								return -1;
 							}
@@ -12860,7 +12861,7 @@ Optional plugins:
 								{
 									if (str[6])
 									{
-										if (str[7] && !strcmp(str[7], !"WHIP", true, 4))
+										if (str[7] && !strcmp(str[7], __COMPILER_PACK"WHIP", true, 4))
 										{
 											idx += 11;
 											return X11_PAPAYA_WHIP;
@@ -12869,7 +12870,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (str[7] && !strcmp(str[7], !"WHIP", true, 4))
+									if (str[7] && !strcmp(str[7], __COMPILER_PACK"WHIP", true, 4))
 									{
 										idx += 11;
 										return X11_PAPAYA_WHIP;
@@ -12877,7 +12878,7 @@ Optional plugins:
 								}
 								case 'w':
 								{
-									if (str[7] && !strcmp(str[7], !"HIP", true, 3))
+									if (str[7] && !strcmp(str[7], __COMPILER_PACK"HIP", true, 3))
 									{
 										idx += 10;
 										return X11_PAPAYAWHIP;
@@ -12893,7 +12894,7 @@ Optional plugins:
 					{
 						case 'a':
 						{
-							if (!str[3] || strcmp(str[3], !"CH", true, 2))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"CH", true, 2))
 							{
 								return -1;
 							}
@@ -12903,7 +12904,7 @@ Optional plugins:
 								{
 									if (str[5])
 									{
-										if (!str[6] || strcmp(str[6], !"PUFF", true, 4))
+										if (!str[6] || strcmp(str[6], __COMPILER_PACK"PUFF", true, 4))
 										{
 											return -1;
 										}
@@ -12971,7 +12972,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (!str[6] || strcmp(str[6], !"PUFF", true, 4))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"PUFF", true, 4))
 									{
 										return -1;
 									}
@@ -13038,7 +13039,7 @@ Optional plugins:
 								}
 								case 'p':
 								{
-									if (!str[6] || strcmp(str[6], !"UFF", true, 3))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"UFF", true, 3))
 									{
 										return -1;
 									}
@@ -13082,7 +13083,7 @@ Optional plugins:
 				}
 				case 'i':
 				{
-					if (!str[2] || strcmp(str[2], !"NK", true, 2))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"NK", true, 2))
 					{
 						return -1;
 					}
@@ -13169,7 +13170,7 @@ Optional plugins:
 				}
 				case 'l':
 				{
-					if (!str[2] || strcmp(str[2], !"UM", true, 2))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"UM", true, 2))
 					{
 						return -1;
 					}
@@ -13256,7 +13257,7 @@ Optional plugins:
 				}
 				case 'o':
 				{
-					if (!str[2] || strcmp(str[2], !"WDER", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"WDER", true, 4))
 					{
 						return -1;
 					}
@@ -13266,7 +13267,7 @@ Optional plugins:
 						{
 							if (str[6])
 							{
-								if (str[7] && !strcmp(str[7], !"BLUE", true, 4))
+								if (str[7] && !strcmp(str[7], __COMPILER_PACK"BLUE", true, 4))
 								{
 									idx += 11;
 									return X11_POWDER_BLUE;
@@ -13275,7 +13276,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (str[7] && !strcmp(str[7], !"BLUE", true, 4))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"BLUE", true, 4))
 							{
 								idx += 11;
 								return X11_POWDER_BLUE;
@@ -13283,7 +13284,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (str[7] && !strcmp(str[7], !"LUE", true, 3))
+							if (str[7] && !strcmp(str[7], __COMPILER_PACK"LUE", true, 3))
 							{
 								idx += 10;
 								return X11_POWDERBLUE;
@@ -13293,7 +13294,7 @@ Optional plugins:
 				}
 				case 'u':
 				{
-					if (!str[2] || strcmp(str[2], !"RPLE", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"RPLE", true, 4))
 					{
 						return -1;
 					}
@@ -13487,7 +13488,7 @@ Optional plugins:
 								{
 									if (str[4])
 									{
-										if (!str[5] || strcmp(str[5], !"BROWN", true, 5))
+										if (!str[5] || strcmp(str[5], __COMPILER_PACK"BROWN", true, 5))
 										{
 											return -1;
 										}
@@ -13555,7 +13556,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (!str[5] || strcmp(str[5], !"BROWN", true, 5))
+									if (!str[5] || strcmp(str[5], __COMPILER_PACK"BROWN", true, 5))
 									{
 										return -1;
 									}
@@ -13622,7 +13623,7 @@ Optional plugins:
 								}
 								case 'b':
 								{
-									if (!str[5] || strcmp(str[5], !"ROWN", true, 4))
+									if (!str[5] || strcmp(str[5], __COMPILER_PACK"ROWN", true, 4))
 									{
 										return -1;
 									}
@@ -13656,7 +13657,7 @@ Optional plugins:
 						}
 						case 'y':
 						{
-							if (!str[3] || strcmp(str[3], !"AL", true, 2))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"AL", true, 2))
 							{
 								return -1;
 							}
@@ -13666,7 +13667,7 @@ Optional plugins:
 								{
 									if (str[5])
 									{
-										if (!str[6] || strcmp(str[6], !"BLUE", true, 4))
+										if (!str[6] || strcmp(str[6], __COMPILER_PACK"BLUE", true, 4))
 										{
 											return -1;
 										}
@@ -13734,7 +13735,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (!str[6] || strcmp(str[6], !"BLUE", true, 4))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"BLUE", true, 4))
 									{
 										return -1;
 									}
@@ -13801,7 +13802,7 @@ Optional plugins:
 								}
 								case 'b':
 								{
-									if (!str[6] || strcmp(str[6], !"LUE", true, 3))
+									if (!str[6] || strcmp(str[6], __COMPILER_PACK"LUE", true, 3))
 									{
 										return -1;
 									}
@@ -13847,7 +13848,7 @@ Optional plugins:
 					{
 						case 'd':
 						{
-							if (!str[3] || strcmp(str[3], !"DLE", true, 3))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"DLE", true, 3))
 							{
 								return -1;
 							}
@@ -13857,7 +13858,7 @@ Optional plugins:
 								{
 									if (str[6])
 									{
-										if (str[7] && !strcmp(str[7], !"BROWN", true, 5))
+										if (str[7] && !strcmp(str[7], __COMPILER_PACK"BROWN", true, 5))
 										{
 											idx += 12;
 											return X11_SADDLE_BROWN;
@@ -13866,7 +13867,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (str[7] && !strcmp(str[7], !"BROWN", true, 5))
+									if (str[7] && !strcmp(str[7], __COMPILER_PACK"BROWN", true, 5))
 									{
 										idx += 12;
 										return X11_SADDLE_BROWN;
@@ -13874,7 +13875,7 @@ Optional plugins:
 								}
 								case 'b':
 								{
-									if (str[7] && !strcmp(str[7], !"ROWN", true, 4))
+									if (str[7] && !strcmp(str[7], __COMPILER_PACK"ROWN", true, 4))
 									{
 										idx += 11;
 										return X11_SADDLEBROWN;
@@ -13884,7 +13885,7 @@ Optional plugins:
 						}
 						case 'l':
 						{
-							if (!str[3] || strcmp(str[3], !"MON", true, 3))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"MON", true, 3))
 							{
 								return -1;
 							}
@@ -13971,7 +13972,7 @@ Optional plugins:
 						}
 						case 'n':
 						{
-							if (!str[3] || strcmp(str[3], !"DY", true, 2))
+							if (!str[3] || strcmp(str[3], __COMPILER_PACK"DY", true, 2))
 							{
 								return -1;
 							}
@@ -13981,7 +13982,7 @@ Optional plugins:
 								{
 									if (str[5])
 									{
-										if (str[6] && !strcmp(str[6], !"BROWN", true, 5))
+										if (str[6] && !strcmp(str[6], __COMPILER_PACK"BROWN", true, 5))
 										{
 											idx += 11;
 											return X11_SANDY_BROWN;
@@ -13990,7 +13991,7 @@ Optional plugins:
 								}
 								case '_' | 0x20:
 								{
-									if (str[6] && !strcmp(str[6], !"BROWN", true, 5))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"BROWN", true, 5))
 									{
 										idx += 11;
 										return X11_SANDY_BROWN;
@@ -13998,7 +13999,7 @@ Optional plugins:
 								}
 								case 'b':
 								{
-									if (str[6] && !strcmp(str[6], !"ROWN", true, 4))
+									if (str[6] && !strcmp(str[6], __COMPILER_PACK"ROWN", true, 4))
 									{
 										idx += 10;
 										return X11_SANDYBROWN;
@@ -14020,7 +14021,7 @@ Optional plugins:
 						{
 							if (str[3])
 							{
-								if (!str[4] || strcmp(str[4], !"GREEN", true, 5))
+								if (!str[4] || strcmp(str[4], __COMPILER_PACK"GREEN", true, 5))
 								{
 									return -1;
 								}
@@ -14088,7 +14089,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[4] || strcmp(str[4], !"GREEN", true, 5))
+							if (!str[4] || strcmp(str[4], __COMPILER_PACK"GREEN", true, 5))
 							{
 								return -1;
 							}
@@ -14155,7 +14156,7 @@ Optional plugins:
 						}
 						case 'g':
 						{
-							if (!str[4] || strcmp(str[4], !"REEN", true, 4))
+							if (!str[4] || strcmp(str[4], __COMPILER_PACK"REEN", true, 4))
 							{
 								return -1;
 							}
@@ -14187,7 +14188,7 @@ Optional plugins:
 						}
 						case 's':
 						{
-							if (!str[4] || strcmp(str[4], !"HELL", true, 4))
+							if (!str[4] || strcmp(str[4], __COMPILER_PACK"HELL", true, 4))
 							{
 								return -1;
 							}
@@ -14276,7 +14277,7 @@ Optional plugins:
 				}
 				case 'i':
 				{
-					if (!str[2] || strcmp(str[2], !"ENNA", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"ENNA", true, 4))
 					{
 						return -1;
 					}
@@ -14373,7 +14374,7 @@ Optional plugins:
 						{
 							if (str[3])
 							{
-								if (!str[4] || strcmp(str[4], !"BLUE", true, 4))
+								if (!str[4] || strcmp(str[4], __COMPILER_PACK"BLUE", true, 4))
 								{
 									return -1;
 								}
@@ -14441,7 +14442,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[4] || strcmp(str[4], !"BLUE", true, 4))
+							if (!str[4] || strcmp(str[4], __COMPILER_PACK"BLUE", true, 4))
 							{
 								return -1;
 							}
@@ -14508,7 +14509,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (!str[4] || strcmp(str[4], !"LUE", true, 3))
+							if (!str[4] || strcmp(str[4], __COMPILER_PACK"LUE", true, 3))
 							{
 								return -1;
 							}
@@ -14542,7 +14543,7 @@ Optional plugins:
 				}
 				case 'l':
 				{
-					if (!str[2] || strcmp(str[2], !"ATE", true, 3))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"ATE", true, 3))
 					{
 						return -1;
 					}
@@ -14556,7 +14557,7 @@ Optional plugins:
 								{
 									case 'b':
 									{
-										if (!str[7] || strcmp(str[7], !"LUE", true, 3))
+										if (!str[7] || strcmp(str[7], __COMPILER_PACK"LUE", true, 3))
 										{
 											return -1;
 										}
@@ -14774,7 +14775,7 @@ Optional plugins:
 							{
 								case 'b':
 								{
-									if (!str[7] || strcmp(str[7], !"LUE", true, 3))
+									if (!str[7] || strcmp(str[7], __COMPILER_PACK"LUE", true, 3))
 									{
 										return -1;
 									}
@@ -14987,7 +14988,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (!str[6] || strcmp(str[6], !"LUE", true, 3))
+							if (!str[6] || strcmp(str[6], __COMPILER_PACK"LUE", true, 3))
 							{
 								return -1;
 							}
@@ -15095,7 +15096,7 @@ Optional plugins:
 				}
 				case 'n':
 				{
-					if (!str[2] || strcmp(str[2], !"OW", true, 2))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"OW", true, 2))
 					{
 						return -1;
 					}
@@ -15182,7 +15183,7 @@ Optional plugins:
 				}
 				case 'p':
 				{
-					if (!str[2] || strcmp(str[2], !"RING", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"RING", true, 4))
 					{
 						return -1;
 					}
@@ -15192,7 +15193,7 @@ Optional plugins:
 						{
 							if (str[6])
 							{
-								if (!str[7] || strcmp(str[7], !"GREEN", true, 5))
+								if (!str[7] || strcmp(str[7], __COMPILER_PACK"GREEN", true, 5))
 								{
 									return -1;
 								}
@@ -15260,7 +15261,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[7] || strcmp(str[7], !"GREEN", true, 5))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"GREEN", true, 5))
 							{
 								return -1;
 							}
@@ -15327,7 +15328,7 @@ Optional plugins:
 						}
 						case 'g':
 						{
-							if (!str[7] || strcmp(str[7], !"REEN", true, 4))
+							if (!str[7] || strcmp(str[7], __COMPILER_PACK"REEN", true, 4))
 							{
 								return -1;
 							}
@@ -15361,7 +15362,7 @@ Optional plugins:
 				}
 				case 't':
 				{
-					if (!str[2] || strcmp(str[2], !"EEL", true, 3))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"EEL", true, 3))
 					{
 						return -1;
 					}
@@ -15371,7 +15372,7 @@ Optional plugins:
 						{
 							if (str[5])
 							{
-								if (!str[6] || strcmp(str[6], !"BLUE", true, 4))
+								if (!str[6] || strcmp(str[6], __COMPILER_PACK"BLUE", true, 4))
 								{
 									return -1;
 								}
@@ -15439,7 +15440,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (!str[6] || strcmp(str[6], !"BLUE", true, 4))
+							if (!str[6] || strcmp(str[6], __COMPILER_PACK"BLUE", true, 4))
 							{
 								return -1;
 							}
@@ -15506,7 +15507,7 @@ Optional plugins:
 						}
 						case 'b':
 						{
-							if (!str[6] || strcmp(str[6], !"LUE", true, 3))
+							if (!str[6] || strcmp(str[6], __COMPILER_PACK"LUE", true, 3))
 							{
 								return -1;
 							}
@@ -15633,7 +15634,7 @@ Optional plugins:
 				}
 				case 'h':
 				{
-					if (!str[2] || strcmp(str[2], !"ISTLE", true, 5))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"ISTLE", true, 5))
 					{
 						return -1;
 					}
@@ -15720,7 +15721,7 @@ Optional plugins:
 				}
 				case 'o':
 				{
-					if (!str[2] || strcmp(str[2], !"MATO", true, 4))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"MATO", true, 4))
 					{
 						return -1;
 					}
@@ -15807,7 +15808,7 @@ Optional plugins:
 				}
 				case 'u':
 				{
-					if (!str[2] || strcmp(str[2], !"RQUOISE", true, 7))
+					if (!str[2] || strcmp(str[2], __COMPILER_PACK"RQUOISE", true, 7))
 					{
 						return -1;
 					}
@@ -15896,7 +15897,7 @@ Optional plugins:
 		}
 		case 'v':
 		{
-			if (!str[1] || strcmp(str[1], !"IOLET", true, 5))
+			if (!str[1] || strcmp(str[1], __COMPILER_PACK"IOLET", true, 5))
 			{
 				return -1;
 			}
@@ -15906,7 +15907,7 @@ Optional plugins:
 				{
 					if (str[6])
 					{
-						if (!str[7] || strcmp(str[7], !"RED", true, 3))
+						if (!str[7] || strcmp(str[7], __COMPILER_PACK"RED", true, 3))
 						{
 							return -1;
 						}
@@ -15974,7 +15975,7 @@ Optional plugins:
 				}
 				case '_' | 0x20:
 				{
-					if (!str[7] || strcmp(str[7], !"RED", true, 3))
+					if (!str[7] || strcmp(str[7], __COMPILER_PACK"RED", true, 3))
 					{
 						return -1;
 					}
@@ -16041,7 +16042,7 @@ Optional plugins:
 				}
 				case 'r':
 				{
-					if (!str[7] || strcmp(str[7], !"ED", true, 2))
+					if (!str[7] || strcmp(str[7], __COMPILER_PACK"ED", true, 2))
 					{
 						return -1;
 					}
@@ -16085,7 +16086,7 @@ Optional plugins:
 			{
 				case 'e':
 				{
-					if (!str[3] || strcmp(str[3], !"AT", true, 2))
+					if (!str[3] || strcmp(str[3], __COMPILER_PACK"AT", true, 2))
 					{
 						return -1;
 					}
@@ -16172,7 +16173,7 @@ Optional plugins:
 				}
 				case 'i':
 				{
-					if (!str[3] || strcmp(str[3], !"TE", true, 2))
+					if (!str[3] || strcmp(str[3], __COMPILER_PACK"TE", true, 2))
 					{
 						return -1;
 					}
@@ -16182,7 +16183,7 @@ Optional plugins:
 						{
 							if (str[5])
 							{
-								if (str[6] && !strcmp(str[6], !"SMOKE", true, 5))
+								if (str[6] && !strcmp(str[6], __COMPILER_PACK"SMOKE", true, 5))
 								{
 									idx += 11;
 									return X11_WHITE_SMOKE;
@@ -16191,7 +16192,7 @@ Optional plugins:
 						}
 						case '_' | 0x20:
 						{
-							if (str[6] && !strcmp(str[6], !"SMOKE", true, 5))
+							if (str[6] && !strcmp(str[6], __COMPILER_PACK"SMOKE", true, 5))
 							{
 								idx += 11;
 								return X11_WHITE_SMOKE;
@@ -16199,7 +16200,7 @@ Optional plugins:
 						}
 						case 's':
 						{
-							if (str[6] && !strcmp(str[6], !"MOKE", true, 4))
+							if (str[6] && !strcmp(str[6], __COMPILER_PACK"MOKE", true, 4))
 							{
 								idx += 10;
 								return X11_WHITESMOKE;
@@ -16213,7 +16214,7 @@ Optional plugins:
 		}
 		case 'y':
 		{
-			if (!str[1] || strcmp(str[1], !"ELLOW", true, 5))
+			if (!str[1] || strcmp(str[1], __COMPILER_PACK"ELLOW", true, 5))
 			{
 				return -1;
 			}
@@ -16247,7 +16248,7 @@ Optional plugins:
 							}
 							case 'g':
 							{
-								if (str[8] && !strcmp(str[8], !"REEN", true, 4))
+								if (str[8] && !strcmp(str[8], __COMPILER_PACK"REEN", true, 4))
 								{
 									idx += 12;
 									return X11_YELLOW_GREEN;
@@ -16282,7 +16283,7 @@ Optional plugins:
 						}
 						case 'g':
 						{
-							if (str[8] && !strcmp(str[8], !"REEN", true, 4))
+							if (str[8] && !strcmp(str[8], __COMPILER_PACK"REEN", true, 4))
 							{
 								idx += 12;
 								return X11_YELLOW_GREEN;
@@ -16312,7 +16313,7 @@ Optional plugins:
 				}
 				case 'g':
 				{
-					if (str[7] && !strcmp(str[7], !"REEN", true, 4))
+					if (str[7] && !strcmp(str[7], __COMPILER_PACK"REEN", true, 4))
 					{
 						idx += 11;
 						return X11_YELLOWGREEN;

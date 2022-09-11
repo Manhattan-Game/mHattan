@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -71,10 +72,10 @@ Optional plugins:
 */
 
 static
-	gZone;
+	gZone = 0;
 
 // Test pulsing 1.
-PTEST_INIT__ GangZonePulse1(playerid)
+@testinit() GangZonePulse1(playerid)
 {
 	// Create the zone.
 	gZone = GangZoneCreate(-100.0, -100.0, 100.0, 100.0);
@@ -82,20 +83,20 @@ PTEST_INIT__ GangZonePulse1(playerid)
 	SetPlayerPos(playerid, 0.0, 0.0, 5.0);
 }
 
-PTEST__ GangZonePulse1(playerid)
+@test(.group = "y_zonepulse") GangZonePulse1(playerid)
 {
 	GangZonePulseForPlayer(playerid, gZone, 0xFF0000AA, 0x00FF00AA, 2000);
 	ASK("Is the zone pulsing from Red to Green?");
 }
 
-PTEST_CLOSE__ GangZonePulse1(playerid)
+@testclose() GangZonePulse1(playerid)
 {
 	GangZoneStopPulse(playerid, gZone);
 	GangZoneDestroy(gZone);
 }
 
 // Test pulsing 2.
-PTEST_INIT__ GangZonePulse2(playerid)
+@testinit() GangZonePulse2(playerid)
 {
 	// Create the zone.
 	gZone = GangZoneCreate(-100.0, -100.0, 100.0, 100.0);
@@ -103,20 +104,20 @@ PTEST_INIT__ GangZonePulse2(playerid)
 	SetPlayerPos(playerid, 0.0, 0.0, 5.0);
 }
 
-PTEST__ GangZonePulse2(playerid)
+@test(.group = "y_zonepulse") GangZonePulse2(playerid)
 {
 	GangZonePulseForPlayer(playerid, gZone, 0xFF0000AA, 0x00FF00AA, 333);
 	ASK("Is the zone pulsing from Red to Green fast?");
 }
 
-PTEST_CLOSE__ GangZonePulse2(playerid)
+@testclose() GangZonePulse2(playerid)
 {
 	GangZoneStopPulse(playerid, gZone);
 	GangZoneDestroy(gZone);
 }
 
 // Test pulsing 3.
-PTEST_INIT__ GangZonePulse3(playerid)
+@testinit() GangZonePulse3(playerid)
 {
 	// Create the zone.
 	gZone = GangZoneCreate(-100.0, -100.0, 100.0, 100.0);
@@ -124,20 +125,20 @@ PTEST_INIT__ GangZonePulse3(playerid)
 	SetPlayerPos(playerid, 0.0, 0.0, 5.0);
 }
 
-PTEST__ GangZonePulse3(playerid)
+@test(.group = "y_zonepulse") GangZonePulse3(playerid)
 {
 	GangZonePulseForPlayer(playerid, gZone, 0xFF0000AA, 0x00FF00AA, 1000, 0, 0);
 	ASK("Is the zone jumping back to Red?");
 }
 
-PTEST_CLOSE__ GangZonePulse3(playerid)
+@testclose() GangZonePulse3(playerid)
 {
 	GangZoneStopPulse(playerid, gZone);
 	GangZoneDestroy(gZone);
 }
 
 // Test pulsing 4.
-PTEST_INIT__ GangZonePulse4(playerid)
+@testinit() GangZonePulse4(playerid)
 {
 	// Create the zone.
 	gZone = GangZoneCreate(-100.0, -100.0, 100.0, 100.0);
@@ -145,20 +146,20 @@ PTEST_INIT__ GangZonePulse4(playerid)
 	SetPlayerPos(playerid, 0.0, 0.0, 5.0);
 }
 
-PTEST__ GangZonePulse4(playerid)
+@test(.group = "y_zonepulse") GangZonePulse4(playerid)
 {
 	GangZonePulseForPlayer(playerid, gZone, 0xFF0000AA, 0x00FF00AA, 500, 3000, 500, 0);
 	ASK("Is the zone stopping on Green?");
 }
 
-PTEST_CLOSE__ GangZonePulse4(playerid)
+@testclose() GangZonePulse4(playerid)
 {
 	GangZoneStopPulse(playerid, gZone);
 	GangZoneDestroy(gZone);
 }
 
 // Test pulsing 7.
-PTEST_INIT__ GangZonePulse7(playerid)
+@testinit() GangZonePulse7(playerid)
 {
 	// Create the zone.
 	gZone = GangZoneCreate(-100.0, -100.0, 100.0, 100.0);
@@ -166,7 +167,7 @@ PTEST_INIT__ GangZonePulse7(playerid)
 	SetPlayerPos(playerid, 0.0, 0.0, 5.0);
 }
 
-PTEST__ GangZonePulse7(playerid)
+@test(.group = "y_zonepulse") GangZonePulse7(playerid)
 {
 	// Regression bug, doing this used to cause a pause at the start - first bug
 	// found and fixed by these unit tests.
@@ -174,14 +175,14 @@ PTEST__ GangZonePulse7(playerid)
 	ASK("Was there no pause at the start?");
 }
 
-PTEST_CLOSE__ GangZonePulse7(playerid)
+@testclose() GangZonePulse7(playerid)
 {
 	GangZoneStopPulse(playerid, gZone);
 	GangZoneDestroy(gZone);
 }
 
 // Test pulsing 5.
-PTEST_INIT__ GangZonePulse5(playerid)
+@testinit() GangZonePulse5(playerid)
 {
 	// Create the zone.
 	gZone = GangZoneCreate(-100.0, -100.0, 100.0, 100.0);
@@ -189,20 +190,20 @@ PTEST_INIT__ GangZonePulse5(playerid)
 	SetPlayerPos(playerid, 0.0, 0.0, 5.0);
 }
 
-PTEST__ GangZonePulse5(playerid)
+@test(.group = "y_zonepulse") GangZonePulse5(playerid)
 {
 	GangZonePulseForPlayer(playerid, gZone, 0xFF0000AA, 0x00FF00AA, 500, 0, 500, 3000);
 	ASK("Is the zone stopping on Red?");
 }
 
-PTEST_CLOSE__ GangZonePulse5(playerid)
+@testclose() GangZonePulse5(playerid)
 {
 	GangZoneStopPulse(playerid, gZone);
 	GangZoneDestroy(gZone);
 }
 
 // Test pulsing 6.
-PTEST_INIT__ GangZonePulse6(playerid)
+@testinit() GangZonePulse6(playerid)
 {
 	// Create the zone.
 	gZone = GangZoneCreate(-100.0, -100.0, 100.0, 100.0);
@@ -210,20 +211,20 @@ PTEST_INIT__ GangZonePulse6(playerid)
 	SetPlayerPos(playerid, 0.0, 0.0, 5.0);
 }
 
-PTEST__ GangZonePulse6(playerid)
+@test(.group = "y_zonepulse") GangZonePulse6(playerid)
 {
 	GangZonePulseForPlayer(playerid, gZone, 0xFF0000AA, 0x00FF00AA, 2000, _, 500, _);
 	ASK("Is Green -> Red faster?");
 }
 
-PTEST_CLOSE__ GangZonePulse6(playerid)
+@testclose() GangZonePulse6(playerid)
 {
 	GangZoneStopPulse(playerid, gZone);
 	GangZoneDestroy(gZone);
 }
 
 // Test stopping 1.
-PTEST_INIT__ GangZoneStopPulse1(playerid)
+@testinit() GangZoneStopPulse1(playerid)
 {
 	// Create the zone.
 	gZone = GangZoneCreate(-100.0, -100.0, 100.0, 100.0);
@@ -231,20 +232,20 @@ PTEST_INIT__ GangZoneStopPulse1(playerid)
 	SetPlayerPos(playerid, 0.0, 0.0, 5.0);
 }
 
-PTEST__ GangZoneStopPulse1(playerid)
+@test(.group = "y_zonepulse") GangZoneStopPulse1(playerid)
 {
 	GangZonePulseForPlayer(playerid, gZone, 0xFF0000AA, 0x00FF00AA, 2000);
 	GangZoneStopPulse(playerid, gZone);
 	ASK("Is the zone NOT pulsing?");
 }
 
-PTEST_CLOSE__ GangZoneStopPulse1(playerid)
+@testclose() GangZoneStopPulse1(playerid)
 {
 	GangZoneDestroy(gZone);
 }
 
 // Test stopping 2.
-PTEST_INIT__ GangZoneStopPulse2(playerid)
+@testinit() GangZoneStopPulse2(playerid)
 {
 	// Create the zone.
 	gZone = GangZoneCreate(-100.0, -100.0, 100.0, 100.0);
@@ -252,10 +253,10 @@ PTEST_INIT__ GangZoneStopPulse2(playerid)
 	SetPlayerPos(playerid, 0.0, 0.0, 5.0);
 }
 
-PTEST__ GangZoneStopPulse2(playerid)
+@test(.group = "y_zonepulse") GangZoneStopPulse2(playerid)
 {
 	GangZonePulseForPlayer(playerid, gZone, 0xFF0000AA, 0x00FF00AA, 1000);
-	YSI_SetTimerEx("GangZoneStopPulse2", 4000, 0, "i", playerid);
+	YSI_SetTimerEx__("GangZoneStopPulse2", 4000, false, "i", playerid);
 	ASK("Does the pulsing stop after four seconds?");
 }
 
@@ -265,7 +266,7 @@ public GangZoneStopPulse2(playerid)
 	GangZoneStopPulse(playerid, gZone);
 }
 
-PTEST_CLOSE__ GangZoneStopPulse2(playerid)
+@testclose() GangZoneStopPulse2(playerid)
 {
 	GangZoneDestroy(gZone);
 }

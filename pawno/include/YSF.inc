@@ -146,7 +146,7 @@ native GetPlayerLastSyncedVehicleID(playerid);
 native GetPlayerLastSyncedTrailerID(playerid);
 
 native SendBulletData(senderid, forplayerid = -1, weaponid, hittype, hitid, Float:fHitOriginX, Float:fHitOriginY, Float:fHitOriginZ, Float:fHitTargetX, Float:fHitTargetY, Float:fHitTargetZ, Float:fCenterOfHitX, Float:fCenterOfHitY, Float:fCenterOfHitZ);
-native ShowPlayerForPlayer(forplayerid, playerid);
+native ShowPlayerForPlayer(forplayerid, playerid, bool:setskin=false);
 native HidePlayerForPlayer(forplayerid, playerid);
 native AddPlayerForPlayer(forplayerid, playerid, isnpc = 0);
 native RemovePlayerForPlayer(forplayerid, playerid);
@@ -163,6 +163,26 @@ native GetPlayerDisabledKeysSync(playerid, &keys, &updown = 0, &leftright = 0);
 
 native GetPlayerBuildingsRemoved(playerid);
 native IsBuildingRemovedForPlayer(playerid, modelid, Float:fX, Float:fY, Float:fZ, Float:fRadius);
+
+native TogglePlayerGhostMode(playerid, bool:toggle);
+native GetPlayerGhostMode(playerid);
+native SetPlayerSyncKeys(playerid, keys, updown, leftright);
+native SetPlayerSyncCameraFrontVector(playerid, Float:x, Float:y, Float:z);
+native SetPlayerSyncCameraPos(playerid, Float:x, Float:y, Float:z);
+native SetPlayerSyncCameraMode(playerid, mode);
+native SetPlayerSyncWeapon(playerid, weaponid);
+native SetPlayerSyncWeaponState(playerid, weaponstate);
+native SetPlayerSyncSpecialAction(playerid, actionid);
+native SetPlayerSyncHealth(playerid, Float:health);
+native SetPlayerSyncArmour(playerid, Float:armour);
+native SetPlayerSyncPosition(playerid, Float:x, Float:y, Float:z);
+native SetPlayerSyncVehicleId(playerid, vehicleid);
+native SetPlayerSyncVehiclePosition(playerid, Float:x, Float:y, Float:z);
+native SetPlayerSyncVehicleVelocity(playerid, Float:x, Float:y, Float:z);
+native SetPlayerSyncVehicleRotQuat(playerid, Float:w, Float:x, Float:y, Float:z);
+native SetPlayerSyncVehicleHealth(playerid, Float:health);
+native SendPlayerDeath(playerid, forplayerid=-1);
+native UpdatePlayerSyncData(playerid, type=-1);
 
 // Actors
 native GetActorSpawnInfo(actorid, &skinid, &Float:fX = 0.0, &Float:fY = 0.0, &Float:fZ = 0.0, &Float:fAngle = 0.0);
@@ -195,6 +215,7 @@ native Float:GetObjectMoveSpeed(objectid);
 native GetObjectTarget(objectid, &Float:fX, &Float:fY = 0.0, &Float:fZ = 0.0);
 native GetObjectAttachedData(objectid, &attached_vehicleid, &attached_objectid = 0, &attached_playerid = 0);
 native GetObjectAttachedOffset(objectid, &Float:fX, &Float:fY = 0.0, &Float:fZ = 0.0, &Float:fRotX = 0.0, &Float:fRotY = 0.0, &Float:fRotZ = 0.0);
+native GetObjectSyncRotation(objectid);
 native IsObjectMaterialSlotUsed(objectid, materialindex); // Return values: 1 = material, 2 = material text
 native GetObjectMaterial(objectid, materialindex, &modelid, txdname[], txdnamelen = sizeof(txdname), texturename[], texturenamelen = sizeof(texturename), &materialcolor = 0);
 native GetObjectMaterialText(objectid, materialindex, text[], textlen = sizeof(text), &materialsize, fontface[], fontfacelen = sizeof(fontface), &fontsize = 0, &bold = 0, &fontcolor = 0, &backcolor = 0, &textalignment = 0);
@@ -207,6 +228,7 @@ native Float:GetPlayerObjectMoveSpeed(playerid, objectid);
 native Float:GetPlayerObjectTarget(playerid, objectid, &Float:fX, &Float:fY = 0.0, &Float:fZ = 0.0);
 native GetPlayerObjectAttachedData(playerid, objectid, &attached_vehicleid, &attached_objectid = 0, &attached_playerid = 0);
 native GetPlayerObjectAttachedOffset(playerid, objectid, &Float:fX, &Float:fY = 0.0, &Float:fZ = 0.0, &Float:fRotX = 0.0, &Float:fRotY = 0.0, &Float:fRotZ = 0.0);
+native GetPlayerObjectSyncRotation(playerid, objectid);
 native IsPlayerObjectMaterialSlotUsed(playerid, objectid, materialindex); // Return values: 1 = material, 2 = material text
 native GetPlayerObjectMaterial(playerid, objectid, materialindex, &modelid, txdname[], txdnamelen = sizeof(txdname), texturename[], texturenamelen = sizeof(texturename), &materialcolor = 0);
 native GetPlayerObjectMaterialText(playerid, objectid, materialindex, text[], textlen = sizeof(text), &materialsize, fontface[], fontfacelen = sizeof(fontface), &fontsize = 0, &bold = 0, &fontcolor = 0, &backcolor = 0, &textalignment = 0);
@@ -264,6 +286,7 @@ native HasVehicleBeenOccupied(vehicleid);
 native SetVehicleBeenOccupied(vehicleid, occupied);
 native IsVehicleOccupied(vehicleid);
 native IsVehicleDead(vehicleid);
+native SetVehicleDead(vehicleid, bool:dead);
 native SetVehicleParamsSirenState(vehicleid, sirenState);
 native ToggleVehicleSirenEnabled(vehicleid, enabled);
 native IsVehicleSirenEnabled(vehicleid);

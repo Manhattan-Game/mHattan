@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -70,68 +71,71 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-TEST__ y_punycode_1()
+@test(.group = "y_punycode") y_punycode_1()
 {
 	new
 		dst[32];
 	Puny_Encode(dst, "bücher");
-	P:1("TEST__ y_punycode_1: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_1: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kva");
 	Puny_Encode(dst, "büücher");
-	P:1("TEST__ y_punycode_1: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_1: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kvaa");
 	Puny_Encode(dst, "bücüher");
-	P:1("TEST__ y_punycode_1: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_1: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kvab");
 	Puny_Encode(dst, "bücherü");
-	P:1("TEST__ y_punycode_1: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_1: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kvae");
 	Puny_Encode(dst, "ýbücher");
-	P:1("TEST__ y_punycode_1: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_1: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kvaf");
 	Puny_Encode(dst, "übücher");
-	P:1("TEST__ y_punycode_1: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_1: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-jvab");
 }
 
-TEST__ y_punycode_2()
+@test(.group = "y_punycode") y_punycode_2()
 {
 	new
 		dst[32],
-		hash;
+		hash = 0;
 	Puny_EncodeHash(dst, "bücher", hash);
-	P:1("TEST__ y_punycode_2: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_2: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kva");
 	Puny_EncodeHash(dst, "büCHer", hash);
-	P:1("TEST__ y_punycode_2: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_2: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kva");
 	Puny_EncodeHash(dst, "BücHeR", hash);
-	P:1("TEST__ y_punycode_2: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_2: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kva");
 	Puny_EncodeHash(dst, "bücHER", hash);
-	P:1("TEST__ y_punycode_2: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_2: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kva");
 	Puny_EncodeHash(dst, "bÜcher", hash);
-	P:1("TEST__ y_punycode_2: dst = %s", dst);
+	Debug_Print1("TEST__ y_punycode_2: dst = %s", dst);
 	ASSERT_SAME(dst, "bcher-kva");
+	Puny_EncodeHash(dst, "bÜcher", hash, 32, '@');
+	Debug_Print1("TEST__ y_punycode_2: dst = %s", dst);
+	ASSERT_SAME(dst, "bcher@kva");
 }
 
-TEST__ y_punycode_hash()
+@test(.group = "y_punycode") y_punycode_hash()
 {
 	new
 		dst[32],
-		hash1,
-		hash2,
-		hash3;
+		hash1 = 0,
+		hash2 = 0,
+		hash3 = 0;
 	Puny_EncodeHash(dst, "hello", hash1);
 	hash2 = YHash("hello");
-	hash3 = bernstein("hello");
+	hash3 = BernsteinHash("hello");
 	ASSERT_EQ(hash1, hash2);
 	ASSERT_EQ(hash2, hash3);
 	ASSERT_EQ(hash3, hash1);
 	Puny_EncodeHash(dst, "world", hash1);
 	hash2 = YHash("world");
-	hash3 = bernstein("world");
+	hash3 = BernsteinHash("world");
 	ASSERT_EQ(hash1, hash2);
 	ASSERT_EQ(hash2, hash3);
 	ASSERT_EQ(hash3, hash1);

@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -70,23 +71,23 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-TEST__ Player_Existing()
+@test(.group = "y_users") Player_Existing()
 {
 	new
 		ret[E_USER_PRELOAD];
 	Player_Preload("TestPlayer", ret);
-	ASSERT_EQ(0, ret[E_USER_PRELOAD_YID]);
+	ASSERT_EQ(ret[E_USER_PRELOAD_YID], 0);
 	ASSERT_EQ(Langs_GetLanguage("EN"), ret[E_USER_PRELOAD_LANG]);
-	ASSERT_EQ(0x12345678, ret[E_USER_PRELOAD_BITS]);
+	ASSERT_EQ(ret[E_USER_PRELOAD_BITS], 0x12345678);
 	ASSERT(0xAABBCCDD >= ret[E_USER_PRELOAD_DATE]);
-	P:I("Note that if these tests fail, you will need to");
-	P:I("    first connect to the server as \"TestPlayer\".");
+	Debug_Info("Note that if these tests fail, you will need to");
+	Debug_Info("    first connect to the server as \"TestPlayer\".");
 }
 
 new
 	gBot = INVALID_PLAYER_ID;
 
-TEST__ Player_ChangeLanguage()
+@test(.group = "y_users") Player_ChangeLanguage()
 {
 	// Connect the bot here so that it is done way before the PTest is run.
 	ConnectNPC("TestPlayer", "npcidle");
@@ -115,13 +116,13 @@ public OnPlayerConnect(playerid)
 	forward Testing_OnPlayerConnect(playerid);
 #endif
 
-PTEST_INIT__ Player_ChangeLanguage(playerid)
+@testinit() Player_ChangeLanguage(playerid)
 {
 	// So that their language can be changed.
 	Player_ForceLogin(gBot);
 }
 
-PTEST__ Player_ChangeLanguage(playerid)
+@test(.group = "y_users") Player_ChangeLanguage(playerid)
 {
 	new
 		ret[E_USER_PRELOAD];
@@ -133,20 +134,20 @@ PTEST__ Player_ChangeLanguage(playerid)
 	ASSERT_EQ(Langs_GetLanguage("NL"), ret[E_USER_PRELOAD_LANG]);
 }
 
-PTEST_CLOSE__ Player_ChangeLanguage(playerid)
+@testclose() Player_ChangeLanguage(playerid)
 {
 	// Reset the player.
 	Player_ChangeLanguage(gBot, "EN");
 	//Kick(gBot);
 }
 
-PTEST_INIT__ Player_ChangePassword(playerid)
+@testinit() Player_ChangePassword(playerid)
 {
 	// So that their password can be changed.
 	Player_ForceLogin(gBot);
 }
 
-PTEST__ Player_ChangePassword(playerid)
+@test(.group = "y_users") Player_ChangePassword(playerid)
 {
 	new
 		ret[E_USER_PRELOAD];
@@ -158,19 +159,19 @@ PTEST__ Player_ChangePassword(playerid)
 	ASSERT_SAME(ret[E_USER_PRELOAD_PASS], "B506FEEEDFB83EF44A5DC2E00BF1535E58E3B37A044730F2A6718497A224B5455A441F39F9EB91967B38607416A9B85E5DE3CBE3A48E7A77AB5808674EF33822");
 }
 
-PTEST_CLOSE__ Player_ChangePassword(playerid)
+@testclose() Player_ChangePassword(playerid)
 {
 	// Reset the player.
 	Player_ChangePassword(gBot, "thisisanOKpass");
 	//Kick(gBot);
 }
 
-PTEST_INIT__ Player_Preload(playerid)
+@testinit() Player_Preload(playerid)
 {
 	Player_ForceLogin(gBot);
 }
 
-PTEST__ Player_Preload(playerid)
+@test(.group = "y_users") Player_Preload(playerid)
 {
 	new
 		//name[MAX_PLAYER_NAME],
@@ -183,13 +184,13 @@ PTEST__ Player_Preload(playerid)
 	ASSERT(gettime() >= ret[E_USER_PRELOAD_DATE]);
 }
 
-PTEST_INIT__ Player_GetID(playerid)
+@testinit() Player_GetID(playerid)
 {
 	// So that their password can be changed.
 	Player_ForceLogin(gBot);
 }
 
-PTEST__ Player_GetID(playerid)
+@test(.group = "y_users") Player_GetID(playerid)
 {
 	ASSERT_ZE(Player_GetYID(gBot));
 	ASSERT(Player_GetYID(playerid) < 0);

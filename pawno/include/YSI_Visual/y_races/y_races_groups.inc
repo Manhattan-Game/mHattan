@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -72,14 +73,14 @@ Optional plugins:
 
 stock Races_SetupGroups() <YSI_has_groups:y>
 {
-	Group_SetGlobalRaceDefault(false);
+	Group_SetGlobalRaceDefault(E_GROUP_SET:UNDEF);
 	// This already is the default.
 	//Group_SetRaceDefault(false);
 }
 
 stock Races_ResolveGroups(class, Group:forgroup, bool:cp) <YSI_has_groups:y>
 {
-	P:2("Class_ResolveGroups<y>: call Resolve %d %d %d", class, _:forgroup, cp);
+	Debug_Print2("Class_ResolveGroups<y>: call Resolve %d %d %d", class, _:forgroup, cp);
 	if (cp)
 	{
 		// Here "class" means "playerid".
@@ -87,7 +88,7 @@ stock Races_ResolveGroups(class, Group:forgroup, bool:cp) <YSI_has_groups:y>
 	}
 	else
 	{
-		P:7("Class_ResolveGroups<y>: Enable this class: %d For: %d", class, _:forgroup);
+		Debug_Print7("Class_ResolveGroups<y>: Enable this class: %d For: %d", class, _:forgroup);
 		// Only enable this class for one group.
 		//Group_UpdateAllClass(class, false);
 		//Group_SetClass(forgroup, class, true);

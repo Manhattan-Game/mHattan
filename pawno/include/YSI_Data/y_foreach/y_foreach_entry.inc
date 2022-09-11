@@ -1,4 +1,4 @@
-/*                                                                                              *
+/*                                                                                             *
  *                                                                                             *
  *     _____ ______ ______   ____  ______ _      ______          __  ______ ____  _____        *
  *    / ____|  ____|  ____| |  _ \|  ____| |    / __ \ \        / / |  ____/ __ \|  __ \       *
@@ -34,7 +34,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -61,6 +61,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -105,10 +106,9 @@ Optional plugins:
 */
 
 #include "..\..\YSI_Core\y_utils"
-#include "..\..\YSI_Coding\y_va"
 
 // "y_iterate" is always higher than "foreach".
-#define _Y_ITERATE_LOCAL_VERSION        43
+#define _Y_ITERATE_LOCAL_VERSION        44
 
 #if __Pawn != 0x030A
 	#define NO_CUSTOM_WARNINGS
@@ -171,7 +171,7 @@ Optional plugins:
 			#define _Y_ITERATE_FOUND
 			#endinput
 		#endif
-	#elseif defined foreach && __COMPILER_FIRST_PASS
+	#elseif defined foreach && __COMPILER_1ST_PASS
 		// I made this a warning on compilers that supported them, but that's a
 		// silly idea!
 		#error The old <foreach> include is no longer compatible with YSI.
@@ -323,15 +323,12 @@ Optional plugins:
 #include "y_foreach_macros"
 
 #include "y_foreach_impl"
-#include "..\..\YSI_Coding\y_hooks"
 #include "y_foreach_yield"
 
-#if _FOREACH_CHARACTERS || _FOREACH_VEHICLES || _FOREACH_ACTORS
-	#include "..\..\YSI_Coding\y_hooks"
-#endif
-#if _FOREACH_VEHICLES || _FOREACH_ACTORS
-	#include "..\..\YSI_Coding\y_remote"
-#endif
+CHAIN_HOOK(Iter)
+#undef CHAIN_ORDER
+#define CHAIN_ORDER CHAIN_NEXT(Iter)
+
 #include "y_foreach_iterators"
 
 #if defined YSI_TESTS

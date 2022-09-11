@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -103,23 +104,23 @@ enum e_INI_LINE_TYPE:
 
 // Variables for reading.
 _Y_INI_STATIC stock
-	Alloc:YSI_g_sExtendedLine,
+	Alloc:YSI_g_sExtendedLine = NO_ALLOC,
 	YSI_g_sExtendedName[MAX_INI_ENTRY_NAME],
-	YSI_g_sExtra,
-	YSI_g_sFile[32],
-	YSI_g_sTag[32],
-	YSI_g_sFormat[32],
-	bool:YSI_g_sRemote,
+	YSI_g_sExtra = 0,
+	YSI_g_sFile[FUNCTION_LENGTH],
+	YSI_g_sTag[FUNCTION_LENGTH],
+	YSI_g_sFormat[FUNCTION_LENGTH],
+	bool:YSI_g_sRemote = false,
 	YSI_g_sCurLine[MAX_INI_LINE];
 
 // Variables for callbacks.
 static stock
-	Func:YSI_g_sCB_issss<issss>,
-	Func:YSI_g_sCB_isss<isss>,
-	Func:YSI_g_sCB_iss<iss>,
-	Func:YSI_g_sCB_ssss<ssss>,
-	Func:YSI_g_sCB_sss<sss>,
-	Func:YSI_g_sCB_ss<ss>;
+	Func:YSI_g_sCB_issss<issss> = Func:0<issss>,
+	Func:YSI_g_sCB_isss<isss>   = Func:0<isss>,
+	Func:YSI_g_sCB_iss<iss>     = Func:0<iss>,
+	Func:YSI_g_sCB_ssss<ssss>   = Func:0<ssss>,
+	Func:YSI_g_sCB_sss<sss>     = Func:0<sss>,
+	Func:YSI_g_sCB_ss<ss>       = Func:0<ss>;
 
 // Variables for writing.
 _Y_INI_STATIC stock
@@ -129,11 +130,11 @@ _Y_INI_STATIC stock
 	Alloc:YSI_g_sINITagBuffer[INI:INI_MAX_WRITES],
 	Alloc:YSI_g_sINICurrentTag[INI:INI_MAX_WRITES],
 	// The data being dumped.
-	Alloc:YSI_g_sCurrentTag,
-	INI:YSI_g_sCurrentINI,
-	File:YSI_g_sCurrentFile,
-	bool:YSI_g_sNL,
-	bool:YSI_g_sTagNeeded;
+	Alloc:YSI_g_sCurrentTag = NO_ALLOC,
+	INI:YSI_g_sCurrentINI = INI:0,
+	File:YSI_g_sCurrentFile = File:0,
+	bool:YSI_g_sNL = false,
+	bool:YSI_g_sTagNeeded = false;
 
 forward bool:INI_FindCallback(const cb[]);
 
@@ -165,7 +166,7 @@ forward bool:INI_FindCallback(const cb[]);
  * <param name="variable">Variable to fill with integer value.</param>
  *//*------------------------------------------------------------------------**/
 
-P:D(INI_Int(const name[],&variable));
+FUNC_PAWNDOC(INI_Int(const name[],&variable));
 #define INI_Int(%1,%2) \
 	if (!strcmp((%1), name, true)) return %2 = strval(value)
 
@@ -174,7 +175,7 @@ P:D(INI_Int(const name[],&variable));
  * <param name="variable">Variable to fill with float value.</param>
  *//*------------------------------------------------------------------------**/
 
-P:D(INI_Float(const name[],&Float:variable));
+FUNC_PAWNDOC(INI_Float(const name[],&Float:variable));
 #define INI_Float(%1,%2) \
 	if (!strcmp((%1), name, true)) return _:(%2 = floatstr(value))
 
@@ -183,7 +184,7 @@ P:D(INI_Float(const name[],&Float:variable));
  * <param name="variable">Variable to fill with hex value.</param>
  *//*------------------------------------------------------------------------**/
 
-P:D(INI_Hex(const name[],&variable));
+FUNC_PAWNDOC(INI_Hex(const name[],&variable));
 #define INI_Hex(%1,%2) \
 	if (!strcmp((%1), name, true)) return %2 = hexstr(value)
 
@@ -192,7 +193,7 @@ P:D(INI_Hex(const name[],&variable));
  * <param name="variable">Variable to fill with binary value.</param>
  *//*------------------------------------------------------------------------**/
 
-P:D(INI_Bin(const name[],&variable));
+FUNC_PAWNDOC(INI_Bin(const name[],&variable));
 #define INI_Bin(%1,%2) \
 	if (!strcmp((%1), name, true)) return %2 = binstr(value)
 
@@ -207,20 +208,20 @@ P:D(INI_Bin(const name[],&variable));
  * </remarks>
  *//*------------------------------------------------------------------------**/
 
-P:D(INI_String(const name[],variable[]));
+FUNC_PAWNDOC(INI_String(const name[],variable[]));
 #define INI_String(%1,%2) \
-	if (!strcmp((%1), name, true)) return _:INI_CHECK_LEN:strcpy(%2, value)
+	if (!strcmp((%1), name, true)) return _:INI_CHECK_LEN:StrCpy(%2, value)
 
-#define INI_CHECK_LEN:strcpy(%0,%1,%2) strcpy(%0,%2,%1)
+#define INI_CHECK_LEN:StrCpy(%0,%1,%2) StrCpy(%0,%2,%1)
 
 /*-------------------------------------------------------------------------*//**
  * <param name="name">Name of the INI key.</param>
  * <param name="variable">Variable to fill with string value.</param>
  *//*------------------------------------------------------------------------**/
 
-P:D(INI_Bool(const name[],&bool:variable));
+FUNC_PAWNDOC(INI_Bool(const name[],&bool:variable));
 #define INI_Bool(%1,%2) \
-	if (!strcmp((%1), name, true)) return %2 = boolstr(value)
+	if (!strcmp((%1), name, true)) return %2 = BoolStr(value)
 
 /*-------------------------------------------------------------------------*//**
  * <param name="name">Name of the INI key.</param>
@@ -234,7 +235,7 @@ P:D(INI_Bool(const name[],&bool:variable));
 #define F@f:%0|||(F@g(%1,%5)%3|||) %0|||(%1 %3|||)
 #define F@s(%0) (_:F@f:F@e:sizeof F@b|||(%0 F@a$F@b|||))
 
-P:D(INI_Array(const name[],variable[]));
+FUNC_PAWNDOC(INI_Array(const name[],variable[]));
 #define INI_Array(%1,%2) \
 	if (!strcmp((%1), name, true)) return _INI_Array((%1), strval(value), _:%2[0])
 
@@ -297,30 +298,67 @@ static stock INI_WriteTag(File:file, const tag[], format[])
 #define INI_KeyListSetKeyValue(%0,%1,%2) (I@ = strlen(%1), msets((%0), 2, (%1)), mset((%0), 1, I@ + 2), msets((%0), I@ + 3, (%2)))
 
 /*-------------------------------------------------------------------------*//**
- * <param name="callback">The callback destination.</param>
- * <param name="format">The function name format.</param>
- * <param name="tag">The tag destination.</param>
- * <param name="input">The tag source.</param>
- * <param name="callbackFormat">The callback parameter specifiers.</param>
- * <param name="remote">Use "CallRemoteFunction".</param>
+ * <param name="fmt">The function name format.</param>
+ * <param name="fileOrTag">The first parameter.</param>
+ * <param name="tagOrFile">The second parameter.</param>
  * <returns>
  *  Was the function found?
  * </returns>
  * <remarks>
- *  Gets a callback given a partial function name and a tag name.  Also saves
- *  the tag elsewhere.  This might not work as a separate function - it will
- *  need to be in the function called by the function with the inlines in.
+ *  Gets a callback given a partial function name and a tag name.
  * </remarks>
  *//*------------------------------------------------------------------------**/
 
-P:D(INI_GetCallback(callback,format,tag,input,callbackFormat,remote));
-#define INI_GetCallback(%0,%1,%2,%3,%4,%5) \
-	( \
-		strcpy((%2), (%3)), \
-		Inline_Reset((%0)), \
-		format(YSI_g_sCurLine, sizeof (YSI_g_sCurLine), (%1), (%2)), \
-		Callback_Get(callback_tag:YSI_g_sCurLine, (%0), (%4), (%5)) \
-	)
+static stock bool:INI_GetCallback(const fmt[], const fileOrTag[], const tagOrFile[]) <y_ini_get:y_ini_get_0>
+{
+	#pragma unused fileOrTag, tagOrFile
+	new
+		cb[FUNCTION_LENGTH],
+		pos = -1;
+	StrCpy(cb, fmt, sizeof (cb));
+	while ((pos = strfind(cb, YSI_SPACE, false, pos + 1)) != -1)
+	{
+		cb[pos] = '_';
+	}
+	Debug_Print5("INI_GetCallback<y_ini_get_0>: Find callback %s", cb);
+	return INI_FindCallback(cb);
+}
+
+static stock bool:INI_GetCallback(const fmt[], const fileOrTag[], const tagOrFile[]) <y_ini_get:y_ini_get_1>
+{
+	#pragma unused tagOrFile
+	new
+		cb[FUNCTION_LENGTH],
+		pos = -1;
+	format(cb, sizeof (cb), fmt, fileOrTag);
+	while ((pos = strfind(cb, YSI_SPACE, false, pos + 1)) != -1)
+	{
+		cb[pos] = '_';
+	}
+	Debug_Print5("INI_GetCallback<y_ini_get_1>: Find callback %s", cb);
+	return INI_FindCallback(cb);
+}
+
+static stock bool:INI_GetCallback(const fmt[], const fileOrTag[], const tagOrFile[]) <y_ini_get:y_ini_get_2>
+{
+	new
+		cb[FUNCTION_LENGTH],
+		pos = -1;
+	format(cb, sizeof (cb), fmt, fileOrTag, tagOrFile);
+	while ((pos = strfind(cb, YSI_SPACE, false, pos + 1)) != -1)
+	{
+		cb[pos] = '_';
+	}
+	Debug_Print5("INI_GetCallback<y_ini_get_2>: Find callback %s", cb);
+	return INI_FindCallback(cb);
+}
+
+static stock bool:INI_GetCallback(const fmt[], const fileOrTag[], const tagOrFile[]) <y_ini_get:y_ini_get_n>
+{
+	Debug_Print5("INI_GetCallback<y_ini_get_n>");
+	#pragma unused fmt, fileOrTag, tagOrFile
+	return false;
+}
 
 /*
 
@@ -366,7 +404,7 @@ static stock Alloc:INI_GetTag(Alloc:cur, const tag[])
 
 static stock Alloc:INI_GetKey(Alloc:cur, const key[], &Alloc:prev)
 {
-	P:4("INI_GetKey called: prev = %d %s", _:cur, INI_TagListGetName(cur));
+	Debug_Print4("INI_GetKey called: prev = %d %s", _:cur, INI_TagListGetName(cur));
 	for ( ; ; )
 	{
 		prev = cur,
@@ -399,10 +437,10 @@ static stock Alloc:INI_GetKey(Alloc:cur, const key[], &Alloc:prev)
 
 _Y_INI_STATIC stock bool:INI_AddToBuffer(INI:file, const key[], const value[], semis = 0)
 {
-	P:4("INI_AddToBuffer called: %i, \"%s\", \"%s\"", _:file, key, value);
-	if (strfind(key, " ") != -1)
+	Debug_Print4("INI_AddToBuffer called: %i, \"%s\", \"%s\"", _:file, key, value);
+	if (strfind(key, YSI_SPACE) != -1)
 	{
-		P:E("INI key \"%s\" must not contain spaces", key);
+		Debug_Error("INI key \"%s\" must not contain spaces", key);
 		return false;
 	}
 	if (INI_IsValid(file) && key[0])
@@ -414,7 +452,7 @@ _Y_INI_STATIC stock bool:INI_AddToBuffer(INI:file, const key[], const value[], s
 		}
 		new
 			len = strlen(key) + strlen(value) + 4 + semis, // 2 * NULL + next + keylen + semis.
-			Alloc:prev,
+			Alloc:prev = Alloc:0,
 			Alloc:mem = INI_GetKey(YSI_g_sINICurrentTag[file], key, prev);
 		if (mem)
 		{
@@ -466,7 +504,7 @@ _Y_INI_STATIC stock bool:INI_AddToBuffer(INI:file, const key[], const value[], s
 					// Get semi-colons we need to escape.  Do it the hard way.
 					len = 0,
 					semis = I@ + 3;
-					for (new pos; (pos = strfind(value, ";", false, len)) != -1; len = pos + 1)
+					for (new pos = 0; (pos = strfind(value, ";", false, len)) != -1; len = pos + 1)
 					{
 						_YSI_ConstMod(value[pos], '\0');
 						msets(mem, semis, value[len]);
@@ -535,14 +573,21 @@ _Y_INI_STATIC stock bool:INI_AddToBuffer(INI:file, const key[], const value[], s
 
 stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = false, bool:bExtra = false, extra = 0, bool:bLocal = true, bool:bPassTag = false, bool:bPassFile = false)
 {
-	P:4("INI_ParseFile called");
+	Debug_Print4("INI_ParseFile called");
 	new
-		File:fhnd = fopen(fname, io_read);
-	if (!fhnd)
-		return false;
-	strcpy(YSI_g_sFormat, remoteFormat);
-	new
+		File:fhnd = fopen(fname, io_read),
 		start = strlen(fname);
+	if (!fhnd)
+	{
+		return false;
+	}
+	// Set up the initial tag (none).
+	YSI_g_sTag[0] = '\1',
+	YSI_g_sTag[1] = '\0',
+	// Set up the other data.
+	YSI_g_sRemote = !bLocal,
+	YSI_g_sExtra = extra,
+	StrCpy(YSI_g_sFormat, remoteFormat);
 	{
 		while (start && fname[start - 1] != '/' && fname[start - 1] != '\\')
 			--start;
@@ -550,16 +595,47 @@ stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = 
 			end = start;
 		while (fname[end] && fname[end] != '.')
 			++end;
-		strcpy(YSI_g_sFile, fname[start], end - start + 1);
+		StrCpy(YSI_g_sFile, fname[start], end - start + 1);
 	}
-	YSI_g_sRemote = !bLocal;
-	YSI_g_sExtra = extra;
+	{
+		// Check for format specifier.
+		new
+			count = 0,
+			pos = 0;
+		while ((pos = strfind(YSI_g_sFormat, "%", false, pos) + 1))
+		{
+			if (YSI_g_sFormat[pos] == '%')
+			{
+				// Ignore it.
+				++pos;
+			}
+			else
+			{
+				++count;
+			}
+		}
+		switch (count)
+		{
+		case 0:
+			state y_ini_get:y_ini_get_0;
+		case 1:
+			state y_ini_get:y_ini_get_1;
+		case 2:
+			state y_ini_get:y_ini_get_2;
+		default:
+		{
+			Debug_Warning("Invalid `INI_ParseFile` function specifier: %s", YSI_g_sFormat);
+			state y_ini_get:y_ini_get_n;
+		}
+		}
+	}
 	if (bFileFirst)
 	{
 		if (bExtra)
 		{
 			if (bPassTag)
 			{
+				Debug_Print6("INI_ParseFile: call type %s", bPassFile ? ("yyyy") : ("yyyn"));
 				if (bPassFile)
 					state y_ini:y_ini_reading_yyyy;
 				else
@@ -567,6 +643,7 @@ stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = 
 			}
 			else
 			{
+				Debug_Print6("INI_ParseFile: call type %s", bPassFile ? ("yyny") : ("yynn"));
 				if (bPassFile)
 					state y_ini:y_ini_reading_yyny;
 				else
@@ -577,6 +654,7 @@ stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = 
 		{
 			if (bPassTag)
 			{
+				Debug_Print6("INI_ParseFile: call type %s", bPassFile ? ("ynyy") : ("ynyn"));
 				if (bPassFile)
 					state y_ini:y_ini_reading_ynyy;
 				else
@@ -584,12 +662,14 @@ stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = 
 			}
 			else
 			{
+				Debug_Print6("INI_ParseFile: call type %s", bPassFile ? ("ynny") : ("ynnn"));
 				if (bPassFile)
 					state y_ini:y_ini_reading_ynny;
 				else
 					state y_ini:y_ini_reading_ynnn;
 			}
 		}
+		start = INI_GetCallback(YSI_g_sFormat, YSI_g_sFile, YSI_EMPTY);
 	}
 	else
 	{
@@ -597,6 +677,7 @@ stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = 
 		{
 			if (bPassTag)
 			{
+				Debug_Print6("INI_ParseFile: call type %s", bPassFile ? ("nyyy") : ("nyyn"));
 				if (bPassFile)
 					state y_ini:y_ini_reading_nyyy;
 				else
@@ -604,6 +685,7 @@ stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = 
 			}
 			else
 			{
+				Debug_Print6("INI_ParseFile: call type %s", bPassFile ? ("nyny") : ("nynn"));
 				if (bPassFile)
 					state y_ini:y_ini_reading_nyny;
 				else
@@ -614,6 +696,7 @@ stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = 
 		{
 			if (bPassTag)
 			{
+				Debug_Print6("INI_ParseFile: call type %s", bPassFile ? ("nnyy") : ("nnyn"));
 				if (bPassFile)
 					state y_ini:y_ini_reading_nnyy;
 				else
@@ -621,33 +704,20 @@ stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = 
 			}
 			else
 			{
+				Debug_Print6("INI_ParseFile: call type %s", bPassFile ? ("nnny") : ("nnnn"));
 				if (bPassFile)
 					state y_ini:y_ini_reading_nnny;
 				else
 					state y_ini:y_ini_reading_nnnn;
 			}
 		}
-	}
-	{
-		// Set up the initial callback.
-		new
-			pos = -1,
-			cb[32];
-		YSI_g_sTag[0] = '\1';
-		YSI_g_sTag[1] = '\0';
-		if (bFileFirst)
-			format(cb, sizeof (cb), YSI_g_sFormat, YSI_g_sFile, "");
-		else
-			format(cb, sizeof (cb), YSI_g_sFormat, "", YSI_g_sFile);
-		while ((pos = strfind(cb, " ", false, pos + 1)) != -1)
-			cb[pos] = '_';
-		start = INI_FindCallback(cb);
+		start = INI_GetCallback(YSI_g_sFormat, YSI_EMPTY, YSI_g_sFile);
 	}
 	{
 		// Read the file.  We have no parent and want to be in read mode.  What we
 		// do with the lines is determined by the state and the current line type.
-		new parent[32] = "";
-		INI_ReadFile(fhnd, parent, !!start),
+		new parent[FUNCTION_LENGTH] = "";
+		INI_ReadFile(fhnd, parent, bool:start),
 		fclose(fhnd);
 	}
 	return true;
@@ -667,9 +737,9 @@ stock bool:INI_ParseFile(const fname[], const remoteFormat[], bool:bFileFirst = 
  * </remarks>
  *//*------------------------------------------------------------------------**/
 
-stock bool:INI_Load(filename[], bool:bExtra = false, extra = 0, bool:bLocal = true)
+stock bool:INI_Load(const filename[], bool:bExtra = false, extra = 0, bool:bLocal = true)
 {
-	P:3("bool:INI_Load called: \"%s\", %i, %i, %i", filename, _:bExtra, extra, _:bLocal);
+	Debug_Print3("bool:INI_Load called: \"%s\", %i, %i, %i", filename, _:bExtra, extra, _:bLocal);
 	return INI_ParseFile(filename, "@INI_%s_%s", .bFileFirst = true, .bExtra = bExtra, .extra = extra, .bLocal = bLocal);
 }
 
@@ -697,7 +767,7 @@ stock bool:INI_Load(filename[], bool:bExtra = false, extra = 0, bool:bLocal = tr
 //		{
 //			case e_INI_LINE_TYPE_INVALID:
 //			{
-//				P:W("Invalid line in INI file: %s", YSI_g_sCurLine);
+//				Debug_Warning("Invalid line in INI file: %s", YSI_g_sCurLine);
 //			}
 //			case e_INI_LINE_TYPE_DATALESS:
 //			{
@@ -717,7 +787,7 @@ stock bool:INI_Load(filename[], bool:bExtra = false, extra = 0, bool:bLocal = tr
 //				{
 //					if (Malloc_Get(YSI_g_sExtendedLine, 1) == '@')
 //					{
-//						P:E("Binary arrays cannot use continuation lines.");
+//						Debug_Error("Binary arrays cannot use continuation lines.");
 //					}
 //					free(YSI_g_sExtendedLine),
 //					YSI_g_sExtendedLine = NO_ALLOC,
@@ -756,7 +826,7 @@ stock bool:INI_Load(filename[], bool:bExtra = false, extra = 0, bool:bLocal = tr
 //		}
 //	}
 //	if (len)
-//		P:W("Incomplete array data in INI file for \"%s\"", name);
+//		Debug_Warning("Incomplete array data in INI file for \"%s\"", name);
 //	// Reparse the previous line.
 //	fseek(YSI_g_sCurrentFile, YSI_g_sParentPos, seek_start);
 //	return 0;
@@ -779,7 +849,7 @@ static stock bool:INI_SetTag_(INI:file, const tag[])
 		Alloc:cur = INI_GetTag(YSI_g_sINITagBuffer[file], tag);
 	if (cur)
 	{
-		P:5("INI_SetTag_: Found old key");
+		Debug_Print5("INI_SetTag_: Found old key");
 		YSI_g_sINICurrentTag[file] = cur;
 		return true;
 	}
@@ -795,7 +865,7 @@ static stock bool:INI_SetTag_(INI:file, const tag[])
 			INI_TagListSetName(cur, tag),
 			YSI_g_sINITagBuffer[file] = cur,
 			YSI_g_sINICurrentTag[file] = cur;
-			P:7("INI_SetTag_: allocated %s", INI_TagListGetName(YSI_g_sINICurrentTag[file]));
+			Debug_Print7("INI_SetTag_: allocated %s", INI_TagListGetName(YSI_g_sINICurrentTag[file]));
 			break;
 		}
 		// Allocating a new tag failed.  Clear memory and try again.  When
@@ -818,13 +888,13 @@ static stock bool:INI_SetTag_(INI:file, const tag[])
 
 stock INI:INI_Open(const filename[])
 {
-	P:3("INI:INI_Open called: \"%s\"", filename);
+	Debug_Print3("INI:INI_Open called: \"%s\"", filename);
 	if (ftouch(filename) == -1)
 	{
-		P:W("INI_Open could not find or create file %s", filename);
+		Debug_Warning("INI_Open could not find or create file %s", filename);
 	}
 	new
-		INI:i;
+		INI:i = INI:0;
 	while (i != INI:INI_MAX_WRITES && YSI_g_sINITagBuffer[i])
 	{
 		++i;
@@ -835,8 +905,8 @@ stock INI:INI_Open(const filename[])
 	}
 	return
 		// Reset tags.
-		INI_SetTag_(i, ""),
-		strcpy(YSI_g_sINIWriteFile[i], filename, YSI_MAX_STRING),
+		INI_SetTag_(i, YSI_EMPTY),
+		StrCpy(YSI_g_sINIWriteFile[i], filename, YSI_MAX_STRING),
 		i;
 }
 
@@ -849,7 +919,7 @@ stock INI:INI_Open(const filename[])
 
 stock INI_Close(INI:file)
 {
-	P:3("INI_Close called: %i", _:file);
+	Debug_Print3("INI_Close called: %i", _:file);
 	if (INI_IsValid(file))
 	{
 		INI_FlushWithoutRestore(file),
@@ -859,10 +929,10 @@ stock INI_Close(INI:file)
 
 stock bool:INI_SetTag(INI:file, const tag[])
 {
-	P:3("INI_SetTag called: %i, \"%s\"", _:file, tag);
-	if (strfind(tag, " ") != -1)
+	Debug_Print3("INI_SetTag called: %i, \"%s\"", _:file, tag);
+	if (strfind(tag, YSI_SPACE) != -1)
 	{
-		P:E("INI tag \"%s\" must not contain spaces", tag);
+		Debug_Error("INI tag \"%s\" must not contain spaces", tag);
 		if (INI_IsValid(file))
 		{
 			YSI_g_sINICurrentTag[file] = NO_ALLOC;
@@ -904,8 +974,8 @@ stock bool:INI_DeleteTag(INI:file, const tag[])
 
 stock bool:INI_RemoveEntry(INI:file, const name[])
 {
-	P:3("INI_RemoveEntry called: %i, \"%s\"", _:file, name);
-	return INI_AddToBuffer(file, name, "");
+	Debug_Print3("INI_RemoveEntry called: %i, \"%s\"", _:file, name);
+	return INI_AddToBuffer(file, name, YSI_EMPTY);
 }
 
 /*
@@ -962,32 +1032,40 @@ _Y_INI_STATIC stock e_INI_LINE_TYPE:
 	p0s = p0e = p1s = p1e = p2s = p2e = 0;
 	// Do this purely with a single main loop, and a state machine.
 	new
-		end,
+		end = 0,
 		e_INI_LINE_TYPE:ret = e_INI_LINE_TYPE_DATALESS,
-		pos;
+		pos = 0;
 	// If there is memory allocated for a line continuation, that means the
 	// previous line ended with '\\', so this line is just part of that one,
 	// regardless of what it contains.
 	if (YSI_g_sExtendedLine)
 		goto state_in_continue_line;
 	INI_SkipWhitespace(str, pos);
-	switch (str[pos++])
+	switch (str[pos])
 	{
 		case '\0': return e_INI_LINE_TYPE_DATALESS;
-		case  ';': goto state_in_comment;
-		case  '[': goto state_in_tag;
+		case  ';':
+		{
+			++pos;
+			goto state_in_comment;
+		}
+		case  '[':
+		{
+			++pos;
+			goto state_in_tag;
+		}
 		case '\\':
-			if (str[pos])
-			{
-				p0s = pos - 1,
-				end = ++pos;
-			}
-			else return e_INI_LINE_TYPE_INVALID;
+		{
+			if (str[++pos])
+				p0s = pos;
+			else
+				return e_INI_LINE_TYPE_INVALID;
+		}
 		case '=': return e_INI_LINE_TYPE_INVALID;
-		default: p0s = pos - 1;
+		default: p0s = pos;
 	}
 	// Default end point, for single-character lines.
-	end = pos;
+	end = pos + 1;
 //state_in_entry: // Default (fall-through).
 	// Get the key.
 	for ( ; ; ) switch (str[pos++])
@@ -1006,6 +1084,7 @@ _Y_INI_STATIC stock e_INI_LINE_TYPE:
 	}
 	p0e = end;
 state_in_continue_line:
+	Debug_Print6("INI_IdentifyLineType: In continue line, %d, %d (%.*s)", p0s, p0e, p0e - p0s, str[p0s]);
 	// See what comes next.
 	INI_SkipWhitespace(str, pos);
 	p1s = end = pos;
@@ -1026,7 +1105,7 @@ state_in_continue_line:
 			// is an implicit continuation - it isn't actually one, the line
 			// just spans multiple reads.
 			p1e = end,
-			ret  = e_INI_LINE_TYPE_CONT;
+			ret = e_INI_LINE_TYPE_CONT;
 			goto state_in_continuation;
 		}
 		case  ';':
@@ -1105,6 +1184,7 @@ state_in_continue_line:
 		default: end = pos;  // Characters, save this position.
 	}
 state_in_tag:
+	Debug_Print6("INI_IdentifyLineType: In tag: %s", str);
 	// Get the tag name.
 	INI_SkipWhitespace(str, pos);
 	p0s = pos;
@@ -1150,6 +1230,7 @@ state_in_tag:
 		default  : return e_INI_LINE_TYPE_INVALID; // Unexpected characters.
 	}
 state_in_comment:
+	Debug_Print6("INI_IdentifyLineType: In comment: %s", str);
 	INI_SkipWhitespace(str, pos);
 	if (str[pos])
 	{
@@ -1163,12 +1244,13 @@ state_in_comment:
 		return ret;
 	// Fall through to handle continuations before comments.
 state_in_continuation:
+	Debug_Print6("INI_IdentifyLineType: In continuation: %s", str);
 	// We get here if a line ended with `\\`.  We need to copy the data from
 	// this line in to allocated space.
 	if (!YSI_g_sExtendedName[0])
 	{
 		// Haven't yet stored the name of this line.  Do so.
-		strcpy(YSI_g_sExtendedName, str[p0s], p0e - p0s + 1);
+		StrCpy(YSI_g_sExtendedName, str[p0s], p0e - p0s + 1);
 	}
 	// Get the length of this new part.
 	pos = p1e - p1s;
@@ -1182,7 +1264,7 @@ state_in_continuation:
 			YSI_g_sExtendedLine = realloc(YSI_g_sExtendedLine, Malloc_SlotSize(YSI_g_sExtendedLine) + MAX_INI_LINE, false);
 			if (!YSI_g_sExtendedLine)
 			{
-				P:E("Could not allocate memory for continuation line.");
+				Debug_Error("Could not allocate memory for continuation line.");
 				return e_INI_LINE_TYPE_INVALID;
 			}
 		}
@@ -1194,7 +1276,7 @@ state_in_continuation:
 		YSI_g_sExtendedLine = malloc(MAX_INI_LINE + 1, false);
 		if (!YSI_g_sExtendedLine)
 		{
-			P:E("Could not allocate memory for continuation line.");
+			Debug_Error("Could not allocate memory for continuation line.");
 			return e_INI_LINE_TYPE_INVALID;
 		}
 		mset(YSI_g_sExtendedLine, 0, 0);
@@ -1236,7 +1318,7 @@ state_in_continuation:
 
 stock bool:INI_WriteString(INI:file, const name[], const data[])
 {
-	P:3("INI_WriteString called: %i, \"%s\", \"%s\"", _:file, name, data);
+	Debug_Print3("INI_WriteString called: %i, \"%s\", \"%s\"", _:file, name, data);
 	new
 		pos = 0,
 		semis = 0;
@@ -1257,7 +1339,7 @@ stock bool:INI_WriteString(INI:file, const name[], const data[])
 
 stock bool:INI_WriteInt(INI:file, const name[], data)
 {
-	P:3("INI_WriteInt called: %i, \"%s\", %i", _:file, name, data);
+	Debug_Print3("INI_WriteInt called: %i, \"%s\", %i", _:file, name, data);
 	static const
 		sc_szCellmin[] = "-2147483648";
 	if (data == cellmin)
@@ -1283,7 +1365,7 @@ stock bool:INI_WriteInt(INI:file, const name[], data)
 
 stock bool:INI_WriteHex(INI:file, const name[], data)
 {
-	P:3("INI_WriteHex called: %i, \"%s\", %i", _:file, name, data);
+	Debug_Print3("INI_WriteHex called: %i, \"%s\", %i", _:file, name, data);
 	return
 		format(Q@, sizeof (Q@), "0x%04x%04x", data >>> 16, data & 0xFFFF),
 		INI_AddToBuffer(file, name, Q@);
@@ -1300,7 +1382,7 @@ stock bool:INI_WriteHex(INI:file, const name[], data)
 
 stock bool:INI_WriteBin(INI:file, const name[], data)
 {
-	P:3("INI_WriteBin called: %i, \"%s\", %i", _:file, name, data);
+	Debug_Print3("INI_WriteBin called: %i, \"%s\", %i", _:file, name, data);
 	if (data < 0) format(Q@, sizeof (Q@), "0b1%031b", data & 0x7FFFFFFF);
 	else format(Q@, sizeof (Q@), "0b%b", data);
 	return INI_AddToBuffer(file, name, Q@);
@@ -1317,7 +1399,7 @@ stock bool:INI_WriteBin(INI:file, const name[], data)
 
 stock bool:INI_WriteBool(INI:file, const name[], bool:data)
 {
-	P:3("INI_WriteBool called: %i, \"%s\", %i", _:file, name, _:data);
+	Debug_Print3("INI_WriteBool called: %i, \"%s\", %i", _:file, name, _:data);
 	return INI_AddToBuffer(file, name, data ? ("true") : ("false"));
 }
 
@@ -1333,7 +1415,7 @@ stock bool:INI_WriteBool(INI:file, const name[], bool:data)
 
 stock bool:INI_WriteFloat(INI:file, const name[], Float:data, accuracy = 6)
 {
-	P:3("INI_WriteFloat called: %i, \"%s\", %f, %i", _:file, name, data, accuracy);
+	Debug_Print3("INI_WriteFloat called: %i, \"%s\", %f, %i", _:file, name, data, accuracy);
 	return
 		format(Q@, sizeof (Q@), "%.*f", accuracy, data),
 		INI_AddToBuffer(file, name, Q@);
@@ -1352,30 +1434,45 @@ stock bool:INI_WriteFloat(INI:file, const name[], Float:data, accuracy = 6)
 
 */
 
-static stock INI_ReadFile(File:fhnd, parent[32], bool:handle = true)
+/*-------------------------------------------------------------------------*//**
+ * <param name="file">File to write to.</param>
+ * <param name="name">Data name.</param>
+ * <param name="data">Float data.</param>
+ * <param name="accuracy">number of decimal places to write.</param>
+ * <remarks>
+ *  Wrapper for INI_AddToBuffer for floats.
+ * </remarks>
+ *//*------------------------------------------------------------------------**/
+
+static stock INI_ReadFile(File:fhnd, parent[FUNCTION_LENGTH], bool:handle = true)
 {
+	Debug_Print5("INI_ReadFile called: %d, %s, %d", _:fhnd, parent, handle);
 	new
 		bool:doneParent = false,
 		pos = 0,
-		rlen,
-		p0s, p0e, p1s, p1e, p2s, p2e;
+		rlen = 0,
+		p0s = 0, p0e = 0, p1s = 0, p1e = 0, p2s = 0, p2e = 0;
 	// Read from the start of the file.
 	fseek(fhnd, 0, seek_start);
 	while ((rlen = fread(fhnd, YSI_g_sCurLine)))
 	{
+		Debug_Print7("INI_ReadFile: %d, %s", rlen, YSI_g_sCurLine);
 		pos += rlen;
 		switch (INI_IdentifyLineType(YSI_g_sCurLine, p0s, p0e, p1s, p1e, p2s, p2e))
 		{
 			case e_INI_LINE_TYPE_INVALID:
 			{
-				P:W("Invalid line in INI file \"%s\": %s", YSI_g_sFile, YSI_g_sCurLine);
+				Debug_Print7("INI_ReadFile: e_INI_LINE_TYPE_INVALID");
+				Debug_Warning("Invalid line in INI file \"%s\": %s", YSI_g_sFile, YSI_g_sCurLine);
 			}
 			case e_INI_LINE_TYPE_DATALESS:
 			{
+				Debug_Print7("INI_ReadFile: e_INI_LINE_TYPE_DATALESS");
 				// Do nothing.
 			}
 			case e_INI_LINE_TYPE_TAG:
 			{
+				Debug_Print7("INI_ReadFile: e_INI_LINE_TYPE_TAG");
 				if (doneParent)
 				{
 					// This was only called to recursively deal with parents.
@@ -1385,7 +1482,7 @@ static stock INI_ReadFile(File:fhnd, parent[32], bool:handle = true)
 				YSI_g_sCurLine[p0e] = '\0';
 				if (YSI_g_sCurLine[p0s] == '@' && YSI_g_sCurLine[p0s + 1] == '@' && (p0e = strfind(YSI_g_sCurLine, "-") + 1))
 				{
-					P:W("Filtered tags are deprecated - just use specified callbacks");
+					Debug_Warning("Filtered tags are deprecated - just use specified callbacks");
 					p0s = p0e;
 				}
 				if (parent[0])
@@ -1408,8 +1505,8 @@ static stock INI_ReadFile(File:fhnd, parent[32], bool:handle = true)
 					case 1:
 					{
 						// Only deal with local values.
-						strcpy(YSI_g_sTag, YSI_g_sCurLine[p0s], p0e - p0s + 1),
-						strcpy(YSI_g_sFormat, YSI_g_sCurLine[p1s], p1e - p1s + 1),
+						StrCpy(YSI_g_sTag, YSI_g_sCurLine[p0s], p0e - p0s + 1),
+						StrCpy(YSI_g_sFormat, YSI_g_sCurLine[p1s], p1e - p1s + 1),
 						handle = true;
 						goto INI_ReadFile_cont;
 					}
@@ -1418,16 +1515,21 @@ static stock INI_ReadFile(File:fhnd, parent[32], bool:handle = true)
 				if (p1s != p1e)
 				{
 					// Is there a parent tag to deal with?
-					strcpy(parent, YSI_g_sCurLine[p1s], p1e - p1s + 1),
+					StrCpy(parent, YSI_g_sCurLine[p1s], p1e - p1s + 1);
+					Debug_Print7("INI_ReadFile: tag has parent (%s)", parent);
 					// Do local and parent values.
 					INI_ReadFile(fhnd, parent),
 					fseek(fhnd, pos, seek_start);
 					parent[0] = '\0';
 				}
+				Debug_CodeX{else { print("INI_ReadFile: tag has no parent"); }}
+				// https://github.com/pawn-lang/compiler/issues/669
+				#pragma unused handle
 				handle = true;
 			}
 			case e_INI_LINE_TYPE_CONT:
 			{
+				Debug_Print7("INI_ReadFile: e_INI_LINE_TYPE_CONT");
 				// Do nothing, wait for the rest of the line.
 				if (!handle)
 				{
@@ -1436,6 +1538,7 @@ static stock INI_ReadFile(File:fhnd, parent[32], bool:handle = true)
 			}
 			case e_INI_LINE_TYPE_ENTRY:
 			{
+				Debug_Print7("INI_ReadFile: e_INI_LINE_TYPE_ENTRY");
 				if (handle)
 				{
 					if (YSI_g_sExtendedLine)
@@ -1533,7 +1636,7 @@ static stock INI_HandleEntry(const key[], const value[]) <y_ini:y_ini_writing_sl
 		fwrite(YSI_g_sCurrentFile, "\n");
 	}
 	new
-		Alloc:prev,
+		Alloc:prev = Alloc:0,
 		Alloc:mem = INI_GetKey(YSI_g_sCurrentTag, key, prev);
 	if (mem)
 	{
@@ -1711,14 +1814,10 @@ static stock INI_HandleTag(const tag[]) <
 	y_ini:y_ini_reading_ynyy, y_ini:y_ini_reading_ynyn,
 	y_ini:y_ini_reading_ynny, y_ini:y_ini_reading_ynnn>
 {
-	new
-		pos = -1,
-		cb[32];
-	strcpy(YSI_g_sTag, tag),
-	format(cb, sizeof (cb), YSI_g_sFormat, YSI_g_sFile, tag);
-	while ((pos = strfind(cb, " ", false, pos + 1)) != -1)
-		cb[pos] = '_';
-	return INI_FindCallback(cb) ? -1 : 0;
+	Debug_Print5("INI_HandleTag<y> called: %s", tag);
+	return
+		StrCpy(YSI_g_sTag, tag),
+		INI_GetCallback(YSI_g_sFormat, YSI_g_sFile, tag) ? -1 : 0;
 }
 
 static stock INI_HandleTag(const tag[]) <
@@ -1727,14 +1826,10 @@ static stock INI_HandleTag(const tag[]) <
 	y_ini:y_ini_reading_nnyy, y_ini:y_ini_reading_nnyn,
 	y_ini:y_ini_reading_nnny, y_ini:y_ini_reading_nnnn>
 {
-	new
-		pos = -1,
-		cb[32];
-	strcpy(YSI_g_sTag, tag),
-	format(cb, sizeof (cb), YSI_g_sFormat, tag, YSI_g_sFile);
-	while ((pos = strfind(cb, " ", false, pos + 1)) != -1)
-		cb[pos] = '_';
-	return INI_FindCallback(cb) ? -1 : 0;
+	Debug_Print5("INI_HandleTag<n> called: %s", tag);
+	return
+		StrCpy(YSI_g_sTag, tag),
+		INI_GetCallback(YSI_g_sFormat, tag, YSI_g_sFile) ? -1 : 0;
 }
 
 static stock bool:INI_FindCallback(const cb[]) <y_ini:y_ini_reading_yyyy, y_ini:y_ini_reading_nyyy>
@@ -1790,7 +1885,7 @@ static stock INI_HandleEnd() <y_ini:y_ini_writing_fast, y_ini:y_ini_writing_slow
 	// Dump the remaining data.
 	INI_DumpTag(YSI_g_sCurrentTag);
 	new
-		Alloc:tag,
+		Alloc:tag = NO_ALLOC,
 		Alloc:next = YSI_g_sINITagBuffer[YSI_g_sCurrentINI];
 	while (next)
 	{
@@ -1847,6 +1942,12 @@ static stock INI_HandleEnd() <>
 		Callback_Restore(YSI_g_sCB_ss),
 		YSI_g_sCB_ss = Func:0<ss>;
 	}
+	if (YSI_g_sExtendedLine)
+	{
+		free(YSI_g_sExtendedLine),
+		YSI_g_sExtendedLine = NO_ALLOC,
+		YSI_g_sExtendedName[0] = '\0';
+	}
 }
 
 /*-------------------------------------------------------------------------*//**
@@ -1859,6 +1960,7 @@ static stock INI_HandleEnd() <>
 
 static stock INI_Flush_(INI:file)
 {
+	Debug_Print5("INI_Flush_ called: %d", _:file);
 	YSI_g_sNL = false;
 	YSI_g_sTagNeeded = false;
 	YSI_g_sCurrentFile = ftemp();
@@ -1868,7 +1970,7 @@ static stock INI_Flush_(INI:file)
 	}
 	state y_ini:y_ini_writing_fast;
 	// Parse the file, writing as we go.
-	YSI_g_sCurrentTag = INI_GetTag(YSI_g_sINITagBuffer[YSI_g_sCurrentINI], "");
+	YSI_g_sCurrentTag = INI_GetTag(YSI_g_sINITagBuffer[YSI_g_sCurrentINI], YSI_EMPTY);
 	if (YSI_g_sCurrentTag)
 	{
 		// You can't delete the no-tag tag.
@@ -1901,24 +2003,11 @@ static stock INI_Flush_(INI:file)
 	}
 	// Now parse the file.
 	{
-		new parent[32] = "";
+		new parent[FUNCTION_LENGTH] = "";
 		INI_ReadFile(fhnd, parent);
 	}
-	// Now write it back out.
-	fseek(YSI_g_sCurrentFile, 0, seek_start);
-	fclose(fhnd);
-	fhnd = fopen(YSI_g_sINIWriteFile[file], io_write);
-	if (!fhnd)
-	{
-		fclose(YSI_g_sCurrentFile);
-		return;
-	}
-	while (fread(YSI_g_sCurrentFile, YSI_g_sCurLine))
-	{
-		fwrite(fhnd, YSI_g_sCurLine);
-	}
-	fclose(YSI_g_sCurrentFile);
-	fclose(fhnd);
+	fclose(fhnd),
+	Files_DoCopy(YSI_g_sCurrentFile, YSI_g_sINIWriteFile[file]);
 }
 
 static stock INI_FlushWithRestore(INI:file)

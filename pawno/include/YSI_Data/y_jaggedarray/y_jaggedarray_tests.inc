@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -70,7 +71,7 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-TEST__ Jagged_Declaration_1()
+@test(.group = "y_jaggedarray") Jagged_Declaration_1()
 {
 	new Jagged:array[5]<1, 2, 3, 4, 5>;
 	ASSERT_EQ(jaggedsizeof(array[0]), 1);
@@ -80,7 +81,7 @@ TEST__ Jagged_Declaration_1()
 	ASSERT(jaggedsizeof(array[4]) >= 5);
 }
 
-TEST__ Jagged_Declaration_2()
+@test(.group = "y_jaggedarray") Jagged_Declaration_2()
 {
 	new Jagged:array[10]<1, 2, 3, 4, 5>;
 	ASSERT_EQ(jaggedsizeof(array[0]), 1);
@@ -90,7 +91,7 @@ TEST__ Jagged_Declaration_2()
 	ASSERT_EQ(jaggedsizeof(array[4]), 5);
 }
 
-TEST__ Jagged_Declaration_3()
+@test(.group = "y_jaggedarray") Jagged_Declaration_3()
 {
 	new Jagged:array[3]<12, 1, 1>;
 	ASSERT_EQ(jaggedsizeof(array[0]), 12);
@@ -98,7 +99,7 @@ TEST__ Jagged_Declaration_3()
 	ASSERT(jaggedsizeof(array[2]) >= 1);
 }
 
-TEST__ Jagged_Resize()
+@test(.group = "y_jaggedarray") Jagged_Resize()
 {
 	new array[3][6];
 	Jagged_Resize(array, {0, 3}, {1, 12}, {2, 3});
@@ -107,7 +108,7 @@ TEST__ Jagged_Resize()
 	ASSERT(jaggedsizeof(array[2]) >= 3);
 }
 
-TEST__ Jagged_Rearrange_0()
+@test(.group = "y_jaggedarray") Jagged_Rearrange_0()
 {
 	new array[3][6];
 	array[0] = { 'h', 'i', '\0', 'h', 'o', 'w' };
@@ -122,7 +123,7 @@ TEST__ Jagged_Rearrange_0()
 	ASSERT_SAME(array[2], "u?");
 }
 
-TEST__ Jagged_Rearrange_1()
+@test(.group = "y_jaggedarray") Jagged_Rearrange_1()
 {
 	new array[3][6];
 	array[0] = { 'h', 'i', '\0', 'h', 'o', 'w' };
@@ -137,7 +138,7 @@ TEST__ Jagged_Rearrange_1()
 	ASSERT_SAME(array[2], "u?");
 }
 
-TEST__ Jagged_Rearrange_2()
+@test(.group = "y_jaggedarray") Jagged_Rearrange_2()
 {
 	new array[3][6];
 	array[0] = { 'h', 'i', '\0', 'h', 'o', 'w' };
@@ -152,7 +153,7 @@ TEST__ Jagged_Rearrange_2()
 	ASSERT_SAME(array[2], "u?");
 }
 
-TEST__ Jagged_Rearrange_3()
+@test(.group = "y_jaggedarray") Jagged_Rearrange_3()
 {
 	new array[3][6];
 	array[0] = { 'h', 'i', '\0', 'h', 'o', 'w' };
@@ -167,7 +168,7 @@ TEST__ Jagged_Rearrange_3()
 	ASSERT_SAME(array[2], "u?");
 }
 
-TEST__ Jagged_Rearrange_4()
+@test(.group = "y_jaggedarray") Jagged_Rearrange_4()
 {
 	new array[3][6];
 	array[0] = { 'h', 'i', '\0', 'h', 'o', 'w' };

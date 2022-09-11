@@ -20,7 +20,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -47,6 +47,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -127,21 +128,25 @@ stock const
 
 #include "..\..\YSI_Coding\y_hooks"
 
-forward e_INI_LINE_TYPE:INI_IdentifyLineType(str[MAX_INI_LINE], &p0s, &p0e, &p1s, &p1e, &p2s, &p2e);
-forward bool:INI_SetTag(INI:file, const tag[]);
-
 #include "y_ini_impl"
 
 #if defined YSI_TESTS
-	#tryinclude "..\..\amx\os"
+	#tryinclude <amx\os>
 	#tryinclude <amx_assembly\os>
+	#tryinclude <amx_assembly-master\os>
+	#tryinclude <amx_assembly-master\amx_assembly-master\os>
+	#tryinclude "..\..\amx\os"
 	#tryinclude "..\..\amx_assembly\os"
+	#tryinclude "..\..\amx_assembly-master\os"
+	#tryinclude "..\..\amx_assembly-master\amx_assembly-master\os"
+	#tryinclude "..\..\..\amx\os"
 	#tryinclude "..\..\..\amx_assembly\os"
+	#tryinclude "..\..\..\amx_assembly-master\os"
+	#tryinclude "..\..\..\amx_assembly-master\amx_assembly-master\os"
 	#tryinclude "os"
 	#tryinclude <os>
-
 	#if !defined OS_INC
-		#error Could not include "https://github.com/Zeex/amx_assembly" - ensure its files are in "include\amx_assembly\"
+		#error Download `github.com/Zeex/amx_assembly/archive/refs/heads/master.zip` and extract it to `include\`.
 	#endif
 
 	#include "y_ini_tests"

@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -72,7 +73,7 @@ Optional plugins:
 
 #assert MAX_PLAYERS >= 50
 
-TEST__ 000_y_groups_Global()
+@test(.group = "y_groups") 000_y_groups_Global()
 {
 	// Need a certain number just to run this code.
 	call OnPlayerConnect(42);
@@ -80,7 +81,7 @@ TEST__ 000_y_groups_Global()
 	//call OnPlayerDisconnect(42, 0);
 }
 
-TEST__ y_groups_Valid()
+@test(.group = "y_groups") y_groups_Valid()
 {
 	new
 		Group:g = Group_Create("Valid"),
@@ -92,7 +93,7 @@ TEST__ y_groups_Valid()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_Create0()
+@test(.group = "y_groups") y_groups_Create0()
 {
 	new
 		Group:g = Group_Create();
@@ -100,7 +101,7 @@ TEST__ y_groups_Create0()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_Create0b()
+@test(.group = "y_groups") y_groups_Create0b()
 {
 	new
 		Group:g0 = Group_Create("hello"),
@@ -112,7 +113,7 @@ TEST__ y_groups_Create0b()
 	Group_Destroy(g1);
 }
 
-TEST__ y_groups_Create1()
+@test(.group = "y_groups") y_groups_Create1()
 {
 	new
 		Group:g = Group_Create("Group 1");
@@ -120,7 +121,7 @@ TEST__ y_groups_Create1()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_GetID()
+@test(.group = "y_groups") y_groups_GetID()
 {
 	new
 		Group:g = Group_Create("Group 2");
@@ -129,7 +130,7 @@ TEST__ y_groups_GetID()
 	Group_Destroy(g);
 }
  
-TEST__ y_groups_GetGang0()
+@test(.group = "y_groups") y_groups_GetGang0()
 {
 	new
 		Group:g = Group_Create("Group 3");
@@ -137,7 +138,7 @@ TEST__ y_groups_GetGang0()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_GetGang1()
+@test(.group = "y_groups") y_groups_GetGang1()
 {
 	new
 		Group:g = Group_Create("Group 4");
@@ -146,7 +147,7 @@ TEST__ y_groups_GetGang1()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_GetGang2()
+@test(.group = "y_groups") y_groups_GetGang2()
 {
 	new
 		Group:g = Group_Create("Group 5");
@@ -156,7 +157,7 @@ TEST__ y_groups_GetGang2()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_GetColour()
+@test(.group = "y_groups") y_groups_GetColour()
 {
 	new
 		Group:g = Group_Create("Group 6");
@@ -169,7 +170,7 @@ TEST__ y_groups_GetColour()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_Set1()
+@test(.group = "y_groups") y_groups_Set1()
 {
 	new
 		Group:g = Group_Create("Group 7");
@@ -188,7 +189,7 @@ TEST__ y_groups_Set1()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_Set2()
+@test(.group = "y_groups") y_groups_Set2()
 {
 	new
 		Group:g = Group_Create("Group 8");
@@ -208,7 +209,7 @@ TEST__ y_groups_Set2()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_Set3()
+@test(.group = "y_groups") y_groups_Set3()
 {
 	new
 		Group:g = Group_Create("Group 8");
@@ -218,7 +219,7 @@ TEST__ y_groups_Set3()
 	Group_Destroy(g);
 }
 
-TEST__ y_groups_SetBalanced0()
+@test(.group = "y_groups") y_groups_SetBalanced0()
 {
 	new
 		Group:g1 = Group_Create("Group 1"),
@@ -237,7 +238,7 @@ TEST__ y_groups_SetBalanced0()
 	Group_Destroy(g2);
 }
 
-TEST__ y_groups_SetBalanced1()
+@test(.group = "y_groups") y_groups_SetBalanced1()
 {
 	new
 		Group:g1 = Group_Create("Group 1"),
@@ -258,7 +259,7 @@ TEST__ y_groups_SetBalanced1()
 	Group_Destroy(g2);
 }
 
-TEST__ y_groups_SetBalanced2()
+@test(.group = "y_groups") y_groups_SetBalanced2()
 {
 	new
 		Group:g1 = Group_Create("Group 1"),
@@ -293,7 +294,7 @@ TEST__ y_groups_SetBalanced2()
 	Group_Destroy(g3);
 }
 
-TEST__ y_groups_SetBalanced3()
+@test(.group = "y_groups") y_groups_SetBalanced3()
 {
 	new
 		Group:g[3];
@@ -334,7 +335,7 @@ TEST__ y_groups_SetBalanced3()
 	Group_Destroy(g[2]);
 }
 
-TEST__ y_groups_SetBalancedIn1()
+@test(.group = "y_groups") y_groups_SetBalancedIn1()
 {
 	new
 		Group:g[3];
@@ -376,7 +377,7 @@ TEST__ y_groups_SetBalancedIn1()
 	Group_Destroy(g[2]);
 }
 
-TEST__ y_groups_SetBalancedIn2()
+@test(.group = "y_groups") y_groups_SetBalancedIn2()
 {
 	new
 		Group:g[3];
@@ -418,7 +419,7 @@ TEST__ y_groups_SetBalancedIn2()
 	Group_Destroy(g[2]);
 }
 
-TEST__ y_groups_SetBalancedIn3()
+@test(.group = "y_groups") y_groups_SetBalancedIn3()
 {
 	new
 		Group:g[3];
@@ -460,7 +461,7 @@ TEST__ y_groups_SetBalancedIn3()
 	Group_Destroy(g[2]);
 }
 
-TEST__ y_groups_SetBalancedIn3a()
+@test(.group = "y_groups") y_groups_SetBalancedIn3a()
 {
 	new
 		Group:g[3];
@@ -504,7 +505,7 @@ TEST__ y_groups_SetBalancedIn3a()
 	Group_Destroy(g[2]);
 }
 
-TEST__ y_groups_SetBalancedIn3b()
+@test(.group = "y_groups") y_groups_SetBalancedIn3b()
 {
 	new
 		Group:g[3];
@@ -548,7 +549,7 @@ TEST__ y_groups_SetBalancedIn3b()
 	Group_Destroy(g[2]);
 }
 
-TEST__ y_groups_SetBalancedIn3c()
+@test(.group = "y_groups") y_groups_SetBalancedIn3c()
 {
 	new
 		Group:g[3];
@@ -592,7 +593,7 @@ TEST__ y_groups_SetBalancedIn3c()
 	Group_Destroy(g[2]);
 }
 
-TEST__ y_groups_SetBalancedIn4()
+@test(.group = "y_groups") y_groups_SetBalancedIn4()
 {
 	new
 		Group:g[3];
@@ -635,11 +636,11 @@ TEST__ y_groups_SetBalancedIn4()
 	Group_Destroy(g[2]);
 }
 
-TEST__ y_groups_SetBalancedSingle()
+@test(.group = "y_groups") y_groups_SetBalancedSingle()
 {
 	new
 		Group:g1 = Group_Create("Group 1"),
-		Group:result;
+		Group:result = Group:0;
 	call OnPlayerConnect(0);
 	
 	result = Group_SetBalanced(0, g1, Group:11);
@@ -649,10 +650,10 @@ TEST__ y_groups_SetBalancedSingle()
 	Group_Destroy(g1);
 }
 
-TEST__ y_groups_SetBalancedInvalid()
+@test(.group = "y_groups") y_groups_SetBalancedInvalid()
 {
 	new
-		Group:result;
+		Group:result = Group:0;
 	call OnPlayerConnect(0);
 	
 	result = Group_SetBalanced(0, Group:99, Group:88);
@@ -671,20 +672,20 @@ TEST__ y_groups_SetBalancedInvalid()
 #include "..\..\YSI_Core\y_master"
 
 static
-	gPl,
-	gEl,
-	bool:gS;
+	gPl = 0,
+	gEl = 0,
+	bool:gS = false;
 
 Test_SetPlayer(el, playerid, bool:s)
 {
-	P:1("Test_SetPlayer called: %d %d %d", el, playerid, s);
+	Debug_Print1("Test_SetPlayer called: %d %d %d", el, playerid, s);
 	gPl = playerid;
 	gEl = el;
 	gS = s;
 	return 1;
 }
 
-TEST__ 0_y_groups_Connect0()
+@test(.group = "y_groups") 0_y_groups_Connect0()
 {
 	gPl = INVALID_PLAYER_ID;
 	gEl = 100;
@@ -703,7 +704,7 @@ TEST__ 0_y_groups_Connect0()
 	call OnPlayerDisconnect(45, 0);
 }
 
-TEST__ 0_y_groups_Connect1()
+@test(.group = "y_groups") 0_y_groups_Connect1()
 {
 	gPl = INVALID_PLAYER_ID;
 	gEl = 100;
@@ -721,7 +722,283 @@ TEST__ 0_y_groups_Connect1()
 	call OnPlayerDisconnect(43, 0);
 }
 
-TEST__ y_groups_Chains()
+@test(.group = "y_groups") y_groups_Allow()
+{
+	// Initialise.
+	new Group:g = Group_Create();
+	new Group:h = Group_Create();
+	//Group_SetTestDefault(g, UNDEF);
+	//Group_SetTestDefault(h, UNDEF);
+	Group_SetGlobalTestDefault(UNDEF);
+	Test_InitialiseFromGroups(9);
+	call OnPlayerConnect(47);
+	Group_SetPlayer(g, 47, true);
+	Group_SetPlayer(h, 47, true);
+	
+	// Tests
+	gPl = 0;
+	gEl = 0;
+	gS = false;
+	Group_SetTest(g, 9, ALLOW);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, true);
+	
+	gPl = 1;
+	gEl = 1;
+	gS = false;
+	Group_SetTest(h, 9, ALLOW);
+	ASSERT_EQ(gPl, 1);
+	ASSERT_EQ(gEl, 1);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 2;
+	gEl = 2;
+	gS = false;
+	Group_SetTest(g, 9, UNDEF);
+	ASSERT_EQ(gPl, 2);
+	ASSERT_EQ(gEl, 2);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 3;
+	gEl = 3;
+	gS = false;
+	Group_SetTest(h, 9, UNDEF);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, false);
+	
+	// Clean up.
+	call OnPlayerDisconnect(43, 0);
+	Group_Destroy(g);
+	Group_Destroy(h);
+}
+
+@test(.group = "y_groups") y_groups_Deny1()
+{
+	// Initialise.
+	new Group:g = Group_Create();
+	new Group:h = Group_Create();
+	//Group_SetTestDefault(g, UNDEF);
+	//Group_SetTestDefault(h, UNDEF);
+	Group_SetGlobalTestDefault(UNDEF);
+	Test_InitialiseFromGroups(9);
+	call OnPlayerConnect(47);
+	Group_SetPlayer(g, 47, true);
+	Group_SetPlayer(h, 47, true);
+	
+	// Tests
+	gPl = 0;
+	gEl = 0;
+	gS = false;
+	Group_SetTest(g, 9, ALLOW);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, true);
+	
+	gPl = 1;
+	gEl = 1;
+	gS = false;
+	Group_SetTest(h, 9, DENY);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 2;
+	gEl = 2;
+	gS = false;
+	Group_SetTest(h, 9, UNDEF);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, true);
+	
+	gPl = 3;
+	gEl = 3;
+	gS = false;
+	Group_SetTest(g, 9, UNDEF);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, false);
+	
+	// Clean up.
+	call OnPlayerDisconnect(43, 0);
+	Group_Destroy(g);
+	Group_Destroy(h);
+}
+
+@test(.group = "y_groups") y_groups_Deny2()
+{
+	// Initialise.
+	new Group:g = Group_Create();
+	new Group:h = Group_Create();
+	//Group_SetTestDefault(g, UNDEF);
+	//Group_SetTestDefault(h, UNDEF);
+	Group_SetGlobalTestDefault(UNDEF);
+	Test_InitialiseFromGroups(9);
+	call OnPlayerConnect(47);
+	Group_SetPlayer(g, 47, true);
+	Group_SetPlayer(h, 47, true);
+	
+	// Tests
+	gPl = 0;
+	gEl = 0;
+	gS = false;
+	Group_SetTest(g, 9, ALLOW);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, true);
+	
+	gPl = 1;
+	gEl = 1;
+	gS = false;
+	Group_SetTest(h, 9, DENY);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 3;
+	gEl = 3;
+	gS = false;
+	Group_SetTest(g, 9, UNDEF);
+	ASSERT_EQ(gPl, 3);
+	ASSERT_EQ(gEl, 3);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 2;
+	gEl = 2;
+	gS = false;
+	Group_SetTest(h, 9, UNDEF);
+	ASSERT_EQ(gPl, 2);
+	ASSERT_EQ(gEl, 2);
+	ASSERT_EQ(gS, false);
+	
+	// Clean up.
+	call OnPlayerDisconnect(43, 0);
+	Group_Destroy(g);
+	Group_Destroy(h);
+}
+
+@test(.group = "y_groups") y_groups_Deny3()
+{
+	// Initialise.
+	new Group:g = Group_Create();
+	new Group:h = Group_Create();
+	//Group_SetTestDefault(g, UNDEF);
+	//Group_SetTestDefault(h, UNDEF);
+	Group_SetGlobalTestDefault(UNDEF);
+	Test_InitialiseFromGroups(9);
+	call OnPlayerConnect(47);
+	Group_SetPlayer(g, 47, true);
+	Group_SetPlayer(h, 47, true);
+	
+	// Tests
+	gPl = 0;
+	gEl = 0;
+	gS = false;
+	Group_SetTest(g, 9, ALLOW);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, true);
+	
+	gPl = 1;
+	gEl = 1;
+	gS = false;
+	Group_SetTest(h, 9, DENY);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 3;
+	gEl = 3;
+	gS = false;
+	Group_SetTest(g, 9, UNDEF);
+	ASSERT_EQ(gPl, 3);
+	ASSERT_EQ(gEl, 3);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 2;
+	gEl = 2;
+	gS = false;
+	Group_SetTest(h, 9, ALLOW);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, true);
+	
+	gPl = 4;
+	gEl = 4;
+	gS = false;
+	Group_SetTest(h, 9, UNDEF);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, false);
+	
+	// Clean up.
+	call OnPlayerDisconnect(43, 0);
+	Group_Destroy(g);
+	Group_Destroy(h);
+}
+
+@test(.group = "y_groups") y_groups_DenyGlobal()
+{
+	// Initialise.
+	new Group:g = Group_Create();
+	new Group:h = Group_Create();
+	//Group_SetTestDefault(g, UNDEF);
+	//Group_SetTestDefault(h, UNDEF);
+	Group_SetGlobalTestDefault(DENY);
+	Test_InitialiseFromGroups(9);
+	call OnPlayerConnect(47);
+	Group_SetPlayer(g, 47, true);
+	Group_SetPlayer(h, 47, true);
+	
+	// Tests
+	gPl = 0;
+	gEl = 0;
+	gS = false;
+	Group_SetTest(g, 9, ALLOW);
+	ASSERT_EQ(gPl, 0);
+	ASSERT_EQ(gEl, 0);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 1;
+	gEl = 1;
+	gS = false;
+	Group_SetTest(h, 9, ALLOW);
+	ASSERT_EQ(gPl, 1);
+	ASSERT_EQ(gEl, 1);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 2;
+	gEl = 2;
+	gS = false;
+	Group_SetGlobalTest(9, UNDEF);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, true);
+	
+	gPl = 3;
+	gEl = 3;
+	gS = false;
+	Group_SetTest(g, 9, UNDEF);
+	ASSERT_EQ(gPl, 3);
+	ASSERT_EQ(gEl, 3);
+	ASSERT_EQ(gS, false);
+	
+	gPl = 4;
+	gEl = 4;
+	gS = false;
+	Group_SetTest(h, 9, UNDEF);
+	ASSERT_EQ(gPl, 47);
+	ASSERT_EQ(gEl, 9);
+	ASSERT_EQ(gS, false);
+	
+	// Clean up.
+	call OnPlayerDisconnect(43, 0);
+	Group_Destroy(g);
+	Group_Destroy(h);
+}
+
+@test(.group = "y_groups") y_groups_Chains()
 {
 	new
 		Group:g = Group_Create();
@@ -732,7 +1009,7 @@ TEST__ y_groups_Chains()
 	call OnPlayerDisconnect(44, 0);
 }
 
-TEST__ y_groups_Children0()
+@test(.group = "y_groups") y_groups_Children0()
 {
 	new
 		Group:g0 = Group_Create();
@@ -740,7 +1017,7 @@ TEST__ y_groups_Children0()
 	Group_Destroy(g0);
 }
 
-TEST__ y_groups_Children1()
+@test(.group = "y_groups") y_groups_Children1()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -770,7 +1047,7 @@ TEST__ y_groups_Children1()
 	Group_Destroy(g2);
 }
 
-TEST__ y_groups_Children2()
+@test(.group = "y_groups") y_groups_Children2()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -800,7 +1077,7 @@ TEST__ y_groups_Children2()
 	Group_Destroy(g2);
 }
 
-TEST__ y_groups_Children3()
+@test(.group = "y_groups") y_groups_Children3()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -819,7 +1096,7 @@ TEST__ y_groups_Children3()
 	Group_Destroy(g2);
 }
 
-TEST__ y_groups_Children4()
+@test(.group = "y_groups") y_groups_Children4()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -840,7 +1117,7 @@ TEST__ y_groups_Children4()
 	Group_Destroy(g2);
 }
 
-TEST__ y_groups_Children5()
+@test(.group = "y_groups") y_groups_Children5()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -867,7 +1144,7 @@ TEST__ y_groups_Children5()
 	Group_Destroy(g4);
 }
 
-TEST__ y_groups_Children6()
+@test(.group = "y_groups") y_groups_Children6()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -887,7 +1164,7 @@ TEST__ y_groups_Children6()
 	Group_Destroy(g2);
 }
 
-TEST__ y_groups_Children7()
+@test(.group = "y_groups") y_groups_Children7()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -906,7 +1183,7 @@ TEST__ y_groups_Children7()
 	Group_Destroy(g2);
 }
 
-TEST__ y_groups_ChildIterator0()
+@test(.group = "y_groups") y_groups_ChildIterator0()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -926,7 +1203,7 @@ TEST__ y_groups_ChildIterator0()
 	Group_Destroy(g2);
 }
 
-TEST__ y_groups_ChildIterator1()
+@test(.group = "y_groups") y_groups_ChildIterator1()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -948,7 +1225,7 @@ TEST__ y_groups_ChildIterator1()
 	ASSERT(!Group_IsValid(g0));
 }
 
-TEST__ y_groups_ChildIterator2()
+@test(.group = "y_groups") y_groups_ChildIterator2()
 {
 	new
 		Group:g0 = Group_Create(),
@@ -974,7 +1251,7 @@ TEST__ y_groups_ChildIterator2()
 	ASSERT(!Group_IsValid(g0));
 }
 
-TEST__ y_groups_Iterator0()
+@test(.group = "y_groups") y_groups_Iterator0()
 {
 	new
 		Group:g0 = Group_Create(),

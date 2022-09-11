@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -71,16 +72,16 @@ Optional plugins:
 */
 
 new
-	g_sRaceID;
+	g_sRaceID = 0;
 
-TEST__ y_races_Create()
+@test(.group = "y_races") y_races_Create()
 {
 	g_sRaceID = Race_Create();
 	ASSERT_ZE(g_sRaceID);
 	Race_Destroy(g_sRaceID);
 }
 
-TEST__ y_races_Destroy()
+@test(.group = "y_races") y_races_Destroy()
 {
 	g_sRaceID = Race_Create();
 	ASSERT_ZE(g_sRaceID);
@@ -90,7 +91,7 @@ TEST__ y_races_Destroy()
 	Race_Destroy(g_sRaceID);
 }
 
-TEST__ y_races_ArrayAdd0()
+@test(.group = "y_races") y_races_ArrayAdd0()
 {
 	for (new i = 0; i != 10; ++i)
 	{
@@ -109,7 +110,7 @@ TEST__ y_races_ArrayAdd0()
 	YSI_g_sCPIndex = 0;
 }
 
-TEST__ y_races_ArrayAdd1()
+@test(.group = "y_races") y_races_ArrayAdd1()
 {
 	for (new i = 0; i != 10; ++i)
 	{
@@ -137,7 +138,7 @@ TEST__ y_races_ArrayAdd1()
 	YSI_g_sCPIndex = 0;
 }
 
-TEST__ y_races_ArrayShift()
+@test(.group = "y_races") y_races_ArrayShift()
 {
 	new
 		to = 10;
@@ -179,8 +180,8 @@ static y_races_Position0(lap, cp, Float:togo, playerid)
 {
 	new
 		pos = 1,
-		opl,
-		opc;
+		opl = 0,
+		opc = 0;
 	for (new i = Iter_Begin(YSI_g_sRacePeople2); (i = Iter_Next(YSI_g_sRacePeople2, i)) != playerid; )
 	{
 		opl = YSI_g_sPlayerRace2[i][E_RACE_PLAYER_LAP];
@@ -362,41 +363,41 @@ static y_races_ASSERT(pos)
 	Y_RACES_ASSERT(38, 0);
 }
 
-TEST__ y_races_Position0()
+@test(.group = "y_races") y_races_Position0()
 {
 	y_races_SFD();
 	y_races_ASSERT(y_races_Position0(2, 5, 20.0, 30));
 }
 
-TEST__ y_races_Position1()
+@test(.group = "y_races") y_races_Position1()
 {
 	y_races_SFD();
 	y_races_ASSERT(y_races_Position1(2, 5, 20.0, 30));
 }
 
-TEST__ y_races_Position2()
+@test(.group = "y_races") y_races_Position2()
 {
 	y_races_SFD();
 	y_races_ASSERT(y_races_Position2(2, 5, 20.0, 30));
 }
 
-TEST__ y_races_Position3()
+@test(.group = "y_races") y_races_Position3()
 {
 	y_races_SFD();
 	y_races_ASSERT(y_races_Position3(2, 5, 20.0, 30));
 }
 
-//#define Profile: TEST__ 
+//#define Profile: @test(.group = "y_races") 
 #define Profile: static stock _ // Can't have trailing space.
 
 Profile:y_races_Position()
 {
 	new
-		t0,
-		t1,
-		t2,
-		t3,
-		t4;
+		t0 = 0,
+		t1 = 0,
+		t2 = 0,
+		t3 = 0,
+		t4 = 0;
 	t0 = GetTickCount();
 	for (new i = 0; i != 10000000; ++i)
 	{

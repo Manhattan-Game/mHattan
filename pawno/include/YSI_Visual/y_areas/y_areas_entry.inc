@@ -20,7 +20,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -47,6 +47,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -110,7 +111,7 @@ Optional plugins:
 
 stock _YSI_HAS_y_areas(_do_not_call_me_ever_, _like_never_)
 {
-	P:E("You called _YSI_HAS_y_areas!  Bad, don't do that!", _do_not_call_me_ever_, _like_never_);
+	Debug_Error("You called _YSI_HAS_y_areas!  Bad, don't do that!", _do_not_call_me_ever_, _like_never_);
 	assert(false);
 	return 0;
 }
@@ -252,16 +253,21 @@ enum (+= -1)
 // not get overridden.
 // =============================================================================
 // =============================================================================
-// This might just be the most complex enum I've ever made!
+// This might just be the most complex enum ever made!
+#if YSIM_HAS_MASTER
+	#define _E_AREA_RESET (1)
+#else
+	#define _E_AREA_RESET (0)
+#endif
 enum E_AREA
 {
+	#if YSIM_HAS_MASTER
+		E_AREA_MASTER,
+	#endif
 	//union
 	//{
 	//    struct
 	//    {
-			#if YSIM_HAS_MASTER
-				E_AREA_MASTER,
-			#endif
 			// This has increased from 4 to 6, so we can store cubes and ovoids
 			// in a single slot.
 			Float:E_AREA_POS[6],
@@ -281,15 +287,8 @@ enum E_AREA
 	//    // Start of poly data.
 	//    struct
 	//    {
-			// Reset the enum counter to 0 (on the next item).
-			_E_AREA_RESET_@1 = -1,
-			// Now restart.
-			#if YSIM_HAS_MASTER
-				// Skip the master flag if it exists.
-				_E_AREA_MASTER_@1,
-			#endif
 			// This is where polys differ from all others.
-			E_AREA_POLY_COUNT,
+			E_AREA_POLY_COUNT = _E_AREA_RESET,
 			E_AREA_POLY_NEXT,
 			//Float:E_AREA_POLY_POS[4],
 			// This slot holds ONLY the polygon bounding data, it doesn't hold
@@ -307,15 +306,8 @@ enum E_AREA
 	//    // Start of poly child data.
 	//    struct
 	//    {
-			// Reset the enum counter to 0 (on the next item).
-			_E_AREA_RESET_@2 = -1,
-			// Now restart.
-			#if YSIM_HAS_MASTER
-				// Skip the master flag if it exists.
-				_E_AREA_MASTER_@2,
-			#endif
 			// Store a link to the parent of this poly child.
-			E_AREA_CHILD_PARENT,
+			E_AREA_CHILD_PARENT = _E_AREA_RESET,
 			// And the next one in VERY rare cases (I hope).
 			// THIS SHARES A SLOT WITH "E_AREA_POLY_NEXT", so we can always just
 			// use that slot when iterating.
@@ -341,7 +333,6 @@ static stock
 	YSI_g_sFreeCount = MAX_AREAS,
 	YSI_g_sAreas[MAX_AREAS][E_AREA],
 	YSI_g_sPlayerArea[MAX_PLAYERS][AREAS_MAX_OVERLAPS], // = {NO_AREA, ...},
-	YSI_g_sHasCallbacks,
 	YSI_g_sZones[AREAS_ZONE_ARRAY * AREAS_ZONE_ARRAY] = {AREA_NO_NEXT, ...},
 	// "Inner" zones.  -4000 <= x, y <= 4000; Z(x) != Z(y)
 	YSI_g_sZoneIN  = AREA_NO_NEXT, // -1
@@ -379,13 +370,13 @@ forward Area_Loop();
 
 /*-------------------------------------------------------------------------*//**
  * <remarks>
- *  Sets up required variables.  Note that this hooks "OnScriptInit",
+ *  Sets up required variables.  Note that this hooks "OnYSIInit",
  *  "OnGameModeInit" and "OnFilterScript".  This is because ALL scripts need to
  *  initialise some things, and only the master needs to initialise others.
  * </remarks>
  *//*------------------------------------------------------------------------**/
 
-MASTER_HOOK__ OnScriptInit()
+MASTER_HOOK__ OnYSIInit()
 {
 	for (new i = 0; i != MAX_AREAS - 1; ++i)
 	{
@@ -399,31 +390,9 @@ MASTER_HOOK__ OnScriptInit()
 	return 1;
 }
 
-#if !defined FILTERSCRIPT
-	HOOK__ OnGameModeInit()
-	{
-		if (!YSI_FILTERSCRIPT)
-		{
-			new
-				buffer;
-			YSI_g_sHasCallbacks = 0;
-			YSI_g_sHasCallbacks |= funcidx("OnPlayerEnterArea") == -1 ? 0 : 1;
-			YSI_g_sHasCallbacks |= funcidx("OnPlayerLeaveArea") == -1 ? 0 : 2;
-			YSI_g_sHasCallbacks |= AMX_GetPublicEntry(0, buffer, "@yH_PlayerEnterArea") ? 4 : 0;
-			YSI_g_sHasCallbacks |= AMX_GetPublicEntry(0, buffer, "@yH_PlayerLeaveArea") ? 8 : 0;
-		}
-	}
-#endif
-
-HOOK__ OnFilterScriptInit()
+MASTER_REHOOK__ OnYSIInit()
 {
-	new
-		buffer;
-	YSI_g_sHasCallbacks = 0;
-	YSI_g_sHasCallbacks |= funcidx("OnPlayerEnterArea") == -1 ? 0 : 1;
-	YSI_g_sHasCallbacks |= funcidx("OnPlayerLeaveArea") == -1 ? 0 : 2;
-	YSI_g_sHasCallbacks |= AMX_GetPublicEntry(0, buffer, "@yH_PlayerEnterArea") ? 4 : 0;
-	YSI_g_sHasCallbacks |= AMX_GetPublicEntry(0, buffer, "@yH_PlayerLeaveArea") ? 8 : 0;
+	return 1;
 }
 
 /*-------------------------------------------------------------------------*//**
@@ -432,7 +401,7 @@ HOOK__ OnFilterScriptInit()
  * </returns>
  *//*------------------------------------------------------------------------**/
 
-P:D(Area_GetEmptySlotCount());
+FUNC_PAWNDOC(Area_GetEmptySlotCount());
 #define Area_GetEmptySlotCount() \
 	(YSI_g_sFreeCount)
 
@@ -443,7 +412,7 @@ P:D(Area_GetEmptySlotCount());
  * </remarks>
  *//*------------------------------------------------------------------------**/
 
-P:D(Area_AddSlots(num));
+FUNC_PAWNDOC(Area_AddSlots(num));
 #define Area_AddSlots(%1) \
 	YSI_g_sFreeCount -= (%1)
 
@@ -455,7 +424,7 @@ P:D(Area_AddSlots(num));
  * </remarks>
  *//*------------------------------------------------------------------------**/
 
-P:D(bool:Area_IsActive(area));
+FUNC_PAWNDOC(bool:Area_IsActive(area));
 #define Area_IsActive(%1) \
 	((%1) >= 0 && (%1) < MAX_AREAS && (YSI_g_sAreas[(%1)][E_AREA_FLAGS] & e_AREA_FLAGS_ACTIVE))
 
@@ -483,7 +452,7 @@ GLOBAL__ void:Area_Debug(area)
 				#if AREA_WORLDS > 0
 					printf("\tWorlds = %s", Bit_Display(YSI_g_sAreas[area][E_AREA_WORLDS], bits<AREA_WORLDS>));
 				#else
-					printf("\tNo Worlds");
+					print("\tNo Worlds");
 				#endif
 				printf("\tPlayers = %s", Bit_Display(YSI_g_sAreas[area][E_AREA_PLAYERS][1], bits<MAX_PLAYERS>));
 				printf("\tBounding Circle: %.2f, %.2f, %.2f, %.2f", YSI_g_sAreas[area][E_AREA_POLY_BOUND_X], YSI_g_sAreas[area][E_AREA_POLY_BOUND_Y], floatsqroot(YSI_g_sAreas[area][E_AREA_POLY_BOUND_R]), YSI_g_sAreas[area][E_AREA_POLY_BOUND_H]);
@@ -517,9 +486,9 @@ GLOBAL__ void:Area_Debug(area)
 
 static stock Area_GetFreeSlot()
 {
-	P:4("Area_GetFreeSlot called");
+	Debug_Print4("Area_GetFreeSlot called");
 	if (YSI_g_sUnusedAreas == AREA_NO_NEXT) return NO_AREA;
-	P:7("Area_GetFreeSlot: 1");
+	Debug_Print7("Area_GetFreeSlot: 1");
 	new
 		old = YSI_g_sUnusedAreas;
 	YSI_g_sUnusedAreas = YSI_g_sAreas[old][E_AREA_UNUSED_NEXT];
@@ -731,8 +700,8 @@ static stock Area_GetZones(Float:x, Float:y)
 static stock Area_DetermineZone(Float:minx, Float:miny, Float:maxx, Float:maxy, area, last)
 {
 	new
-		zx,
-		zy;
+		zx = 0,
+		zy = 0;
 	// This optimises based on the fact that (by definition) maxx can't be lower
 	// than minx and maxy can't be lower than miny, meaning we can skip certain
 	// checks in some cases.
@@ -787,7 +756,7 @@ static stock Area_DetermineZone(Float:minx, Float:miny, Float:maxx, Float:maxy, 
 							(YSI_g_sAreas[last][E_AREA_FLAGS] & e_AREA_FLAGS_REST) |
 							(e_AREA_FLAGS:YSI_g_sZones[zy] & e_AREA_FLAGS_NEXT) |
 							(e_AREA_FLAGS:(zy << 18) & e_AREA_FLAGS_ZONE);
-						P:7("Area_DetermineZone: Added to North-Eastern square");
+						Debug_Print7("Area_DetermineZone: Added to North-Eastern square");
 						return YSI_g_sZones[zy] = area;
 					}
 					_AREAS_ZONES_I(NE);
@@ -1139,7 +1108,7 @@ GLOBAL__ void:Area_SetAllWorlds(area, bool:set)
  * </remarks>
  *//*------------------------------------------------------------------------**/
 
-P:D(Area_Add(type,Float:...));
+FUNC_PAWNDOC(Area_Add(type,Float:...));
 #define Area_Add(%0,%1) Area_Add%0(%1)
 #define Area_AddCUBE Area_AddCube
 #define Area_AddCUBOID Area_AddCuboid
@@ -1162,7 +1131,7 @@ P:D(Area_Add(type,Float:...));
  * </returns>
  *//*------------------------------------------------------------------------**/
 
-P:D(_AREA_MIN(&Float:minx,&Float:miny));
+FUNC_PAWNDOC(_AREA_MIN(&Float:minx,&Float:miny));
 #define _AREA_MIN(%0,%1) if (%1 < %0) %0 ^= %1, %1 ^= %0, %0 ^= %1
 
 FOREIGN__ Area_AddCuboid(Float:x0,Float:y0,Float:z0,Float:x1,Float:y1,Float:z1);
@@ -1242,7 +1211,7 @@ GLOBAL__ Area_AddBox(Float:minx, Float:miny, Float:maxx, Float:maxy)
 {
 	
 	new
-		slot;
+		slot = 0;
 	if (minx > maxx)
 	{
 		slot = _:minx;
@@ -1478,12 +1447,12 @@ GLOBAL__ Area_AddOvoid(Float:x,Float:y,Float:z,Float:rx,Float:ry,Float:rz)
  * </remarks>
  *//*------------------------------------------------------------------------**/
 
+forward Area_AddPoly(Float:x1, Float:y1, Float:x2, Float:y2, Float:x3, Float:y3, Float:...);
+
 #if YSIM_HAS_MASTER
+	forward @@Area_AddPoly(Float:points[], size, count);
+
 	#if _YSIM_IS_SERVER
-		forward Area_AddPoly(Float:x1, Float:y1, Float:x2, Float:y2, Float:x3, Float:y3, Float:...);
-		
-		forward Area_AddPoly@(Float:points[], size, count);
-		
 		stock Area_AddPoly(Float:x1, Float:y1, Float:x2, Float:y2, Float:x3, Float:y3, Float:...)
 		{
 			new
@@ -1504,10 +1473,10 @@ GLOBAL__ Area_AddOvoid(Float:x,Float:y,Float:z,Float:rx,Float:ry,Float:rz)
 			{
 				points[i] = Float:getarg(i);
 			}
-			return Area_AddPoly@(points, sizeof (points), args);
+			return @@Area_AddPoly(points, sizeof (points), args);
 		}
 		
-		public Area_AddPoly@(Float:points[], size, count)
+		public @@Area_AddPoly(Float:points[], size, count)
 	#else
 		stock Area_AddPoly(Float:x1, Float:y1, Float:x2, Float:y2, Float:x3, Float:y3, Float:...) <>
 		{
@@ -1532,12 +1501,10 @@ GLOBAL__ Area_AddOvoid(Float:x,Float:y,Float:z,Float:rx,Float:ry,Float:rz)
 			new
 				p = getproperty(8, YSIM_CALLER);
 			setproperty(8, YSIM_CALLER, Master_ID());
-			CallRemoteFunction("Area_AddPoly@", "aii", points, sizeof (points), args);
+			CallRemoteFunction("@@Area_AddPoly", "aii", points, sizeof (points), args);
 			setproperty(8, YSIM_CALLER, p);
 			return getproperty(8, YSIM_RETURN);
 		}
-		
-		forward Area_AddPoly@(Float:points[], size, count);
 		
 		stock Area_AddPoly(Float:x1, Float:y1, Float:x2, Float:y2, Float:x3, Float:y3, Float:...) <_YCM : m>
 		{
@@ -1550,11 +1517,6 @@ GLOBAL__ Area_AddOvoid(Float:x,Float:y,Float:z,Float:rx,Float:ry,Float:rz)
 			#if _YSIM_IS_STUB
 				#error _YSIM_IS_STUB set in y_areas.
 			#else
-				public Area_AddPoly@(Float:points[], size, count) <>
-				{
-					return 0;
-				}
-				
 				stock Area_AddPoly(Float:x1, Float:y1, Float:x2, Float:y2, Float:x3, Float:y3, Float:...) <_YCM : y>
 				{
 					new
@@ -1575,10 +1537,13 @@ GLOBAL__ Area_AddOvoid(Float:x,Float:y,Float:z,Float:rx,Float:ry,Float:rz)
 					{
 						points[i] = Float:getarg(i);
 					}
-					return Area_AddPoly@(points, sizeof (points), args);
+					return @@Area_AddPoly(points, sizeof (points), args);
 				}
 				
-				public Area_AddPoly@(Float:points[], size, count) <_YCM : y>
+				forward @_yMArea_AddPoly(Float:points[], size, count);
+				public @_yMArea_AddPoly(Float:points[], size, count) { return _MASTER; }
+	
+				public @@Area_AddPoly(Float:points[], size, count)
 			#endif
 		#endif
 	#endif
@@ -1611,7 +1576,7 @@ GLOBAL__ Area_AddOvoid(Float:x,Float:y,Float:z,Float:rx,Float:ry,Float:rz)
 {
 	// This is the main chunk of the code.
 	new
-		Float:height = Float:isodd(count);
+		Float:height = Float:IsOdd(count);
 	count &= ~1;
 	new
 		reqSlots = ceildiv(count, CHILD_AREA_SLOTS) + 1;
@@ -1643,10 +1608,10 @@ GLOBAL__ Area_AddOvoid(Float:x,Float:y,Float:z,Float:rx,Float:ry,Float:rz)
 	Area_SetAllWorlds(header, true);
 	// Now loop through and store all the data points.
 	new
-		slot,
+		slot = 0,
 		prev = header,
 		done = 0,
-		Float:cur,
+		Float:cur = 0.0,
 		Float:minx = FLOAT_INFINITY,
 		Float:miny = FLOAT_INFINITY,
 		Float:maxx = FLOAT_NEGATIVE_INFINITY,
@@ -1765,6 +1730,12 @@ MASTER_HOOK__ OnPlayerConnect(playerid)
 	return 1;
 }
 
+MASTER_REHOOK__ OnPlayerConnect(playerid)
+{
+	#pragma unused playerid
+	return 1;
+}
+
 /*-------------------------------------------------------------------------*//**
  * <param name="playerid">The player to check for.</param>
  * <remarks>
@@ -1780,9 +1751,9 @@ MASTER_HOOK__ OnPlayerConnect(playerid)
 	ptask Area_Loop[200](playerid)
 	{
 		new
-			Float:x,
-			Float:y,
-			Float:z,
+			Float:x = 0.0,
+			Float:y = 0.0,
+			Float:z = 0.0,
 			area = YSI_g_sPlayerArea[playerid],
 			world = GetPlayerVirtualWorld(playerid);
 		GetPlayerPos(playerid, x, y, z);
@@ -1813,19 +1784,19 @@ MASTER_HOOK__ OnPlayerConnect(playerid)
 			// than the max that is globally stored, but still not infinate).
 			sAreas[16],
 			sZones[9],
-			Float:sX,
-			Float:sY,
-			Float:sZ,
-			sCur,
-			sNext,
-			sW,
-			sAlready;
+			Float:sX = 0.0,
+			Float:sY = 0.0,
+			Float:sZ = 0.0,
+			sCur = 0,
+			sNext = 0,
+			sW = 0,
+			sAlready = 0;
 		new
-			in,
-			idx;
+			in = 0,
+			idx = 0;
 		// Get all the zones for this player.
 		GetPlayerPos(playerid, sX, sY, sZ);
-		P:7("Areas_OnPlayerUpdate: pos = %f %f %f", sX, sY, sZ);
+		Debug_Print7("Areas_OnPlayerUpdate: pos = %f %f %f", sX, sY, sZ);
 		#if AREA_WORLDS > 0
 			sW = GetPlayerVirtualWorld(playerid);
 		#endif
@@ -1849,7 +1820,7 @@ MASTER_HOOK__ OnPlayerConnect(playerid)
 		sZones = Area_GetZones(sX, sY);
 		for (idx = 0; ; )
 		{
-			P:7("Areas_OnPlayerUpdate: zone = %d", sZones[idx]);
+			Debug_Print7("Areas_OnPlayerUpdate: zone = %d", sZones[idx]);
 			switch (sZones[idx++])
 			{
 				case e_AREA_ZONE_I_N:
@@ -2003,7 +1974,7 @@ static stock Area_CheckArea(playerid, world, area, Float:x, Float:y, Float:z, &n
 	}
 	if ((flags & e_AREA_FLAGS_ACTIVE))
 	{
-		P:7("Area_CheckArea: %d %d %d %f %f %f = %d", playerid, world, area, Float:x, Float:y, Float:z, _:(flags & e_AREA_FLAGS_TYPE) >>> 28);
+		Debug_Print7("Area_CheckArea: %d %d %d %f %f %f = %d", playerid, world, area, Float:x, Float:y, Float:z, _:(flags & e_AREA_FLAGS_TYPE) >>> 28);
 		switch (flags & e_AREA_FLAGS_TYPE)
 		{
 			case e_AREA_FLAGS_CIRCLE:
@@ -2050,7 +2021,7 @@ static stock Area_CheckArea(playerid, world, area, Float:x, Float:y, Float:z, &n
 				}
 			}
 		}
-		P:7("Area_CheckArea: MAYBE");
+		Debug_Print7("Area_CheckArea: MAYBE");
 		if (PA_Get(YSI_g_sAreas[area][E_AREA_PLAYERS], playerid))
 		{
 			#if AREA_WORLDS > 0
@@ -2152,8 +2123,8 @@ stock Area_IsInPoly(Float:x, Float:y, Float:z, header)
 	new
 		Float:bx = x - YSI_g_sAreas[header][E_AREA_POLY_BOUND_X],
 		Float:by = y - YSI_g_sAreas[header][E_AREA_POLY_BOUND_Y];
-	P:7("Area_IsInPoly: %f %f %f %d", x, y, z, header);
-	P:7("Area_IsInPoly: %f %f %f %d", YSI_g_sAreas[header][E_AREA_POLY_BOUND_H], (bx * bx + by * by),YSI_g_sAreas[header][E_AREA_POLY_BOUND_R], (z <= YSI_g_sAreas[header][E_AREA_POLY_BOUND_H] && (bx * bx + by * by) <= YSI_g_sAreas[header][E_AREA_POLY_BOUND_R]));
+	Debug_Print7("Area_IsInPoly: %f %f %f %d", x, y, z, header);
+	Debug_Print7("Area_IsInPoly: %f %f %f %d", YSI_g_sAreas[header][E_AREA_POLY_BOUND_H], (bx * bx + by * by),YSI_g_sAreas[header][E_AREA_POLY_BOUND_R], (z <= YSI_g_sAreas[header][E_AREA_POLY_BOUND_H] && (bx * bx + by * by) <= YSI_g_sAreas[header][E_AREA_POLY_BOUND_R]));
 	if (!(z <= YSI_g_sAreas[header][E_AREA_POLY_BOUND_H] && (bx * bx + by * by) <= YSI_g_sAreas[header][E_AREA_POLY_BOUND_R]))
 	{
 		return 0;
@@ -2161,51 +2132,51 @@ stock Area_IsInPoly(Float:x, Float:y, Float:z, header)
 	// Within the bounding cylinder, do the more complex checks.
 	new
 		count = YSI_g_sAreas[header][E_AREA_POLY_COUNT];
-	P:7("Area_IsInPoly: In the bounds: %d %d", count, CHILD_AREA_SLOTS);
+	Debug_Print7("Area_IsInPoly: In the bounds: %d %d", count, CHILD_AREA_SLOTS);
 	if (count <= CHILD_AREA_SLOTS)
 	{
 		// Only uses one single child slot.
 		header = YSI_g_sAreas[header][E_AREA_POLY_NEXT];
 		new
-			lines,
+			lines = 0,
 			done = 2,
 			Float:fx = YSI_g_sAreas[header][E_AREA_CHILD_ELEMS][0],
 			Float:fy = YSI_g_sAreas[header][E_AREA_CHILD_ELEMS][1],
 			Float:x0 = fx,
 			Float:y0 = fy,
-			Float:x1,
-			Float:y1;
+			Float:x1 = 0.0,
+			Float:y1 = 0.0;
 		while (done < count)
 		{
 			x1 = YSI_g_sAreas[header][E_AREA_CHILD_ELEMS][done++];
 			y1 = YSI_g_sAreas[header][E_AREA_CHILD_ELEMS][done++];
 			// Crosses this line.
-			//P:7("Area_IsInPoly: %f %f %f", y0, y, y1);
+			//Debug_Print7("Area_IsInPoly: %f %f %f", y0, y, y1);
 			if (((y0 <= y <= y1) || (y1 <= y <= y0)) && ((x0 + ((y - y0) * (x1 - x0) / (y1 - y0))) <= x)) ++lines;
-			//P:7("Area_IsInPoly: %d %d %d %d %d", (y0 <= y <= y1), (y1 <= y <= y0), (y0 <= y <= y1) || (y1 <= y <= y0), (x0 + ((y - y0) * (x1 - x0) / (y1 - y0))) <= x, lines);
+			//Debug_Print7("Area_IsInPoly: %d %d %d %d %d", (y0 <= y <= y1), (y1 <= y <= y0), (y0 <= y <= y1) || (y1 <= y <= y0), (x0 + ((y - y0) * (x1 - x0) / (y1 - y0))) <= x, lines);
 			x0 = x1;
 			y0 = y1;
 		}
-		//P:7("Area_IsInPoly: %f %f %f", y0, y, fy);
+		//Debug_Print7("Area_IsInPoly: %f %f %f", y0, y, fy);
 		if (((y0 <=y <= fy) || (fy <= y <= y0)) && (x0 + ((y - y0) * (fx - x0) / (fy - y0))) <= x) ++lines;
-		//P:7("Area_IsInPoly: %d %d %d %d %d", (y0 <= y <= fy), (fy <= y <= y0), (y0 <= y <= fy) || (fy <= y <= y0), (x0 + ((y - y0) * (fx - x0) / (fy - y0))) <= x, lines);
-		//P:7("Area_IsInPoly: Return %d", lines);
-		return isodd(lines);
+		//Debug_Print7("Area_IsInPoly: %d %d %d %d %d", (y0 <= y <= fy), (fy <= y <= y0), (y0 <= y <= fy) || (fy <= y <= y0), (x0 + ((y - y0) * (fx - x0) / (fy - y0))) <= x, lines);
+		//Debug_Print7("Area_IsInPoly: Return %d", lines);
+		return IsOdd(lines);
 	}
 	else
 	{
 		// Has multiple children
 		header = YSI_g_sAreas[header][E_AREA_POLY_NEXT];
 		new
-			stp,
-			lines,
+			stp = 0,
+			lines = 0,
 			done = 2,
 			Float:fx = YSI_g_sAreas[header][E_AREA_CHILD_ELEMS][0],
 			Float:fy = YSI_g_sAreas[header][E_AREA_CHILD_ELEMS][1],
 			Float:x0 = fx,
 			Float:y0 = fy,
-			Float:x1,
-			Float:y1;
+			Float:x1 = 0.0,
+			Float:y1 = 0.0;
 		while (count > 0)
 		{
 			stp = min(count, CHILD_AREA_SLOTS);
@@ -2226,7 +2197,7 @@ stock Area_IsInPoly(Float:x, Float:y, Float:z, header)
 		// Link the last and first points to complete the perimeter.
 		if (((y0 <=y <= fy) || (fy <= y <= y0)) && (x0 + ((y - y0) * (fx - x0) / (fy - y0))) <= x) ++lines;
 		//printf("Area_IsInPoly: Return %d", lines);
-		return isodd(lines);
+		return IsOdd(lines);
 	}
 }
 
@@ -2500,7 +2471,7 @@ FOREIGN__ bool:Area_IsEmpty(area);
 GLOBAL__ bool:Area_IsEmpty(area)
 {
 	new
-		z;
+		z = 0;
 	if (Area_IsActive(area))
 	{
 		FOREACH__ (new playerid : Player)
@@ -2574,7 +2545,7 @@ static stock Area_DoLeave(playerid, areaid, idx)
 {
 	// Remove this area from the list of areas.
 	new
-		cur;
+		cur = 0;
 	// Shift up the zones.
 	while ((cur = _Area_GetPlayerAreas(playerid, idx + 1)) != NO_AREA)
 	{

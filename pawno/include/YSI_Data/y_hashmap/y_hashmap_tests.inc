@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -77,7 +78,7 @@ enum E_HASH_MAP_TEST
 	E_HASH_MAP_TEST_DATA[HASH_MAP_DATA]
 }
 
-TEST__ y_hashmap_Init()
+@test(.group = "y_hashmap") y_hashmap_Init()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -93,15 +94,15 @@ TEST__ y_hashmap_Init()
 	ASSERT_ZE(data[99][E_HASH_MAP_TEST_DATA][2]);
 }
 
-TEST__ rawMemcpy()
+@test(.group = "y_hashmap") RawMemCpy()
 {
 	new src[100] = "Hello there", dst[100];
-	rawMemcpy(ref(dst), ref(src), 100 * 4);
+	RawMemCpy(AMX_Ref(dst[0]), AMX_Ref(src[0]), 100 * 4);
 	ASSERT(bool:dst[0]);
 	ASSERT_SAME(dst, "Hello there");
 }
 
-TEST__ y_hashmap_Add()
+@test(.group = "y_hashmap") y_hashmap_Add()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -109,12 +110,12 @@ TEST__ y_hashmap_Add()
 	HashMap_Add(m, "Hello", 42);
 	ASSERT(bool:data[42][E_HASH_MAP_TEST_NAME][0]);
 	ASSERT_SAME(data[42][E_HASH_MAP_TEST_NAME], "Hello");
-	ASSERT_EQ(data[42][E_HASH_MAP_TEST_DATA][0], bernstein("Hello"));
+	ASSERT_EQ(data[42][E_HASH_MAP_TEST_DATA][0], BernsteinHash("Hello"));
 	ASSERT_ZE(data[42][E_HASH_MAP_TEST_DATA][1]);
 	ASSERT_ZE(data[42][E_HASH_MAP_TEST_DATA][2]);
 }
 
-TEST__ y_hashmap_Get1()
+@test(.group = "y_hashmap") y_hashmap_Get1()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -123,7 +124,7 @@ TEST__ y_hashmap_Get1()
 	ASSERT_EQ(HashMap_Get(m, "Hello"), 42);
 }
 
-TEST__ y_hashmap_GetUnused1()
+@test(.group = "y_hashmap") y_hashmap_GetUnused1()
 {
 	new HashMap:m<>;
 	new data[6][E_HASH_MAP_TEST];
@@ -146,7 +147,7 @@ TEST__ y_hashmap_GetUnused1()
 	ASSERT_ZE(m[260]);
 }
 
-TEST__ y_hashmap_GetUnused2()
+@test(.group = "y_hashmap") y_hashmap_GetUnused2()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -162,7 +163,7 @@ TEST__ y_hashmap_GetUnused2()
 	ASSERT_EQ(HashMap_GetUnused(m), 4);
 }
 
-TEST__ y_hashmap_GetVarious()
+@test(.group = "y_hashmap") y_hashmap_GetVarious()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -229,7 +230,7 @@ TEST__ y_hashmap_GetVarious()
 	ASSERT_EQ(HashMap_Get(m, "0123456789"), 9);
 }
 
-TEST__ y_hashmap_RemoveKey1()
+@test(.group = "y_hashmap") y_hashmap_RemoveKey1()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -240,7 +241,7 @@ TEST__ y_hashmap_RemoveKey1()
 	ASSERT_EQ(HashMap_Get(m, "Hello"), -1);
 }
 
-TEST__ y_hashmap_Get100()
+@test(.group = "y_hashmap", .slow = true) y_hashmap_Get100()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -257,7 +258,7 @@ TEST__ y_hashmap_Get100()
 	}
 }
 
-TEST__ y_hashmap_Get100Hash()
+@test(.group = "y_hashmap", .slow = true) y_hashmap_Get100Hash()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -274,7 +275,7 @@ TEST__ y_hashmap_Get100Hash()
 	}
 }
 
-TEST__ y_hashmap_Remove50()
+@test(.group = "y_hashmap", .slow = true) y_hashmap_Remove50()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -306,7 +307,7 @@ TEST__ y_hashmap_Remove50()
 	}
 }
 
-TEST__ y_hashmap_RemoveValues()
+@test(.group = "y_hashmap", .slow = true) y_hashmap_RemoveValues()
 {
 	new HashMap:m<>;
 	new data[100][E_HASH_MAP_TEST];
@@ -336,8 +337,12 @@ TEST__ y_hashmap_RemoveValues()
 	}
 }
 
-TEST__ y_hashmap_Get1000()
+@test(.group = "y_hashmap", .slow = true) y_hashmap_Get1000()
 {
+	if (heapspace() < 145000)
+	{
+		Debug_Info("y_hashmap tests require a large heap, increase it to at least 145000.");
+	}
 	ASSERT(heapspace() >= 145000);
 	new HashMap:m<>;
 	new data[1000][E_HASH_MAP_TEST];
@@ -354,8 +359,12 @@ TEST__ y_hashmap_Get1000()
 	}
 }
 
-TEST__ y_hashmap_Remove500()
+@test(.group = "y_hashmap", .slow = true) y_hashmap_Remove500()
 {
+	if (heapspace() < 145000)
+	{
+		Debug_Info("y_hashmap tests require a large heap, increase it to at least 145000.");
+	}
 	ASSERT(heapspace() >= 145000);
 	new HashMap:m<>;
 	new data[1000][E_HASH_MAP_TEST];
@@ -387,7 +396,7 @@ TEST__ y_hashmap_Remove500()
 	}
 }
 
-TEST__ y_hashmap_Set400Bug()
+@test(.group = "y_hashmap") y_hashmap_Set400Bug()
 {
 	// You have no idea how long it took me to whittle the code down to these
 	// numbers!  There is a pattern - they're all in the same hashmap bin, but
@@ -409,8 +418,12 @@ TEST__ y_hashmap_Set400Bug()
 	ASSERT_EQ(HashMap_Get(m, "hi400"), 400);
 }
 
-TEST__ y_hashmap_Set500()
+@test(.group = "y_hashmap", .slow = true) y_hashmap_Set500()
 {
+	if (heapspace() < 145000)
+	{
+		Debug_Info("y_hashmap tests require a large heap, increase it to at least 145000.");
+	}
 	ASSERT(heapspace() >= 145000);
 	new HashMap:m<>;
 	new data[1000][E_HASH_MAP_TEST];

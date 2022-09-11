@@ -20,7 +20,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -47,6 +47,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -78,7 +79,6 @@ Optional plugins:
 #include "..\..\YSI_Core\y_utils"
 
 #include "..\..\YSI_Coding\y_stringhash"
-#include "..\..\YSI_Coding\y_remote"
 
 #if !defined MAX_TEXT_COLOURS
 	#if defined MAX_TEXT_COLORS
@@ -119,7 +119,7 @@ Optional plugins:
 #define AeC01e"}{"#%0"}"~h~ AeC01e"}{"#%0h"}"
 
 // Main code start.  Apparently there is a copy of the hash code in y_td.
-#define COLOUR_NAME_HASH(%0)            YHash((%0), false, hash_bernstein, (YSI_g_sCheckSpaces) ? (-1) : (strfind((%0), " ")))
+#define COLOUR_NAME_HASH(%0)            YHash((%0), false, hash_bernstein, (YSI_g_sCheckSpaces) ? (-1) : (strfind((%0), YSI_SPACE)))
 #define COLOR_NAME_HASH                 COLOUR_NAME_HASH
 
 #if !defined X11_ALLOW_SPACES
@@ -130,7 +130,9 @@ static stock
 	YSI_g_sColours[MAX_TEXT_COLOURS][2],
 	bool:YSI_g_sCheckSpaces = X11_ALLOW_SPACES;
 
-remotefunc static stock void:_SetColoursCanHaveSpaces(bool:set)
+forward void:_SetColoursCanHaveSpaces(bool:set);
+
+public void:_SetColoursCanHaveSpaces(bool:set)
 {
 	YSI_g_sCheckSpaces = set;
 }
@@ -139,14 +141,14 @@ remotefunc static stock void:_SetColoursCanHaveSpaces(bool:set)
 stock SetColoursCanHaveSpaces(bool:set)
 {
 	// Set this true/false in ALL scripts, since the text system is distributed.
-	broadcastfunc _SetColoursCanHaveSpaces(set);
+	CallRemoteFunction("_SetColoursCanHaveSpaces", "i", set);
 	//return 1;
 }
 
 #define SetColor SetColour
 stock SetColour(const name[], color)
 {
-	P:3("SetColour called: \"%s\", %i", name, color);
+	Debug_Print3("SetColour called: \"%s\", %i", name, color);
 	#if _YSI_USE_X11
 		//if (name[0] | 0x20 == 'x' && name[1] == '1' && name[2] == '1')
 		if (!strcmp(name, "X11", true, 3))
@@ -169,13 +171,15 @@ stock SetColour(const name[], color)
 
 stock SetColourHash(hash, color)
 {
-	broadcastfunc _SetColourHash(hash, color);
+	CallRemoteFunction("_SetColourHash", "ii", hash, color);
 }
 
 #define SetColorHash SetColourHash
-remotefunc static stock void:_SetColourHash(hash, color)
+forward void:_SetColourHash(hash, color);
+
+public void:_SetColourHash(hash, color)
 {
-	P:3("SetColourHash called: %i, %i", hash, color);
+	Debug_Print3("SetColourHash called: %i, %i", hash, color);
 	color &= 0xFFFFFF00;
 	#if _YSI_USE_X11
 		new
@@ -218,7 +222,7 @@ remotefunc static stock void:_SetColourHash(hash, color)
 #define GetColor GetColour
 stock GetColour(const name[], alpha = 0xAA)
 {
-	P:3("GetColour called: \"%s\", %i", name, alpha);
+	Debug_Print3("GetColour called: \"%s\", %i", name, alpha);
 	//if (name[0] | 0x20 == 'x' && name[1] == '1' && name[2] == '2')
 	#if _YSI_USE_X11
 		if (!strcmp(name, "X11", true, 3))
@@ -242,7 +246,7 @@ stock GetColour(const name[], alpha = 0xAA)
 #define GetColorStream GetColourStream
 stock GetColourStream(const str[], &idx, alpha = 0xAA)
 {
-	P:3("GetColourStream called: \"%s\", %i, %i", str, idx, alpha);
+	Debug_Print3("GetColourStream called: \"%s\", %i, %i", str, idx, alpha);
 	// This doesn't work because the hash is backwards, not forwards.  You can't
 	// do a reverse hash incrementally.  Actually you can, but not well.
 	new
@@ -296,7 +300,7 @@ stock GetColourStream(const str[], &idx, alpha = 0xAA)
 #define GetColorHash GetColourHash
 stock GetColourHash(hash, alpha = 0xAA)
 {
-	P:3("GetColourHash called: %i, %i", hash, alpha);
+	Debug_Print3("GetColourHash called: %i, %i", hash, alpha);
 	alpha &= 0xFF;
 	// Do the REVERSE hash from YHash
 	#pragma tabsize 4
@@ -346,7 +350,7 @@ stock GetColourHash(hash, alpha = 0xAA)
 #define Colors_SAMPToGT Colours_SAMPToGT
 stock Colours_SAMPToGT(colour, start)
 {
-	P:4("Colours_SAMPToGT called: %i", colour);
+	Debug_Print4("Colours_SAMPToGT called: %i", colour);
 	// Find the closest matching game text colour to the given SA:MP colour.
 	static const
 		sc_aColours[][4] =
@@ -383,17 +387,20 @@ stock Colours_SAMPToGT(colour, start)
 		r = colour >> 16,
 		g = (colour >> 8) & 0xFF,
 		b = colour & 0xFF,
-		tr, tg, tb, cur;
+		tr = 0,
+		tg = 0,
+		tb = 0,
+		cur = 0;
 	for ( ; start != sizeof (sc_aColours); ++start)
 	{
 		tr = r - sc_aColours[start][1],
 		tg = g - sc_aColours[start][2],
 		tb = b - sc_aColours[start][3],
 		cur = (tr * tr) + (tg * tg) + (tb * tb);
-		P:6("Colours_SAMPToGT: Test %x %d", sc_aColours[start][0], cur);
+		Debug_Print6("Colours_SAMPToGT: Test %x %d", sc_aColours[start][0], cur);
 		if (cur < dist)
 		{
-			P:6("Colours_SAMPToGT: Change %x %d", found, dist);
+			Debug_Print6("Colours_SAMPToGT: Change %x %d", found, dist);
 			// This may sometimes give odd results in fades for draw results.
 			// Though I've not seen it happen yet.
 			dist = cur,
@@ -406,7 +413,7 @@ stock Colours_SAMPToGT(colour, start)
 stock Colours_EncodeGameText(str[])
 {
 	new
-		ret;
+		ret = 0;
 	if (str[0] == '~')
 	{
 		switch (str[1] | 0x20)

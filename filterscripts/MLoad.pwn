@@ -94,12 +94,11 @@ AddAll_MEMODS()
     AddAllMODSRPSimpleObject(0, -1006, "MSide/Exterior/prp_map23.dff", "MSide/Exterior/rentvh_shop.txd");
     AddAllMODSRPSimpleObject(0, -1007, "MSide/Exterior/mai_sand0.dff", "MSide/Exterior/bchzone.txd");
     AddAllMODSRPSimpleObject(0, -1008, "MSide/Exterior/park_alqshop.dff", "MSide/Exterior/pkgshops.txd");*/
-    AddSimpleModel (-1,19379, -2001, "Images/object.dff", "Images/MiamiSide.txd");
-    AddSimpleModel (-1, 19379, -1001, "objects/VillaK.dff", "objects/VillaK.txd");
+
     
 	
 	AddCharModel (254, 25002, "skins/pablo.dff", "skins/pablo.txd");
-
+	AddCharModel (253, 25003, "skins/xylos.dff", "skins/xylos.txd");
 
     print("#---------- Folder MSide Exterior Loaded ----------# \n");
 

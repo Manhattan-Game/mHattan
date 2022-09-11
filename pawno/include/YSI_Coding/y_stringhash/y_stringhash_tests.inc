@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -70,7 +71,7 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-TEST__ y_stringhash__Empty()
+@test(.group = "y_stringhash") y_stringhash__Empty()
 {
 	new
 		h0 = _H@b<>,
@@ -119,10 +120,10 @@ TEST__ y_stringhash__Empty()
 	ASSERT_EQ(h0, 5381);
 }
 
-TEST__ y_stringhash__Chars0()
+@test(.group = "y_stringhash") y_stringhash__Chars0()
 {
 	new
-		hh;
+		hh = 0;
 	hh = _H<aabbccddeeff>;
 	ASSERT_EQ(hh, YHash("aabbccddeeff", .type = hash_bernstein));
 	hh = _H<gghhiijjkkll>;
@@ -190,10 +191,10 @@ TEST__ y_stringhash__Chars0()
 	ASSERT_EQ(hh, YHash("yyzz  @@__yh", .sensitive = false, .type = hash_bernstein));
 }
 
-TEST__ y_stringhash__Chars1()
+@test(.group = "y_stringhash") y_stringhash__Chars1()
 {
 	new
-		hh;
+		hh = 0;
 	hh = _H@f<aabbccddeeff>;
 	ASSERT_EQ(hh, YHash("aabbccddeeff", .type = hash_fnv1));
 	hh = _H@f<gghhiijjkkll>;
@@ -261,10 +262,10 @@ TEST__ y_stringhash__Chars1()
 	ASSERT_EQ(hh, YHash("yyzz  @@__yh", .sensitive = false, .type = hash_fnv1));
 }
 
-TEST__ y_stringhash__Chars2()
+@test(.group = "y_stringhash") y_stringhash__Chars2()
 {
 	new
-		hh;
+		hh = 0;
 	hh = _H@a<aabbccddeeff>;
 	ASSERT_EQ(hh, YHash("aabbccddeeff", .type = hash_fnv1a));
 	hh = _H@a<gghhiijjkkll>;
@@ -332,10 +333,10 @@ TEST__ y_stringhash__Chars2()
 	ASSERT_EQ(hh, YHash("yyzz  @@__yh", .sensitive = false, .type = hash_fnv1a));
 }
 
-TEST__ y_stringhash__Letters1()
+@test(.group = "y_stringhash") y_stringhash__Letters1()
 {
 	new
-		hh;
+		hh = 0;
 	hh = _I<A>;
 	ASSERT_EQ(hh, YHash("A", .sensitive = false));
 	hh = _I<A>;
@@ -352,10 +353,10 @@ TEST__ y_stringhash__Letters1()
 	ASSERT_EQ(hh, YHash("@", .sensitive = false));
 }
 
-TEST__ y_stringhash__Letters2()
+@test(.group = "y_stringhash") y_stringhash__Letters2()
 {
 	new
-		hh;
+		hh = 0;
 	hh = _H<A>;
 	ASSERT_EQ(hh, YHash("A"));
 	hh = _H<A>;
@@ -372,11 +373,11 @@ TEST__ y_stringhash__Letters2()
 	ASSERT_EQ(hh, YHash("@"));
 }
 
-TEST__ y_stringhash__case()
+@test(.group = "y_stringhash") y_stringhash__case()
 {
 	new
-		h0,
-		h1;
+		h0 = 0,
+		h1 = 0;
 	h0 = _H<HEllO>;
 	h1 = _H<HELLO>;
 	ASSERT_NE(h0, h1);
@@ -403,7 +404,7 @@ TEST__ y_stringhash__case()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H1()
+@test(.group = "y_stringhash") y_stringhash__H1()
 {
 	new
 		h0 = _H<hello>,
@@ -411,7 +412,7 @@ TEST__ y_stringhash__H1()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I1()
+@test(.group = "y_stringhash") y_stringhash__I1()
 {
 	new
 		h0 = _I<hello>,
@@ -419,7 +420,7 @@ TEST__ y_stringhash__I1()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H2()
+@test(.group = "y_stringhash") y_stringhash__H2()
 {
 	new
 		h0 = _H(h,e,l,l,o),
@@ -427,7 +428,7 @@ TEST__ y_stringhash__H2()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I2()
+@test(.group = "y_stringhash") y_stringhash__I2()
 {
 	new
 		h0 = _I(h,e,l,l,o),
@@ -435,7 +436,7 @@ TEST__ y_stringhash__I2()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H3()
+@test(.group = "y_stringhash") y_stringhash__H3()
 {
 	new
 		h0 = _H@b<hello>,
@@ -443,7 +444,7 @@ TEST__ y_stringhash__H3()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I3()
+@test(.group = "y_stringhash") y_stringhash__I3()
 {
 	new
 		h0 = _I@b<hello>,
@@ -451,7 +452,7 @@ TEST__ y_stringhash__I3()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H4()
+@test(.group = "y_stringhash") y_stringhash__H4()
 {
 	new
 		h0 = _H@b(h,e,l,l,o),
@@ -459,7 +460,7 @@ TEST__ y_stringhash__H4()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I4()
+@test(.group = "y_stringhash") y_stringhash__I4()
 {
 	new
 		h0 = _I@b(h,e,l,l,o),
@@ -467,7 +468,7 @@ TEST__ y_stringhash__I4()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H5()
+@test(.group = "y_stringhash") y_stringhash__H5()
 {
 	new
 		h0 = _H@f<hello>,
@@ -475,7 +476,7 @@ TEST__ y_stringhash__H5()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I5()
+@test(.group = "y_stringhash") y_stringhash__I5()
 {
 	new
 		h0 = _I@f<hello>,
@@ -483,7 +484,7 @@ TEST__ y_stringhash__I5()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H6()
+@test(.group = "y_stringhash") y_stringhash__H6()
 {
 	new
 		h0 = _H@f(h,e,l,l,o),
@@ -491,7 +492,7 @@ TEST__ y_stringhash__H6()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I6()
+@test(.group = "y_stringhash") y_stringhash__I6()
 {
 	new
 		h0 = _I@f(h,e,l,l,o),
@@ -499,7 +500,7 @@ TEST__ y_stringhash__I6()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H7()
+@test(.group = "y_stringhash") y_stringhash__H7()
 {
 	new
 		h0 = _H@a<hello>,
@@ -507,7 +508,7 @@ TEST__ y_stringhash__H7()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I7()
+@test(.group = "y_stringhash") y_stringhash__I7()
 {
 	new
 		h0 = _I@a<hello>,
@@ -515,7 +516,7 @@ TEST__ y_stringhash__I7()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H8()
+@test(.group = "y_stringhash") y_stringhash__H8()
 {
 	new
 		h0 = _H@a(h,e,l,l,o),
@@ -523,7 +524,7 @@ TEST__ y_stringhash__H8()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I8()
+@test(.group = "y_stringhash") y_stringhash__I8()
 {
 	new
 		h0 = _I@a(h,e,l,l,o),
@@ -531,7 +532,7 @@ TEST__ y_stringhash__I8()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H3e()
+@test(.group = "y_stringhash") y_stringhash__H3e()
 {
 	new
 		h0 = _H@b<hello>,
@@ -539,7 +540,7 @@ TEST__ y_stringhash__H3e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I3e()
+@test(.group = "y_stringhash") y_stringhash__I3e()
 {
 	new
 		h0 = _I@b<hello>,
@@ -548,7 +549,7 @@ TEST__ y_stringhash__I3e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H4e()
+@test(.group = "y_stringhash") y_stringhash__H4e()
 {
 	new
 		h0 = _H@b(h,e,l,l,o),
@@ -556,7 +557,7 @@ TEST__ y_stringhash__H4e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I4e()
+@test(.group = "y_stringhash") y_stringhash__I4e()
 {
 	new
 		h0 = _I@b(h,e,l,l,o),
@@ -564,7 +565,7 @@ TEST__ y_stringhash__I4e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H5e()
+@test(.group = "y_stringhash") y_stringhash__H5e()
 {
 	new
 		h0 = _H@f<hello>,
@@ -572,7 +573,7 @@ TEST__ y_stringhash__H5e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I5e()
+@test(.group = "y_stringhash") y_stringhash__I5e()
 {
 	new
 		h0 = _I@f<hello>,
@@ -580,7 +581,7 @@ TEST__ y_stringhash__I5e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H6e()
+@test(.group = "y_stringhash") y_stringhash__H6e()
 {
 	new
 		h0 = _H@f(h,e,l,l,o),
@@ -588,7 +589,7 @@ TEST__ y_stringhash__H6e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I6e()
+@test(.group = "y_stringhash") y_stringhash__I6e()
 {
 	new
 		h0 = _I@f(h,e,l,l,o),
@@ -596,7 +597,7 @@ TEST__ y_stringhash__I6e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H7e()
+@test(.group = "y_stringhash") y_stringhash__H7e()
 {
 	new
 		h0 = _H@a<hello>,
@@ -604,7 +605,7 @@ TEST__ y_stringhash__H7e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I7e()
+@test(.group = "y_stringhash") y_stringhash__I7e()
 {
 	new
 		h0 = _I@a<hello>,
@@ -612,7 +613,7 @@ TEST__ y_stringhash__I7e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H8e()
+@test(.group = "y_stringhash") y_stringhash__H8e()
 {
 	new
 		h0 = _H@a(h,e,l,l,o),
@@ -620,7 +621,7 @@ TEST__ y_stringhash__H8e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I8e()
+@test(.group = "y_stringhash") y_stringhash__I8e()
 {
 	new
 		h0 = _I@a(h,e,l,l,o),
@@ -628,7 +629,7 @@ TEST__ y_stringhash__I8e()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H3d()
+@test(.group = "y_stringhash") y_stringhash__H3d()
 {
 	new
 		h0 = HASH:bernstein<hello>,
@@ -636,7 +637,7 @@ TEST__ y_stringhash__H3d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I3d()
+@test(.group = "y_stringhash") y_stringhash__I3d()
 {
 	new
 		h0 = HASHi:bernstein<hello>,
@@ -644,7 +645,7 @@ TEST__ y_stringhash__I3d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H4d()
+@test(.group = "y_stringhash") y_stringhash__H4d()
 {
 	new
 		h0 = HASH(bernstein,h,e,l,l,o),
@@ -652,7 +653,7 @@ TEST__ y_stringhash__H4d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I4d()
+@test(.group = "y_stringhash") y_stringhash__I4d()
 {
 	new
 		h0 = HASHi(bernstein,h,e,l,l,o),
@@ -660,7 +661,7 @@ TEST__ y_stringhash__I4d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H5d()
+@test(.group = "y_stringhash") y_stringhash__H5d()
 {
 	new
 		h0 = HASH:fnv1<hello>,
@@ -668,7 +669,7 @@ TEST__ y_stringhash__H5d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I5d()
+@test(.group = "y_stringhash") y_stringhash__I5d()
 {
 	new
 		h0 = HASHi:fnv1<hello>,
@@ -676,7 +677,7 @@ TEST__ y_stringhash__I5d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H6d()
+@test(.group = "y_stringhash") y_stringhash__H6d()
 {
 	new
 		h0 = HASH(fnv1,h,e,l,l,o),
@@ -684,7 +685,7 @@ TEST__ y_stringhash__H6d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I6d()
+@test(.group = "y_stringhash") y_stringhash__I6d()
 {
 	new
 		h0 = HASHi(fnv1,h,e,l,l,o),
@@ -692,7 +693,7 @@ TEST__ y_stringhash__I6d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H7d()
+@test(.group = "y_stringhash") y_stringhash__H7d()
 {
 	new
 		h0 = HASH:fnv1a<hello>,
@@ -700,7 +701,7 @@ TEST__ y_stringhash__H7d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I7d()
+@test(.group = "y_stringhash") y_stringhash__I7d()
 {
 	new
 		h0 = HASHi:fnv1a<hello>,
@@ -708,7 +709,7 @@ TEST__ y_stringhash__I7d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H8d()
+@test(.group = "y_stringhash") y_stringhash__H8d()
 {
 	new
 		h0 = HASH(fnv1a,h,e,l,l,o),
@@ -716,7 +717,7 @@ TEST__ y_stringhash__H8d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I8d()
+@test(.group = "y_stringhash") y_stringhash__I8d()
 {
 	new
 		h0 = HASHi(fnv1a,h,e,l,l,o),
@@ -724,7 +725,7 @@ TEST__ y_stringhash__I8d()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H3c()
+@test(.group = "y_stringhash") y_stringhash__H3c()
 {
 	new
 		h0 = HASH:bernstein<hello>,
@@ -732,7 +733,7 @@ TEST__ y_stringhash__H3c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I3c()
+@test(.group = "y_stringhash") y_stringhash__I3c()
 {
 	new
 		h0 = HASHi:bernstein<hello>,
@@ -740,7 +741,7 @@ TEST__ y_stringhash__I3c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H4c()
+@test(.group = "y_stringhash") y_stringhash__H4c()
 {
 	new
 		h0 = HASH(bernstein,h,e,l,l,o),
@@ -748,7 +749,7 @@ TEST__ y_stringhash__H4c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I4c()
+@test(.group = "y_stringhash") y_stringhash__I4c()
 {
 	new
 		h0 = HASHi(bernstein,h,e,l,l,o),
@@ -756,7 +757,7 @@ TEST__ y_stringhash__I4c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H5c()
+@test(.group = "y_stringhash") y_stringhash__H5c()
 {
 	new
 		h0 = HASH:fnv1<hello>,
@@ -764,7 +765,7 @@ TEST__ y_stringhash__H5c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I5c()
+@test(.group = "y_stringhash") y_stringhash__I5c()
 {
 	new
 		h0 = HASHi:fnv1<hello>,
@@ -772,7 +773,7 @@ TEST__ y_stringhash__I5c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H6c()
+@test(.group = "y_stringhash") y_stringhash__H6c()
 {
 	new
 		h0 = HASH(fnv1,h,e,l,l,o),
@@ -780,7 +781,7 @@ TEST__ y_stringhash__H6c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I6c()
+@test(.group = "y_stringhash") y_stringhash__I6c()
 {
 	new
 		h0 = HASHi(fnv1,h,e,l,l,o),
@@ -788,7 +789,7 @@ TEST__ y_stringhash__I6c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H7c()
+@test(.group = "y_stringhash") y_stringhash__H7c()
 {
 	new
 		h0 = HASH:fnv1a<hello>,
@@ -796,7 +797,7 @@ TEST__ y_stringhash__H7c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I7c()
+@test(.group = "y_stringhash") y_stringhash__I7c()
 {
 	new
 		h0 = HASHi:fnv1a<hello>,
@@ -804,7 +805,7 @@ TEST__ y_stringhash__I7c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H8c()
+@test(.group = "y_stringhash") y_stringhash__H8c()
 {
 	new
 		h0 = HASH(fnv1a,h,e,l,l,o),
@@ -812,7 +813,7 @@ TEST__ y_stringhash__H8c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__I8c()
+@test(.group = "y_stringhash") y_stringhash__I8c()
 {
 	new
 		h0 = HASHi(fnv1a,h,e,l,l,o),
@@ -820,7 +821,7 @@ TEST__ y_stringhash__I8c()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H3b()
+@test(.group = "y_stringhash") y_stringhash__H3b()
 {
 	new
 		h0 = HASH:bernstein<hello>,
@@ -828,7 +829,7 @@ TEST__ y_stringhash__H3b()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I3b()
+@test(.group = "y_stringhash") y_stringhash__I3b()
 {
 	new
 		h0 = HASHi:bernstein<hello>,
@@ -836,7 +837,7 @@ TEST__ y_stringhash__I3b()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H4b()
+@test(.group = "y_stringhash") y_stringhash__H4b()
 {
 	new
 		h0 = HASH(bernstein,h,e,l,l,o),
@@ -844,7 +845,7 @@ TEST__ y_stringhash__H4b()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I4b()
+@test(.group = "y_stringhash") y_stringhash__I4b()
 {
 	new
 		h0 = HASHi(bernstein,h,e,l,l,o),
@@ -852,7 +853,7 @@ TEST__ y_stringhash__I4b()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H5b()
+@test(.group = "y_stringhash") y_stringhash__H5b()
 {
 	new
 		h0 = HASH:fnv1<hello>,
@@ -860,7 +861,7 @@ TEST__ y_stringhash__H5b()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I5b()
+@test(.group = "y_stringhash") y_stringhash__I5b()
 {
 	new
 		h0 = HASHi:fnv1<hello>,
@@ -868,7 +869,7 @@ TEST__ y_stringhash__I5b()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H6b()
+@test(.group = "y_stringhash") y_stringhash__H6b()
 {
 	new
 		h0 = HASH(fnv1,h,e,l,l,o),
@@ -876,7 +877,7 @@ TEST__ y_stringhash__H6b()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I6b()
+@test(.group = "y_stringhash") y_stringhash__I6b()
 {
 	new
 		h0 = HASHi(fnv1,h,e,l,l,o),
@@ -884,7 +885,7 @@ TEST__ y_stringhash__I6b()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H7b()
+@test(.group = "y_stringhash") y_stringhash__H7b()
 {
 	new
 		h0 = HASH:fnv1a<hello>,
@@ -892,7 +893,7 @@ TEST__ y_stringhash__H7b()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I7b()
+@test(.group = "y_stringhash") y_stringhash__I7b()
 {
 	new
 		h0 = HASHi:fnv1a<hello>,
@@ -900,7 +901,7 @@ TEST__ y_stringhash__I7b()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash__H8b()
+@test(.group = "y_stringhash") y_stringhash__H8b()
 {
 	new
 		h0 = HASH(fnv1a,h,e,l,l,o),
@@ -908,7 +909,7 @@ TEST__ y_stringhash__H8b()
 	ASSERT_NE(h0, h1);
 }
 
-TEST__ y_stringhash__I8b()
+@test(.group = "y_stringhash") y_stringhash__I8b()
 {
 	new
 		h0 = HASHi(fnv1a,h,e,l,l,o),
@@ -916,7 +917,7 @@ TEST__ y_stringhash__I8b()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash_PackedS()
+@test(.group = "y_stringhash") y_stringhash_PackedS()
 {
 	new
 		h0 = YHash("hello", true),
@@ -924,7 +925,7 @@ TEST__ y_stringhash_PackedS()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash_PackedI()
+@test(.group = "y_stringhash") y_stringhash_PackedI()
 {
 	new
 		h0 = YHash(!"HEllo", false),
@@ -932,7 +933,7 @@ TEST__ y_stringhash_PackedI()
 	ASSERT_EQ(h0, h1);
 }
 
-TEST__ y_stringhash_PackedP()
+@test(.group = "y_stringhash") y_stringhash_PackedP()
 {
 	new
 		h0 = YHash("HEllo", false),
@@ -944,7 +945,7 @@ static stock _FIXES_Bernstein(const name[])
 {
 	new
 		i = -1,
-		ch,
+		ch = 0,
 		hash = 5381;
 	// In carcols.dat the vehicle names end at ",".  That makes this code
 	// very specific to a few use-cases.  It also works for hashing server vars,
@@ -956,172 +957,172 @@ static stock _FIXES_Bernstein(const name[])
 	return hash;
 }
 
-TEST__ y_stringhash__fixes_switch()
+@test(.group = "y_stringhash") y_stringhash__fixes_switch()
 {
 	// Lower-case.
-	ASSERT_EQ(0x6A7D4118, YHash("gamemode0", false));
-	ASSERT_EQ(0x6A7D4119, YHash("gamemode1", false));
-	ASSERT_EQ(0x6A7D411A, YHash("gamemode2", false));
-	ASSERT_EQ(0x6A7D411B, YHash("gamemode3", false));
-	ASSERT_EQ(0x6A7D411C, YHash("gamemode4", false));
-	ASSERT_EQ(0x6A7D411D, YHash("gamemode5", false));
-	ASSERT_EQ(0x6A7D411E, YHash("gamemode6", false));
-	ASSERT_EQ(0x6A7D411F, YHash("gamemode7", false));
-	ASSERT_EQ(0x6A7D4110, YHash("gamemode8", false));
-	ASSERT_EQ(0x6A7D4111, YHash("gamemode9", false));
-	ASSERT_EQ(0xBA256409, YHash("gamemode10", false));
-	ASSERT_EQ(0xBA256408, YHash("gamemode11", false));
-	ASSERT_EQ(0xBA25640B, YHash("gamemode12", false));
-	ASSERT_EQ(0xBA25640A, YHash("gamemode13", false));
-	ASSERT_EQ(0xBA25640D, YHash("gamemode14", false));
-	ASSERT_EQ(0xBA25640C, YHash("gamemode15", false));
-	ASSERT_EQ(0x740D30D2, YHash("worldtime", false));
-	ASSERT_EQ(0x2FB2D3BF, YHash("version", false));
-	ASSERT_EQ(0xFBE0D5FE, YHash("lagcomp", false));
-	ASSERT_EQ(0x19BECDF7, YHash("logtimeformat", false));
-	ASSERT_EQ(0x62420997, YHash("nosign", false));
-	ASSERT_EQ(0x9D57983F, YHash("plugins", false));
-	ASSERT_EQ(0x3AFFC879, YHash("filterscripts", false));
-	ASSERT_EQ(0xD93377B5, YHash("gamemodetext", false));
-	ASSERT_EQ(0x74C01C1D, YHash("weather", false));
-	ASSERT_EQ(0xB605A0C3, YHash("gravity", false));
-	ASSERT_EQ(0x8FED0775, YHash("rcon\x7F;password", false));
-	ASSERT_EQ(0x77E7547E, YHash("weburl", false));
-	ASSERT_EQ(0x40736C5E, YHash("mapname", false));
-	ASSERT_EQ(0x672924D7, YHash("language", false));
-	ASSERT_EQ(0x0E9495C2, YHash("hostname", false));
-	ASSERT_EQ(0x5D876F9A, YHash("password", false));
-	ASSERT_EQ(0x7C706484, YHash("bind", false));
+	ASSERT_EQ(YHash("gamemode0", false), 0x6A7D4118);
+	ASSERT_EQ(YHash("gamemode1", false), 0x6A7D4119);
+	ASSERT_EQ(YHash("gamemode2", false), 0x6A7D411A);
+	ASSERT_EQ(YHash("gamemode3", false), 0x6A7D411B);
+	ASSERT_EQ(YHash("gamemode4", false), 0x6A7D411C);
+	ASSERT_EQ(YHash("gamemode5", false), 0x6A7D411D);
+	ASSERT_EQ(YHash("gamemode6", false), 0x6A7D411E);
+	ASSERT_EQ(YHash("gamemode7", false), 0x6A7D411F);
+	ASSERT_EQ(YHash("gamemode8", false), 0x6A7D4110);
+	ASSERT_EQ(YHash("gamemode9", false), 0x6A7D4111);
+	ASSERT_EQ(YHash("gamemode10", false), 0xBA256409);
+	ASSERT_EQ(YHash("gamemode11", false), 0xBA256408);
+	ASSERT_EQ(YHash("gamemode12", false), 0xBA25640B);
+	ASSERT_EQ(YHash("gamemode13", false), 0xBA25640A);
+	ASSERT_EQ(YHash("gamemode14", false), 0xBA25640D);
+	ASSERT_EQ(YHash("gamemode15", false), 0xBA25640C);
+	ASSERT_EQ(YHash("worldtime", false), 0x740D30D2);
+	ASSERT_EQ(YHash("version", false), 0x2FB2D3BF);
+	ASSERT_EQ(YHash("lagcomp", false), 0xFBE0D5FE);
+	ASSERT_EQ(YHash("logtimeformat", false), 0x19BECDF7);
+	ASSERT_EQ(YHash("nosign", false), 0x62420997);
+	ASSERT_EQ(YHash("plugins", false), 0x9D57983F);
+	ASSERT_EQ(YHash("filterscripts", false), 0x3AFFC879);
+	ASSERT_EQ(YHash("gamemodetext", false), 0xD93377B5);
+	ASSERT_EQ(YHash("weather", false), 0x74C01C1D);
+	ASSERT_EQ(YHash("gravity", false), 0xB605A0C3);
+	ASSERT_EQ(YHash("rcon\x7F;password", false), 0x8FED0775);
+	ASSERT_EQ(YHash("weburl", false), 0x77E7547E);
+	ASSERT_EQ(YHash("mapname", false), 0x40736C5E);
+	ASSERT_EQ(YHash("language", false), 0x672924D7);
+	ASSERT_EQ(YHash("hostname", false), 0x0E9495C2);
+	ASSERT_EQ(YHash("password", false), 0x5D876F9A);
+	ASSERT_EQ(YHash("bind", false), 0x7C706484);
 	// Upper-case.
-	ASSERT_EQ(0x6A7D4118, YHash("GAMEMODE0", false));
-	ASSERT_EQ(0x6A7D4119, YHash("GAMEMODE1", false));
-	ASSERT_EQ(0x6A7D411A, YHash("GAMEMODE2", false));
-	ASSERT_EQ(0x6A7D411B, YHash("GAMEMODE3", false));
-	ASSERT_EQ(0x6A7D411C, YHash("GAMEMODE4", false));
-	ASSERT_EQ(0x6A7D411D, YHash("GAMEMODE5", false));
-	ASSERT_EQ(0x6A7D411E, YHash("GAMEMODE6", false));
-	ASSERT_EQ(0x6A7D411F, YHash("GAMEMODE7", false));
-	ASSERT_EQ(0x6A7D4110, YHash("GAMEMODE8", false));
-	ASSERT_EQ(0x6A7D4111, YHash("GAMEMODE9", false));
-	ASSERT_EQ(0xBA256409, YHash("GAMEMODE10", false));
-	ASSERT_EQ(0xBA256408, YHash("GAMEMODE11", false));
-	ASSERT_EQ(0xBA25640B, YHash("GAMEMODE12", false));
-	ASSERT_EQ(0xBA25640A, YHash("GAMEMODE13", false));
-	ASSERT_EQ(0xBA25640D, YHash("GAMEMODE14", false));
-	ASSERT_EQ(0xBA25640C, YHash("GAMEMODE15", false));
-	ASSERT_EQ(0x740D30D2, YHash("WORLDTIME", false));
-	ASSERT_EQ(0x2FB2D3BF, YHash("VERSION", false));
-	ASSERT_EQ(0xFBE0D5FE, YHash("LAGCOMP", false));
-	ASSERT_EQ(0x19BECDF7, YHash("LOGTIMEFORMAT", false));
-	ASSERT_EQ(0x62420997, YHash("NOSIGN", false));
-	ASSERT_EQ(0x9D57983F, YHash("PLUGINS", false));
-	ASSERT_EQ(0x3AFFC879, YHash("FILTERSCRIPTS", false));
-	ASSERT_EQ(0xD93377B5, YHash("GAMEMODETEXT", false));
-	ASSERT_EQ(0x74C01C1D, YHash("WEATHER", false));
-	ASSERT_EQ(0xB605A0C3, YHash("GRAVITY", false));
-	ASSERT_EQ(0x8FED0775, YHash("RCON\x7F;PASSWORD", false));
-	ASSERT_EQ(0x77E7547E, YHash("WEBURL", false));
-	ASSERT_EQ(0x40736C5E, YHash("MAPNAME", false));
-	ASSERT_EQ(0x672924D7, YHash("LANGUAGE", false));
-	ASSERT_EQ(0x0E9495C2, YHash("HOSTNAME", false));
-	ASSERT_EQ(0x5D876F9A, YHash("PASSWORD", false));
-	ASSERT_EQ(0x7C706484, YHash("BIND", false));
+	ASSERT_EQ(YHash("GAMEMODE0", false), 0x6A7D4118);
+	ASSERT_EQ(YHash("GAMEMODE1", false), 0x6A7D4119);
+	ASSERT_EQ(YHash("GAMEMODE2", false), 0x6A7D411A);
+	ASSERT_EQ(YHash("GAMEMODE3", false), 0x6A7D411B);
+	ASSERT_EQ(YHash("GAMEMODE4", false), 0x6A7D411C);
+	ASSERT_EQ(YHash("GAMEMODE5", false), 0x6A7D411D);
+	ASSERT_EQ(YHash("GAMEMODE6", false), 0x6A7D411E);
+	ASSERT_EQ(YHash("GAMEMODE7", false), 0x6A7D411F);
+	ASSERT_EQ(YHash("GAMEMODE8", false), 0x6A7D4110);
+	ASSERT_EQ(YHash("GAMEMODE9", false), 0x6A7D4111);
+	ASSERT_EQ(YHash("GAMEMODE10", false), 0xBA256409);
+	ASSERT_EQ(YHash("GAMEMODE11", false), 0xBA256408);
+	ASSERT_EQ(YHash("GAMEMODE12", false), 0xBA25640B);
+	ASSERT_EQ(YHash("GAMEMODE13", false), 0xBA25640A);
+	ASSERT_EQ(YHash("GAMEMODE14", false), 0xBA25640D);
+	ASSERT_EQ(YHash("GAMEMODE15", false), 0xBA25640C);
+	ASSERT_EQ(YHash("WORLDTIME", false), 0x740D30D2);
+	ASSERT_EQ(YHash("VERSION", false), 0x2FB2D3BF);
+	ASSERT_EQ(YHash("LAGCOMP", false), 0xFBE0D5FE);
+	ASSERT_EQ(YHash("LOGTIMEFORMAT", false), 0x19BECDF7);
+	ASSERT_EQ(YHash("NOSIGN", false), 0x62420997);
+	ASSERT_EQ(YHash("PLUGINS", false), 0x9D57983F);
+	ASSERT_EQ(YHash("FILTERSCRIPTS", false), 0x3AFFC879);
+	ASSERT_EQ(YHash("GAMEMODETEXT", false), 0xD93377B5);
+	ASSERT_EQ(YHash("WEATHER", false), 0x74C01C1D);
+	ASSERT_EQ(YHash("GRAVITY", false), 0xB605A0C3);
+	ASSERT_EQ(YHash("RCON\x7F;PASSWORD", false), 0x8FED0775);
+	ASSERT_EQ(YHash("WEBURL", false), 0x77E7547E);
+	ASSERT_EQ(YHash("MAPNAME", false), 0x40736C5E);
+	ASSERT_EQ(YHash("LANGUAGE", false), 0x672924D7);
+	ASSERT_EQ(YHash("HOSTNAME", false), 0x0E9495C2);
+	ASSERT_EQ(YHash("PASSWORD", false), 0x5D876F9A);
+	ASSERT_EQ(YHash("BIND", false), 0x7C706484);
 	// Middle-case.
-	ASSERT_EQ(0x6A7D4118, YHash("GAmemode0", false));
-	ASSERT_EQ(0x6A7D4119, YHash("gAMemode1", false));
-	ASSERT_EQ(0x6A7D411A, YHash("gaMEmode2", false));
-	ASSERT_EQ(0x6A7D411B, YHash("gamEMode3", false));
-	ASSERT_EQ(0x6A7D411C, YHash("gameMOde4", false));
-	ASSERT_EQ(0x6A7D411D, YHash("gamemODe5", false));
-	ASSERT_EQ(0x6A7D411E, YHash("gamemoDE6", false));
-	ASSERT_EQ(0x6A7D411F, YHash("GamemodE7", false));
-	ASSERT_EQ(0x6A7D4110, YHash("Gamemode8", false));
-	ASSERT_EQ(0x6A7D4111, YHash("gAmemode9", false));
-	ASSERT_EQ(0xBA256409, YHash("gaMemode10", false));
-	ASSERT_EQ(0xBA256408, YHash("gamEmode11", false));
-	ASSERT_EQ(0xBA25640B, YHash("gameMode12", false));
-	ASSERT_EQ(0xBA25640A, YHash("gamemOde13", false));
-	ASSERT_EQ(0xBA25640D, YHash("gamemoDe14", false));
-	ASSERT_EQ(0xBA25640C, YHash("gamemodE15", false));
-	ASSERT_EQ(0x740D30D2, YHash("WORLDtime", false));
-	ASSERT_EQ(0x2FB2D3BF, YHash("veRSIon", false));
-	ASSERT_EQ(0xFBE0D5FE, YHash("lagCOMP", false));
-	ASSERT_EQ(0x19BECDF7, YHash("LOGtimeFORMat", false));
-	ASSERT_EQ(0x62420997, YHash("noSIGN", false));
-	ASSERT_EQ(0x9D57983F, YHash("PLUGins", false));
-	ASSERT_EQ(0x3AFFC879, YHash("filterSCRIPTs", false));
-	ASSERT_EQ(0xD93377B5, YHash("gameMODEtext", false));
-	ASSERT_EQ(0x74C01C1D, YHash("WEATHER", false));
-	ASSERT_EQ(0xB605A0C3, YHash("GRAVITY", false));
-	ASSERT_EQ(0x8FED0775, YHash("rcon\x7F;PASSword", false));
-	ASSERT_EQ(0x77E7547E, YHash("WeBuRl", false));
-	ASSERT_EQ(0x40736C5E, YHash("mApNaMe", false));
-	ASSERT_EQ(0x672924D7, YHash("LaNgUaGe", false));
-	ASSERT_EQ(0x0E9495C2, YHash("hOsTnAmE", false));
-	ASSERT_EQ(0x5D876F9A, YHash("PAssWOrd", false));
-	ASSERT_EQ(0x7C706484, YHash("biND", false));
+	ASSERT_EQ(YHash("GAmemode0", false), 0x6A7D4118);
+	ASSERT_EQ(YHash("gAMemode1", false), 0x6A7D4119);
+	ASSERT_EQ(YHash("gaMEmode2", false), 0x6A7D411A);
+	ASSERT_EQ(YHash("gamEMode3", false), 0x6A7D411B);
+	ASSERT_EQ(YHash("gameMOde4", false), 0x6A7D411C);
+	ASSERT_EQ(YHash("gamemODe5", false), 0x6A7D411D);
+	ASSERT_EQ(YHash("gamemoDE6", false), 0x6A7D411E);
+	ASSERT_EQ(YHash("GamemodE7", false), 0x6A7D411F);
+	ASSERT_EQ(YHash("Gamemode8", false), 0x6A7D4110);
+	ASSERT_EQ(YHash("gAmemode9", false), 0x6A7D4111);
+	ASSERT_EQ(YHash("gaMemode10", false), 0xBA256409);
+	ASSERT_EQ(YHash("gamEmode11", false), 0xBA256408);
+	ASSERT_EQ(YHash("gameMode12", false), 0xBA25640B);
+	ASSERT_EQ(YHash("gamemOde13", false), 0xBA25640A);
+	ASSERT_EQ(YHash("gamemoDe14", false), 0xBA25640D);
+	ASSERT_EQ(YHash("gamemodE15", false), 0xBA25640C);
+	ASSERT_EQ(YHash("WORLDtime", false), 0x740D30D2);
+	ASSERT_EQ(YHash("veRSIon", false), 0x2FB2D3BF);
+	ASSERT_EQ(YHash("lagCOMP", false), 0xFBE0D5FE);
+	ASSERT_EQ(YHash("LOGtimeFORMat", false), 0x19BECDF7);
+	ASSERT_EQ(YHash("noSIGN", false), 0x62420997);
+	ASSERT_EQ(YHash("PLUGins", false), 0x9D57983F);
+	ASSERT_EQ(YHash("filterSCRIPTs", false), 0x3AFFC879);
+	ASSERT_EQ(YHash("gameMODEtext", false), 0xD93377B5);
+	ASSERT_EQ(YHash("WEATHER", false), 0x74C01C1D);
+	ASSERT_EQ(YHash("GRAVITY", false), 0xB605A0C3);
+	ASSERT_EQ(YHash("rcon\x7F;PASSword", false), 0x8FED0775);
+	ASSERT_EQ(YHash("WeBuRl", false), 0x77E7547E);
+	ASSERT_EQ(YHash("mApNaMe", false), 0x40736C5E);
+	ASSERT_EQ(YHash("LaNgUaGe", false), 0x672924D7);
+	ASSERT_EQ(YHash("hOsTnAmE", false), 0x0E9495C2);
+	ASSERT_EQ(YHash("PAssWOrd", false), 0x5D876F9A);
+	ASSERT_EQ(YHash("biND", false), 0x7C706484);
 	// Fixes.
-	ASSERT_EQ(0x6A7D4118, _FIXES_Bernstein("GAmemode0"));
-	ASSERT_EQ(0x6A7D4119, _FIXES_Bernstein("gAMemode1"));
-	ASSERT_EQ(0x6A7D411A, _FIXES_Bernstein("gaMEmode2"));
-	ASSERT_EQ(0x6A7D411B, _FIXES_Bernstein("gamEMode3"));
-	ASSERT_EQ(0x6A7D411C, _FIXES_Bernstein("gameMOde4"));
-	ASSERT_EQ(0x6A7D411D, _FIXES_Bernstein("gamemODe5"));
-	ASSERT_EQ(0x6A7D411E, _FIXES_Bernstein("gamemoDE6"));
-	ASSERT_EQ(0x6A7D411F, _FIXES_Bernstein("GamemodE7"));
-	ASSERT_EQ(0x6A7D4110, _FIXES_Bernstein("Gamemode8"));
-	ASSERT_EQ(0x6A7D4111, _FIXES_Bernstein("gAmemode9"));
-	ASSERT_EQ(0xBA256409, _FIXES_Bernstein("gaMemode10"));
-	ASSERT_EQ(0xBA256408, _FIXES_Bernstein("gamEmode11"));
-	ASSERT_EQ(0xBA25640B, _FIXES_Bernstein("gameMode12"));
-	ASSERT_EQ(0xBA25640A, _FIXES_Bernstein("gamemOde13"));
-	ASSERT_EQ(0xBA25640D, _FIXES_Bernstein("gamemoDe14"));
-	ASSERT_EQ(0xBA25640C, _FIXES_Bernstein("gamemodE15"));
-	ASSERT_EQ(0x740D30D2, _FIXES_Bernstein("WORLDtime"));
-	ASSERT_EQ(0x2FB2D3BF, _FIXES_Bernstein("veRSIon"));
-	ASSERT_EQ(0xFBE0D5FE, _FIXES_Bernstein("lagCOMP"));
-	ASSERT_EQ(0x19BECDF7, _FIXES_Bernstein("LOGtimeFORMat"));
-	ASSERT_EQ(0x62420997, _FIXES_Bernstein("noSIGN"));
-	ASSERT_EQ(0x9D57983F, _FIXES_Bernstein("PLUGins"));
-	ASSERT_EQ(0x3AFFC879, _FIXES_Bernstein("filterSCRIPTs"));
-	ASSERT_EQ(0xD93377B5, _FIXES_Bernstein("gameMODEtext"));
-	ASSERT_EQ(0x74C01C1D, _FIXES_Bernstein("WEATHER"));
-	ASSERT_EQ(0xB605A0C3, _FIXES_Bernstein("GRAVITY"));
-	ASSERT_EQ(0x8FED0775, _FIXES_Bernstein("rcon_PASSword"));
-	ASSERT_EQ(0x77E7547E, _FIXES_Bernstein("WeBuRl"));
-	ASSERT_EQ(0x40736C5E, _FIXES_Bernstein("mApNaMe"));
-	ASSERT_EQ(0x672924D7, _FIXES_Bernstein("LaNgUaGe"));
-	ASSERT_EQ(0x0E9495C2, _FIXES_Bernstein("hOsTnAmE"));
-	ASSERT_EQ(0x5D876F9A, _FIXES_Bernstein("PAssWOrd"));
-	ASSERT_EQ(0x7C706484, _FIXES_Bernstein("biND"));
+	ASSERT_EQ(_FIXES_Bernstein("GAmemode0"), 0x6A7D4118);
+	ASSERT_EQ(_FIXES_Bernstein("gAMemode1"), 0x6A7D4119);
+	ASSERT_EQ(_FIXES_Bernstein("gaMEmode2"), 0x6A7D411A);
+	ASSERT_EQ(_FIXES_Bernstein("gamEMode3"), 0x6A7D411B);
+	ASSERT_EQ(_FIXES_Bernstein("gameMOde4"), 0x6A7D411C);
+	ASSERT_EQ(_FIXES_Bernstein("gamemODe5"), 0x6A7D411D);
+	ASSERT_EQ(_FIXES_Bernstein("gamemoDE6"), 0x6A7D411E);
+	ASSERT_EQ(_FIXES_Bernstein("GamemodE7"), 0x6A7D411F);
+	ASSERT_EQ(_FIXES_Bernstein("Gamemode8"), 0x6A7D4110);
+	ASSERT_EQ(_FIXES_Bernstein("gAmemode9"), 0x6A7D4111);
+	ASSERT_EQ(_FIXES_Bernstein("gaMemode10"), 0xBA256409);
+	ASSERT_EQ(_FIXES_Bernstein("gamEmode11"), 0xBA256408);
+	ASSERT_EQ(_FIXES_Bernstein("gameMode12"), 0xBA25640B);
+	ASSERT_EQ(_FIXES_Bernstein("gamemOde13"), 0xBA25640A);
+	ASSERT_EQ(_FIXES_Bernstein("gamemoDe14"), 0xBA25640D);
+	ASSERT_EQ(_FIXES_Bernstein("gamemodE15"), 0xBA25640C);
+	ASSERT_EQ(_FIXES_Bernstein("WORLDtime"), 0x740D30D2);
+	ASSERT_EQ(_FIXES_Bernstein("veRSIon"), 0x2FB2D3BF);
+	ASSERT_EQ(_FIXES_Bernstein("lagCOMP"), 0xFBE0D5FE);
+	ASSERT_EQ(_FIXES_Bernstein("LOGtimeFORMat"), 0x19BECDF7);
+	ASSERT_EQ(_FIXES_Bernstein("noSIGN"), 0x62420997);
+	ASSERT_EQ(_FIXES_Bernstein("PLUGins"), 0x9D57983F);
+	ASSERT_EQ(_FIXES_Bernstein("filterSCRIPTs"), 0x3AFFC879);
+	ASSERT_EQ(_FIXES_Bernstein("gameMODEtext"), 0xD93377B5);
+	ASSERT_EQ(_FIXES_Bernstein("WEATHER"), 0x74C01C1D);
+	ASSERT_EQ(_FIXES_Bernstein("GRAVITY"), 0xB605A0C3);
+	ASSERT_EQ(_FIXES_Bernstein("rcon_PASSword"), 0x8FED0775);
+	ASSERT_EQ(_FIXES_Bernstein("WeBuRl"), 0x77E7547E);
+	ASSERT_EQ(_FIXES_Bernstein("mApNaMe"), 0x40736C5E);
+	ASSERT_EQ(_FIXES_Bernstein("LaNgUaGe"), 0x672924D7);
+	ASSERT_EQ(_FIXES_Bernstein("hOsTnAmE"), 0x0E9495C2);
+	ASSERT_EQ(_FIXES_Bernstein("PAssWOrd"), 0x5D876F9A);
+	ASSERT_EQ(_FIXES_Bernstein("biND"), 0x7C706484);
 	
-	ASSERT_EQ(0xF59D7562, _FIXES_Bernstein("cookielogging"));
-	ASSERT_EQ(0x5DD3AB50, _FIXES_Bernstein("concookies"));
-	ASSERT_EQ(0x24DF3EEB, _FIXES_Bernstein("db_log_queries"));
-	ASSERT_EQ(0xD8FC2F7F, _FIXES_Bernstein("db_logging"));
-	ASSERT_EQ(0xCEF27485, _FIXES_Bernstein("conseedtime"));
-	ASSERT_EQ(0x0C43D2DD, _FIXES_Bernstein("lagcompmode"));
-	ASSERT_EQ(0xB3AAF0EC, _FIXES_Bernstein("minconnectiontime"));
-	ASSERT_EQ(0x2E17DD8D, _FIXES_Bernstein("playertimeout"));
-	ASSERT_EQ(0xED02304A, _FIXES_Bernstein("ackslimit"));
-	ASSERT_EQ(0x55A5C0C8, _FIXES_Bernstein("messageslimit"));
-	ASSERT_EQ(0xBD012555, _FIXES_Bernstein("messageholelimit"));
-	ASSERT_EQ(0x16C6DD58, _FIXES_Bernstein("chatlogging"));
-	ASSERT_EQ(0x9420F5BA, _FIXES_Bernstein("weapon_rate"));
-	ASSERT_EQ(0x5C8B384F, _FIXES_Bernstein("incar_rate"));
-	ASSERT_EQ(0x01F89DEB, _FIXES_Bernstein("onfoot_rate"));
-	ASSERT_EQ(0x57452FAC, _FIXES_Bernstein("maxnpc"));
-	ASSERT_EQ(0x0BAD27EA, _FIXES_Bernstein("sleep"));
-	ASSERT_EQ(0x0A9910C4, _FIXES_Bernstein("stream_rate"));
-	ASSERT_EQ(0xE20F31D1, _FIXES_Bernstein("maxplayers"));
+	ASSERT_EQ(_FIXES_Bernstein("cookielogging"), 0xF59D7562);
+	ASSERT_EQ(_FIXES_Bernstein("concookies"), 0x5DD3AB50);
+	ASSERT_EQ(_FIXES_Bernstein("db_log_queries"), 0x24DF3EEB);
+	ASSERT_EQ(_FIXES_Bernstein("db_logging"), 0xD8FC2F7F);
+	ASSERT_EQ(_FIXES_Bernstein("conseedtime"), 0xCEF27485);
+	ASSERT_EQ(_FIXES_Bernstein("lagcompmode"), 0x0C43D2DD);
+	ASSERT_EQ(_FIXES_Bernstein("minconnectiontime"), 0xB3AAF0EC);
+	ASSERT_EQ(_FIXES_Bernstein("playertimeout"), 0x2E17DD8D);
+	ASSERT_EQ(_FIXES_Bernstein("ackslimit"), 0xED02304A);
+	ASSERT_EQ(_FIXES_Bernstein("messageslimit"), 0x55A5C0C8);
+	ASSERT_EQ(_FIXES_Bernstein("messageholelimit"), 0xBD012555);
+	ASSERT_EQ(_FIXES_Bernstein("chatlogging"), 0x16C6DD58);
+	ASSERT_EQ(_FIXES_Bernstein("weapon_rate"), 0x9420F5BA);
+	ASSERT_EQ(_FIXES_Bernstein("incar_rate"), 0x5C8B384F);
+	ASSERT_EQ(_FIXES_Bernstein("onfoot_rate"), 0x01F89DEB);
+	ASSERT_EQ(_FIXES_Bernstein("maxnpc"), 0x57452FAC);
+	ASSERT_EQ(_FIXES_Bernstein("sleep"), 0x0BAD27EA);
+	ASSERT_EQ(_FIXES_Bernstein("stream_rate"), 0x0A9910C4);
+	ASSERT_EQ(_FIXES_Bernstein("maxplayers"), 0xE20F31D1);
 	
-	ASSERT_EQ(0x5F92A936, _FIXES_Bernstein("announce"));
-	ASSERT_EQ(0xFB6572C5, _FIXES_Bernstein("lanmode"));
-	ASSERT_EQ(0x0B3513EF, _FIXES_Bernstein("query"));
-	ASSERT_EQ(0x7C78F2F5, _FIXES_Bernstein("rcon"));
-	ASSERT_EQ(0xA300A7ED, _FIXES_Bernstein("logqueries"));
-	ASSERT_EQ(0x97EABC6B, _FIXES_Bernstein("timestamp"));
-	ASSERT_EQ(0x57CBE04F, _FIXES_Bernstein("myriad"));
+	ASSERT_EQ(_FIXES_Bernstein("announce"), 0x5F92A936);
+	ASSERT_EQ(_FIXES_Bernstein("lanmode"), 0xFB6572C5);
+	ASSERT_EQ(_FIXES_Bernstein("query"), 0x0B3513EF);
+	ASSERT_EQ(_FIXES_Bernstein("rcon"), 0x7C78F2F5);
+	ASSERT_EQ(_FIXES_Bernstein("logqueries"), 0xA300A7ED);
+	ASSERT_EQ(_FIXES_Bernstein("timestamp"), 0x97EABC6B);
+	ASSERT_EQ(_FIXES_Bernstein("myriad"), 0x57CBE04F);
 	
 	ASSERT_EQ(YHash("Gamemode0", false), _FIXES_Bernstein("gAMEMODE0"));
 	ASSERT_EQ(YHash("Gamemode1", false), _FIXES_Bernstein("gAMEMODE1"));
@@ -1186,7 +1187,7 @@ TEST__ y_stringhash__fixes_switch()
 	ASSERT_EQ(YHash("Myriad", false), _FIXES_Bernstein("mYRIAD"));
 	
 	// Print.
-	//printf("==========");
+	//print("==========");
 	//printf("%04x%04x", _FIXES_Bernstein("GAmemode0") >>> 16, _FIXES_Bernstein("GAmemode0") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("gAMemode1") >>> 16, _FIXES_Bernstein("gAMemode1") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("gaMEmode2") >>> 16, _FIXES_Bernstein("gaMEmode2") & 0xFFFF);
@@ -1220,7 +1221,7 @@ TEST__ y_stringhash__fixes_switch()
 	//printf("%04x%04x", _FIXES_Bernstein("hOsTnAmE") >>> 16, _FIXES_Bernstein("hOsTnAmE") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("PAssWOrd") >>> 16, _FIXES_Bernstein("PAssWOrd") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("biND") >>> 16, _FIXES_Bernstein("biND") & 0xFFFF);
-	//printf("==========");
+	//print("==========");
 	//printf("%04x%04x", _FIXES_Bernstein("cookielogging") >>> 16, _FIXES_Bernstein("cookielogging") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("concookies") >>> 16, _FIXES_Bernstein("concookies") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("db_log_queries") >>> 16, _FIXES_Bernstein("db_log_queries") & 0xFFFF);
@@ -1240,7 +1241,7 @@ TEST__ y_stringhash__fixes_switch()
 	//printf("%04x%04x", _FIXES_Bernstein("sleep") >>> 16, _FIXES_Bernstein("sleep") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("stream_rate") >>> 16, _FIXES_Bernstein("stream_rate") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("maxplayers") >>> 16, _FIXES_Bernstein("maxplayers") & 0xFFFF);
-	//printf("==========");
+	//print("==========");
 	//printf("%04x%04x", _FIXES_Bernstein("announce") >>> 16, _FIXES_Bernstein("announce") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("lanmode") >>> 16, _FIXES_Bernstein("lanmode") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("query") >>> 16, _FIXES_Bernstein("query") & 0xFFFF);
@@ -1248,6 +1249,6 @@ TEST__ y_stringhash__fixes_switch()
 	//printf("%04x%04x", _FIXES_Bernstein("logqueries") >>> 16, _FIXES_Bernstein("logqueries") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("timestamp") >>> 16, _FIXES_Bernstein("timestamp") & 0xFFFF);
 	//printf("%04x%04x", _FIXES_Bernstein("myriad") >>> 16, _FIXES_Bernstein("myriad") & 0xFFFF);
-	//printf("==========");
+	//print("==========");
 }
 

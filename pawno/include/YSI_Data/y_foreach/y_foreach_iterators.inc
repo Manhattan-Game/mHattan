@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -90,21 +91,21 @@ Optional plugins:
 #if _FOREACH_PLAYERS
 	new
 		#if _FOREACH_STREAMED
-			Iterator:StreamedPlayer[MAX_PLAYERS]<MAX_PLAYERS>,
+			ITERATOR__ StreamedPlayer[MAX_PLAYERS]<MAX_PLAYERS>,
 		#endif
-		Iterator:Player<MAX_PLAYERS>;
+		ITERATOR__ Player<MAX_PLAYERS>;
 #endif
 
 #if _FOREACH_BOTS
 	new
 		#if _FOREACH_STREAMED
-			Iterator:StreamedBot[MAX_PLAYERS]<MAX_PLAYERS>,
+			ITERATOR__ StreamedBot[MAX_PLAYERS]<MAX_PLAYERS>,
 		#endif
-		Iterator:Bot<MAX_PLAYERS>,
+		ITERATOR__ Bot<MAX_PLAYERS>,
 		#if _FOREACH_STREAMED
-			Iterator:StreamedCharacter[MAX_PLAYERS]<MAX_PLAYERS>,
+			ITERATOR__ StreamedCharacter[MAX_PLAYERS]<MAX_PLAYERS>,
 		#endif
-		Iterator:Character<MAX_PLAYERS>;
+		ITERATOR__ Character<MAX_PLAYERS>;
 	
 	#define Iter_Single@NPC Iter_Single@Bot
 	#define Iterator@NPC Iterator@Bot
@@ -113,23 +114,23 @@ Optional plugins:
 #if _FOREACH_ACTORS
 	new
 		#if _FOREACH_LOCALS
-			Iterator:LocalActor<MAX_ACTORS>,
+			ITERATOR__ LocalActor<MAX_ACTORS>,
 		#endif
 		#if _FOREACH_STREAMED
-			Iterator:StreamedActor[MAX_PLAYERS]<MAX_ACTORS>,
+			ITERATOR__ StreamedActor[MAX_PLAYERS]<MAX_ACTORS>,
 		#endif
-		Iterator:Actor<MAX_ACTORS>;
+		ITERATOR__ Actor<MAX_ACTORS>;
 #endif
 
 #if _FOREACH_VEHICLES
 	new
 		#if _FOREACH_LOCALS
-			Iterator:LocalVehicle<MAX_VEHICLES>,
+			ITERATOR__ LocalVehicle<MAX_VEHICLES>,
 		#endif
 		#if _FOREACH_STREAMED
-			Iterator:StreamedVehicle[MAX_PLAYERS]<MAX_VEHICLES>,
+			ITERATOR__ StreamedVehicle[MAX_PLAYERS]<MAX_VEHICLES>,
 		#endif
-		Iterator:Vehicle<MAX_VEHICLES>;
+		ITERATOR__ Vehicle<MAX_VEHICLES>;
 #endif
 
 iterfunc stock Range[cellmin](cur, min, max, step = 1)
@@ -137,6 +138,12 @@ iterfunc stock Range[cellmin](cur, min, max, step = 1)
 	if (cur == cellmin) cur = min;
 	else cur += step;
 	return (min <= cur < max || max < cur <= min) ? cur : cellmin;
+}
+
+iterfunc stock N(cur, n)
+{
+	if (++cur == n) return -1;
+	return cur;
 }
 
 iterfunc stock Powers(&iterstate, cur, base)
@@ -297,7 +304,7 @@ iterfunc stock Filter(cur, val, const arr[], size = sizeof (arr))
 	return -1;
 }
 
-#define Iter_Func@None(%0,%1) _ITER<None>(%1,%0)
+#define Iter_Func@None(%0,%1) _ITER<Iter_None_Internal>(%1,%0)
 #define Iterator@None iterstart(-1)
 #define Iter_None_InternalA(%0,%1,%9) Iter_None_Internal(%1,F@s(%1)-1,%9)
 #define Iter_None_InternalB(%0,%2,%1,%9) Iter_None_Internal(%1,F@s(%1)-F@s(%0),%9)
@@ -317,7 +324,7 @@ stock Iter_None_Internal(const array[], size, value)
 	return -1;
 }
 
-#define Iter_Func@All(%0,%1) _ITER<All>(%1,%0)
+#define Iter_Func@All(%0,%1) _ITER<Iter_All_Internal>(%1,%0)
 #define Iterator@All iterstart(-1)
 #define Iter_All_InternalA(%0,%1,%9) Iter_All_Internal(%1,F@s(%1)-1,%9)
 #define Iter_All_InternalB(%0,%2,%1,%9) Iter_All_Internal(%1,F@s(%1)-F@s(%0),%9)
@@ -359,7 +366,7 @@ stock Iter_All_Internal(const array[], size, value)
  *//*------------------------------------------------------------------------**/
 
 #if _FOREACH_CHARACTERS || _FOREACH_VEHICLES || _FOREACH_ACTORS
-	HOOK__ OnScriptInit()
+	public OnYSIInit()
 	{
 		#if _FOREACH_VEHICLES
 			Iter_Clear(Vehicle);
@@ -462,8 +469,15 @@ stock Iter_All_Internal(const array[], size, value)
 				}
 			}
 		#endif
-		return 1;
+		return Iter_OnYSIInit();
 	}
+
+	#if defined _ALS_OnYSIInit
+		#undef OnYSIInit
+	#endif
+	#define _ALS_OnYSIInit
+	#define OnYSIInit(%0) CHAIN_PUBLIC:Iter_OnYSIInit(%0)
+	CHAIN_FORWARD:Iter_OnYSIInit() = 1;
 #endif
 
 /*
@@ -496,9 +510,9 @@ stock Iter_All_Internal(const array[], size, value)
  *//*------------------------------------------------------------------------**/
 
 #if _FOREACH_CHARACTERS
-	HOOK__ OnPlayerConnect(playerid)
+	public OnPlayerConnect(playerid)
 	{
-		P:1("Iter_OnPlayerConnect called: %d, %d", playerid, IsPlayerNPC(playerid));
+		Debug_Print1("Iter_OnPlayerConnect called: %d, %d", playerid, IsPlayerNPC(playerid));
 		#if _FOREACH_BOTS
 			Iter_Add(Character, playerid);
 			if (IsPlayerNPC(playerid))
@@ -512,9 +526,16 @@ stock Iter_All_Internal(const array[], size, value)
 				Iter_Add(Player, playerid);
 		#endif
 			}
-		P:2("Iter_OnPlayerConnect end");
-		return 1;
+		Debug_Print2("Iter_OnPlayerConnect end");
+		return Iter_OnPlayerConnect(playerid);
 	}
+
+	#if defined _ALS_OnPlayerConnect
+		#undef OnPlayerConnect
+	#endif
+	#define _ALS_OnPlayerConnect
+	#define OnPlayerConnect(%0) CHAIN_PUBLIC:Iter_OnPlayerConnect(%0)
+	CHAIN_FORWARD:Iter_OnPlayerConnect(playerid) = 1;
 	
 	/*---------------------------------------------------------------------*//**
 	 *
@@ -527,11 +548,19 @@ stock Iter_All_Internal(const array[], size, value)
 	 * </remarks>
 	 *//*--------------------------------------------------------------------**/
 	
-	HOOK__ OnPlayerDisconnect(playerid, reason)
+	public OnPlayerDisconnect(playerid, reason)
 	{
-		YSI_SetTimerEx("Iter_OPDCInternal", 0, false, "i", playerid);
-		return 1;
+		new ret = Iter_OnPlayerDisconnect(playerid, reason);
+		YSI_SetTimerEx__("Iter_OPDCInternal", 0, false, "i", playerid);
+		return ret;
 	}
+
+	#if defined _ALS_OnPlayerDisconnect
+		#undef OnPlayerDisconnect
+	#endif
+	#define _ALS_OnPlayerDisconnect
+	#define OnPlayerDisconnect(%0) CHAIN_PUBLIC:Iter_OnPlayerDisconnect(%0)
+	CHAIN_FORWARD:Iter_OnPlayerDisconnect(playerid, reason) = 1;
 	
 	/*---------------------------------------------------------------------*//**
 	 *
@@ -564,9 +593,9 @@ stock Iter_All_Internal(const array[], size, value)
 	}
 
 	#if _FOREACH_STREAMED
-		HOOK__ OnPlayerStreamIn(playerid, forplayerid)
+		public OnPlayerStreamIn(playerid, forplayerid)
 		{
-			P:1("Iter_OnPlayerStreamIn called: %d, %d", playerid, forplayerid);
+			Debug_Print1("Iter_OnPlayerStreamIn called: %d, %d", playerid, forplayerid);
 			#if _FOREACH_BOTS
 				Iter_Add(StreamedCharacter[forplayerid], playerid);
 				if (IsPlayerNPC(playerid))
@@ -580,13 +609,21 @@ stock Iter_All_Internal(const array[], size, value)
 					Iter_Add(StreamedPlayer[forplayerid], playerid);
 			#endif
 				}
-			P:2("Iter_OnPlayerStreamIn end");
-			return 1;
+			Debug_Print2("Iter_OnPlayerStreamIn end");
+			return Iter_OnPlayerStreamIn(playerid, forplayerid);
 		}
 
-		HOOK__ OnPlayerStreamOut(playerid, forplayerid)
+		#if defined _ALS_OnPlayerStreamIn
+			#undef OnPlayerStreamIn
+		#endif
+		#define _ALS_OnPlayerStreamIn
+		#define OnPlayerStreamIn(%0) CHAIN_PUBLIC:Iter_OnPlayerStreamIn(%0)
+		CHAIN_FORWARD:Iter_OnPlayerStreamIn(playerid, forplayerid) = 1;
+
+		public OnPlayerStreamOut(playerid, forplayerid)
 		{
-			P:1("Iter_OnPlayerStreamOut called: %d, %d", playerid, forplayerid);
+			Debug_Print1("Iter_OnPlayerStreamOut called: %d, %d", playerid, forplayerid);
+			new ret = Iter_OnPlayerStreamOut(playerid, forplayerid);
 			#if _FOREACH_BOTS
 				Iter_Remove(StreamedCharacter[forplayerid], playerid);
 				if (IsPlayerNPC(playerid))
@@ -600,11 +637,23 @@ stock Iter_All_Internal(const array[], size, value)
 					Iter_Remove(StreamedPlayer[forplayerid], playerid);
 			#endif
 				}
-			P:2("Iter_OnPlayerStreamOut end");
-			return 1;
+			Debug_Print2("Iter_OnPlayerStreamOut end");
+			return ret;
 		}
+
+		#if defined _ALS_OnPlayerStreamOut
+			#undef OnPlayerStreamOut
+		#endif
+		#define _ALS_OnPlayerStreamOut
+		#define OnPlayerStreamOut(%0) CHAIN_PUBLIC:Iter_OnPlayerStreamOut(%0)
+		CHAIN_FORWARD:Iter_OnPlayerStreamOut(playerid, forplayerid) = 1;
 	#endif
 #endif
+
+static stock const
+	YSI_gsIter_VehicleDo[] = "Iter_VehicleDo",
+	YSI_gsIter_ActorDo[] = "Iter_ActorDo",
+	YSI_gsii[] = "ii";
 
 /*
 
@@ -620,7 +669,9 @@ stock Iter_All_Internal(const array[], size, value)
 */
 
 #if _FOREACH_ACTORS
-	remotefunc stock void:Iter_ActorDo(bool:add, actorid)
+	forward void:Iter_ActorDo(bool:add, actorid);
+
+	public void:Iter_ActorDo(bool:add, actorid)
 	{
 		// Because there may be multiple scripts running, we need to tell all of
 		// them when an actor is created or destroyed.
@@ -634,7 +685,7 @@ stock Iter_All_Internal(const array[], size, value)
 	{
 		new
 			ret = CreateActor(modelid, X, Y, Z, Rotation);
-		broadcastfunc Iter_ActorDo(true, ret);
+		CallRemoteFunction(YSI_gsIter_ActorDo, YSI_gsii, true, ret);
 		#if _FOREACH_LOCALS
 			Iter_Add(LocalActor, ret);
 		#endif
@@ -650,7 +701,7 @@ stock Iter_All_Internal(const array[], size, value)
 	
 	stock Iter_DestroyActor(actorid)
 	{
-		broadcastfunc Iter_ActorDo(false, actorid);
+		CallRemoteFunction(YSI_gsIter_ActorDo, YSI_gsii, false, actorid);
 		#if _FOREACH_LOCALS
 			Iter_Remove(LocalActor, actorid);
 		#endif
@@ -665,21 +716,36 @@ stock Iter_All_Internal(const array[], size, value)
 	#define DestroyActor Iter_DestroyActor
 
 	#if _FOREACH_STREAMED
-		HOOK__ OnActorStreamIn(actorid, forplayerid)
+		public OnActorStreamIn(actorid, forplayerid)
 		{
-			P:1("Iter_OnActorStreamIn called: %d, %d", actorid, forplayerid);
+			Debug_Print1("Iter_OnActorStreamIn called: %d, %d", actorid, forplayerid);
 			Iter_Add(StreamedActor[forplayerid], actorid);
-			P:2("Iter_OnActorStreamIn end");
-			return 1;
+			Debug_Print2("Iter_OnActorStreamIn end");
+			return Iter_OnActorStreamIn(actorid, forplayerid);
 		}
 
-		HOOK__ OnActorStreamOut(actorid, forplayerid)
+		#if defined _ALS_OnActorStreamIn
+			#undef OnActorStreamIn
+		#endif
+		#define _ALS_OnActorStreamIn
+		#define OnActorStreamIn(%0) CHAIN_PUBLIC:Iter_OnActorStreamIn(%0)
+		CHAIN_FORWARD:Iter_OnActorStreamIn(actorid, forplayerid) = 1;
+
+		public OnActorStreamOut(actorid, forplayerid)
 		{
-			P:1("Iter_OnActorStreamOut called: %d, %d", actorid, forplayerid);
+			new ret = Iter_OnActorStreamOut(actorid, forplayerid);
+			Debug_Print1("Iter_OnActorStreamOut called: %d, %d", actorid, forplayerid);
 			Iter_Remove(StreamedActor[forplayerid], actorid);
-			P:2("Iter_OnActorStreamOut end");
-			return 1;
+			Debug_Print2("Iter_OnActorStreamOut end");
+			return ret;
 		}
+
+		#if defined _ALS_OnActorStreamOut
+			#undef OnActorStreamOut
+		#endif
+		#define _ALS_OnActorStreamOut
+		#define OnActorStreamOut(%0) CHAIN_PUBLIC:Iter_OnActorStreamOut(%0)
+		CHAIN_FORWARD:Iter_OnActorStreamOut(actorid, forplayerid) = 1;
 	#endif
 #endif
 
@@ -696,8 +762,17 @@ stock Iter_All_Internal(const array[], size, value)
 
 */
 
+#if defined SAMP_CONST_CORRECT || defined FIXES_TAG_CORRECT
+	#define YSI_ADD_SIREN_TAG bool
+#else
+	#define YSI_ADD_SIREN_TAG _
+#endif
+
 #if _FOREACH_VEHICLES
-	remotefunc stock void:Iter_VehicleDo(bool:add, vehicleid)
+
+	forward void:Iter_VehicleDo(bool:add, vehicleid);
+	
+	public void:Iter_VehicleDo(bool:add, vehicleid)
 	{
 		// Because there may be multiple scripts running, we need to tell all of
 		// them when a vehicle is created or destroyed.
@@ -707,20 +782,23 @@ stock Iter_All_Internal(const array[], size, value)
 			Iter_Remove(Vehicle, vehicleid);
 	}
 	
-	stock Iter_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:angle, color1, color2, respawn_delay, addsiren = 0)
+	stock Iter_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:angle, color1, color2, respawn_delay, YSI_ADD_SIREN_TAG:addSiren = false)
 	{
-		#if _FOREACH_ACTORS
+		#if defined GetActorPos
 			new
-				ret = CreateVehicle(modelid, x, y, z, angle, color1, color2, respawn_delay, addsiren);
+				ret = CreateVehicle(modelid, x, y, z, angle, color1, color2, respawn_delay, addSiren);
 		#else
-			#pragma unused addsiren
+			#pragma unused addSiren
 			new
 				ret = CreateVehicle(modelid, x, y, z, angle, color1, color2, respawn_delay);
 		#endif
-		broadcastfunc Iter_VehicleDo(true, ret);
-		#if _FOREACH_LOCALS
-			Iter_Add(LocalVehicle, ret);
-		#endif
+		if (ret)
+		{
+			CallRemoteFunction(YSI_gsIter_VehicleDo, YSI_gsii, true, ret);
+			#if _FOREACH_LOCALS
+				Iter_Add(LocalVehicle, ret);
+			#endif
+		}
 		return ret;
 	}
 	
@@ -735,10 +813,13 @@ stock Iter_All_Internal(const array[], size, value)
 	{
 		new
 			ret = AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, angle, color1, color2);
-		broadcastfunc Iter_VehicleDo(true, ret);
-		#if _FOREACH_LOCALS
-			Iter_Add(LocalVehicle, ret);
-		#endif
+		if (ret)
+		{
+			CallRemoteFunction(YSI_gsIter_VehicleDo, YSI_gsii, true, ret);
+			#if _FOREACH_LOCALS
+				Iter_Add(LocalVehicle, ret);
+			#endif
+		}
 		return ret;
 	}
 	
@@ -749,20 +830,23 @@ stock Iter_All_Internal(const array[], size, value)
 	#endif
 	#define AddStaticVehicle Iter_AddStaticVehicle
 	
-	stock Iter_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:angle, color1, color2, respawn_delay, addsiren = 0)
+	stock Iter_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:angle, color1, color2, respawn_delay, YSI_ADD_SIREN_TAG:addSiren = false)
 	{
-		#if _FOREACH_ACTORS
+		#if defined GetActorPos
 			new
-				ret = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, angle, color1, color2, respawn_delay, addsiren);
+				ret = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, angle, color1, color2, respawn_delay, addSiren);
 		#else
-			#pragma unused addsiren
+			#pragma unused addSiren
 			new
 				ret = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, angle, color1, color2, respawn_delay);
 		#endif
-		broadcastfunc Iter_VehicleDo(true, ret);
-		#if _FOREACH_LOCALS
-			Iter_Add(LocalVehicle, ret);
-		#endif
+		if (ret)
+		{
+			CallRemoteFunction(YSI_gsIter_VehicleDo, YSI_gsii, true, ret);
+			#if _FOREACH_LOCALS
+				Iter_Add(LocalVehicle, ret);
+			#endif
+		}
 		return ret;
 	}
 	
@@ -775,7 +859,7 @@ stock Iter_All_Internal(const array[], size, value)
 	
 	stock Iter_DestroyVehicle(vehicleid)
 	{
-		broadcastfunc Iter_VehicleDo(false, vehicleid);
+		CallRemoteFunction(YSI_gsIter_VehicleDo, YSI_gsii, false, vehicleid);
 		#if _FOREACH_LOCALS
 			Iter_Remove(LocalVehicle, vehicleid);
 		#endif
@@ -790,21 +874,129 @@ stock Iter_All_Internal(const array[], size, value)
 	#define DestroyVehicle Iter_DestroyVehicle
 
 	#if _FOREACH_STREAMED
-		HOOK__ OnVehicleStreamIn(vehicleid, forplayerid)
+		public OnVehicleStreamIn(vehicleid, forplayerid)
 		{
-			P:1("Iter_OnVehicleStreamIn called: %d, %d", vehicleid, forplayerid);
+			Debug_Print1("Iter_OnVehicleStreamIn called: %d, %d", vehicleid, forplayerid);
 			Iter_Add(StreamedVehicle[forplayerid], vehicleid);
-			P:2("Iter_OnVehicleStreamIn end");
-			return 1;
+			Debug_Print2("Iter_OnVehicleStreamIn end");
+			return Iter_OnVehicleStreamIn(vehicleid, forplayerid);
 		}
 
-		HOOK__ OnVehicleStreamOut(vehicleid, forplayerid)
+		#if defined _ALS_OnVehicleStreamIn
+			#undef OnVehicleStreamIn
+		#endif
+		#define _ALS_OnVehicleStreamIn
+		#define OnVehicleStreamIn(%0) CHAIN_PUBLIC:Iter_OnVehicleStreamIn(%0)
+		CHAIN_FORWARD:Iter_OnVehicleStreamIn(vehicleid, forplayerid) = 1;
+
+		public OnVehicleStreamOut(vehicleid, forplayerid)
 		{
-			P:1("Iter_OnVehicleStreamOut called: %d, %d", vehicleid, forplayerid);
+			new ret = Iter_OnVehicleStreamOut(vehicleid, forplayerid);
+			Debug_Print1("Iter_OnVehicleStreamOut called: %d, %d", vehicleid, forplayerid);
 			Iter_Remove(StreamedVehicle[forplayerid], vehicleid);
-			P:2("Iter_OnVehicleStreamOut end");
-			return 1;
+			Debug_Print2("Iter_OnVehicleStreamOut end");
+			return ret;
 		}
+
+		#if defined _ALS_OnVehicleStreamOut
+			#undef OnVehicleStreamOut
+		#endif
+		#define _ALS_OnVehicleStreamOut
+		#define OnVehicleStreamOut(%0) CHAIN_PUBLIC:Iter_OnVehicleStreamOut(%0)
+		CHAIN_FORWARD:Iter_OnVehicleStreamOut(vehicleid, forplayerid) = 1;
 	#endif
 #endif
+
+iterfunc stock VehicleOccupant(vehicleid = INVALID_VEHICLE_ID, bool:includeDriver = true, bool:includePassenger = true)
+{
+	if (includeDriver && includePassenger)
+	{
+		if (vehicleid == INVALID_VEHICLE_ID)
+		{
+			FOREACH__ (new i : Player)
+			{
+				if (IsPlayerInAnyVehicle(i))
+				{
+					YIELD__ return i;
+				}
+			}
+		}
+		else
+		{
+			FOREACH__ (new i : Player)
+			{
+				if (GetPlayerVehicleID(i) == vehicleid)
+				{
+					YIELD__ return i;
+				}
+			}
+		}
+	}
+	else if (includeDriver)
+	{
+		if (vehicleid == INVALID_VEHICLE_ID)
+		{
+			FOREACH__ (new i : Player)
+			{
+				if (GetPlayerState(i) == PLAYER_STATE_DRIVER)
+				{
+					YIELD__ return i;
+					// You can only have one driver.
+					return;
+				}
+			}
+		}
+		else
+		{
+			FOREACH__ (new i : Player)
+			{
+				if (GetPlayerVehicleID(i) == vehicleid && GetPlayerState(i) == PLAYER_STATE_DRIVER)
+				{
+					YIELD__ return i;
+					// You can only have one driver.
+					return;
+				}
+			}
+		}
+	}
+	else if (includePassenger)
+	{
+		if (vehicleid == INVALID_VEHICLE_ID)
+		{
+			FOREACH__ (new i : Player)
+			{
+				if (GetPlayerState(i) == PLAYER_STATE_PASSENGER)
+				{
+					YIELD__ return i;
+				}
+			}
+		}
+		else
+		{
+			FOREACH__ (new i : Player)
+			{
+				if (GetPlayerVehicleID(i) == vehicleid && GetPlayerState(i) == PLAYER_STATE_PASSENGER)
+				{
+					YIELD__ return i;
+				}
+			}
+		}
+	}
+	// Else no loop - we want everyone who is in a vehicle, but not a driver or
+	// a passenger.  I think that limits us to captives in the boot and Sideshow
+	// Bob strapped to the underside.
+}
+#define Iterator@VehicleOccupant iteryield
+
+iterfunc stock VehiclePassenger(vehicleid = INVALID_VEHICLE_ID)
+{
+	Iter_Func@VehicleOccupant(vehicleid, false, true);
+}
+#define Iterator@VehiclePassenger iteryield
+
+iterfunc stock VehicleDriver(vehicleid = INVALID_VEHICLE_ID)
+{
+	Iter_Func@VehicleOccupant(vehicleid, true, false);
+}
+#define Iterator@VehicleDriver iteryield
 

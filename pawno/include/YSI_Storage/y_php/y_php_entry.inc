@@ -20,7 +20,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -47,6 +47,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -111,7 +112,7 @@ forward _PHP_Ignore(index, response, data[]);
 
 stock PHP_SendString(string:name[], string:value[], bool:priority = false)
 {
-	if (isnull(value))
+	if (IsNull(value))
 	{
 		return _PHP_Send(name, NULL, priority, e_PHP_SEND_TYPE_STRING);
 	}
@@ -224,7 +225,7 @@ MASTER_TASK__ _PHP_ForceSend[5000]()
 	if (YSI_g_sIndex > PHP_HEADER_LENGTH)
 	{
 		// Send the data.
-		HTTP(0, HTTP_POST, PHP_SEND, YSI_g_sBuffer, "_PHP_Ignore");
+		YSI_HTTP__(0, HTTP_POST, PHP_SEND, YSI_g_sBuffer, "_PHP_Ignore");
 		YSI_g_sIndex = PHP_HEADER_LENGTH;
 		// I don't think this is actually REQUIRED, but does no harm.
 		YSI_g_sBuffer[PHP_HEADER_LENGTH] = '\0';
@@ -254,22 +255,28 @@ MASTER_HOOK__ OnScriptInit()
 {
 	if (!strcmp(PHP_RECEIVE, "http://", true, 7))
 	{
-		P:E("PHP_RECEIVE should exclude \"http://\".");
+		Debug_Error("PHP_RECEIVE should exclude \"http://\".");
 	}
-	P:I("Starting PHP Connection...");
-	P:I("Note that messages may take a few seconds to get going.");
+	Debug_Info("Starting PHP Connection...");
+	Debug_Info("Note that messages may take a few seconds to get going.");
 	//YSI_g_sLen = strlen(PHP_RECEIVE) + 4;
-	//SetTimer("_PHP_FireOne", 50, 0);
+	//SetTimer("_PHP_FireOne", 50, false);
 	// Send '0' only once at server start to reset PHP.
-	HTTP(0, HTTP_HEAD, PHP_RECEIVE "?ID=0", "", "_PHP_Result");
+	YSI_HTTP__(0, HTTP_HEAD, PHP_RECEIVE "?ID=0", YSI_EMPTY, "_PHP_Result");
 	//new TODO;
 	DEFER__ _PHP_FireOne[500](0, 0);
 	DEFER__ _PHP_FireOne[5500](0, 0);
-	//SetTimer("_PHP_FireOne", 500, 0);
-	//SetTimer("_PHP_FireOne", 5500, 0);
+	//SetTimer("_PHP_FireOne", 500, false);
+	//SetTimer("_PHP_FireOne", 5500, false);
 	//PHP_FireOne();
 	//PHP_FireOne();
 	//PHP_FireOne();
+	return 1;
+}
+
+MASTER_REHOOK__ OnScriptInit()
+{
+	#pragma unused playerid
 	return 1;
 }
 
@@ -281,8 +288,8 @@ timer _PHP_FireOne[10](res, to)
 	if (YSI_g_sID == 0) YSI_g_sID = 1;
 	//valstr(sAddr[YSI_g_sLen], YSI_g_sID);
 	format(sAddr, sizeof (sAddr), PHP_RECEIVE "?ID=%d&RE=%d&TO=%d", YSI_g_sID, res, to);
-	P:1("_PHP_FireOne request: %s: ", sAddr);
-	HTTP(YSI_g_sID, HTTP_GET, sAddr, "", "_PHP_Result");
+	Debug_Print1("_PHP_FireOne request: %s: ", sAddr);
+	YSI_HTTP__(YSI_g_sID, HTTP_GET, sAddr, YSI_EMPTY, "_PHP_Result");
 }
 
 static stock PHP_GetNum32(const str[])
@@ -307,13 +314,13 @@ static stock bool:PHP_GetBool(str[])
 
 public _PHP_Ignore(index, response, data[])
 {
-	P:1("_PHP_Ignore: %i, %i, %s", index, response, data);
+	Debug_Print1("_PHP_Ignore: %i, %i, %s", index, response, data);
 	return 0;
 }
 
 public _PHP_Result(index, response, data[])
 {
-	P:1("_PHP_Result called: %d %d %s", index, response, data);
+	Debug_Print1("_PHP_Result called: %d %d %s", index, response, data);
 	if (response == 200)
 	{
 		// Fire a replacement.
@@ -326,10 +333,10 @@ public _PHP_Result(index, response, data[])
 			{
 				case '1':
 				{
-					//P:I("PHP: Got response.");
+					//Debug_Info("PHP: Got response.");
 					// Now parse the data.
 					static
-						sFunc[32],
+						sFunc[FUNCTION_LENGTH],
 						bool:sTrue = true,
 						bool:sFalse = false;
 					for (new i = 1, len = strlen(data); i < len; )
@@ -344,7 +351,7 @@ public _PHP_Result(index, response, data[])
 							i += 5;
 							if (data[i] == 255)
 							{
-								P:5("_PHP_Result: Got number.");
+								Debug_Print5("_PHP_Result: Got number.");
 								// Number.
 								/*if (data[i - 1] & 0x40)
 								{
@@ -359,7 +366,7 @@ public _PHP_Result(index, response, data[])
 							}
 							else
 							{
-								P:5("_PHP_Result: Got string.");
+								Debug_Print5("_PHP_Result: Got string.");
 								// String.
 								flen += i;
 								data[flen] = '\0';
@@ -380,7 +387,7 @@ public _PHP_Result(index, response, data[])
 								sFormat[64];
 							++i;
 							sFormat[params] = '\0';
-							P:5("_PHP_Result: Got function %s.", sFunc);
+							Debug_Print5("_PHP_Result: Got function %s.", sFunc);
 							while (params--)
 							{
 								if (data[i] & 0x80)
@@ -389,7 +396,7 @@ public _PHP_Result(index, response, data[])
 									i += 5;
 									if (data[i] == 255)
 									{
-										P:5("_PHP_Result: Got number parameter (%d).", flen);
+										Debug_Print5("_PHP_Result: Got number parameter (%d).", flen);
 										sFormat[params] = 'i';
 										// Number.
 										#emit LOAD.S.pri flen
@@ -405,7 +412,7 @@ public _PHP_Result(index, response, data[])
 										// String
 										flen += i;
 										data[flen] = '\0';
-										P:5("_PHP_Result: Got string parameter (%d: %s).", flen, data[i]);
+										Debug_Print5("_PHP_Result: Got string parameter (%d: %s).", flen, data[i]);
 										#emit LOAD.S.pri i
 										#emit LOAD.S.alt data // Not ADDR.alt.
 										#emit IDXADDR
@@ -416,20 +423,20 @@ public _PHP_Result(index, response, data[])
 								}
 								else if (data[i] == '1')
 								{
-									P:5("_PHP_Result: Got true parameter.");
+									Debug_Print5("_PHP_Result: Got true parameter.");
 									sFormat[params] = 'i';
 									#emit PUSH.C sTrue
 									++i;
 								}
 								else
 								{
-									P:5("_PHP_Result: Got false parameter.");
+									Debug_Print5("_PHP_Result: Got false parameter.");
 									sFormat[params] = 'i';
 									#emit PUSH.C sFalse
 									++i;
 								}
 							}
-							P:5("_PHP_Result: Do function call.");
+							Debug_Print5("_PHP_Result: Do function call.");
 							// Push the static parameters and call the function.
 							#emit PUSH.C         sFormat
 							#emit PUSH.C         sFunc
@@ -457,13 +464,13 @@ public _PHP_Result(index, response, data[])
 						}
 						else if (data[i] == '1')
 						{
-							P:5("_PHP_Result: Got true.");
+							Debug_Print5("_PHP_Result: Got true.");
 							CallRemoteFunction(sFunc, "i", sTrue);
 							++i;
 						}
 						else
 						{
-							P:5("_PHP_Result: Got false.");
+							Debug_Print5("_PHP_Result: Got false.");
 							CallRemoteFunction(sFunc, "i", sFalse);
 							++i;
 						}
@@ -471,7 +478,7 @@ public _PHP_Result(index, response, data[])
 				}
 				case '\0':
 				{
-					P:E("PHP: Empty response.");
+					Debug_Error("PHP: Empty response.");
 				}
 				default:
 				{
@@ -480,26 +487,26 @@ public _PHP_Result(index, response, data[])
 					{
 						case '0':
 						{
-							P:E("PHP: ID out of bounds.");
+							Debug_Error("PHP: ID out of bounds.");
 						}
 						case '1':
 						{
-							P:E("PHP: Could not open shared memory.");
+							Debug_Error("PHP: Could not open shared memory.");
 						}
 						case '2':
 						{
-							//P:E("PHP: ID out of bounds.");
+							//Debug_Error("PHP: ID out of bounds.");
 							// Not an error!
 						}
 						case '3':
 						{
-							P:F("PHP: Server does not support Shared Memory Extensions (shmop).");
+							Debug_Fatal("PHP: Server does not support Shared Memory Extensions (shmop).");
 							// Fatal error (one of only two ever)!
 							return;
 						}
 						default:
 						{
-							P:E("PHP: Unknown error: %s.", data[1]);
+							Debug_Error("PHP: Unknown error: %s.", data[1]);
 						}
 					}
 				}

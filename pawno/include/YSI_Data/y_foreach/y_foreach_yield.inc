@@ -35,13 +35,13 @@ enum E_ITER_YIELD
 static stock
 	YSI_g_sIteratorStack[MAX_NESTED_ITERATORS][E_ITER_YIELD],
 	YSI_g_sStack[MAX_YIELD_MEMORY],
-	YSI_g_sStackPtr;
+	YSI_g_sStackPtr = 0;
 
 stock
 	YSI_gIteratorDepth = -1;
 
 static
-	YSI_g_sPtr;
+	YSI_g_sPtr = 0;
 #pragma unused YSI_g_sPtr
 
 /**
@@ -85,7 +85,7 @@ stock bool:Iter_YieldEnter()
 	// often be a non-zero jump address (i.e. the return address).
 	if (++YSI_gIteratorDepth >= MAX_NESTED_ITERATORS)
 	{
-		P:E("Too many nested `foreach` yield loops.  Increase `MAX_NESTED_ITERATORS`.");
+		Debug_Error("Too many nested `foreach` yield loops.  Increase `MAX_NESTED_ITERATORS`.");
 		return true;
 	}
 	{}
@@ -165,8 +165,8 @@ stock bool:Iter_YieldEnter()
  */
 
 static stock
-	size_l,
-	src_l;
+	size_l = 0,
+	src_l = 0;
 
 stock bool:Iter_YieldLoop()
 {

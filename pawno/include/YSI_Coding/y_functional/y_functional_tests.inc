@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -70,9 +71,9 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-#define FUNC_CHECK_ARR(%0,%1) for (new __i, __j = min(sizeof (%0), sizeof (%1)); __i != __j; ++__i) ASSERT(%0[__i] == %1[__i])
+#define FUNC_CHECK_ARR(%0,%1) for (new __i = 0, __j = min(sizeof (%0), sizeof (%1)); __i != __j; ++__i) ASSERT(%0[__i] == %1[__i])
 
-TEST__ FUNC_Map1()
+@test(.group = "y_functional") FUNC_Map1()
 {
 	new
 		a0[10] = {0, 1, 2, ...},
@@ -85,7 +86,7 @@ TEST__ FUNC_Map1()
 	FUNC_CHECK_ARR(a0, a1);
 }
 
-TEST__ FUNC_Map2()
+@test(.group = "y_functional") FUNC_Map2()
 {
 	new
 		a0[10] = {0, 1, 2, ...},
@@ -101,7 +102,7 @@ TEST__ FUNC_Map2()
 	FUNC_CHECK_ARR(a3, a1);
 }
 
-TEST__ FUNC_Map3()
+@test(.group = "y_functional") FUNC_Map3()
 {
 	new
 		a0[10] = {0, 1, 2, ...},
@@ -113,7 +114,7 @@ TEST__ FUNC_Map3()
 	FUNC_CHECK_ARR(a3, a1);
 }
 
-TEST__ FUNC_Map_1()
+@test(.group = "y_functional") FUNC_Map_1()
 {
 	new
 		a0[10] = {0, 1, 2, ...},
@@ -126,7 +127,7 @@ TEST__ FUNC_Map_1()
 	FUNC_CHECK_ARR(a0, a1);
 }
 
-TEST__ FUNC_Map_2()
+@test(.group = "y_functional") FUNC_Map_2()
 {
 	new
 		a0[10] = {0, 1, 2, ...},
@@ -135,7 +136,7 @@ TEST__ FUNC_Map_2()
 	FUNC_CHECK_ARR(a0, a1);
 }
 
-TEST__ FUNC_MapIdx()
+@test(.group = "y_functional") FUNC_MapIdx()
 {
 	new
 		a0[10] = {1, ...},
@@ -148,7 +149,7 @@ TEST__ FUNC_MapIdx()
 	FUNC_CHECK_ARR(a0, a1);
 }
 
-TEST__ FUNC_MapIdx_()
+@test(.group = "y_functional") FUNC_MapIdx_()
 {
 	new
 		a0[10] = {0, 1, 2, ...},
@@ -162,7 +163,7 @@ TEST__ FUNC_MapIdx_()
 	FUNC_CHECK_ARR(a0, a1);
 }
 
-TEST__ FUNC_ZipWith()
+@test(.group = "y_functional") FUNC_ZipWith()
 {
 	new
 		a0[10] = { 0,  1,  2, ...},
@@ -174,7 +175,7 @@ TEST__ FUNC_ZipWith()
 	FUNC_CHECK_ARR(a2, a3);
 }
 
-TEST__ FUNC_ZipWith3()
+@test(.group = "y_functional") FUNC_ZipWith3()
 {
 	new
 		a0[10] = { 0,  1,  2, ...},
@@ -187,40 +188,40 @@ TEST__ FUNC_ZipWith3()
 	FUNC_CHECK_ARR(a2, a3);
 }
 
-TEST__ FUNC_FoldR1()
+@test(.group = "y_functional") FUNC_FoldR1()
 {
 	new
 		a0[10] = { 0,  1,  2, ...},
-		ret;
+		ret = 0;
 	ret = FoldR({_0 * _1}, a0, 10);
 	ASSERT_ZE(ret);
 }
 
-TEST__ FUNC_FoldR2()
+@test(.group = "y_functional") FUNC_FoldR2()
 {
 	new
 		a0[10] = { 1,  2,  3, ...},
-		ret;
+		ret = 0;
 	ret = FoldR({_0 * _1}, a0, 10);
 	ASSERT_EQ(ret, 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 10);
 }
 
-TEST__ FUNC_FoldL1()
+@test(.group = "y_functional") FUNC_FoldL1()
 {
 	new
 		a0[10] = { 1,  2,  3, ...},
-		ret;
+		ret = 0;
 	ret = FoldL({_0 * _1}, 11, a0);
 	ASSERT_EQ(ret, 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11);
 }
 
-TEST__ FUNC_FoldL_multiple()
+@test(.group = "y_functional") FUNC_FoldL_multiple()
 {
 	new
 		a0[10] = { 1,  2,  3, ...},
-		ret;
+		ret = 0;
 	ret = FoldL({ _0 * _1 }, 11, a0) + FoldL({ _0 + _1 }, 11, a0);
-	ASSERT_EQ(ret, 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11);
+	ASSERT_EQ(ret,1*2*3*4*5*6*7*8*9*10*11+1+2+3+4+5+6+7+8+9+10+11);
 }
 
 static FUNC_FoldL_nested_Add(a, b)
@@ -228,38 +229,38 @@ static FUNC_FoldL_nested_Add(a, b)
 	return a + b;
 }
 
-TEST__ FUNC_FoldL_params()
+@test(.group = "y_functional") FUNC_FoldL_params()
 {
 	new
 		a0[10] = { 1,  2,  3, ...},
-		ret;
+		ret = 0;
 	ret = FUNC_FoldL_nested_Add(FoldL({ _0 * _1 }, 11, a0), FoldL({ _0 + _1 }, 11, a0));
-	ASSERT_EQ(ret, 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11);
+	ASSERT_EQ(ret,1*2*3*4*5*6*7*8*9*10*11+1+2+3+4+5+6+7+8+9+10+11);
 }
 
-TEST__ FUNC_FoldL_nested()
+@test(.group = "y_functional") FUNC_FoldL_nested()
 {
 	new
 		a0[10] = { 1,  2,  3, ...},
-		ret;
+		ret = 0;
 	ret = FoldL({ _0 * _1 }, FoldL({ _0 + _1 }, 11, a0), a0);
-	ASSERT_EQ(ret, 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11));
+	ASSERT_EQ(ret,1*2*3*4*5*6*7*8*9*10*(1+2+3+4+5+6+7+8+9+10+11));
 }
 
-TEST__ FUNC_FoldR3()
+@test(.group = "y_functional") FUNC_FoldR3()
 {
 	new
 		a0[10] = { 1,  2,  3, ...},
-		ret;
+		ret = 0;
 	ret = FoldR({_0 * _1}, a0, 15, 0);
 	ASSERT_EQ(ret, 15);
 }
 
-TEST__ FUNC_FoldL2()
+@test(.group = "y_functional") FUNC_FoldL2()
 {
 	new
 		a0[10] = { 1,  2,  3, ...},
-		ret;
+		ret = 0;
 	ret = FoldL({_0 * _1}, 99, a0, 0);
 	ASSERT_EQ(ret, 99);
 }

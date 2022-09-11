@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -70,7 +71,7 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-TEST__ y_malloc_100()
+@test(.group = "y_malloc") y_malloc_100()
 {
 	new
 		Alloc:a = malloc(1000);
@@ -78,7 +79,7 @@ TEST__ y_malloc_100()
 	free(a);
 }
 
-TEST__ y_malloc_2_100()
+@test(.group = "y_malloc") y_malloc_2_100()
 {
 	new
 		Alloc:a = malloc(100);
@@ -88,10 +89,10 @@ TEST__ y_malloc_2_100()
 		Alloc:b = malloc(100);
 	ASSERT(bool:b);
 	free(a);
-	ASSERT_EQ(a, b);
+	ASSERT_EQ(_:a, _:b);
 }
 
-TEST__ y_malloc_2000()
+@test(.group = "y_malloc") y_malloc_2000()
 {
 	new
 		Alloc:a = malloc(2000);
@@ -99,7 +100,7 @@ TEST__ y_malloc_2000()
 	free(a);
 }
 
-TEST__ y_malloc_clear()
+@test(.group = "y_malloc") y_malloc_clear()
 {
 	new Alloc:mem[3];
 	mem[0] = malloc(2);
@@ -113,18 +114,18 @@ TEST__ y_malloc_clear()
 	free(mem[0]);
 }
 
-TEST__ y_malloc_Loads()
+@test(.group = "y_malloc") y_malloc_Loads()
 {
 	// Allocate slightly more memory than we have room for.
 	new
 		Alloc:a = malloc(MALLOC_MEMORY + 1);
-	ASSERT_EQ(a, NO_ALLOC);
+	ASSERT_EQ(_:a, _:NO_ALLOC);
 	ASSERT(!free(a));
 }
 
 #define MALLOC_TEST(%0) for (new Alloc:a = malloc(%0); __once && a; free(a))
 
-TEST__ y_malloc_mset()
+@test(.group = "y_malloc") y_malloc_mset()
 {
 	MALLOC_TEST(10)
 	{
@@ -134,7 +135,7 @@ TEST__ y_malloc_mset()
 	}
 }
 
-TEST__ y_malloc_mget()
+@test(.group = "y_malloc") y_malloc_mget()
 {
 	MALLOC_TEST(10)
 	{
@@ -146,7 +147,7 @@ TEST__ y_malloc_mget()
 	}
 }
 
-TEST__ y_malloc_SlotSize()
+@test(.group = "y_malloc") y_malloc_SlotSize()
 {
 	MALLOC_TEST(10)
 	{
@@ -188,7 +189,7 @@ TEST__ y_malloc_SlotSize()
 	}
 }
 
-TEST__ y_malloc_msets()
+@test(.group = "y_malloc") y_malloc_msets()
 {
 	static const
 		str0[] = "1111   ",
@@ -206,7 +207,7 @@ TEST__ y_malloc_msets()
 	}
 }
 
-TEST__ y_malloc_mgets()
+@test(.group = "y_malloc") y_malloc_mgets()
 {
 	static const
 		str0[] = "1111   ";
@@ -230,28 +231,28 @@ TEST__ y_malloc_mgets()
 }
 
 /*
-TEST__ y_malloc_()
+@test(.group = "y_malloc") y_malloc_()
 {
 	MALLOC_TEST(10)
 	{
 	}
 }
 
-TEST__ y_malloc_()
+@test(.group = "y_malloc") y_malloc_()
 {
 	MALLOC_TEST(10)
 	{
 	}
 }
 
-TEST__ y_malloc_()
+@test(.group = "y_malloc") y_malloc_()
 {
 	MALLOC_TEST(10)
 	{
 	}
 }
 
-TEST__ y_malloc_()
+@test(.group = "y_malloc") y_malloc_()
 {
 	MALLOC_TEST(10)
 	{
@@ -259,7 +260,7 @@ TEST__ y_malloc_()
 }
 */
 
-TEST__ y_malloc_NewS_0()
+@test(.group = "y_malloc") y_malloc_NewS_0()
 {
 	new
 		Alloc:a = Malloc_NewS("Hello There", false);
@@ -273,19 +274,51 @@ TEST__ y_malloc_NewS_0()
 	}
 }
 
-TEST__ y_malloc_NewS_1()
+@test(.group = "y_malloc") y_malloc_NewS_1()
 {
 	new
-		Alloc:a = Malloc_NewS("Hello There", true);
+		Alloc:a = Malloc_NewS(__COMPILER_UNPACK"Hello There", true);
 	ASSERT(bool:a);
 	if (a)
 	{
 		static const
-			b[12 char] = !"Hello There";
+			b[12 char] = __COMPILER_PACK"Hello There";
 		ASSERT_EQ(mget(a, 0), b[0]);
 		ASSERT_EQ(mget(a, 1), b[1]);
 		ASSERT_EQ(mget(a, 2), b[2]);
 		free(a);
 	}
+}
+
+forward y_malloc_Deferred(Alloc:alloc);
+
+public y_malloc_Deferred(Alloc:alloc)
+{
+	new
+		Alloc:clobber = malloc(1000);
+	for (new i = 0; i != 1000; ++i)
+	{
+		mset(clobber, i, 0);
+	}
+	for (new i = 0; i != 1000; ++i)
+	{
+		if (mget(alloc, i) != i * 2)
+		{
+			Debug_Error("y_malloc_Deferred test error");
+		}
+	}
+	free(clobber);
+	free(alloc);
+}
+
+@test(.group = "y_malloc") y_malloc_Deferred()
+{
+	new
+		Alloc:alloc = malloc(1000);
+	for (new i = 0; i != 1000; ++i)
+	{
+		mset(alloc, i, i * 2);
+	}
+	YSI_SetTimerEx__("y_malloc_Deferred", 10, false, "i", _:alloc);
 }
 

@@ -20,7 +20,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -47,6 +47,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -134,7 +135,7 @@ Optional plugins:
 #include "..\..\YSI_Core\y_utils"
 #include "..\..\YSI_Coding\y_hooks"
 
-_DoYLock(P:C(from);)
+_DoYLock(Debug_CodeX{from})
 {
 	new
 		arr[][] =
@@ -142,10 +143,10 @@ _DoYLock(P:C(from);)
 				";23#w",
 				"32g2"
 			};
-	P:1("%d", from);
+	Debug_Print1("%d", from);
 	#pragma unused arr
 	#if !defined _DEBUG || _DEBUG < 1
-		new from;
+		new from = 0;
 	#endif
 	UNHOOK
 }

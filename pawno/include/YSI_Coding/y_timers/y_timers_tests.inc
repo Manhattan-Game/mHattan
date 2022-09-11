@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -96,20 +97,26 @@ task y_timers_Counter[1000]()
 	va_SendClientMessageToAll(0x0000FFAA, "GLOBAL COUNTER: %d", sCounter++);
 }
 
-PTEST__ PCounter1(playerid)
+@test(.group = "y_timers") PCounter1(playerid)
 {
 	ASK("Is the red PLAYER COUNTER going up?");
 }
 
-PTEST__ PCounter2(playerid)
+@test(.group = "y_timers") PCounter2(playerid)
 {
 	pause y_timers_PCounter[playerid];
 	ASK("Has the red PLAYER COUNTER stopped?");
 }
 
-PTEST__ Counter(playerid)
+@test(.group = "y_timers") Counter1(playerid)
 {
 	ASK("Is the blue GLOBAL COUNTER going up?");
+}
+
+@test(.group = "y_timers") Counter2(playerid)
+{
+	pause y_timers_Counter;
+	ASK("Has the blue GLOBAL COUNTER stopped?");
 }
 
 timer BigMessage1[4000](playerid)
@@ -122,16 +129,16 @@ timer BigMessage2[4000](playerid)
 	SendClientMessage(playerid, 0x00FF00AA, "BIG MESSAGE appearing repeatedly.");
 }
 
-PTEST__ Timer1(playerid)
+@test(.group = "y_timers") Timer1(playerid)
 {
 	DEFER__ BigMessage1(playerid);
 	ASK("Is a green BIG MESSAGE appearing once after 4 seconds?");
 }
 
 static
-	Timer:sgTimer;
+	Timer:sgTimer = Timer:0;
 
-PTEST__ Timer2(playerid)
+@test(.group = "y_timers") Timer2(playerid)
 {
 	sgTimer = REPEAT__ BigMessage2(playerid);
 	ASK("Is a green BIG MESSAGE appearing every 4 seconds?");
@@ -143,9 +150,77 @@ timer StopMessage1[4000](playerid)
 	STOP__ sgTimer;
 }
 
-PTEST__ Timer3(playerid)
+@test(.group = "y_timers") Timer3(playerid)
 {
 	DEFER__ StopMessage1(playerid);
 	ASK("Is the green BIG MESSAGE stopping appearing after 4 seconds?");
+}
+
+forward Timer:_yT@ForwardTimer(string:msg[]);
+
+@test(.group = "y_timers") ForwardTimer()
+{
+	DEFER__ ForwardTimer("hi");
+}
+
+timer ForwardTimer[5000](string:msg[])
+{
+	#pragma unused msg
+}
+
+static stock
+	Timer:YSI_g_sStopAndStart;
+
+timer StopAndStart[50]()
+{
+	//printf("StopAndStart started");
+	//printf("===================");
+	STOP__ YSI_g_sStopAndStart;
+	//printf("StopAndStart ended");
+}
+
+@test(.group = "y_timers") StopAndStart()
+{
+	YSI_g_sStopAndStart = DEFER__ StopAndStart();
+	ASSERT(Timer_IsRunning(YSI_g_sStopAndStart));
+	ASSERT_NZ(_Timer_F(YSI_g_sStopAndStart, 1)); // `stop`
+	ASSERT(!Timer_IsRunning(YSI_g_sStopAndStart));
+	ASSERT_ZE(_Timer_F(YSI_g_sStopAndStart, 1)); // `stop`
+	ASSERT(!Timer_IsRunning(YSI_g_sStopAndStart));
+	YSI_g_sStopAndStart = DEFER__ StopAndStart();
+}
+
+timer StopAndStop[50]()
+{
+	printf("StopAndStop started: %d", _:_YSI_g_sCurrentTimer);
+	STOP__;
+	STOP__;
+	STOP__;
+	printf("StopAndStop finished");
+}
+
+@test(.group = "y_timers") StopAndStop()
+{
+	YSI_g_sStopAndStart = REPEAT__[5] StopAndStop();
+	for (new i = 0; i != 1000; ++i)
+	{
+		ASSERT_NZ(DEFER__ StopAndStop());
+	}
+}
+
+new Timer:YSI_g_sKillYourself;
+
+@timer(0) KillYourself()
+{
+	printf("KillYourself start");
+	STOP__ YSI_g_sKillYourself;
+	printf("KillYourself end");
+}
+
+@test(.group = "y_timers") KillYourself()
+{
+	printf("KillYourself before");
+	YSI_g_sKillYourself = defer KillYourself();
+	printf("KillYourself after");
 }
 

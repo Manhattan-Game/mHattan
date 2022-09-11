@@ -15,7 +15,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -42,6 +42,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -82,7 +83,7 @@ Optional plugins:
 // Loops through all possible arguments in lists, functions and singles.  See
 // "case e_COMPRESS_FORMAT_DATA_CUSTOM:" for more details (an expanded macro
 // version can be found there).
-#define Y_RENDER_ARG for(new i,j,b=4;i!=2;++i)if(!i){if(ch&_:e_COMPRESS_FORMAT_DATA_FUNC){b=1,func="@yR_",va_getstring(func[4],curArg);if(funcidx(func)<0)func[b=2]='r';}else if(ch&_:e_COMPRESS_FORMAT_DATA_LIST)b=3;}else for(;(arg=b==1?W@(func,"iii",pid,(_:l),j):b==2?W@(func,"ii",(_:l),j):b==3?getarg(curArg,j++):getarg(curArg)),arg!=cellmin&&b||++curArg&0;b&=~4,++j)
+#define Y_RENDER_ARG for(new i=0,j=0,b=4;i!=2;++i)if(!i){if(ch&_:e_COMPRESS_FORMAT_DATA_FUNC){b=1,func="@yR_",va_getstring(func[4],curArg);if(funcidx(func)<0)func[b=2]='r';}else if(ch&_:e_COMPRESS_FORMAT_DATA_LIST)b=3;}else for(;(arg=b==1?W@(func,"iii",pid,(_:l),j):b==2?W@(func,"ii",(_:l),j):b==3?getarg(curArg,j++):getarg(curArg)),arg!=cellmin&&b||++curArg&0;b&=~4,++j)
 
 // Make the correct specifier string for the data stored in the compressed
 // specifier data.
@@ -91,7 +92,7 @@ Optional plugins:
 // This makes hex and binary format specifiers display correctly with negative
 // numbers in all cases (e.g. %5x etc).
 #if YSI_MAX_STRING != 144
-	#error Please update all explicit YSI_MAX_STRING uses.
+	#error Please update explicit YSI_MAX_STRING uses in the following line.
 #endif
 #define Y_RENDER_FIX_NEGATIVE(%0:%1) if(width>%1)arg=(ch&_:e_COMPRESS_FORMAT_DATA_LEFT)?((ch&_:e_COMPRESS_FORMAT_DATA_ZERO)?format(ts,144,"%"#%0"%0-*"#%0,arg>>>32/%1,width-(%1-1),arg&(1<<32/%1)-1):format(ts,144,"%"#%0"%-*"#%0,arg>>>32/%1,width-(%1-1),arg&(1<<32/%1)-1)):(ch&_:e_COMPRESS_FORMAT_DATA_ZERO)?format(ts,144,"%0*"#%0"%"#%0,width-1,arg>>>32/%1,arg&(1<<32/%1)-1):format(ts,144,"%*"#%0"%"#%0,width-1,arg>>>32/%1,arg&(1<<32/%1)-1);else format(ts,144,"%"#%0"%"#%0,arg>>>32/%1,arg&(1<<32/%1)-1)
 
@@ -102,9 +103,9 @@ Optional plugins:
 
 #define Y_RENDER_DO_DISPLAY() {output[p]='\0';if(!none)Format_DoDisplay(pid,gInitialColour,output);if(onlyOne)return one;output[0]=p=0;llen=maxlen;++one;}
 
-#define Y_RENDER_ADD(%1) for(new __added,__len=strlen((%1)),__done;(__added=Format_DoAddString(output,%1[__done],p,__len,llen,fakePos));__done+=__added,__len-=__added){if(fade)state y_render_fade:y_render_fade_fake;else Y_RENDER_DO_DISPLAY()}
+#define Y_RENDER_ADD(%1) for(new __added=0,__len=strlen((%1)),__done;(__added=Format_DoAddString(output,%1[__done],p,__len,llen,fakePos));__done+=__added,__len-=__added){if(fade)state y_render_fade:y_render_fade_fake;else Y_RENDER_DO_DISPLAY()}
 
-//#define Y_RENDER_ADD_EX(%1,%2,%3) for(new __added,__len=(%3),__done=%2;(__added=Format_DoAddString(output,%1[__done],p,__len,llen,fakePos));__done+=__added,__len-=__added){if(fade)state y_render_fade:y_render_fade_fake;else Y_RENDER_DO_DISPLAY()}
+//#define Y_RENDER_ADD_EX(%1,%2,%3) for(new __added=0,__len=(%3),__done=%2;(__added=Format_DoAddString(output,%1[__done],p,__len,llen,fakePos));__done+=__added,__len-=__added){if(fade)state y_render_fade:y_render_fade_fake;else Y_RENDER_DO_DISPLAY()}
 
 #define Y_RENDER_CHAR(%1) while(!Format_DoAddChar(output,(%1),p,llen,fakePos)){if(fade)state y_render_fade:y_render_fade_fake;else Y_RENDER_DO_DISPLAY()}
 
@@ -125,15 +126,15 @@ Optional plugins:
 
 static stock
 	YSI_g_sListSep[4] = ", ",
-	YSI_g_sFadeRedoTarget,
-	YSI_g_sFadeLength,
-	YSI_g_sFadeColour,
-	bool:YSI_g_sJustOne,
+	YSI_g_sFadeRedoTarget = 0,
+	YSI_g_sFadeLength = 0,
+	YSI_g_sFadeColour = 0,
+	bool:YSI_g_sJustOne = false,
 	YSI_g_sTempStyle[E_STYLE_DATA],
 	YSI_g_sTemp3D[E_3D_DATA],
-	YSI_g_sTempMaster,
+	YSI_g_sTempMaster = 0,
 	Text:YSI_g_sBaseTD = TEXT_DRAW_NO_NEXT,
-	gInitialColour;
+	gInitialColour = 0;
 
 /*-------------------------------------------------------------------------*//**
  * <transition keep="true" target="y_render_show : y_render_show_scm" />
@@ -148,7 +149,7 @@ stock _Text_SetDialogMode()
 
 stock Format_SetListSeparator(const string:lst[])
 {
-	strcpy(YSI_g_sListSep, lst);
+	StrCpy(YSI_g_sListSep, lst);
 }
 
 /*-------------------------------------------------------------------------*//**
@@ -684,7 +685,7 @@ static stock Format_DoAddString(out[], const in[], &oidx, const len, &orem, &fak
 
 static stock Format_DoAddString(out[], const in[], &oidx, const len, &orem, &fakepos) <y_render_fade : y_render_fade_real>
 {
-	P:4("Format_DoAddString <y_render_fade : render_real> called: \"%s\", \"%s\", %i, %i, %i, %i", out, in, oidx, len, orem, fakepos);
+	Debug_Print4("Format_DoAddString <y_render_fade : render_real> called: \"%s\", \"%s\", %i, %i, %i, %i", out, in, oidx, len, orem, fakepos);
 	// For now don't worry about fades over boundaries - they're just too hard
 	// to get the code working on to start with, maybe later once this is all
 	// working they can be added in.  It is a shame though as it will mean fades
@@ -699,7 +700,7 @@ static stock Format_DoAddString(out[], const in[], &oidx, const len, &orem, &fak
 	fakepos += len;
 	if (len <= orem)
 	{
-		P:5("Format_DoStringSCM: p0.");
+		Debug_Print5("Format_DoStringSCM: p0.");
 		memcpy(out[oidx], in, 0, len * 4, orem);
 		orem -= len;
 		oidx += len;
@@ -710,7 +711,7 @@ static stock Format_DoAddString(out[], const in[], &oidx, const len, &orem, &fak
 	{
 		// Not the end of the string, but the end is required.
 		// Change state to ignore future inputs.
-		P:5("Format_DoStringSCM: p1.");
+		Debug_Print5("Format_DoStringSCM: p1.");
 		// Copy as much data as possible.
 		memcpy(out[oidx], in, 0, orem * 4, orem);
 		//orem -= orem;
@@ -749,7 +750,7 @@ static stock bool:Format_DoAddChar(out[], const in, &oidx, &orem, &fakepos) <y_r
 
 static stock bool:Format_DoAddChar(out[], const in, &oidx, &orem, &fakepos) <y_render_fade : y_render_fade_real>
 {
-	P:4("Format_DoAddChar: %c %d %d", in, oidx, orem);
+	Debug_Print4("Format_DoAddChar: %c %d %d", in, oidx, orem);
 	if (!orem) return false;
 	--orem;
 	out[oidx++] = in;
@@ -759,7 +760,7 @@ static stock bool:Format_DoAddChar(out[], const in, &oidx, &orem, &fakepos) <y_r
 
 static stock Format_DoDisplay(playerid, colour, out[]) <y_render_show : y_render_show_scm>
 {
-	P:2("Format_DoDisplay a: %d, %06x, \"%s\"", playerid, colour >>> 8, out);
+	Debug_Print2("Format_DoDisplay a: %d, %06x, \"%s\"", playerid, colour >>> 8, out);
 	SendClientMessage(playerid, (colour << 8) | ((YSI_g_sTempStyle[E_STYLE_DATA_COLOUR] & 0x0F) * 0x11), out);
 	//idx = 0;
 	//out[0] = '\0';
@@ -767,7 +768,7 @@ static stock Format_DoDisplay(playerid, colour, out[]) <y_render_show : y_render
 
 static stock Format_DoDisplay(playerid, colour, out[]) <> //y_render_show : y_render_show_print>
 {
-	P:0("Format_DoDisplay b: %d, %06x, \"%s\"", playerid, colour >>> 8, out);
+	Debug_Print0("Format_DoDisplay b: %d, %06x, \"%s\"", playerid, colour >>> 8, out);
 	//idx = 0;
 	//out[0] = '\0';
 }
@@ -775,7 +776,7 @@ static stock Format_DoDisplay(playerid, colour, out[]) <> //y_render_show : y_re
 static stock Format_DoDisplay(playerid, colour, out[]) <y_render_show : y_render_show_gt>
 {
 	#pragma unused colour
-	P:2("Format_DoDisplay c: %d, %06x, \"%s\"", playerid, colour >>> 8, out);
+	Debug_Print2("Format_DoDisplay c: %d, %06x, \"%s\"", playerid, colour >>> 8, out);
 	GameTextForPlayer(playerid, out, YSI_g_sTempStyle[E_STYLE_DATA_TIME], YSI_g_sTempStyle[E_STYLE_DATA_STYLE]);
 	//SendClientMessage(playerid, (colour << 8) | ((YSI_g_sTempStyle[E_STYLE_DATA_COLOUR] & 0x0F) * 0x11), out);
 	//GameTextForPlayer(playerid, out, 
@@ -787,7 +788,7 @@ static stock Format_DoDisplay(playerid, colour, out[]) <y_render_show : y_render
 static stock Format_DoDisplay(playerid, colour, out[]) <y_render_show : y_render_show_td>
 {
 	#pragma unused colour
-	P:2("Format_DoDisplay d: %d, %06x, \"%s\"", playerid, colour >>> 8, out);
+	Debug_Print2("Format_DoDisplay d: %d, %06x, \"%s\"", playerid, colour >>> 8, out);
 	new
 		Text:tmp = TD_Display(out, YSI_g_sTempStyle[E_STYLE_DATA_TD_ID]);
 	out[0] = _:tmp;
@@ -822,7 +823,7 @@ stock Format_JustShow(playerid, const out[]) <y_render_show : y_render_show_scm>
 
 stock Format_JustShow(playerid, const out[]) <y_render_show : y_render_show_print>
 {
-	P:0("Format_DoDisplay: %d, \"%s\"", playerid, out);
+	Debug_Print0("Format_DoDisplay: %d, \"%s\"", playerid, out);
 }
 
 stock Format_JustShow(playerid, const out[]) <y_render_show : y_render_show_gt>
@@ -872,7 +873,7 @@ stock Text_GetLastID() <>
 //stock Format_Render(pid, Language:l, output[], maxlen, idx, target, string[], {Float,_}:...)
 stock Format_Render(pid, Language:l, output[], maxlen, idx, target, string[], GLOBAL_TAG_TYPES:...)
 {
-	P:3("Format_Render called: %i, %i, %s, %i, %i, %i, %s (+%i)", pid, _:l, output, maxlen, idx, target, numargs() - 7);
+	Debug_Print3("Format_Render called: %i, %i, %s, %i, %i, %i, %s (+%i)", pid, _:l, output, maxlen, idx, target, numargs() - 7);
 	gInitialColour = (YSI_g_sTempStyle[E_STYLE_DATA_COLOUR] >>> 4) & 0x00FFFFFF;
 	new
 		colour = gInitialColour;
@@ -894,18 +895,18 @@ Format_Render_start:
 		ts[YSI_MAX_STRING],
 		//  Max handleable input string length is 128 (hopefully sufficient).
 		// =====================================================================
-		func[32],
+		func[FUNCTION_LENGTH],
 		scNewLineString[] = "~n~",
 		scDialogLineString[] = "\r\n";
 	new
-		ch,
+		ch = 0,
 		llen = maxlen,
 		//output[128], // Always 128.
 		p = 0,
 		curArg = 7, // Account for additionaly pushed arguments.
 		numArgs = numargs(),
 		//llen = sizeof (output) - 1,
-		arg,
+		arg = 0,
 		none = (target & e_FORMAT_FLAGS_NONE),
 		onlyOne = (target & e_FORMAT_FLAGS_ONE) | none | _:YSI_g_sJustOne,
 		bool:fade = false,
@@ -919,8 +920,8 @@ Format_Render_start:
 		// Was only "one" string display used and is this not per-player text?
 		one = 0,
 		// Start location of the current fade.
-		fadeStart,
-		fadeStartIdx;//,
+		fadeStart = 0,
+		fadeStartIdx = 0;//,
 		//fadeStartText;
 	//#emit LOAD.S.pri string
 	//#emit STOR.S.pri fadeStartText
@@ -935,9 +936,9 @@ Format_Render_start:
 	}
 	target &= e_FORMAT_FLAGS_INDEX;
 	/*new
-		fadeCurArg,
-		fadeArg,
-		fadeIdx;*/
+		fadeCurArg = 0,
+		fadeArg = 0,
+		fadeIdx = 0;*/
 	if ((YSI_g_sFadeRedoTarget = target))
 	{
 		YSI_g_sFadeRedoTarget &= ~Y_FORMAT_ALWAYS_SET;
@@ -967,11 +968,11 @@ Format_Render_start:
 			}
 			case '\02':
 			{
-				P:6("Text_Render: Format specifier %d", curArg);
+				Debug_Print6("Text_Render: Format specifier %d", curArg);
 				if (curArg == numArgs)
 				{
 					// Skip.
-					P:W("Insufficient parameters to YSI format.");
+					Debug_Warning("Insufficient parameters to YSI format.");
 					ts = "(null)";
 					Y_RENDER_ADD(ts)
 					continue;
@@ -999,7 +1000,7 @@ Format_Render_start:
 				{
 					case e_COMPRESS_FORMAT_DATA_DEC:
 					{
-						P:6("Text_Render: Add d");
+						Debug_Print6("Text_Render: Add d");
 						scSpecifier = Y_RENDER_SPECIFIER(d);
 						Y_RENDER_ARG
 						{
@@ -1012,7 +1013,7 @@ Format_Render_start:
 					{
 						// This completely fixes (I hope) the problems with
 						// displaying negative numbers as %h/%x numbers.
-						P:6("Text_Render: Add h");
+						Debug_Print6("Text_Render: Add h");
 						scSpecifier = Y_RENDER_SPECIFIER(x);
 						Y_RENDER_ARG
 						{
@@ -1029,7 +1030,7 @@ Format_Render_start:
 					}
 					case e_COMPRESS_FORMAT_DATA_BIN:
 					{
-						P:6("Text_Render: Add b");
+						Debug_Print6("Text_Render: Add b");
 						scSpecifier = Y_RENDER_SPECIFIER(b);
 						Y_RENDER_ARG
 						{
@@ -1119,7 +1120,7 @@ Format_Render_start:
 						{
 							func = "@yR_";
 							// Get the function name.
-							for (new _k = 4; _k != 32; ++_k)
+							for (new _k = 4; _k != FUNCTION_LENGTH; ++_k)
 							{
 								if (!(func[_k] = getarg(curArg, _k - 4)))
 								{
@@ -1253,7 +1254,7 @@ Format_Render_start:
 								if(ch&_:e_COMPRESS_FORMAT_DATA_FUNC)
 								{
 									_b=1,func="@yR_";
-									for(new _k=4;_k!=32;++_k)
+									for(new _k=4;_k!=FUNCTION_LENGTH;++_k)
 										if(!(func[_k]=getarg(curArg,_k-4)))
 											break;
 									if(funcidx(func)==-1)func[2]='r',_b=2;
@@ -1272,7 +1273,7 @@ Format_Render_start:
 							// (need to find a way to return a single name for a
 							// player which gets to the specified command).
 							#if defined _inc_y_commands
-								strcpy(ts, Command_GetDisplay(arg, pid));
+								StrCpy(ts, Command_GetDisplay(arg, pid));
 								if (ts[0])
 								{
 									format(ts, sizeof (ts), scSpecifier, width, prec, ts);
@@ -1344,11 +1345,11 @@ Format_Render_start:
 						// extended versions (%k<DATE>) etc.
 						new
 							ffake[4 char],
-							fidx;
+							fidx = 0;
 						ffake[0] = string[idx];
 						if (ffake{1} == '@')
 						{
-							if (!AMX_GetPublicPointer(0, fidx, ffake))
+							if (!AMX_GetPublicPointer(0, fidx, ffake, true))
 							{
 								continue;
 							}
@@ -1357,13 +1358,13 @@ Format_Render_start:
 						else
 						{
 							static
-								sFunc2[32] = "F";
+								sFunc2[FUNCTION_LENGTH] = "F";
 							strunpack(sFunc2[1], string[idx], sizeof (sFunc2) - 1);
 							// Limit the function name to the function length.
 							sFunc2[sFunc2[1]] = '\0';
 							idx += ceildiv(sFunc2[1], 4);
 							sFunc2[1] = '@';
-							if (!AMX_GetPublicPointer(0, fidx, sFunc2))
+							if (!AMX_GetPublicPointer(0, fidx, sFunc2, true))
 							{
 								continue;
 							}
@@ -1392,7 +1393,7 @@ Format_Render_start:
 						// tracks which parameter part we are currently doing in
 						// the case of function or list inputs.
 						// 
-						for (new i, j, b = 4; i != 2; ++i)
+						for (new i = 0, j = 0, b = 4; i != 2; ++i)
 						{
 							if (!i)
 							{
@@ -1451,7 +1452,7 @@ Format_Render_start:
 									{
 										getproperty(8, "", YSIM_STRING, Q@);
 										strunpack(Q@, Q@);
-										if (isnull(Q@))
+										if (IsNull(Q@))
 										{
 											++curArg;
 											// Fix the stack.
@@ -1496,7 +1497,7 @@ Format_Render_start:
 			}
 			case '\03', -1:
 			{
-				P:6("Text_Render: Colour %d %d %d %d %d %06x %s", p, llen, fadeStart, fakePos, idx, colour & 0xFFFFFF, string);
+				Debug_Print6("Text_Render: Colour %d %d %d %d %d %06x %s", p, llen, fadeStart, fakePos, idx, colour & 0xFFFFFF, string);
 				if (fade) //flags & 4)
 				{
 					p = fadeStart;
@@ -1507,7 +1508,7 @@ Format_Render_start:
 						// "rem" is the number of characters not processed.
 						YSI_g_sFadeColour = colour;
 						Y_RENDER_DO_DISPLAY()
-						P:6("Format_Render: one stage: \"%s\"", output);
+						Debug_Print6("Format_Render: one stage: \"%s\"", output);
 						// Subtract 2 to get the index in to the fade where the
 						// letters start.  This is not as easy as it used to be
 						// as we need to manipulate the stack to push the extra
@@ -1596,7 +1597,7 @@ Format_Render_start:
 			}
 			case '\04':
 			{
-				P:6("Text_Render: Key");
+				Debug_Print6("Text_Render: Key");
 				Format_GetKeyString(ts, string[idx++] >>> 8);
 				new __len=strlen(ts);
 				if (llen < __len)
@@ -1608,7 +1609,7 @@ Format_Render_start:
 			}
 			case '\n':
 			{
-				P:6("Text_Render: NL");
+				Debug_Print6("Text_Render: NL");
 				// Check for 2 character new lines (\n\r).
 				if (string[idx] == '\r') ++idx;
 				// Output the last string.
@@ -1625,10 +1626,10 @@ Format_Render_start:
 				}
 				else if (YSI_g_sTempStyle[E_STYLE_DATA_TYPE] == e_STYLE_TYPE_DIALOG)
 				{
-					//printf("NL 1");
+					//print("NL 1");
 					// This works even for GTs which are always 0 by this point.
 					Y_RENDER_ADD(scDialogLineString)
-					//printf("NL 2");
+					//print("NL 2");
 				}
 				else
 				{
@@ -1638,7 +1639,7 @@ Format_Render_start:
 			}
 			case '\r':
 			{
-				P:6("Text_Render: NL");
+				Debug_Print6("Text_Render: NL");
 				// Check for 2 character new lines (\r\n).
 				if (string[idx] == '\n') ++idx;
 				// Output the last string.
@@ -1656,9 +1657,9 @@ Format_Render_start:
 				else if (YSI_g_sTempStyle[E_STYLE_DATA_TYPE] == e_STYLE_TYPE_DIALOG)
 				{
 					// This works even for GTs which are always 0 by this point.
-					//printf("NL 3");
+					//print("NL 3");
 					Y_RENDER_ADD(scDialogLineString)
-					//printf("NL 4");
+					//print("NL 4");
 				}
 				else
 				{
@@ -1675,7 +1676,7 @@ Format_Render_start:
 					arg = 4 - (p & 0x03); // The number of spaces to add.
 					static
 						sTabs[] = "    ";
-					for (new __added; (__added = Format_DoAddString(output, sTabs[4 - arg], p, arg, llen, fakePos)); arg -= __added)
+					for (new __added = 0; (__added = Format_DoAddString(output, sTabs[4 - arg], p, arg, llen, fakePos)); arg -= __added)
 					{
 						if (fade) //flags & 4)
 						{
@@ -1696,12 +1697,12 @@ Format_Render_start:
 			{
 				// Whitespace.  Just show a space, not the fancy character, no
 				// idea what it could do.  Note that this range includes spaces.
-				P:6("Text_Render: Space");
+				Debug_Print6("Text_Render: Space");
 				Y_RENDER_CHAR(' ')
 			}
 			default:
 			{
-				P:6("Text_Render: Char");
+				Debug_Print6("Text_Render: Char");
 				Y_RENDER_CHAR(ch)
 			}
 		}
@@ -1713,19 +1714,19 @@ Format_Render_start:
 		++idx;
 		Y_RENDER_ADD_EX(string, idx, ch - idx)
 		idx = ch;*/
-		P:6("Text_Render: Loop: p = %d, llen = %d, output = \"%s\"", p, llen, (output[p] = '\0', output));
+		Debug_Print6("Text_Render: Loop: p = %d, llen = %d, output = \"%s\"", p, llen, (output[p] = '\0', output));
 	}
-	P:5("Text_Render: Final render?");
+	Debug_Print5("Text_Render: Final render?");
 	if (p)
 	{
-		P:5("Text_Render: Yes!");
+		Debug_Print5("Text_Render: Yes!");
 		output[p] = '\0';
 		if (!none) Format_DoDisplay(pid, gInitialColour, output);
 		++one;
 	}
-	P:5("Text_Render: p = %d, output = \"%s\"", p, output);
-	P:C(idx=0;while ((ch = output[idx++]))printf("%04x%04x = %c", ch >>> 16, ch & 0xFFFF, ch););
-	P:5("Text_Render end");
+	Debug_Print5("Text_Render: p = %d, output = \"%s\"", p, output);
+	Debug_Code1{idx=0;while ((ch = output[idx++]))printf("%04x%04x = %c", ch >>> 16, ch & 0xFFFF, ch);}
+	Debug_Print5("Text_Render end");
 	return one;
 }
 

@@ -20,7 +20,7 @@ Legal:
 	The Original Code is the YSI framework.
 	
 	The Initial Developer of the Original Code is Alex "Y_Less" Cole.
-	Portions created by the Initial Developer are Copyright C 2011
+	Portions created by the Initial Developer are Copyright (c) 2022
 	the Initial Developer. All Rights Reserved.
 
 Contributors:
@@ -47,6 +47,7 @@ Contributors:
 	m0k1
 	paulommu
 	udan111
+	Cheaterman
 
 Thanks:
 	JoeBullet/Google63 - Handy arbitrary ASM jump code using SCTRL.
@@ -81,7 +82,7 @@ Optional plugins:
 #include "y_hashmap_impl"
 
 // The hashmap tests are vast.  Only include them when explicitly requested.
-#if defined YSI_TESTS && defined YSI_HASHMAP_TESTS
+#if defined YSI_TESTS
 	#include "y_hashmap_tests"
 #endif
 
