@@ -201,6 +201,7 @@ loadLogin(playerid){
     
 
     PlayerTextDrawSetSelectable(playerid, home_PTD[playerid][2], false);
+    PlayerTextDrawHide(playerid, home_PTD[playerid][2]);
     PlayerTextDrawSetString(playerid, home_PTD[playerid][2], "------@hotmail.com");
     PlayerTextDrawSetString(playerid, home_PTD[playerid][0], ".");
 

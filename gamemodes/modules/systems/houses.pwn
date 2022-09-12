@@ -1,23 +1,16 @@
-#define HOUSE_TYPE_INTERIOR 0
-#define HOUSE_INLINE 1
+#include <YSI_Coding\y_hooks>
 
-enum houses@ty@pes{
- 	type,
- 	class[40],
- 	Float:interiorCoords[4]
-};
-new houseModelsData[][houses@ty@pes2] = {
-	{HOUSE_TYPE_INTERIOR, "Clase baja 1", {5058.0483, 329.0049,1174.7034, 359.1285}},
-	{HOUSE_TYPE_INTERIOR, "Clase media 1", {4901.7446, 338.1617, 1196.5110, 0.6790}},
-	{HOUSE_TYPE_INTERIOR, "Clase media 2(Dos pisos)", {4723.7373,315.3955,1192.2141,359.5511}},
-	{HOUSE_TYPE_INTERIOR, "Clase media 3(Dos pisos)", {4570.2305,361.2347,1180.7999,7.0710}},
-	{HOUSE_TYPE_INTERIOR, "Clase media 4(Dos pisos)", {4727.6201,106.5551,1237.1208,357.2949}},
-	{HOUSE_TYPE_INTERIOR, "Clase media 5(Dos pisos)", {4748.4756,348.2649,1318.0228,354.5573}},
-	{HOUSE_TYPE_INTERIOR, "Clase baja 2", {4870.0308,337.1502,1387.2468,357.9181}},
-	{HOUSE_TYPE_INTERIOR, "Clase media 6", {4959.1279,527.4122,1398.2209,86.2198}},
-	{HOUSE_TYPE_INTERIOR, "Clase baja 3", {4647.2612,482.1955,1411.9133,89.0398}},
-	{HOUSE_TYPE_INTERIOR, "Clase media 7", {4580.4331,647.1934,1426.3759,357.3538}},
-	{HOUSE_TYPE_INTERIOR, "Clase media 8", {4728.2339,756.6479,1451.5750,356.3549}},
+#define HOUSE_STATE_ON_SALE 0
+#define HOUSE_STATE_PURCHASE 1
+#define HOUSE_STATE_RENT 2
+
+showMenuHouses(playerid){
+	new stringfinal[QUERY_LONG];
+	for(new i;i<sizeof(houseModelsData);i++){
+		strcat(houseModelsData[i][class], "\n");
+		strcat(stringfinal, houseModelsData[i][class]);
+	}
+	ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR_EXIT_HOUSES, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" Doors", stringfinal, "Continuar", ""RED" cancelar");
 }
 
 
@@ -25,36 +18,123 @@ enum hous@dat@s{
 	listid,
 	characterid,
 	doorid,
-	price
-	direction[MAX_NAME],
+	price,
+	direction[40],
 	garajedoorid,
-	type
-}
+	type,
+	interior,
+	level,
+	virtualworld,
+	statee,
+	safe,
+
+	Text3D:label,
+	pickup,
+	bool:loaded
+};
 
 new houseData[MAX_HOUSES][hous@dat@s];
 
-createHouse(playerid, HOUSE_TYPE, characterIDD){
 
-    if(characterIDD > 0){
-        new index = getFreeDoorSlot();
-        new Float:posXEdit, Float:posYEdit, Float:posZEdit;
-        GetPlayerPos(playerid, posXEdit, posYEdit, posZEdit);
-        
-        mysql_format(MYSQL_DB, query, sizeof(query), "INSERT INTO houses(characterid, doorid, price, enterZ, doorVw, doorType, doorModel, exitVw) VALUES('%d', '%f', '%f', '%f', '%d', '%d', '%d', '%d')",
-            characterIDD,
-            doorsInfo[index][enterCoords][0], doorsInfo[index][enterCoords][1], doorsInfo[index][enterCoords][2],
-            doorsInfo[index][doorVw],
-            DOOR_TYPE,
-            doorsInfo[index][doorModel],
-            index+1
-        ); 
-        mysql_pquery(MYSQL_DB, query, "onCreateDoor", "dd", playerid, index);
+
+cmd:crearcasa(playerid, params[]){
+    if(characterData[playerid][p_spawn]){
+    	if(_@IsNumeric(params[0])){
+    		new param = strval(params[0]);
+    		if(param >= 0 && param < 2){
+    			new DOOR_TYPS;
+    			if(param == 0){
+    				DOOR_TYPS = DOOR_TYPE_INTERIOR;
+    			} else DOOR_TYPS = DOOR_TYPE_PHYSICAL;
+    			createDoor(playerid, DOOR_TYPS, characterData[playerid][listid], TYPE_HOUSES, param);
+    		} else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearcasa [TIPO: 0= Interior, 1=Puerta Fisica]");
+
+    	}else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY"/crearcasa [TIPO: 0= Interior, 1=Puerta Fisica]");
+    }
+    return 1;
+}
+
+createHouse(playerid, HOUSE_TYPE, doorId){
+	new indexx = getFreeHouseSlot();
+    if((HOUSE_TYPE != -1) && (indexx != -1)){
+    	new query[QUERY_MEDIUM];
+        mysql_format(MYSQL_DB, query, sizeof(query), "INSERT INTO houses(characterid, doorid, price, direction, garajedoorid, type, level) VALUES (0, '%d', 15000, 'Completar', 0, '%d', 0)", doorId, HOUSE_TYPE); 
+        mysql_pquery(MYSQL_DB, query, "onCreateHouse", "ddd", playerid, indexx, doorId);
     }
 }
 
-loadHouse(index){
-    
-    doorsInfo[index][labelEnter] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para entrar", 0xFFFFFFFF, doorsInfo[index][enterCoords][0], doorsInfo[index][enterCoords][1], doorsInfo[index][enterCoords][2] + 0.5, 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][doorVw]);
-    doorsInfo[index][labelExit] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para salir", 0xFFFFFFFF, doorsInfo[index][enterCoords][0], doorsInfo[index][enterCoords][1], doorsInfo[index][enterCoords][2] + 0.5, 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][exitVw]);
-    
+
+DestroyDynamicHouse(index){
+	if(houseData[index][loaded]){
+		DestroyDynamic3DTextLabel(houseData[index][label]);
+		DestroyDynamicPickup(houseData[index][pickup]);
+		houseData[index][loaded] = false;
+	}
+}
+loadHouse(index, indexdoor){
+	if(!houseData[index][loaded]){
+		if(houseData[index][doorid] != -1){
+			if(indexdoor != -1){
+				new string[QUERY_MEDIUM];
+				new pickupp = 1272;
+				if(houseData[index][statee] == HOUSE_STATE_ON_SALE){
+					pickupp = 1273;
+					format(string, sizeof(string), ""GREY"Casa en venta "GREEN"$%i"GREY"\n Direccion: %s \n "LIME" Dirigete a una inmobiliaria para comprarla!.", houseData[index][price], houseData[index][direction]);
+				} else format(string, sizeof(string), ""GREY"Direccion: %s", houseData[index][direction]);
+			    houseData[index][label] = CreateDynamic3DTextLabel(string, 0xFFFFFFFF, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[indexdoor][doorVw]);
+				houseData[index][pickup] = CreateDynamicPickup(pickupp, 1, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], houseData[index][virtualworld], -1, -1, 10.0);
+				houseData[index][loaded] = true;
+			}
+		}
+	}
+}
+
+getFreeHouseSlot()
+{
+    for(new i;i<MAX_HOUSES-1;i++)
+    {
+        if(!houseData[i][loaded]) return i;
+    }
+    return -1;
+}
+
+forward loadHouses();
+public loadHouses(){
+    if(cache_num_rows()){
+    	new indexdoor;
+        for(new i=0;i<cache_num_rows();i++){ 
+            cache_get_value_name_int(i, "listid", houseData[i][listid]);
+	       	cache_get_value_name_int(i, "characterid", houseData[i][characterid]);
+	        cache_get_value_name_int(i, "doorid", houseData[i][doorid]);
+	        cache_get_value_name_int(i, "price", houseData[i][price]);
+	        cache_get_value_name(i, "direction", houseData[i][direction]);
+	        cache_get_value_name_int(i, "garajedoorid", houseData[i][garajedoorid]);
+	        cache_get_value_name_int(i, "type", houseData[i][type]);
+	        cache_get_value_name_int(i, "interior", houseData[i][interior]);
+	        cache_get_value_name_int(i, "level", houseData[i][level]);
+	        cache_get_value_name_int(i, "virtualworld", houseData[i][virtualworld]);
+	        cache_get_value_name_int(i, "safe", houseData[i][safe]);
+	            
+			DestroyDynamicHouse(i);
+			indexdoor = getIndexDoorByID(houseData[i][doorid]);
+			if(indexdoor != -1){
+	            loadHouse(i, indexdoor);
+            }
+        }
+    }
+}
+
+forward onCreateHouse(playerid, index, doorId);
+public onCreateHouse(playerid, index, doorId){
+	new indexdoor = getIndexDoorByID(doorid); 
+	if(indexdoor != -1){
+		houseData[index][price] = 15000;
+		format(houseData[index][direction], 40, "Completar");
+		houseData[index][doorid] = doorId;
+		houseData[index][listid] = cache_insert_id();
+		DestroyDynamicHouse(index);
+		loadHouse(index, indexdoor);
+		loadDoor(indexdoor);
+		ShowTDN_OOC(playerid, "Creaste una casa, editala con /editarcasa");
+	}
 }

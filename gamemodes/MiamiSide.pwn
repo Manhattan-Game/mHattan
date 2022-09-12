@@ -1,11 +1,11 @@
-// MiamiSide por Xylospeed
+// MiamiSide por Xylospeedb
 //INCLUDES
 #include <a_samp>
 #include <a_mysql>
 #include <samp_bcrypt>
 #include <Pawn.cmd>
 #include <sscanf2>
-#include <pCamera>
+//#include <pCamera>
 #include <streamer>
 #include <YSF>
 #include <ProgressBarNick>
@@ -20,9 +20,11 @@
 #include "./modules/global/global.pwn"
 
 // systems
+#include "./modules/systems/doors/interiors.pwn"
 #include "./modules/systems/character.pwn"
 #include "./modules/systems/inventory.pwn"
-#include "./modules/systems/doors.pwn"
+#include "./modules/systems/doors/doors.pwn"
+#include "./modules/systems/houses.pwn"
 
 
 
@@ -93,6 +95,8 @@ public OnGameModeInit()
     FCNPC_Spawn(botPablo, 25002, 1829.9076,2044.1589,0.7059);
     FCNPC_EnterVehicle(botPablo, vehiclesPablo[1], 0, FCNPC_MOVE_TYPE_WALK);
     areaPablo = CreateDynamicCircle(1829.9076,2044.1589, 20.0, 0);*/
+
+    mysql_pquery(MYSQL_DB, "SELECT * FROM DOORS", "loadDoors");
     return 1;
 }
 

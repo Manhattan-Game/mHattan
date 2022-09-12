@@ -36,3 +36,30 @@
 [00:38:56] [WARNING] mysql_connect: no password specified
 [01:07:30] [WARNING] mysql_connect: no password specified
 [11:50:14] [WARNING] mysql_connect: no password specified
+[23:58:23] [WARNING] mysql_connect: no password specified
+[00:08:30] [WARNING] mysql_connect: no password specified
+[00:08:43] [WARNING] mysql_connect: no password specified
+[00:12:34] [WARNING] mysql_connect: no password specified
+[00:14:46] [WARNING] mysql_connect: no password specified
+[00:15:41] [WARNING] mysql_connect: no password specified
+[00:17:17] [WARNING] mysql_connect: no password specified
+[00:18:05] [WARNING] mysql_connect: no password specified
+[00:18:57] [WARNING] mysql_connect: no password specified
+[00:20:59] [WARNING] mysql_connect: no password specified
+[00:23:09] [WARNING] mysql_connect: no password specified
+[00:29:30] [WARNING] mysql_connect: no password specified
+[00:35:08] [WARNING] mysql_connect: no password specified
+[00:35:08] [ERROR] cache_get_value_name_int: invalid row index '5671852' (number of rows: '2')
+[00:37:48] [WARNING] mysql_connect: no password specified
+[11:34:14] [WARNING] mysql_connect: no password specified
+[11:34:16] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:34:18] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:34:20] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:34:22] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:34:39] [WARNING] mysql_connect: no password specified
+[11:52:20] [WARNING] mysql_connect: no password specified
+[11:54:57] [WARNING] mysql_connect: no password specified
+[11:56:36] [WARNING] mysql_connect: no password specified
+[11:59:32] [WARNING] mysql_connect: no password specified
+[12:01:41] [WARNING] mysql_connect: no password specified
+[12:06:20] [WARNING] mysql_connect: no password specified
