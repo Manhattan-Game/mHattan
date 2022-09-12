@@ -49,8 +49,10 @@ hook OnPlayerSpawn(playerid){
 cmd:puerta(playerid, params[]){
     for(new i;i<MAX_DOORS-1;i++){
         if(IsPlayerInEnterDoor(playerid, i) || IsPlayerInExitDoor(playerid, i)){
+            new string[QUERY_MEDIUM];
             if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
-                ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" Doors", "Bloquear/desbloquear puerta\nEditar posicion entrada\nEditar posicion salida\nEditar puerta(Fisica)\nEditar modelo puerta(Fisica)", "Continuar", ""RED" cancelar");
+                format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" Doors ID: %i", i);
+                ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR, DIALOG_STYLE_LIST, string, "Bloquear/desbloquear puerta\nEditar posicion entrada\nEditar posicion salida\nEditar puerta(Fisica)\nEditar modelo puerta(Fisica)", "Continuar", ""RED" cancelar");
                 editDoor[playerid] = i;
                 break;
             }
@@ -66,13 +68,21 @@ cmd:puerta(playerid, params[]){
     }
     return 1;
 }
-
 cmd:crearpuerta(playerid, params[]){
     if(characterData[playerid][p_spawn]){
-        createDoor(playerid, DOOR_TYPE_PHYSICAL, characterData[playerid][listid]);
+        if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
+            if(_@IsNumeric(params[0])){
+                new param = strval(params[0]);
+                if(param >= 0 && param < 4){
+                     createDoor(playerid, param, 55);
+                } else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearpuerta [TIPO: 1= Fisica, 2=Interior, 3=Vehiculos]");
+
+            }else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearpuerta [TIPO: 1= Fisica, 2=Interior, 3=Vehiculos]");
+        }
     }
     return 1;
 }
+
 
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
