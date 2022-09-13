@@ -174,15 +174,6 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
                         case 2: {
                             if(doorsInfo[index][doorType] != DOOR_TYPE_PHYSICAL){
                                 ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR_EXIT, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" Doors", "Interiores de casas\nInteriores de negocios", "Continuar", ""RED" cancelar");
-                                /*destroyLabels(index);
-                                new Float:posXEdit, Float:posYEdit, Float:posZEdit;
-                                GetPlayerPos(playerid, posXEdit, posYEdit, posZEdit);
-                                doorsInfo[index][exitCoords][0] = posXEdit;
-                                doorsInfo[index][exitCoords][1] = posYEdit;
-                                doorsInfo[index][exitCoords][2] = posZEdit;
-                                doorsInfo[index][exitVw] = doorsInfo[index][listid];
-                                loadDoor(index);
-                                editDoor[playerid] = -1;*/
                             }else {
                                 ShowTDN_OOC(playerid, "Esta es una puerta fisica");
                                 editDoor[playerid] = -1;

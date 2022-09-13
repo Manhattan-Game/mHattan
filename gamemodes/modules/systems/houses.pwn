@@ -13,7 +13,18 @@ showMenuHouses(playerid){
 	ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR_EXIT_HOUSES, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" Doors", stringfinal, "Continuar", ""RED" cancelar");
 }
 
-
+cmd:dialog(playerid, params[]){
+	new string[QUERY_LOW];
+	for(new i;i<23;i++){
+		format(string, sizeof(string), "asd %i", i);
+		addDialogItem(playerid, 22, string);
+	}
+	ShowPlayerDialogItem(playerid, 0, "Muebles", "Elegir");
+}
+hook OnPlayerDialogItem(playerid, dialogid, index, modelid){
+	printf("index: %i, modelid %i", index, modelid);
+	ShowTDN_OOC(playerid, "Epale");
+}
 enum hous@dat@s{
 	listid,
 	characterid,
@@ -214,6 +225,28 @@ getFreeHouseSlot()
     return -1;
 }
 
+saveHouses(){
+    new query[QUERY_LONG];
+    for(new i; i<MAX_DOORS-1;i++){
+        if(doorsInfo[i][characterID] > 0){
+            mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE houses SET `characterid`='%d', `doorid`='%d', `price`='%d', `direction`='%e', `garajedoorid`='%d', `type`='%d', `interior`='%d', `level`='%d', `statee`='%d', `virtualworld`='%d', `safe`='%d' WHERE listid = '%d' LIMIT 1",
+            houseData[i][characterid],
+            houseData[i][doorid],
+            houseData[i][price],
+            houseData[i][direction],
+            houseData[i][garajedoorid],
+            houseData[i][type],
+            houseData[i][interior],
+            houseData[i][level],
+            houseData[i][statee],
+            houseData[i][virtualworld],
+            houseData[i][safe],
+            houseData[i][listid]);
+            mysql_pquery(MYSQL_DB, query);
+        }
+    }
+}
+
 forward loadHouses();
 public loadHouses(){
     if(cache_num_rows()){
@@ -254,27 +287,4 @@ public onCreateHouse(playerid, index, doorId){
 		loadDoor(indexdoor);
 		ShowTDN_OOC(playerid, "Creaste una casa, editala con /editarcasa");
 	}
-}
-
-
-saveHouses(){
-    new query[QUERY_LONG];
-    for(new i; i<MAX_DOORS-1;i++){
-        if(doorsInfo[i][characterID] > 0){
-            mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE houses SET `characterid`='%d', `doorid`='%d', `price`='%d', `direction`='%e', `garajedoorid`='%d', `type`='%d', `interior`='%d', `level`='%d', `statee`='%d', `virtualworld`='%d', `safe`='%d' WHERE listid = '%d' LIMIT 1",
-            houseData[i][characterid],
-            houseData[i][doorid],
-            houseData[i][price],
-            houseData[i][direction],
-            houseData[i][garajedoorid],
-            houseData[i][type],
-            houseData[i][interior],
-            houseData[i][level],
-            houseData[i][statee],
-            houseData[i][virtualworld],
-            houseData[i][safe],
-            houseData[i][listid]);
-            mysql_pquery(MYSQL_DB, query);
-        }
-    }
 }

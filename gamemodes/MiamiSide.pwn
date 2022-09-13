@@ -18,13 +18,16 @@
 #include "./modules/global/definitions.pwn"
 #include "./modules/global/accounts.pwn"
 #include "./modules/global/global.pwn"
-
-// systems
-#include "./modules/systems/doors/interiors.pwn"
 #include "./modules/systems/character.pwn"
 #include "./modules/systems/inventory.pwn"
-#include "./modules/systems/doors/doors.pwn"
+// NOT INCLUDES
+#include "./modules/notincludes/dialogs.pwn"
+ // DOORS
+	#include "./modules/systems/doors/interiors.pwn"
+	#include "./modules/systems/doors/doors.pwn"
 #include "./modules/systems/houses.pwn"
+ // FURNITURES
+	#include "./modules/systems/furnitures/models.pwn"
 
 
 
@@ -266,6 +269,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 		if(characterData[playerid][p_spawn]){
 			switch(characterData[playerid][viewTextdraw]){
 				case TEXTDRAWS_INVENTORY: hideInventory(playerid);
+				case TEXTDRAWS_DIALOG_ITEM: clearDialogItem(playerid);
 			}
 		}
 		
