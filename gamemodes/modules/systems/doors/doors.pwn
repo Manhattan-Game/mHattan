@@ -48,7 +48,7 @@ hook OnPlayerSpawn(playerid){
 }
 cmd:puerta(playerid, params[]){
     for(new i;i<MAX_DOORS-1;i++){
-        if(IsPlayerInEnterDoor(playerid, i) || IsPlayerInExitDoor(playerid, i)){
+        if(IsPlayerInEnterDoor(playerid, i) || IsPlayerInExitDoor(playerid, 2.0, i)){
             new string[QUERY_MEDIUM];
             if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
                 format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" Doors ID: %i", i);
@@ -103,7 +103,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
                         ShowTDN_OOC(playerid, "La puerta se encuentra cerrada");
                         break;
                     }
-                }else if(IsPlayerInExitDoor(playerid, did)){
+                }else if(IsPlayerInExitDoor(playerid, 2.5, did)){
                     if(doorsInfo[did][enterState] == DOOR_STATE_OPEN){
                         SetPlayerPos(playerid, doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2]);
                         SetPlayerVirtualWorld(playerid, doorsInfo[did][doorVw]);
@@ -331,8 +331,8 @@ IsPlayerInEnterDoor(playerid, did){
     if((IsPlayerInRangeOfPoint(playerid, 2.0, doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2])) && (doorsInfo[did][doorVw] == GetPlayerVirtualWorld(playerid))) return true;
     return false;
 }
-IsPlayerInExitDoor(playerid, did){
-    if((IsPlayerInRangeOfPoint(playerid, 2.0,  doorsInfo[did][exitCoords][0], doorsInfo[did][exitCoords][1], doorsInfo[did][exitCoords][2])) && (doorsInfo[did][exitVw] == GetPlayerVirtualWorld(playerid))) return true;
+IsPlayerInExitDoor(playerid, Float:range, did){
+    if((IsPlayerInRangeOfPoint(playerid, range,  doorsInfo[did][exitCoords][0], doorsInfo[did][exitCoords][1], doorsInfo[did][exitCoords][2])) && (doorsInfo[did][exitVw] == GetPlayerVirtualWorld(playerid))) return true;
     return false;
 }
 

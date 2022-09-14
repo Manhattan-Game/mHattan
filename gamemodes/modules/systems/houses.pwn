@@ -13,18 +13,6 @@ showMenuHouses(playerid){
 	ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR_EXIT_HOUSES, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" Doors", stringfinal, "Continuar", ""RED" cancelar");
 }
 
-cmd:dialog(playerid, params[]){
-	new string[QUERY_LOW];
-	for(new i;i<23;i++){
-		format(string, sizeof(string), "asd %i", i);
-		addDialogItem(playerid, 22, string);
-	}
-	ShowPlayerDialogItem(playerid, 0, "Muebles", "Elegir");
-}
-hook OnPlayerDialogItem(playerid, dialogid, index, modelid){
-	printf("index: %i, modelid %i", index, modelid);
-	ShowTDN_OOC(playerid, "Epale");
-}
 enum hous@dat@s{
 	listid,
 	characterid,
@@ -142,6 +130,23 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					editHouse[playerid] = -1;
 				} else ShowPlayerDialog(playerid, DIALOG_EDIT_HOUSE_LEVEL, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" HOUSES", "Ingresa un nivel(Solo numeros)", "Continuar", ""RED" cancelar");
 			} else editHouse[playerid] = -1;
+		}
+	}
+}
+
+cmd:micasa(playerid, params[]){
+	for(new i;i<MAX_DOORS;i++){
+		if(IsPlayerInExitDoor(playerid, 20.0, i)){
+			for(new e;e<MAX_HOUSES;e++){
+				if(doorsInfo[i][listid] == houseData[e][doorid]){
+					if(houseData[e][characterid] == characterData[playerid][listid]){
+						ShowFurnitures(playerid, houseData[e][listid]);
+					} else {
+						ShowTDN_OOC(playerid, "No eres el dueño de esta casa.");
+						break;
+					}
+				}
+			}
 		}
 	}
 }

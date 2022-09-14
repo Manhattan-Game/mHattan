@@ -28,6 +28,7 @@
 #include "./modules/systems/houses.pwn"
  // FURNITURES
 	#include "./modules/systems/furnitures/models.pwn"
+	#include "./modules/systems/furnitures/furnitures.pwn"
 
 
 

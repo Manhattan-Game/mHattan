@@ -1,6 +1,6 @@
 #include <YSI_Coding\y_hooks>
 
-#define MAX_DIALOG_ITEMS 30
+#define MAX_DIALOG_ITEMS 60
 #define MAX_DIALOG_PER_PAGE_ITEMS 10 // ! Dont' please
 
 
@@ -248,14 +248,18 @@ hook OP_ClickPlayerTextDraw(playerid, PlayerText:playertextid){
 			index = MAX_DIALOG_PER_PAGE_ITEMS * SELECTED_PAGE[playerid];
 		}
 		index = index + SELECTED_ITEM[playerid];
-		CallRemoteFunction("OnPlayerDialogItem", "dddd", playerid, SELECTED_DIALOGID[playerid], index, DIALOG_ITEMS[playerid][index-1]);
+		CallRemoteFunction("OnPlayerDialogItem", "ddddb", playerid, SELECTED_DIALOGID[playerid], index, DIALOG_ITEMS[playerid][index-1], true);
 		clearDialogItem(playerid);
-	} else if(playertextid == DIALOG_PTD[playerid][14]) clearDialogItem(playerid);
+	} else if(playertextid == DIALOG_PTD[playerid][14]) {
+		clearDialogItem(playerid);
+		CallRemoteFunction("OnPlayerDialogItem", "ddddb", playerid, 0, 0, 0, false);
+
+	}
 }
 
 
-forward OnPlayerDialogItem(playerid, dialogid, index, modelid);
-public OnPlayerDialogItem(playerid, dialogid, index, modelid){
+forward OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response);
+public OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 
 }
 
@@ -314,9 +318,8 @@ selectDialogItem(playerid, itemid){
 		PlayerTextDrawShow(playerid, DIALOG_PTD[playerid][oldindex]);
 	}
 
-
 	PlayerTextDrawBackgroundColor(playerid, DIALOG_PTD[playerid][itemid], 473720575);
-	PlayerTextDrawShow(playerid, DIALOG_PTD[playerid][itemid]);
+	if(getCountDialogItems(playerid) > 0) PlayerTextDrawShow(playerid, DIALOG_PTD[playerid][itemid]);
 
 	new string[QUERY_LOW];
 	format(string, sizeof(string), "Descripcion: %s", DIALOG_DESCRIPTION[playerid][index-1]);
@@ -325,6 +328,7 @@ selectDialogItem(playerid, itemid){
 	SELECTED_ITEM[playerid] = itemid;
 }
 clearDialogItem(playerid){
+	PlayerTextDrawBackgroundColor(playerid, DIALOG_PTD[playerid][SELECTED_ITEM[playerid]], 505290480);
 	for(new i; i<MAX_DIALOG_ITEMS; i++){
 		DIALOG_ITEMS[playerid][i] = TEXTDRAWS_MODEL_NONE;
 	}
@@ -333,6 +337,7 @@ clearDialogItem(playerid){
 	for(new e;e<3;e++) TextDrawHideForPlayer(playerid, DIALOG_TD[e]);
 	for(new j;j<15;j++) PlayerTextDrawHide(playerid, DIALOG_PTD[playerid][j]);
 	CancelSelectTextDraw(playerid);
+	characterData[playerid][viewTextdraw] = TEXTDRAWS_MODEL_NONE;
 }
 getCountDialogItems(playerid){
 	new total;
