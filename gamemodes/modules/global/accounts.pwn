@@ -53,9 +53,9 @@ hook OnPlayerConnect(playerid)
 {
     inputPassword[playerid] = "NULL";
     inputEmail[playerid] = "NULL";
-    home_PTD[playerid][0] = CreatePlayerTextDraw(playerid, 222.666656, 237.288925, ".");
-    PlayerTextDrawLetterSize(playerid, home_PTD[playerid][0], 0.516000, 2.135110);
-    PlayerTextDrawTextSize(playerid, home_PTD[playerid][0], 406.000000, 10.000000);
+    home_PTD[playerid][0] = CreatePlayerTextDraw(playerid, 222.666656, 248.288925, "Haz click aqui.");
+    PlayerTextDrawLetterSize(playerid, home_PTD[playerid][0], 0.283666, 0.969481);
+    PlayerTextDrawTextSize(playerid, home_PTD[playerid][0], 406.000000, 15.000000);
     PlayerTextDrawAlignment(playerid, home_PTD[playerid][0], 1);
     PlayerTextDrawColor(playerid, home_PTD[playerid][0], 255);
     PlayerTextDrawUseBox(playerid, home_PTD[playerid][0], 1);
@@ -77,9 +77,9 @@ hook OnPlayerConnect(playerid)
     PlayerTextDrawBackgroundColor(playerid, home_PTD[playerid][1], 255);
     PlayerTextDrawFont(playerid, home_PTD[playerid][1], 2);
 
-    home_PTD[playerid][2] = CreatePlayerTextDraw(playerid, 222.000045, 282.088989, ".");
+    home_PTD[playerid][2] = CreatePlayerTextDraw(playerid, 222.000045, 282.088989, "Haz click aqui.");
     PlayerTextDrawLetterSize(playerid, home_PTD[playerid][2], 0.283666, 0.969481);
-    PlayerTextDrawTextSize(playerid, home_PTD[playerid][2], 406.000000, 10.000000);
+    PlayerTextDrawTextSize(playerid, home_PTD[playerid][2], 406.000000, 15.000000);
     PlayerTextDrawAlignment(playerid, home_PTD[playerid][2], 1);
     PlayerTextDrawColor(playerid, home_PTD[playerid][2], 255);
     PlayerTextDrawUseBox(playerid, home_PTD[playerid][2], 1);
@@ -101,12 +101,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
                     ShowPlayerDialog(playerid, DIALOG_PASSWORD, DIALOG_STYLE_PASSWORD, ""CAPTION_DIALOG_TITLE" Account", "Ingresa una contraseña valida", "Continuar", ""RED" atras");
                 }
                 else{
-                    new string[MAX_PASSWORD_LENGTH];
-                    for(new i;i<strlen(inputtext);i++)
-                    {
-                        strcat(string, ".");
-                    }
-                    PlayerTextDrawSetString(playerid, home_PTD[playerid][0], string);
+                    PlayerTextDrawSetString(playerid, home_PTD[playerid][0], "Hidden");
                     format(inputPassword[playerid], MAX_PASSWORD_LENGTH, "%s", inputtext);
                 }   
 
@@ -201,9 +196,10 @@ loadLogin(playerid){
     
 
     PlayerTextDrawSetSelectable(playerid, home_PTD[playerid][2], false);
-    PlayerTextDrawHide(playerid, home_PTD[playerid][2]);
+
     PlayerTextDrawSetString(playerid, home_PTD[playerid][2], "------@hotmail.com");
-    PlayerTextDrawSetString(playerid, home_PTD[playerid][0], ".");
+    PlayerTextDrawSetString(playerid, home_PTD[playerid][0], "Haz click aqui.");
+    PlayerTextDrawHide(playerid, home_PTD[playerid][2]);
 
     accounts[playerid][type] = 1;
     inputPassword[playerid] = "NULL";

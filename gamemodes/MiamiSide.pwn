@@ -7,9 +7,9 @@
 #include <sscanf2>
 //#include <pCamera>
 #include <streamer>
-#include <YSF>
+#include <timerFix>
+//#include <YSF>
 #include <ProgressBarNick>
-#include <menu-preview>
 #include <ShowInfoForPlayer>
 
 
@@ -22,13 +22,15 @@
 #include "./modules/systems/inventory.pwn"
 // NOT INCLUDES
 #include "./modules/notincludes/dialogs.pwn"
- // DOORS
+// DOORS
 	#include "./modules/systems/doors/interiors.pwn"
 	#include "./modules/systems/doors/doors.pwn"
+
 #include "./modules/systems/houses.pwn"
- // FURNITURES
+// FURNITURES
 	#include "./modules/systems/furnitures/models.pwn"
 	#include "./modules/systems/furnitures/furnitures.pwn"
+	#include "./modules/systems/furnitures/commands.pwn"
 
 
 
@@ -272,14 +274,14 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 				case TEXTDRAWS_INVENTORY: hideInventory(playerid);
 				case TEXTDRAWS_DIALOG_ITEM: clearDialogItem(playerid);
 			}
-		}
-		
-		//CancelSelectTextDraw(playerid);
-		//characterData[playerid][viewTextdraw] = -1;
-		
+		}	
 	}
 
     return 1;
+}
+
+cmd:no(playerid, params[]){
+	ClearAnimations(playerid);
 }
 /*
 

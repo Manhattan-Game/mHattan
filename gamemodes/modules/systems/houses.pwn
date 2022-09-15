@@ -149,6 +149,7 @@ cmd:micasa(playerid, params[]){
 			}
 		}
 	}
+	return 1;
 }
 
 cmd:editarcasa(playerid, params[]){
@@ -232,9 +233,9 @@ getFreeHouseSlot()
 
 saveHouses(){
     new query[QUERY_LONG];
-    for(new i; i<MAX_DOORS-1;i++){
+    for(new i; i<MAX_HOUSES;i++){
         if(doorsInfo[i][characterID] > 0){
-            mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE houses SET `characterid`='%d', `doorid`='%d', `price`='%d', `direction`='%e', `garajedoorid`='%d', `type`='%d', `interior`='%d', `level`='%d', `statee`='%d', `virtualworld`='%d', `safe`='%d' WHERE listid = '%d' LIMIT 1",
+            mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE houses SET `characterid`='%d', `doorid`='%d', `price`='%d', `direction`='%s', `garajedoorid`='%d', `type`='%d', `interior`='%d', `level`='%d', `statee`='%d', `virtualworld`='%d', `safe`='%d' WHERE listid = '%d' LIMIT 1",
             houseData[i][characterid],
             houseData[i][doorid],
             houseData[i][price],

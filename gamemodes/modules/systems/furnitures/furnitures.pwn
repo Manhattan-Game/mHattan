@@ -21,18 +21,18 @@ new INDEX_REAL_FURNITURE[MAX_PLAYERS][MAX_FURNITURES];
 
 
 hook OnPlayerConnect(playerid){
-	/*editFurnitureID[playerid] = -1;
+	editFurnitureID[playerid] = -1;
 	editFurnitureID[playerid] = -1;
 	furnituresData[0][toId] = 1;
 	furnituresData[0][model] = 229;
 	furnituresData[1][toId] = 1;
 	furnituresData[1][model] = 230;
 
-	furnituresData[2][model] = 29;
+	furnituresData[2][model] = 80;
 	furnituresData[2][toId] = 1;
 
-	furnituresData[3][model] = 2;
-	furnituresData[3][toId] = 1;*/
+	furnituresData[3][model] = 4;
+	furnituresData[3][toId] = 1;
 
 }
 hook OP_EditDynamicObject(playerid, objectid, response, Float:xx, Float:yy, Float:zz, Float:rx, Float:ry, Float:rz){
@@ -128,7 +128,28 @@ editFurniture(playerid, index){
     } else ShowTDN_OOC(playerid, "El mueble no esta colocado");
     
 }
+useFurniture(playerid){
+	if(characterData[playerid][p_spawn]){
+		new indexModel = -1;
+		for(new index;index<MAX_FURNITURES;index++){
+			if(IsPlayerInRangeOfPoint(playerid, 3.0, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2]) && (furnituresData[index][vw] == GetPlayerVirtualWorld(playerid))){
+				indexModel = furnituresData[index][model];
+				if(indexModel != -1){
+					switch(furnituresModelData[indexModel][type]){
+						case FURNITURE_TYPE_BED: furnitureSleep(playerid, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2]);
+						case FURNITURE_TYPE_CHAIRS: furnitureSeat(playerid);
 
+					}
+					if(furnituresModelData[indexModel][type] == FURNITURE_TYPE_BED){
+						furnitureSleep(playerid, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2]);
+						break;
+					}
+				}
+				break;	
+			}
+		}
+	}
+}
 unplaceFurniture(index){
 	if(furnituresData[index][placed] == FURNITURE_TYPE_PLACED){
 		new indexModel = furnituresData[index][model];
@@ -147,8 +168,9 @@ placeFurniture(index){
 		furnituresData[index][placed] = FURNITURE_TYPE_PLACED;
 		if(furnituresModelData[indexModel][type] == FURNITURE_TYPE_BED){
 			furnituresData[index][label] = CreateDynamic3DTextLabel(""GREY"Utiliza "ORANGE"/dormir"GREY"", 0xFFFFFFFF, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2], 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, furnituresData[index][vw]);
+		} else if(furnituresModelData[indexModel][type] == FURNITURE_TYPE_CHAIRS){
+			furnituresData[index][label] = CreateDynamic3DTextLabel(""GREY"Utiliza "ORANGE"/sentarse"GREY"", 0xFFFFFFFF, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2], 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, furnituresData[index][vw]);
 		}
-		printf("place %i", index);
 	}
 }
 getFurnituresById(idd){
@@ -159,4 +181,19 @@ getFurnituresById(idd){
         } else array[i] = -1;
     }
     return array;
+}
+
+furnitureSleep(playerid, Float:xx, Float:yy, Float:zz){
+	SetPlayerPos(playerid, xx, yy, zz+0.5);
+	new Float:angl;
+	GetPlayerFacingAngle(playerid, angl);
+	SetPlayerFacingAngle(playerid, angl-90.0);
+	ApplyAnimation(playerid,"INT_HOUSE","BED_Loop_R",4.0, 1, 0, 0, 0, 0);
+}
+
+furnitureSeat(playerid){
+	new Float:angl;
+	GetPlayerFacingAngle(playerid, angl);
+	SetPlayerFacingAngle(playerid, angl+180.0);
+	ApplyAnimation(playerid,"ped","SEAT_down",4.0, 1, 0, 0, 0, 0);
 }
