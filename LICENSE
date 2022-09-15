@@ -1,22 +1,18 @@
 {
-    "name": "Creative Commons Attribution-NonCommercial-NoDerivs (CC-BY-NC-ND)",
-    "priority": 1,
+    "name": "Artistic License 2.0",
+    "priority": 8,
     "available": true,
-    "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
-    "description": "The most restrictive creative commons license. This only allows people to download and share your work for no commercial gain and for no other purposes.",
+    "url": "http://opensource.org/licenses/Artistic-2.0",
+    "description": "This is a license for software packages with the intent of giving the original copyright holder some measure of control over his software while still remaining open source. It is flexible and allows you to distribute or sell modified versions as long as you fulfill one of various conditions. Look at section 4 in the full text for a better explanation.",
     "categories": [
         "public",
-        "data",
-        "by",
-        "nc",
-        "nd"
+        "software",
+        "perl"
     ],
     "labels": [
         "public",
-        "cc",
-        "by",
-        "nc",
-        "nd"
+        "perl",
+        "osi"
     ],
-    "key": "cc-by-nc-nd"
+    "key": "perl-artistic-2"
 }
