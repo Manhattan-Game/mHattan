@@ -46,43 +46,6 @@ hook OnPlayerDisconnect(playerid, reason){
 hook OnPlayerSpawn(playerid){
     editDoor[playerid] = -1;
 }
-cmd:puerta(playerid, params[]){
-    for(new i;i<MAX_DOORS-1;i++){
-        if(IsPlayerInEnterDoor(playerid, i) || IsPlayerInExitDoor(playerid, 2.0, i)){
-            new string[QUERY_MEDIUM];
-            if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
-                format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" Doors ID: %i", i);
-                ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR, DIALOG_STYLE_LIST, string, "Bloquear/desbloquear puerta\nEditar posicion entrada\nEditar posicion salida\nEditar puerta(Fisica)\nEditar modelo puerta(Fisica)", "Continuar", ""RED" cancelar");
-                editDoor[playerid] = i;
-                break;
-            }
-            if(characterData[playerid][listid] == doorsInfo[i][characterID]){
-                ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" Doors", "Bloquear/desbloquear puerta", "Continuar", ""RED" cancelar");
-                editDoor[playerid] = i;
-                break;
-            }else{
-                ShowTDN_OOC(playerid, "No eres el dueño de esta puerta");
-                break;
-            }
-        }
-    }
-    return 1;
-}
-cmd:crearpuerta(playerid, params[]){
-    if(characterData[playerid][p_spawn]){
-        if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
-            if(_@IsNumeric(params[0])){
-                new param = strval(params[0]);
-                if(param >= 0 && param < 4){
-                     createDoor(playerid, param, 55);
-                } else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearpuerta [TIPO: 1= Fisica, 2=Interior, 3=Vehiculos]");
-
-            }else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearpuerta [TIPO: 1= Fisica, 2=Interior, 3=Vehiculos]");
-        }
-    }
-    return 1;
-}
-
 
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
@@ -245,6 +208,44 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
     }
     
 }
+
+cmd:puerta(playerid, params[]){
+    for(new i;i<MAX_DOORS-1;i++){
+        if(IsPlayerInEnterDoor(playerid, i) || IsPlayerInExitDoor(playerid, 2.0, i)){
+            new string[QUERY_MEDIUM];
+            if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
+                format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" Doors ID: %i", i);
+                ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR, DIALOG_STYLE_LIST, string, "Bloquear/desbloquear puerta\nEditar posicion entrada\nEditar posicion salida\nEditar puerta(Fisica)\nEditar modelo puerta(Fisica)", "Continuar", ""RED" cancelar");
+                editDoor[playerid] = i;
+                break;
+            }
+            if(characterData[playerid][listid] == doorsInfo[i][characterID]){
+                ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" Doors", "Bloquear/desbloquear puerta", "Continuar", ""RED" cancelar");
+                editDoor[playerid] = i;
+                break;
+            }else{
+                ShowTDN_OOC(playerid, "No eres el dueño de esta puerta");
+                break;
+            }
+        }
+    }
+    return 1;
+}
+cmd:crearpuerta(playerid, params[]){
+    new typee;
+    if(characterData[playerid][p_spawn]){
+        if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
+            if(!sscanf(params, "i", typee)){
+                if(typee >= 0 && typee < 4){
+                     createDoor(playerid, typee, 55);
+                } else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearpuerta [TIPO: 1= Fisica, 2=Interior, 3=Vehiculos]");
+
+            }else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearpuerta [TIPO: 1= Fisica, 2=Interior, 3=Vehiculos]");
+        }
+    }
+    return 1;
+}
+
 createDoor(playerid, DOOR_TYPE, characterIDD, forModule = -1, other = -1){
     if(characterIDD > 0){
         new index = getFreeDoorSlot();
@@ -253,6 +254,12 @@ createDoor(playerid, DOOR_TYPE, characterIDD, forModule = -1, other = -1){
         doorsInfo[index][enterCoords][0] = posXEdit;
         doorsInfo[index][enterCoords][1] = posYEdit;
         doorsInfo[index][enterCoords][2] = posZEdit;
+        if(DOOR_TYPE == DOOR_TYPE_PHYSICAL){
+            doorsInfo[index][exitCoords][0] = posXEdit;
+            doorsInfo[index][exitCoords][1] = posYEdit;
+            doorsInfo[index][exitCoords][2] = posZEdit;
+        }
+        
         doorsInfo[index][doorVw] = GetPlayerVirtualWorld(playerid);
         doorsInfo[index][characterID] = characterIDD;
         doorsInfo[index][doorType] = DOOR_TYPE;
@@ -278,8 +285,8 @@ loadDoor(index){
         }else doorsInfo[index][doorObject] = CreateDynamicObject(doorsInfo[index][doorModel], doorsInfo[index][doorCoords][0], doorsInfo[index][doorCoords][1], doorsInfo[index][doorCoords][2], doorsInfo[index][doorCoords][3], doorsInfo[index][doorCoords][4], doorsInfo[index][doorCoords][5], doorsInfo[index][doorVw]);
         doorsInfo[index][labelEnter] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para abrir/cerrar", 0xFFFFFFFF, doorsInfo[index][doorCoords][0], doorsInfo[index][doorCoords][1], doorsInfo[index][doorCoords][2]+1.2, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][doorVw]);
     } else{
-        doorsInfo[index][labelEnter] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para entrar", 0xFFFFFFFF, doorsInfo[index][enterCoords][0], doorsInfo[index][enterCoords][1], doorsInfo[index][enterCoords][2] - 0.3, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][doorVw]);
-        doorsInfo[index][labelExit] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para salir", 0xFFFFFFFF, doorsInfo[index][exitCoords][0], doorsInfo[index][exitCoords][1], doorsInfo[index][exitCoords][2] - 0.3, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][exitVw]);
+        doorsInfo[index][labelEnter] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para entrar", 0xFFFFFFFF, doorsInfo[index][enterCoords][0], doorsInfo[index][enterCoords][1], doorsInfo[index][enterCoords][2] - 0.5, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][doorVw]);
+        doorsInfo[index][labelExit] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para salir", 0xFFFFFFFF, doorsInfo[index][exitCoords][0], doorsInfo[index][exitCoords][1], doorsInfo[index][exitCoords][2] - 0.5, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][exitVw]);
     }
     doorsInfo[index][enterState] = DOOR_STATE_OPEN;
 }
@@ -340,7 +347,7 @@ getFreeDoorSlot()
 {
     for(new i;i<MAX_DOORS-1;i++)
     {
-        if(doorsInfo[i][characterID] == 0) return i;
+        if(doorsInfo[i][listid] == 0) return i;
     }
     return -1;
 }
@@ -357,6 +364,7 @@ public onCreateDoor(playerid, index, forModule, other){
     if(forModule != -1){
         switch(forModule){
             case TYPE_HOUSES: createHouse(playerid, other, doorsInfo[index][listid]);
+            case TYPE_MARKETS: createMarket(playerid, other, doorsInfo[index][listid]);
         }
     }
     loadDoor(index);
@@ -401,6 +409,7 @@ public loadDoors(){
             loadDoor(i);
         }
         mysql_pquery(MYSQL_DB, "SELECT * FROM HOUSES", "loadHouses");
+        mysql_pquery(MYSQL_DB, "SELECT * FROM MARKETS", "loadMarkets");
     }
 }
 

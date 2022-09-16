@@ -11,6 +11,7 @@
 new MySQL:MYSQL_DB;
 
 
+
 hook OnGameModeInit()
 {
     MYSQL_DB = mysql_connect(xylos_HOST, xylos_USER, xylos_PSS, xylos_DB);
@@ -24,7 +25,12 @@ hook OnGameModeInit()
     mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `inventory` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `characterid` int(10) NOT NULL, `slot1` int(10) NOT NULL, `slot2` int(10) NOT NULL, `slot3` int(10) NOT NULL, `slot4` int(10) NOT NULL, `slot5` int(10) NOT NULL, `slot6` int(10) NOT NULL, `slot7` int(10) NOT NULL, `slot8` int(10) NOT NULL,`slot9` int(10) NOT NULL, `amount1` int(10) NOT NULL, `amount2` int(10) NOT NULL, `amount3` int(10) NOT NULL, `amount4` int(10) NOT NULL, `amount5` int(10) NOT NULL, `amount6` int(10) NOT NULL, `amount7` int(10) NOT NULL, `amount8` int(10) NOT NULL,`amount9` int(10) NOT NULL)");
     
     mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `houses` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `characterid` int(10) NOT NULL, `doorid` int(10) NOT NULL, `price` int(10) NOT NULL, `direction` varchar(40) NOT NULL, `garajedoorid` int(10) NOT NULL, `type` int(10) NOT NULL, `interior` int(10) NOT NULL, `level` int(10) NOT NULL, `virtualworld` int(10) NOT NULL, `statee` int(10) NOT NULL, `safe` int(10) NOT NULL)");
-
+    
+    mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `markets` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `characterid` int(10) NOT NULL, `doorid` int(10) NOT NULL, `safe` int(10) NOT NULL, `level` int(10) NOT NULL, `type` int(10) NOT NULL, `coordsSell1` float(10) NOT NULL, `coordsSell2` float(10) NOT NULL, `coordsSell3` float(10) NOT NULL, `sale` int(10) NOT NULL, `vw` int(10) NOT NULL, \
+    `item1` int(10) NOT NULL, `item2` int(10) NOT NULL, `item3` int(10) NOT NULL, `item4` int(10) NOT NULL, `item5` int(10) NOT NULL, `item6` int(10) NOT NULL, `item7` int(10) NOT NULL, `item8` int(10) NOT NULL, `item9` int(10) NOT NULL, `item10` int(10) NOT NULL, `item11` int(10) NOT NULL, `item12` int(10) NOT NULL, `item13` int(10) NOT NULL, `item14` int(10) NOT NULL, `item15` int(10) NOT NULL, `item16` int(10) NOT NULL, `item17` int(10) NOT NULL, `item18` int(10) NOT NULL, `item19` int(10) NOT NULL, `item20` int(10) NOT NULL, \
+    `itemAmount1` int(10) NOT NULL, `itemAmount2` int(10) NOT NULL, `itemAmount3` int(10) NOT NULL, `itemAmount4` int(10) NOT NULL, `itemAmount5` int(10) NOT NULL, `itemAmount6` int(10) NOT NULL, `itemAmount7` int(10) NOT NULL, `itemAmount8` int(10) NOT NULL, `itemAmount9` int(10) NOT NULL, `itemAmount10` int(10) NOT NULL, `itemAmount11` int(10) NOT NULL, `itemAmount12` int(10) NOT NULL, `itemAmount13` int(10) NOT NULL, `itemAmount14` int(10) NOT NULL, `itemAmount15` int(10) NOT NULL, `itemAmount16` int(10) NOT NULL, `itemAmount17` int(10) NOT NULL, `itemAmount18` int(10) NOT NULL, `itemAmount19` int(10) NOT NULL, `itemAmount20` int(10) NOT NULL, \
+    `price` int(10) NOT NULL, `direction` varchar(60) NOT NULL)");
+   
     mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `doors` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `characterid` int(10) NOT NULL, `enterX` float(10) NOT NULL, `enterY` float(10) NOT NULL, `enterZ` float(10) NOT NULL, \
     `exitX` float(10) NOT NULL, `exitY` float(10) NOT NULL, `exitZ` float(10) NOT NULL, `enterState` int(10) NOT NULL, `doorModel` int(10) NOT NULL, \
     `doorCoords1` float(10) NOT NULL, `doorCoords2` float(10) NOT NULL, `doorCoords3` float(10) NOT NULL, `doorCoords4` float(10) NOT NULL, `doorCoords5` float(10) NOT NULL, `doorCoords6` float(10) NOT NULL, \

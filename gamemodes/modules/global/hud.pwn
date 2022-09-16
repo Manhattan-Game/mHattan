@@ -3,9 +3,6 @@ new Text:HUD_TD[2];
 new PlayerText:HUD_PTD[MAX_PLAYERS][4];
 
 
-
-new VIEW_HUD[MAX_PLAYERS];
-
 new BAR_LIFE[MAX_PLAYERS] = 0;
 new BAR_ARMOR[MAX_PLAYERS] = 0;
 new BAR_DRUGS[MAX_PLAYERS] = 0;
@@ -97,27 +94,21 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys){
 	}
 }
 showNeeds(playerid){
-	TextDrawHideForPlayer(playerid, HUD_TD[0]);
-	for(new i;i<3;i++) PlayerTextDrawHide(playerid, HUD_PTD[playerid][i]);
-	hideProgressBar(playerid, BAR_LIFE[playerid]);
-	hideProgressBar(playerid, BAR_ARMOR[playerid]);
-	VIEW_HUD[playerid] = 0;
-	TextDrawShowForPlayer(playerid, HUD_TD[1]);
+	if(characterData[playerid][p_spawn]){
+		TextDrawHideForPlayer(playerid, HUD_TD[0]);
+		for(new i;i<3;i++) PlayerTextDrawHide(playerid, HUD_PTD[playerid][i]);
+		hideProgressBar(playerid, BAR_LIFE[playerid]);
+		hideProgressBar(playerid, BAR_ARMOR[playerid]);
+		VIEW_HUD[playerid] = 0;
+		TextDrawShowForPlayer(playerid, HUD_TD[1]);
 
-	updateProgressBar(playerid, BAR_DRUGS[playerid], characterData[playerid][drugs]);
-	updateProgressBar(playerid, BAR_HUNGRY[playerid], characterData[playerid][hungry]);
-	updateProgressBar(playerid, BAR_THIRST[playerid], characterData[playerid][thirst]);
-	updateProgressBar(playerid, BAR_URINE[playerid], characterData[playerid][urine]);
-	updateProgressBar(playerid, BAR_FATIGUE[playerid], characterData[playerid][fatigue]);
-	updateProgressBar(playerid, BAR_STRESS[playerid], characterData[playerid][stress]);
-
-	showProgressBar(playerid, BAR_DRUGS[playerid]);
-	showProgressBar(playerid, BAR_HUNGRY[playerid]);
-	showProgressBar(playerid, BAR_THIRST[playerid]);
-	showProgressBar(playerid, BAR_URINE[playerid]);
-	showProgressBar(playerid, BAR_FATIGUE[playerid]);
-	showProgressBar(playerid, BAR_STRESS[playerid]);
-
+		updateBarDrugs(playerid);
+		updateBarHungry(playerid);
+		updateBarThirst(playerid);
+		updateBarUrine(playerid);
+		updateBarFatigue(playerid);
+		updateBarStress(playerid);
+	}
 }
 hideNeeds(playerid){
 	TextDrawHideForPlayer(playerid, HUD_TD[1]);
@@ -150,15 +141,43 @@ showHUD(playerid){
 		if(BAR_STRESS[playerid] == 0) BAR_STRESS[playerid] = createProgressBar(playerid, BAR_HUD_STRESS, 564.333435, 76.355552, 607.000000, 0.233332, 842150655, 100.0, 0);
 
 
-		showProgressBar(playerid, BAR_LIFE[playerid]);
-		showProgressBar(playerid, BAR_ARMOR[playerid]);
-		updateHudBars(playerid);
+		updateBarLife(playerid);
+		updateBarArmor(playerid);
 	}
 }
-updateHudBars(playerid){
+updateBarLife(playerid){
 	updateProgressBar(playerid, BAR_LIFE[playerid], characterData[playerid][life]);
-	updateProgressBar(playerid, BAR_ARMOR[playerid], characterData[playerid][armor]);
+	showProgressBar(playerid, BAR_LIFE[playerid]);
 }
+updateBarArmor(playerid){
+	updateProgressBar(playerid, BAR_ARMOR[playerid], characterData[playerid][armor]);
+	showProgressBar(playerid, BAR_ARMOR[playerid]);
+}
+updateBarDrugs(playerid){
+	updateProgressBar(playerid, BAR_DRUGS[playerid], characterData[playerid][drugs]);
+	showProgressBar(playerid, BAR_DRUGS[playerid]);
+}
+updateBarHungry(playerid){
+	updateProgressBar(playerid, BAR_HUNGRY[playerid], characterData[playerid][hungry]);
+	showProgressBar(playerid, BAR_HUNGRY[playerid]);
+}
+updateBarThirst(playerid){
+	updateProgressBar(playerid, BAR_THIRST[playerid], characterData[playerid][thirst]);
+	showProgressBar(playerid, BAR_THIRST[playerid]);
+}
+updateBarUrine(playerid){
+	updateProgressBar(playerid, BAR_URINE[playerid], characterData[playerid][urine]);
+	showProgressBar(playerid, BAR_URINE[playerid]);
+}
+updateBarFatigue(playerid){
+	updateProgressBar(playerid, BAR_FATIGUE[playerid], characterData[playerid][fatigue]);
+	showProgressBar(playerid, BAR_FATIGUE[playerid]);
+}
+updateBarStress(playerid){
+	updateProgressBar(playerid, BAR_STRESS[playerid], characterData[playerid][stress]);
+	showProgressBar(playerid, BAR_STRESS[playerid]);
+}
+
 updateExperience(playerid){
 	new string[QUERY_LOW];
 	format(string, sizeof(string), "%i/%i", characterData[playerid][exp], getExperienceFromLevel(playerid));

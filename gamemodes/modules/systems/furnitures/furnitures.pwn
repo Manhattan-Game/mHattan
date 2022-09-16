@@ -195,5 +195,5 @@ furnitureSeat(playerid){
 	new Float:angl;
 	GetPlayerFacingAngle(playerid, angl);
 	SetPlayerFacingAngle(playerid, angl+180.0);
-	ApplyAnimation(playerid,"ped","SEAT_down",4.0, 1, 0, 0, 0, 0);
+	ApplyAnimation(playerid,"ped","SEAT_down",4.0, 0, 0, 0, 0, 0);
 }

@@ -31,6 +31,9 @@
 	#include "./modules/systems/furnitures/models.pwn"
 	#include "./modules/systems/furnitures/furnitures.pwn"
 	#include "./modules/systems/furnitures/commands.pwn"
+// MARKETS
+	#include "./modules/systems/markets/models.pwn"
+	#include "./modules/systems/markets/markets.pwn"
 
 
 
@@ -76,7 +79,6 @@
 
 #undef MAX_PLAYERS
 #define MAX_PLAYERS 10
-//DIALOG's
 main()
 {
  	bcrypt_set_thread_limit(6);   

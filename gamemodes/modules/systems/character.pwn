@@ -58,6 +58,9 @@ new inputName[MAX_PLAYERS][MAX_PLAYER_NAME];
 new inputAge[MAX_PLAYERS];
 new inputGender[MAX_PLAYERS] = GENDER_FEMALE;
 
+new VIEW_HUD[MAX_PLAYERS];
+
+
 hook OnGameModeInit(){
         character_TD[0] = TextDrawCreate(-2.000014, -4.703687, "mdl-2001:box_pj");
         TextDrawTextSize(character_TD[0], 646.000000, 454.000000);
@@ -465,16 +468,14 @@ public loadCharacter(playerid){
                 characterData[playerid][posZ], characterData[playerid][angle], 0, 0, 0, 0, 0, 0);
                 SpawnPlayer(playerid);
 
-                ResetPlayerMoney(playerid);
-                GivePlayerMoney(playerid, characterData[playerid][money]);
+                giveCharacterMoney(playerid, characterData[playerid][money]);
                 SetPlayerName(playerid, characterData[playerid][name]);
-                SetPlayerHealth(playerid, characterData[playerid][life]);
-                SetPlayerArmour(playerid, characterData[playerid][armor]);
                 SetPlayerVirtualWorld(playerid, characterData[playerid][world]);
                 SetPlayerInterior(playerid, characterData[playerid][interior]);
-
                 SetPlayerColor(playerid, 0xAFAFAFAA);
                 freezeUser(playerid, 3000);
+                setLife(playerid, characterData[playerid][life]);
+                setArmor(playerid, characterData[playerid][armor]);
                 new string[128];
                 format(string, 128, "Gracias por confiar %s!.", GetFullName(playerid));
                 ShowTDN_OOC(playerid, string);
@@ -541,6 +542,14 @@ public timerNeds(playerid){
         setUrine(playerid, characterData[playerid][urine]-1.1);
         setFatigue(playerid, characterData[playerid][fatigue]-1.1);
         setStress(playerid, characterData[playerid][stress]-1.1);
+        if(VIEW_HUD[playerid] == 0){
+            updateBarDrugs(playerid);
+            updateBarHungry(playerid);
+            updateBarThirst(playerid);
+            updateBarUrine(playerid);
+            updateBarFatigue(playerid);
+            updateBarStress(playerid);
+        }
         if(characterData[playerid][drugs] < 10.0){
             ShowTDN_OOC(playerid, "Mira tus necesidades");
         } else if(characterData[playerid][hungry] < 10.0){
@@ -574,6 +583,7 @@ giveCharacterMoney(playerid, ammountt){
         characterData[playerid][money] += ammountt;
         ResetPlayerMoney(playerid);
         GivePlayerMoney(playerid, characterData[playerid][money]);
+        updateMoney(playerid);
     }
 }
 
@@ -582,6 +592,7 @@ takeCharacterMoney(playerid, ammountt){
         characterData[playerid][money] -= ammountt;
         ResetPlayerMoney(playerid);
         GivePlayerMoney(playerid, characterData[playerid][money]);
+        updateMoney(playerid);
     }
 }
 
@@ -594,13 +605,13 @@ setSkin(playerid, skinn){
 setLife(playerid, Float:lifee){
     if(characterData[playerid][p_spawn]){
         characterData[playerid][life] = lifee;
-        SetPlayerHealth(playerid, life);
+        SetPlayerHealth(playerid, lifee);
     }
 }
 setArmor(playerid, Float:armorr){
     if(characterData[playerid][p_spawn]){
         characterData[playerid][armor] = armorr;
-        SetPlayerArmour(playerid, armor);
+        SetPlayerArmour(playerid, armorr);
     }
 }
 

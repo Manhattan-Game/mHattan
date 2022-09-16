@@ -337,7 +337,7 @@ clearDialogItem(playerid){
 	for(new e;e<3;e++) TextDrawHideForPlayer(playerid, DIALOG_TD[e]);
 	for(new j;j<15;j++) PlayerTextDrawHide(playerid, DIALOG_PTD[playerid][j]);
 	CancelSelectTextDraw(playerid);
-	characterData[playerid][viewTextdraw] = TEXTDRAWS_MODEL_NONE;
+	characterData[playerid][viewTextdraw] = -1;
 }
 getCountDialogItems(playerid){
 	new total;

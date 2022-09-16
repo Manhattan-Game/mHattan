@@ -38,7 +38,9 @@ new editHouse[MAX_PLAYERS];
 hook OnGameModeExit(){
 	saveHouses();
 }
-
+hook OnPlayerDisconnect(playerid, reason){
+	saveHouses();
+}
 hook OnPlayerConnect(playerid){
 	editHouse[playerid] = -1;
 }
@@ -131,35 +133,91 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				} else ShowPlayerDialog(playerid, DIALOG_EDIT_HOUSE_LEVEL, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" HOUSES", "Ingresa un nivel(Solo numeros)", "Continuar", ""RED" cancelar");
 			} else editHouse[playerid] = -1;
 		}
+		case DIALOG_MY_HOUSE: {
+			if(response){
+				switch(listitem){
+					case 0: ShowFurnitures(playerid, houseData[editHouse[playerid]][listid]);
+					case 1: ShowPlayerDialog(playerid, DIALOG_MY_HOUSE_DEPOSIT, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" HOUSES", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+					case 2: ShowPlayerDialog(playerid, DIALOG_MY_HOUSE_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" HOUSES", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+				}
+			} else editHouse[playerid] = -1;
+		}
+		case DIALOG_MY_HOUSE_DEPOSIT: {
+			if(response){
+				if(IsNumeric(inputtext)){
+					new ammounts = strval(inputtext);
+					if(characterData[playerid][money] >= ammounts){
+						new index = editHouse[playerid];
+						new indexdoor = getIndexDoorByID(houseData[index][doorid]);
+						houseData[index][safe] += ammounts;
+						takeCharacterMoney(playerid, ammounts);
+						DestroyDynamicHouse(index);
+						loadHouse(index, indexdoor);
+						ShowTDN_OOC(playerid, "Depositaste dinero en la caja fuerte");
+						editHouse[playerid] = -1;
+					}else {
+						ShowTDN_OOC(playerid, "No tienes ese monto en mano");
+						editHouse[playerid] = -1;
+					}
+					
+				} else ShowPlayerDialog(playerid, DIALOG_MY_HOUSE_DEPOSIT, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" HOUSES", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+			} else editHouse[playerid] = -1;
+		}
+		case DIALOG_MY_HOUSE_WITHDRAW: {
+			if(response){
+				if(IsNumeric(inputtext)){
+					new ammounts = strval(inputtext);
+					new index = editHouse[playerid];
+					if(houseData[index][safe] >= ammounts){
+						new indexdoor = getIndexDoorByID(houseData[index][doorid]);
+						houseData[index][safe] -= ammounts;
+						giveCharacterMoney(playerid, ammounts);
+						DestroyDynamicHouse(index);
+						loadHouse(index, indexdoor);
+						ShowTDN_OOC(playerid, "Retiraste dinero de la caja fuerte");
+						editHouse[playerid] = -1;
+					}else {
+						ShowTDN_OOC(playerid, "La caja fuerte no tiene se monto");
+						editHouse[playerid] = -1;
+					}
+					
+				} else ShowPlayerDialog(playerid, DIALOG_MY_HOUSE_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" HOUSES", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+			} else editHouse[playerid] = -1;
+		}
 	}
 }
 
 cmd:micasa(playerid, params[]){
+	new string[QUERY_LOW];
 	for(new i;i<MAX_DOORS;i++){
 		if(IsPlayerInExitDoor(playerid, 20.0, i)){
 			for(new e;e<MAX_HOUSES;e++){
 				if(doorsInfo[i][listid] == houseData[e][doorid]){
 					if(houseData[e][characterid] == characterData[playerid][listid]){
-						ShowFurnitures(playerid, houseData[e][listid]);
+						format(string, sizeof(string), "Muebles\nDepositar dinero caja fuerte\nRetirar dinero caja fuerte("GREEN"$%i)",  houseData[e][safe]);
+						ShowPlayerDialog(playerid, DIALOG_MY_HOUSE, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" HOUSES", string, "Continuar", ""RED" cancelar");
+						editHouse[playerid] = e;
+						break;
 					} else {
 						ShowTDN_OOC(playerid, "No eres el dueño de esta casa.");
 						break;
 					}
 				}
 			}
+			break;
 		}
 	}
 	return 1;
 }
 
 cmd:editarcasa(playerid, params[]){
+	new index;
 	if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
-		if(_@IsNumeric(params[0])){
-			new param = strval(params[0]);
-	    	if(param >= 0 && param < MAX_HOUSES){
-	    		editHouse[playerid] = param;
+		if(!sscanf(params, "i", index)){
+	    	if(index >= 0 && index < MAX_HOUSES){
+	    		editHouse[playerid] = index;
 	    		new string[QUERY_LOW];
-	    		format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" House ID: %i", param);
+	    		format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" House ID: %i", index);
 	    		ShowPlayerDialog(playerid, DIALOG_EDIT_HOUSE, DIALOG_STYLE_LIST, string, "Editar ID puerta\nEditar ID puerta del garaje\nEditar direccion\nEditar precio\nEditar nivel", "Continuar", ""RED" cancelar");
 	    	} else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /editarcasa [index]");
 	    } else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /editarcasa [index]");
@@ -169,16 +227,16 @@ cmd:editarcasa(playerid, params[]){
 
 
 cmd:crearcasa(playerid, params[]){
+	new typee;
     if(characterData[playerid][p_spawn]){
     	if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
-	    	if(_@IsNumeric(params[0])){
-	    		new param = strval(params[0]);
-	    		if(param >= 0 && param < 2){
+	    	if(!sscanf(params, "i", typee)){
+	    		if(typee >= 0 && typee < 2){
 	    			new DOOR_TYPS;
-	    			if(param == 0){
+	    			if(typee == 0){
 	    				DOOR_TYPS = DOOR_TYPE_INTERIOR;
 	    			} else DOOR_TYPS = DOOR_TYPE_PHYSICAL;
-	    			createDoor(playerid, DOOR_TYPS, characterData[playerid][listid], TYPE_HOUSES, param);
+	    			createDoor(playerid, DOOR_TYPS, characterData[playerid][listid], TYPE_HOUSES, typee);
 	    		} else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearcasa [TIPO: 0= Interior, 1=Puerta Fisica]");
 
 	    	}else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY"/crearcasa [TIPO: 0= Interior, 1=Puerta Fisica]");
@@ -212,7 +270,7 @@ loadHouse(index, indexdoor){
 				new pickupp = 1272;
 				if(houseData[index][statee] == HOUSE_STATE_ON_SALE){
 					pickupp = 1273;
-					format(string, sizeof(string), ""GREY"Casa en venta "GREEN"$%i"GREY"\n Direccion: %s \n"LIME" Dirigete a una inmobiliaria para comprarla!.", houseData[index][price], houseData[index][direction]);
+					format(string, sizeof(string), ""GREY"Casa en venta "GREEN"$%i"GREY"\n Direccion: %s \n"LIME" Dirigete a una inmobiliaria para comprarla!. \n "GREY"index: %i", houseData[index][price], houseData[index][direction], index);
 				} else format(string, sizeof(string), ""GREY"Direccion: %s", houseData[index][direction]);
 			    houseData[index][label] = CreateDynamic3DTextLabel(string, 0xFFFFFFFF, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[indexdoor][doorVw]);
 				houseData[index][pickup] = CreateDynamicPickup(pickupp, 1, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], houseData[index][virtualworld], -1, -1, 10.0);
@@ -234,7 +292,7 @@ getFreeHouseSlot()
 saveHouses(){
     new query[QUERY_LONG];
     for(new i; i<MAX_HOUSES;i++){
-        if(doorsInfo[i][characterID] > 0){
+        if(houseData[i][listid] > 0){
             mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE houses SET `characterid`='%d', `doorid`='%d', `price`='%d', `direction`='%s', `garajedoorid`='%d', `type`='%d', `interior`='%d', `level`='%d', `statee`='%d', `virtualworld`='%d', `safe`='%d' WHERE listid = '%d' LIMIT 1",
             houseData[i][characterid],
             houseData[i][doorid],
@@ -248,7 +306,7 @@ saveHouses(){
             houseData[i][virtualworld],
             houseData[i][safe],
             houseData[i][listid]);
-            mysql_pquery(MYSQL_DB, query);
+            mysql_query(MYSQL_DB, query);
         }
     }
 }
