@@ -92,7 +92,8 @@ hook OP_EditDynamicObject(playerid, objectid, response, Float:xx, Float:yy, Floa
             doorsInfo[index][doorCoords][4] = ry;
             doorsInfo[index][doorCoords][5] = rz;
             doorsInfo[index][doorStep] = 2;
-            EditDynamicObject(playerid, doorsInfo[index][doorObject]);
+            if(IsValidDynamicObject(doorsInfo[index][doorObject]))
+                EditDynamicObject(playerid, doorsInfo[index][doorObject]);
 
         } 
         else if((index != -1) && (doorsInfo[index][doorStep] == 2)){
@@ -266,8 +267,9 @@ createDoor(playerid, DOOR_TYPE, characterIDD, forModule = -1, other = -1){
         doorsInfo[index][doorModel] = 1557;
 
         new query[QUERY_MEDIUM];
-        mysql_format(MYSQL_DB, query, sizeof(query), "INSERT INTO doors(characterid, enterX, enterY, enterZ, doorVw, doorType, doorModel, exitVw) VALUES('%d', '%f', '%f', '%f', '%d', '%d', '%d', '%d')",
+        mysql_format(MYSQL_DB, query, sizeof(query), "INSERT INTO doors(characterid, enterX, enterY, enterZ, exitX, exitY, exitZ, doorVw, doorType, doorModel, exitVw) VALUES('%d', '%f', '%f', '%f', '%f', '%f', '%f', '%d', '%d', '%d', '%d')",
             characterIDD,
+            doorsInfo[index][enterCoords][0], doorsInfo[index][enterCoords][1], doorsInfo[index][enterCoords][2],
             doorsInfo[index][enterCoords][0], doorsInfo[index][enterCoords][1], doorsInfo[index][enterCoords][2],
             doorsInfo[index][doorVw],
             DOOR_TYPE,
@@ -300,7 +302,8 @@ editPHYSICALdoor(playerid, index){
     if(doorsInfo[index][doorType] == DOOR_TYPE_PHYSICAL){
         new Float:posXEdit, Float:posYEdit, Float:posZEdit;
         GetPlayerPos(playerid, posXEdit, posYEdit, posZEdit);
-        DestroyDynamicObject(doorsInfo[index][doorObject]);
+        if(IsValidDynamicObject(doorsInfo[index][doorObject])) 
+            DestroyDynamicObject(doorsInfo[index][doorObject]);
         doorsInfo[index][doorObject] = CreateDynamicObject(doorsInfo[index][doorModel], posXEdit, posYEdit, posZEdit-1.0, 1.0, 1.0, 1.0, GetPlayerVirtualWorld(playerid));
         EditDynamicObject(playerid, doorsInfo[index][doorObject]);
         editDoor[playerid] = index;

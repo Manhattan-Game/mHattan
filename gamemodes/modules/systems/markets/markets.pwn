@@ -25,9 +25,11 @@ enum marketsR@enm{
 new marketData[MAX_MARKETS][marketsR@enm];
 
 new editMarket[MAX_PLAYERS] = -1;
+new selectedIndexItem[MAX_PLAYERS] = -1;
 
 hook OnPlayerConnect(playerid){
 	editMarket[playerid] = -1;
+	selectedIndexItem[playerid] = -1;
 }
 hook OnPlayerDisconnect(playerid, reason){
 	saveMarkets();
@@ -119,9 +121,110 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				} else ShowPlayerDialog(playerid, DIALOG_EDIT_MARKET_PRICE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKETS", "Ingresa un precio(Solo numeros)", "Continuar", ""RED" cancelar");
 			} else editMarket[playerid] = -1;
 		}
+		case DIALOG_MY_MARKET: {
+			if(response){
+				switch(listitem){
+					case 0: ShowFurnitures(playerid, marketData[editMarket[playerid]][listid]);
+					case 1: ShowSlotsItems(playerid, editMarket[playerid]);
+					case 2: ShowSlotsItems(playerid, editMarket[playerid]);
+					case 3: {
+						new index = editMarket[playerid];
+						if(characterData[playerid][money] > marketData[index][price] * 2){
+							marketData[index][level]++;
+							ShowTDN_OOC(playerid, "Mejoraste tu negocio, utiliza /ayuda para saber tus beneficios");
+							editMarket[playerid] = -1;
+						} else {
+							ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+							editMarket[playerid] = -1;
+						}
+					}
+					case 4: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_DEPOSIT, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+					case 5: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+				}
+			} else editMarket[playerid] = -1; 
+		}
+		case DIALOG_MY_MARKET_SELECTED_ITEM_INDEX: {
+			if(response){
+				selectedIndexItem[playerid] = listitem;
+				SelectFurnituresByType(playerid, DIALOG_SELECT_MARKET_FURNITURES);
+			} else editMarket[playerid] = -1; 
+		}
+		case DIALOG_MY_MARKET_DEPOSIT: {
+			if(response){
+				if(IsNumeric(inputtext)){
+					new ammounts = strval(inputtext);
+					if(characterData[playerid][money] >= ammounts){
+						new index = editHouse[playerid];
+						marketData[index][safe] += ammounts;
+						takeCharacterMoney(playerid, ammounts);
+						ShowTDN_OOC(playerid, "Depositaste dinero en la caja fuerte");
+						editMarket[playerid] = -1;
+					}else {
+						ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+						editMarket[playerid] = -1;
+					}
+					
+				} else ShowPlayerDialog(playerid, DIALOG_MY_MARKET_DEPOSIT, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+			} else editMarket[playerid] = -1;
+		}
+		case DIALOG_MY_MARKET_WITHDRAW: {
+			if(response){
+				if(IsNumeric(inputtext)){
+					new ammounts = strval(inputtext);
+					new index = editMarket[playerid];
+					if(marketData[index][safe] >= ammounts){
+						marketData[index][safe] -= ammounts;
+						giveCharacterMoney(playerid, ammounts);
+						ShowTDN_OOC(playerid, "Retiraste dinero de la caja fuerte");
+						editMarket[playerid] = -1;
+					}else {
+						ShowTDN_OOC(playerid, "La caja fuerte no tiene se monto");
+						editMarket[playerid] = -1;
+					}
+					
+				} else ShowPlayerDialog(playerid, DIALOG_MY_MARKET_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+			} else editMarket[playerid] = -1;
+		}
+		case DIALOG_SELECT_MARKET_FURNITURES: if(!response) editMarket[playerid] = -1;
 	}
 }
-
+hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
+    if(response){
+        if(dialogid == DIALOG_ITEMS_SELECT_FURNITURE){
+            if(getCountDialogItems(playerid) > 0){
+            	for(new i;i<sizeof(furnituresModelData);i++){
+            		if(furnituresModelData[i][model] == modelid){
+						finishEditItem(playerid, editMarket[playerid], i);
+						break;
+            		}
+            	}
+            } else ShowTDN_OOC(playerid, "No tienes muebles");
+            
+        }
+    } else editMarket[playerid] = -1;
+}
+cmd:minegocio(playerid, params[]){
+	new string[QUERY_LOW];
+	for(new i;i<MAX_DOORS;i++){
+		if(IsPlayerInExitDoor(playerid, 20.0, i)){
+			for(new e;e<MAX_HOUSES;e++){
+				if(doorsInfo[i][listid] == marketData[e][doorid]){
+					if(marketData[e][characterid] == characterData[playerid][listid]){
+						format(string, sizeof(string), "Muebles\nEditar productos(El stock vuelve a 0)\nPedir stock\nMejorar negocio("GREEN"$%i)"GREY"\nDepositar dinero caja fuerte\nRetirar dinero caja fuerte("GREEN"$%i)", marketData[e][price] * 2,  marketData[e][safe]);
+						ShowPlayerDialog(playerid, DIALOG_MY_MARKET, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", string, "Continuar", ""RED" cancelar");
+						editMarket[playerid] = e;
+						break;
+					} else {
+						ShowTDN_OOC(playerid, "No eres el dueño de este negocio.");
+						break;
+					}
+				}
+			}
+			break;
+		}
+	}
+	return 1;
+}
 cmd:crearnegocio(playerid, params[]){
 	new typee;
     if(characterData[playerid][p_spawn]){
@@ -191,14 +294,6 @@ loadMarket(index, indexdoor){
 	}
 }
 
-getFreeMarketSlot()
-{
-    for(new i;i<MAX_MARKETS-1;i++)
-    {
-        if(marketData[i][listid] == 0) return i;
-    }
-    return -1;
-}
 
 updateSellPosition(playerid, index, indexDoorId){
 	new Float:xX, Float:yY, Float:zZ;
@@ -212,6 +307,32 @@ updateSellPosition(playerid, index, indexDoorId){
 	ShowTDN_OOC(playerid, "Editaste la posicion de compra");
 	editMarket[playerid] = -1;
 }
+ShowSlotsItems(playerid, index){
+	new stringfinal[QUERY_LONG], string[QUERY_LOW];
+	for(new i;i<20;i++){
+		switch(marketData[index][type]){
+			case MARKET_TYPE_FURNITURES: format(string, sizeof(string), "%i - %s \n", i+1, furnituresModelData[marketData[index][item][i]][name]);
+		}
+		strcat(stringfinal, string);
+	}
+	ShowPlayerDialog(playerid, DIALOG_MY_MARKET_SELECTED_ITEM_INDEX, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", stringfinal, "Continuar", ""RED" cancelar");
+}
+ShowSlotsAmmountItems(playerid, index){
+	// EMPRESAS
+}
+finishEditItem(playerid, index, modell){
+	new indexItem = selectedIndexItem[playerid];
+	printf("indexitem: %i, index: %i, model: %i", indexItem, index, modell);
+	if((index != -1) && (modell != -1) && (indexItem != -1)){
+		marketData[index][item][indexItem] = modell;
+		marketData[index][itemAmmount][indexItem] = 0;
+		ShowTDN_OOC(playerid, "Editaste un item");
+		editMarket[playerid] = -1;
+		selectedIndexItem[playerid] = -1;
+	}
+}
+
+
 saveMarkets(){
     new query[QUERY_LONG*2];
     for(new i; i<MAX_MARKETS;i++){
@@ -281,4 +402,28 @@ public onCreateMarket(playerid, index, doorId){
 		loadDoor(indexdoor);
 		ShowTDN_OOC(playerid, "Creaste una negocio, editalo con /editarnegocio");
 	}
+}
+
+getFreeMarketSlot()
+{
+    for(new i;i<MAX_MARKETS-1;i++)
+    {
+        if(marketData[i][listid] == 0) return i;
+    }
+    return -1;
+}
+
+getMarketsByCharacterID(playerid){
+	new array[MAX_USER_MARKETS];
+	for(new s;s<MAX_USER_MARKETS;s++) array[s] = -1;
+	if(characterData[playerid][p_spawn]){
+		for(new i, e;i<MAX_USER_MARKETS;i++){
+			if(marketData[i][characterid] == characterData[playerid][listid]){
+				array[e] = i;
+				e++;
+			}
+		}
+		return array;
+	}
+	return array;
 }

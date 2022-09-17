@@ -489,7 +489,7 @@ public loadCharacter(playerid){
         }
         
         ShowInfoForPlayer(playerid, "~w~ Pulsa ~y~ ~h~ N ~w~ para abrir tu inventario", 3000);
-        SendClientMessage(playerid, -1, ""GREY"[MiamiSide]"WHITE" Si tocaste la tecla ESC y un textdraw no se cerro usa "ORANGE"/select"WHITE" y cierralo de su respectivo icono");
+        
 }
 saveCharacter(playerid){
     if(characterData[playerid][p_spawn] == true){

@@ -148,11 +148,8 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					new ammounts = strval(inputtext);
 					if(characterData[playerid][money] >= ammounts){
 						new index = editHouse[playerid];
-						new indexdoor = getIndexDoorByID(houseData[index][doorid]);
 						houseData[index][safe] += ammounts;
 						takeCharacterMoney(playerid, ammounts);
-						DestroyDynamicHouse(index);
-						loadHouse(index, indexdoor);
 						ShowTDN_OOC(playerid, "Depositaste dinero en la caja fuerte");
 						editHouse[playerid] = -1;
 					}else {
@@ -169,11 +166,8 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					new ammounts = strval(inputtext);
 					new index = editHouse[playerid];
 					if(houseData[index][safe] >= ammounts){
-						new indexdoor = getIndexDoorByID(houseData[index][doorid]);
 						houseData[index][safe] -= ammounts;
 						giveCharacterMoney(playerid, ammounts);
-						DestroyDynamicHouse(index);
-						loadHouse(index, indexdoor);
 						ShowTDN_OOC(playerid, "Retiraste dinero de la caja fuerte");
 						editHouse[playerid] = -1;
 					}else {
@@ -280,14 +274,6 @@ loadHouse(index, indexdoor){
 	}
 }
 
-getFreeHouseSlot()
-{
-    for(new i;i<MAX_HOUSES-1;i++)
-    {
-        if(!houseData[i][loaded]) return i;
-    }
-    return -1;
-}
 
 saveHouses(){
     new query[QUERY_LONG];
@@ -351,4 +337,29 @@ public onCreateHouse(playerid, index, doorId){
 		loadDoor(indexdoor);
 		ShowTDN_OOC(playerid, "Creaste una casa, editala con /editarcasa");
 	}
+}
+
+
+getFreeHouseSlot()
+{
+    for(new i;i<MAX_HOUSES-1;i++)
+    {
+        if(!houseData[i][loaded]) return i;
+    }
+    return -1;
+}
+
+getHousesByCharacterID(playerid){
+	new array[MAX_USER_HOUSES];
+	for(new s;s<MAX_USER_HOUSES;s++) array[s] = -1;
+	if(characterData[playerid][p_spawn]){
+		for(new i, e;i<MAX_HOUSES;i++){
+			if(houseData[i][characterid] == characterData[playerid][listid]){
+				array[e] = i;
+				e++;
+			}
+		}
+		return array;
+	}
+	return array;
 }

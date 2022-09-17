@@ -1,3 +1,4 @@
+#include <YSI_Coding\y_hooks>
 
 #define FURNITURE_TYPE_BED 0
 #define FURNITURE_TYPE_TABLES 1
@@ -140,7 +141,7 @@ new furnituresModelData[][furnituresTypes] = {
     //Ba�o
     {111, 11709, 300, FURNITURE_TYPE_BATH, "Fregadero Clasico"},
     {112, 2518, 200, FURNITURE_TYPE_BATH, "Fregadero Standard"},
-    {113, 2097, 400, FURNITURE_TYPE_BATH, "Ba�adera Standard"},
+    {113, 2097, 400, FURNITURE_TYPE_BATH, "Bañadera Standard"},
     {114, 11494, 350, FURNITURE_TYPE_BATH, "Lluvia Clasica"},
     {115, 2515, 400, FURNITURE_TYPE_BATH, "Lavamanos"},
     {116, 2524, 600, FURNITURE_TYPE_BATH, "Lavamanos con pie"},
@@ -304,10 +305,33 @@ new furnituresModelData[][furnituresTypes] = {
     
 };
 
+
+hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
+    if(dialogid == DIALOG_SELECT_MARKET_FURNITURES){
+        if(response){
+            new array[sizeof(furnituresModelData)];
+            array = getModelsByType(listitem);
+            for(new i;i<sizeof(furnituresModelData);i++){
+                if(array[i] != -1){
+                    addDialogItem(playerid, furnituresModelData[array[i]][model], furnituresModelData[array[i]][name]);
+                }
+            }
+            ShowPlayerDialogItem(playerid, DIALOG_ITEMS_SELECT_FURNITURE, "Muebles", "Seleccionar");
+        }
+    }
+}
+
+
 getModelsByType(typee){
     new array[sizeof(furnituresModelData)];
     for(new i;i<sizeof(furnituresModelData); i++){
-        if(furnituresModelData[i][type] == typee) array[i] = i;
+        if(furnituresModelData[i][type] == typee) {
+            array[i] = i;
+        }else array[i] = -1;
     }
     return array;
+}
+
+SelectFurnituresByType(playerid, dialogid){
+    ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" FURNITURES", "Camas\nMesas\nMesadas\nCocina\nSillas\nSofa\nBaño\nAleatorio\nObjetos pequeños\nDecoracion\nElectronica", "Continuar", ""RED" cancelar");
 }

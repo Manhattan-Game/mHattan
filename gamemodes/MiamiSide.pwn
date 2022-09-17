@@ -15,9 +15,13 @@
 
 // GLOBAL
 #include "./modules/global/mysql.pwn"
-#include "./modules/global/definitions.pwn"
+	//DEFINITIONS
+	#include "./modules/global/definitions/colors.pwn"
+	#include "./modules/global/definitions/dialogs.pwn"
+	#include "./modules/global/definitions/global.pwn"
+	#include "./modules/global/definitions/tech.pwn"
+
 #include "./modules/global/accounts.pwn"
-#include "./modules/global/global.pwn"
 #include "./modules/systems/character.pwn"
 #include "./modules/systems/inventory.pwn"
 // NOT INCLUDES
@@ -34,7 +38,7 @@
 // MARKETS
 	#include "./modules/systems/markets/models.pwn"
 	#include "./modules/systems/markets/markets.pwn"
-
+	#include "./modules/systems/markets/sell.pwn"
 
 
 #include "./modules/global/hud.pwn"
@@ -85,7 +89,6 @@ main()
 }
 #pragma compress 0
 #pragma dynamic 20000
-
 
 public OnGameModeInit()
 {
