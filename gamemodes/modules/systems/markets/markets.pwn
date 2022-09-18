@@ -7,7 +7,7 @@ enum marketsR@enm{
 	doorid,
 	safe,
 	level,
-	type,
+	type_market,
 	Float:coordsSell[3],
 	sale,
 	vw,
@@ -101,7 +101,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 			if(response){
 				new index = editMarket[playerid];
 				new indexdoor = getIndexDoorByID(marketData[index][doorid]);
-				marketData[index][type] = listitem+1;
+				marketData[index][type_market] = listitem+1;
 				DestroyDynamicMarket(index);
 				loadMarket(index, indexdoor);
 				ShowTDN_OOC(playerid, "Editaste el tipo");
@@ -283,8 +283,8 @@ loadMarket(index, indexdoor){
 			if(indexdoor != -1){
 				new string[QUERY_MEDIUM];
 				if(marketData[index][sale] == HOUSE_STATE_ON_SALE){
-					format(string, sizeof(string), ""GREY"Negocio en venta "GREEN"$%i"GREY"\n %s \n Direccion: %s \n "GREY"index: %i", marketData[index][price], marketsModelsData[marketData[index][type]][name], marketData[index][direction], index);
-				} else format(string, sizeof(string), ""GREY" %s \n Direccion: %s", marketsModelsData[marketData[index][type]][name], marketData[index][direction]);
+					format(string, sizeof(string), ""GREY"Negocio en venta "GREEN"$%i"GREY"\n %s \n Direccion: %s \n "GREY"index: %i", marketData[index][price], marketsModelsData[marketData[index][type_market]][name], marketData[index][direction], index);
+				} else format(string, sizeof(string), ""GREY" %s \n Direccion: %s", marketsModelsData[marketData[index][type_market]][name], marketData[index][direction]);
 			    marketData[index][labell] = CreateDynamic3DTextLabel(string, 0xFFFFFFFF, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[indexdoor][doorVw]);
 				marketData[index][labelSell] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"Y"GREY" para comprar", 0xFFFFFFFF, marketData[index][coordsSell][0], marketData[index][coordsSell][1], marketData[index][coordsSell][2], 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, marketData[index][vw]);
 				marketData[index][pickupp] = CreateDynamicPickup(1239, 1, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], doorsInfo[indexdoor][doorVw], -1, -1, 10.0);
@@ -310,7 +310,7 @@ updateSellPosition(playerid, index, indexDoorId){
 ShowSlotsItems(playerid, index){
 	new stringfinal[QUERY_LONG], string[QUERY_LOW];
 	for(new i;i<20;i++){
-		switch(marketData[index][type]){
+		switch(marketData[index][type_market]){
 			case MARKET_TYPE_FURNITURES: format(string, sizeof(string), "%i - %s \n", i+1, furnituresModelData[marketData[index][item][i]][name]);
 		}
 		strcat(stringfinal, string);
@@ -340,7 +340,7 @@ saveMarkets(){
             mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE markets SET `characterid`='%d', `doorid`='%d', `safe`='%d', `level`='%d', `type`='%d', `coordsSell1`='%f', `coordsSell2`='%f', `coordsSell3`='%f', `sale`='%d', `vw`='%d', `price`='%d', `direction`='%e', \
 			`item1`='%d', `item2`='%d', `item3`='%d', `item4`='%d', `item5`='%d', `item6`='%d', `item7`='%d', `item8`='%d', `item9`='%d', `item10`='%d', `item11`='%d', `item12`='%d', `item13`='%d', `item14`='%d', `item15`='%d', `item16`='%d', `item17`='%d', `item18`='%d', `item19`='%d', `item20`='%d', \
 			`itemAmount1`='%d', `itemAmount2`='%d', `itemAmount3`='%d', `itemAmount4`='%d', `itemAmount5`='%d', `itemAmount6`='%d', `itemAmount7`='%d', `itemAmount8`='%d', `itemAmount9`='%d', `itemAmount10`='%d', `itemAmount11`='%d', `itemAmount12`='%d', `itemAmount13`='%d', `itemAmount14`='%d', `itemAmount15`='%d', `itemAmount16`='%d', `itemAmount17`='%d', `itemAmount18`='%d', `item19`='%d', `itemAmount20`='%d' WHERE listid = '%d' LIMIT 1",
-            marketData[i][characterid], marketData[i][doorid], marketData[i][safe], marketData[i][level], marketData[i][type],
+            marketData[i][characterid], marketData[i][doorid], marketData[i][safe], marketData[i][level], marketData[i][type_market],
             marketData[i][coordsSell][0], marketData[i][coordsSell][1], marketData[i][coordsSell][2],
             marketData[i][sale], marketData[i][vw], marketData[i][price], marketData[i][direction], 
             marketData[i][item][0], marketData[i][item][1], marketData[i][item][2], marketData[i][item][3], marketData[i][item][4], marketData[i][item][5], marketData[i][item][6], marketData[i][item][7], marketData[i][item][8], marketData[i][item][9], marketData[i][item][10],
@@ -416,7 +416,7 @@ public loadMarkets(){
 	        cache_get_value_name_int(i, "doorid", marketData[i][doorid]);
 	        cache_get_value_name_int(i, "safe", marketData[i][safe]);
 	        cache_get_value_name_int(i, "level", marketData[i][level]);
-	        cache_get_value_name_int(i, "type", marketData[i][type]);
+	        cache_get_value_name_int(i, "type", marketData[i][type_market]);
 	        cache_get_value_name_float(i, "coordsSell1", marketData[i][coordsSell][0]);
 	        cache_get_value_name_float(i, "coordsSell2", marketData[i][coordsSell][1]);
 	        cache_get_value_name_float(i, "coordsSell3", marketData[i][coordsSell][2]);

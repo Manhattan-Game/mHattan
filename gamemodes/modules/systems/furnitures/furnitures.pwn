@@ -7,9 +7,9 @@
 enum furnituresDa@tes{
 	listid,
 	toId,
-	vw,
+	vw_furniture,
 	model,
-	type,
+	type_furniture,
 	Float:coords[6],
 	placed,
 	object,
@@ -42,7 +42,7 @@ hook OP_EditDynamicObject(playerid, objectid, response, Float:xx, Float:yy, Floa
             furnituresData[index][coords][3] = rx;
             furnituresData[index][coords][4] = ry;
             furnituresData[index][coords][5] = rz;
-            furnituresData[index][vw] = GetPlayerVirtualWorld(playerid);
+            furnituresData[index][vw_furniture] = GetPlayerVirtualWorld(playerid);
             loadFurniture(index);
             editFurnitureID[playerid] = -1;
 
@@ -136,7 +136,7 @@ useFurniture(playerid){
 	if(characterData[playerid][p_spawn]){
 		new indexModel = -1;
 		for(new index;index<MAX_FURNITURES;index++){
-			if(IsPlayerInRangeOfPoint(playerid, 3.0, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2]) && (furnituresData[index][vw] == GetPlayerVirtualWorld(playerid))){
+			if(IsPlayerInRangeOfPoint(playerid, 3.0, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2]) && (furnituresData[index][vw_furniture] == GetPlayerVirtualWorld(playerid))){
 				indexModel = furnituresData[index][model];
 				if(indexModel != -1){
 					switch(furnituresModelData[indexModel][type]){
@@ -168,19 +168,19 @@ unplaceFurniture(index){
 placeFurniture(index){
 	if(furnituresData[index][placed] == FURNITURE_TYPE_ONPLACED){
 		new indexModel = furnituresData[index][model];
-		furnituresData[index][object] = CreateDynamicObject(furnituresModelData[indexModel][model], furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2], furnituresData[index][coords][3], furnituresData[index][coords][4], furnituresData[index][coords][5], furnituresData[index][vw]);
+		furnituresData[index][object] = CreateDynamicObject(furnituresModelData[indexModel][model], furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2], furnituresData[index][coords][3], furnituresData[index][coords][4], furnituresData[index][coords][5], furnituresData[index][vw_furniture]);
 		furnituresData[index][placed] = FURNITURE_TYPE_PLACED;
 		if(furnituresModelData[indexModel][type] == FURNITURE_TYPE_BED){
-			furnituresData[index][label] = CreateDynamic3DTextLabel(""GREY"Utiliza "ORANGE"/dormir"GREY"", 0xFFFFFFFF, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2], 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, furnituresData[index][vw]);
+			furnituresData[index][label] = CreateDynamic3DTextLabel(""GREY"Utiliza "ORANGE"/dormir"GREY"", 0xFFFFFFFF, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2], 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, furnituresData[index][vw_furniture]);
 		} else if(furnituresModelData[indexModel][type] == FURNITURE_TYPE_CHAIRS){
-			furnituresData[index][label] = CreateDynamic3DTextLabel(""GREY"Utiliza "ORANGE"/sentarse"GREY"", 0xFFFFFFFF, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2], 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, furnituresData[index][vw]);
+			furnituresData[index][label] = CreateDynamic3DTextLabel(""GREY"Utiliza "ORANGE"/sentarse"GREY"", 0xFFFFFFFF, furnituresData[index][coords][0], furnituresData[index][coords][1], furnituresData[index][coords][2], 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, furnituresData[index][vw_furniture]);
 		}
 	}
 }
 getFurnituresById(idd, typee){
     new array[sizeof(furnituresData)];
     for(new i;i<sizeof(furnituresData); i++){
-        if(furnituresData[i][toId] == idd && furnituresData[i][type] == typee){
+        if(furnituresData[i][toId] == idd && furnituresData[i][type_furniture] == typee){
         	array[i] = i;
         } else array[i] = -1;
     }
@@ -192,10 +192,11 @@ saveFurnitures(){
     new query[QUERY_LONG];
     for(new i; i<MAX_FURNITURES;i++){
         if(furnituresData[i][listid] > 0){
-            mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE furnitures SET `toId`='%d', `model`='%d', `type`='%d', `coords1`='%s', `coords2`='%d', `coords3`='%d', `coords4`='%d', `coords5`='%d', `coords6`='%d', `placed`='%d', `item1`='%d', `item2`='%d', `item3`='%d', `itemAmmount1`='%d', `itemAmmount2`='%d', `itemAmmount3`='%d' WHERE listid = '%d' LIMIT 1",
+            mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE furnitures SET `toId`='%d', `model`='%d', `type`='%d', `vw`='%d', `coords1`='%s', `coords2`='%d', `coords3`='%d', `coords4`='%d', `coords5`='%d', `coords6`='%d', `placed`='%d', `item1`='%d', `item2`='%d', `item3`='%d', `itemAmmount1`='%d', `itemAmmount2`='%d', `itemAmmount3`='%d' WHERE listid = '%d' LIMIT 1",
             furnituresData[i][toId],
             furnituresData[i][model],
-            furnituresData[i][type],
+            furnituresData[i][type_furniture],
+            furnituresData[i][vw_furniture],
             furnituresData[i][coords][0],
             furnituresData[i][coords][1],
             furnituresData[i][coords][2],
@@ -222,7 +223,8 @@ public loadFurnitures(){
             cache_get_value_name_int(i, "listid", furnituresData[i][listid]);
 	       	cache_get_value_name_int(i, "toId", furnituresData[i][toId]);
 	        cache_get_value_name_int(i, "model", furnituresData[i][model]);
-	        cache_get_value_name_int(i, "type", furnituresData[i][type]);
+	        cache_get_value_name_int(i, "type", furnituresData[i][type_furniture]);
+	        cache_get_value_name_int(i, "vw", furnituresData[i][vw_furniture]);
 	        cache_get_value_name_float(i, "coords1", furnituresData[i][coords][0]);
 	        cache_get_value_name_float(i, "coords2", furnituresData[i][coords][1]);
 	        cache_get_value_name_float(i, "coords3", furnituresData[i][coords][2]);
@@ -250,7 +252,7 @@ public onCreateFurniture(modell, typee, toid){
 	if(index != -1){
 		furnituresData[index][listid] = cache_insert_id();
 		furnituresData[index][model] = modell;
-		furnituresData[index][type] = typee;
+		furnituresData[index][type_furniture] = typee;
 		furnituresData[index][toId] = toid;
 		loadFurniture(index);
 	}

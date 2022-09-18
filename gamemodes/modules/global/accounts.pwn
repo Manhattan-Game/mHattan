@@ -211,6 +211,7 @@ public OnPassswordHash(playerid){
     new password[64];
     bcrypt_get_hash(password);  
     new query[QUERY_MEDIUM];
+    format(accounts[playerid][_password], 128, "%s", password);
     mysql_format(MYSQL_DB, query, sizeof(query), "INSERT INTO accounts(_name, _password, _admin, _whitelist, _date, _correo) VALUES ('%e', '%e', 0, 0, '%e', '%e')",
         GetFullName(playerid),  
         password,

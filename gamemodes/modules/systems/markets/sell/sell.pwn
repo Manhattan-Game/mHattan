@@ -16,7 +16,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys){
 new editTypeMarkets[MAX_PLAYERS];
 
 showMarketMenu(playerid, index){
-	switch(marketData[index][type]){
+	switch(marketData[index][type_market]){
 		case MARKET_TYPE_BUILDS: ShowPlayerDialog(playerid, DIALOG_SELECT_MARKET_SELL_BUILDS, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", "Casas\nNegocios\nEmpresas", "Continuar", ""RED" cancelar");
 		case MARKET_TYPE_FURNITURES: ShowPlayerDialog(playerid, DIALOG_SELECT_MARKET_SELL_FURNITURES, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", "Casas\nNegocios\nEmpresas", "Continuar", ""RED" cancelar");
 	}

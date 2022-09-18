@@ -1,11 +1,13 @@
 // MiamiSide por Xylospeedb
 //INCLUDES
 #include <a_samp>
+
+#include <YSI_Data\y_iterate>
 #include <a_mysql>
 #include <samp_bcrypt>
 #include <Pawn.cmd>
 #include <sscanf2>
-//#include <pCamera>
+#include <GPS>
 #include <streamer>
 #include <timerFix>
 //#include <YSF>
@@ -15,37 +17,70 @@
 
 // GLOBAL
 #include "./modules/global/mysql.pwn"
-	//DEFINITIONS
-	#include "./modules/global/definitions/colors.pwn"
-	#include "./modules/global/definitions/dialogs.pwn"
-	#include "./modules/global/definitions/global.pwn"
-	#include "./modules/global/definitions/tech.pwn"
 
+// MAP AND EDITOR
+#define USE_ARTWORK 1
+new QUERY_BUFFER[2048];
+#define VICE_CITY_PATH "vice_city/"
+
+#include "./modules/notincludes/inGameMap/db/header"
+#include "./modules/notincludes/inGameMap/models_types/header"
+#include "./modules/notincludes/inGameMap/models/header"
+#include "./modules/notincludes/inGameMap/objects/header"
+#include "./modules/notincludes/inGameMap/nodes/header"
+#include "./modules/notincludes/inGameMap/editor/header"
+#include "./modules/notincludes/inGameMap/streamer/config/header"
+#include "./modules/notincludes/inGameMap/streamer/types/header"
+
+#include "./modules/notincludes/inGameMap/models_types/funcs"
+#include "./modules/notincludes/inGameMap/models/funcs"
+#include "./modules/notincludes/inGameMap/objects/funcs"
+#include "./modules/notincludes/inGameMap/nodes/funcs"
+
+#include "./modules/notincludes/inGameMap/db/impl"
+#include "./modules/notincludes/inGameMap/models_types/impl"
+#include "./modules/notincludes/inGameMap/models/impl"
+#include "./modules/notincludes/inGameMap/objects/impl"
+#include "./modules/notincludes/inGameMap/nodes/impl"
+#include "./modules/notincludes/inGameMap/streamer/config/impl"
+
+#include "./modules/notincludes/inGameMap/editor/impl"
+
+
+//DEFINITIONS
+#include "./modules/global/definitions/colors.pwn"
+#include "./modules/global/definitions/dialogs.pwn"
+#include "./modules/global/definitions/global.pwn"
+#include "./modules/global/definitions/tech.pwn"
+// USER
 #include "./modules/global/accounts.pwn"
 #include "./modules/systems/character.pwn"
 #include "./modules/systems/inventory.pwn"
-// NOT INCLUDES
 #include "./modules/notincludes/dialogs.pwn"
+
 // DOORS
-	#include "./modules/systems/doors/interiors.pwn"
-	#include "./modules/systems/doors/doors.pwn"
+#include "./modules/systems/doors/interiors.pwn"
+#include "./modules/systems/doors/doors.pwn"
 
 #include "./modules/systems/houses.pwn"
 // FURNITURES
-	#include "./modules/systems/furnitures/models.pwn"
-	#include "./modules/systems/furnitures/furnitures.pwn"
-	#include "./modules/systems/furnitures/commands.pwn"
+#include "./modules/systems/furnitures/models.pwn"
+#include "./modules/systems/furnitures/furnitures.pwn"
+#include "./modules/systems/furnitures/commands.pwn"
 // MARKETS
-	#include "./modules/systems/markets/models.pwn"
-	#include "./modules/systems/markets/markets.pwn"
-	#include "./modules/systems/markets/sell/sell.pwn"
-	#include "./modules/systems/markets/sell/furnitures.pwn"
-	#include "./modules/systems/markets/sell/builds.pwn"
+#include "./modules/systems/markets/models.pwn"
+#include "./modules/systems/markets/markets.pwn"
+#include "./modules/systems/markets/sell/sell.pwn"
+#include "./modules/systems/markets/sell/furnitures.pwn"
+#include "./modules/systems/markets/sell/builds.pwn"
 
 
 #include "./modules/global/hud.pwn"
 
-
+#if defined CGEN_MEMORY
+#undef CGEN_MEMORY
+#define CGEN_MEMORY 66000
+#endif
 // NOTIFICATIONS
 
 #define MAX_TDN_IC 5
@@ -82,16 +117,27 @@
 
 #include <td-notification-OOC>
 
+//---------------------------------------------------------------------//
+#define SERVER_WEBSITE		"https://mainland.com"
+#define SERVER_HOSTNAME		"MAINLAND ("SERVER_WEBSITE")"
+#define SERVER_MAPNAME		"Vice City"
+#define SERVER_LANGUAGE		"Español"
+#define SERVER_NAME			"Mainland Roleplay"
+#define SERVER_NAME_SHORT	"ML-RP"
+#define SERVER_VERSION		"0.2"
+#define VERSION_DATE		"22/08/19"
+#define SERVER_MODE			"VC-RP "SERVER_VERSION" "RELEASE_VERSION" (BETA)(Roleplay)"
+//---------------------------------------------------------------------//
 
 #undef MAX_PLAYERS
 #define MAX_PLAYERS 10
+
 main()
 {
  	bcrypt_set_thread_limit(6);   
 }
 #pragma compress 0
-#pragma dynamic 20000
-
+#pragma warning disable 214, 237
 public OnGameModeInit()
 {
 	DisableInteriorEnterExits();
