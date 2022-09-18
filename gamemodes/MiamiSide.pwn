@@ -38,7 +38,9 @@
 // MARKETS
 	#include "./modules/systems/markets/models.pwn"
 	#include "./modules/systems/markets/markets.pwn"
-	#include "./modules/systems/markets/sell.pwn"
+	#include "./modules/systems/markets/sell/sell.pwn"
+	#include "./modules/systems/markets/sell/furnitures.pwn"
+	#include "./modules/systems/markets/sell/builds.pwn"
 
 
 #include "./modules/global/hud.pwn"

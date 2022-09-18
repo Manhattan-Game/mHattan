@@ -136,7 +136,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 		case DIALOG_MY_HOUSE: {
 			if(response){
 				switch(listitem){
-					case 0: ShowFurnitures(playerid, houseData[editHouse[playerid]][listid]);
+					case 0: ShowFurnitures(playerid, houseData[editHouse[playerid]][listid], TYPE_HOUSES);
 					case 1: ShowPlayerDialog(playerid, DIALOG_MY_HOUSE_DEPOSIT, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" HOUSES", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
 					case 2: ShowPlayerDialog(playerid, DIALOG_MY_HOUSE_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" HOUSES", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
 				}
@@ -274,7 +274,58 @@ loadHouse(index, indexdoor){
 	}
 }
 
-
+sellHouseCharacterId(playerid, index){
+	if(index != -1){
+		new doorIndex = getIndexDoorByID(houseData[index][doorid]);
+		if(doorIndex != -1){
+			if(houseData[index][characterid] > 0){
+				new bool:isconnected = false;
+				for(new i;i<MAX_PLAYERS; i++){
+					if(characterData[i][listid] == houseData[index][characterid]){
+						isconnected = true;
+						houseData[index][characterid] = characterData[playerid][listid];
+						doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
+						houseData[index][statee] = HOUSE_STATE_PURCHASE;
+						DestroyDynamicHouse(index);
+						loadHouse(index, doorIndex);
+						takeCharacterMoney(playerid, houseData[index][price]);
+						giveCharacterMoney(i, houseData[index][price]);
+						ShowTDN_OOC(playerid, "Compraste una casa!");
+					}
+				}
+				if(!isconnected){
+					new query[QUERY_MEDIUM];
+        			mysql_format(MYSQL_DB, query, sizeof(query), "SELECT money FROM characters WHERE listid = '%i' LIMIT 1", houseData[index][characterid]);
+        			mysql_pquery(MYSQL_DB, query, "onGetMoneyCharacterHouseID", "ddd", playerid, index, doorIndex);
+				}
+			} else {
+				houseData[index][characterid] = characterData[playerid][listid];
+				doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
+				houseData[index][statee] = HOUSE_STATE_PURCHASE;
+				DestroyDynamicHouse(index);
+				loadHouse(index, doorIndex);
+				takeCharacterMoney(playerid, houseData[index][price]);
+				ShowTDN_OOC(playerid, "Compraste una casa!");
+			}
+		}
+	}
+}
+forward onGetMoneyCharacterHouseID(playerid, index, doorIndex);
+public onGetMoneyCharacterHouseID(playerid, index, doorIndex){
+	if(cache_num_rows()){
+		new moneyy, query[QUERY_LOW];
+		cache_get_value_name_int(0, "money", moneyy);
+		mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE characters SET `money`='%d' WHERE listid = '%d' LIMIT 1", moneyy + houseData[index][price], houseData[index][listid]);
+		mysql_query(MYSQL_DB, query);
+		houseData[index][characterid] = characterData[playerid][listid];
+		houseData[index][statee] = HOUSE_STATE_PURCHASE;
+		DestroyDynamicHouse(index);
+		loadHouse(index, doorIndex);
+		doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
+		takeCharacterMoney(playerid, houseData[index][price]);
+		ShowTDN_OOC(playerid, "Compraste una casa!");
+	}
+}
 saveHouses(){
     new query[QUERY_LONG];
     for(new i; i<MAX_HOUSES;i++){

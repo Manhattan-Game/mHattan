@@ -22,7 +22,7 @@ enum furnituresTypes{
 
 new furnituresModelData[][furnituresTypes] = {
 	//CAMAS
-    {0, 349, 5000, FURNITURE_TYPE_BED, "Nada"},
+    {0, TEXTDRAWS_MODEL_NONE, 5000, FURNITURE_TYPE_BED, "Nada"},
     {1, 2603, 300, FURNITURE_TYPE_BED, "Cama Base"},
     {2, 1771, 300, FURNITURE_TYPE_BED, "Cama Cutre"},
     {3, 2302, 700, FURNITURE_TYPE_BED, "Cama 2 plz Base"},
@@ -299,7 +299,7 @@ new furnituresModelData[][furnituresTypes] = {
     {357, 19814, 15, FURNITURE_TYPE_ELECTRONIC, "Tomacorriente"},
     {358, 19813, 15, FURNITURE_TYPE_ELECTRONIC, "Tomacorriente 2"},
     {359, 19827, 15, FURNITURE_TYPE_ELECTRONIC, "Switch de luz"},
-    {360, 19828, FURNITURE_TYPE_ELECTRONIC, "Switch de luz 2"},
+    {360, 19828, 500, FURNITURE_TYPE_ELECTRONIC, "Switch de luz 2"},
     {361, 19610, 400, FURNITURE_TYPE_ELECTRONIC, "Microfono Newmann"},
     {362, 2726, 400, FURNITURE_TYPE_ELECTRONIC, "Velador"}
     

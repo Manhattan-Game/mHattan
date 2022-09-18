@@ -9,9 +9,12 @@ enum furnituresDa@tes{
 	toId,
 	vw,
 	model,
+	type,
 	Float:coords[6],
 	placed,
 	object,
+	item[3],
+	itemAmmount[3],
 	Text3D:label
 };
 new furnituresData[MAX_FURNITURES][furnituresDa@tes];
@@ -23,17 +26,9 @@ new INDEX_REAL_FURNITURE[MAX_PLAYERS][MAX_FURNITURES];
 hook OnPlayerConnect(playerid){
 	editFurnitureID[playerid] = -1;
 	editFurnitureID[playerid] = -1;
-	furnituresData[0][toId] = 1;
-	furnituresData[0][model] = 229;
-	furnituresData[1][toId] = 1;
-	furnituresData[1][model] = 230;
-
-	furnituresData[2][model] = 80;
-	furnituresData[2][toId] = 1;
-
-	furnituresData[3][model] = 4;
-	furnituresData[3][toId] = 1;
-
+}
+hook OnPlayerDisconnect(playerid, reason){
+	saveFurnitures();
 }
 hook OP_EditDynamicObject(playerid, objectid, response, Float:xx, Float:yy, Float:zz, Float:rx, Float:ry, Float:rz){
     if(response == EDIT_RESPONSE_FINAL){
@@ -85,7 +80,7 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 	if(response){
 		if(dialogid == DIALOG_ITEMS_FURNITURES){
 			if(getCountDialogItems(playerid) > 0){
-				printf("%i", index);
+				printf("index %i", index);
 				editFurnitureID[playerid] = index-1;
             	ShowPlayerDialog(playerid, DIALOG_EDIT_FURNITURE, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" FURNITURES", "Mostrar/ocultar\nEditar posicion\nVender", "Continuar", ""RED" cancelar");
 			} else ShowTDN_OOC(playerid, "No tienes muebles");
@@ -93,20 +88,29 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 		}
 	} else editFurnitureID[playerid] = -1;
 }
-ShowFurnitures(playerid, comparationid){
+ShowFurnitures(playerid, comparationid, typee){
 	if(comparationid != -1){
 		new furnitures[MAX_FURNITURES];
-		furnitures = getFurnituresById(comparationid); 
+		furnitures = getFurnituresById(comparationid, typee); 
 		new indexModel;
-		for(new i;i<MAX_FURNITURES;i++){
+		for(new i, e;i<MAX_FURNITURES;i++){
 			if(furnitures[i] != -1){
 				indexModel = furnituresData[furnitures[i]][model];
-				INDEX_REAL_FURNITURE[playerid][i] = furnitures[i];
+				INDEX_REAL_FURNITURE[playerid][e] = furnitures[i];
+				e++;
 				addDialogItem(playerid, furnituresModelData[indexModel][model], furnituresModelData[indexModel][name]);
 			}
 		}
 		ShowPlayerDialogItem(playerid, DIALOG_ITEMS_FURNITURES, "Muebles", "Editar");
 	}
+}
+
+createFurniture(modell, typee, toid){
+    if((modell != -1) && (toid != -1)){
+    	new query[QUERY_MEDIUM];
+        mysql_format(MYSQL_DB, query, sizeof(query), "INSERT INTO furnitures(toId, model, type) VALUES ('%d', '%d', '%d')", toid, modell, typee); 
+        mysql_pquery(MYSQL_DB, query, "onCreateFurniture", "ddd", modell, typee, toid);
+    }
 }
 
 loadFurniture(index){
@@ -173,27 +177,89 @@ placeFurniture(index){
 		}
 	}
 }
-getFurnituresById(idd){
+getFurnituresById(idd, typee){
     new array[sizeof(furnituresData)];
     for(new i;i<sizeof(furnituresData); i++){
-        if(furnituresData[i][toId] == idd){
+        if(furnituresData[i][toId] == idd && furnituresData[i][type] == typee){
         	array[i] = i;
         } else array[i] = -1;
     }
     return array;
 }
 
-furnitureSleep(playerid, Float:xx, Float:yy, Float:zz){
-	SetPlayerPos(playerid, xx, yy, zz+0.5);
-	new Float:angl;
-	GetPlayerFacingAngle(playerid, angl);
-	SetPlayerFacingAngle(playerid, angl-90.0);
-	ApplyAnimation(playerid,"INT_HOUSE","BED_Loop_R",4.0, 1, 0, 0, 0, 0);
+
+saveFurnitures(){
+    new query[QUERY_LONG];
+    for(new i; i<MAX_FURNITURES;i++){
+        if(furnituresData[i][listid] > 0){
+            mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE furnitures SET `toId`='%d', `model`='%d', `type`='%d', `coords1`='%s', `coords2`='%d', `coords3`='%d', `coords4`='%d', `coords5`='%d', `coords6`='%d', `placed`='%d', `item1`='%d', `item2`='%d', `item3`='%d', `itemAmmount1`='%d', `itemAmmount2`='%d', `itemAmmount3`='%d' WHERE listid = '%d' LIMIT 1",
+            furnituresData[i][toId],
+            furnituresData[i][model],
+            furnituresData[i][type],
+            furnituresData[i][coords][0],
+            furnituresData[i][coords][1],
+            furnituresData[i][coords][2],
+            furnituresData[i][coords][3],
+            furnituresData[i][coords][4],
+            furnituresData[i][coords][5],
+            furnituresData[i][placed],
+            furnituresData[i][item][0],
+            furnituresData[i][item][1],
+            furnituresData[i][item][2],
+            furnituresData[i][itemAmmount][0],
+            furnituresData[i][itemAmmount][1],
+            furnituresData[i][itemAmmount][2],
+            furnituresData[i][listid]);
+            mysql_query(MYSQL_DB, query);
+        }
+    }
 }
 
-furnitureSeat(playerid){
-	new Float:angl;
-	GetPlayerFacingAngle(playerid, angl);
-	SetPlayerFacingAngle(playerid, angl+180.0);
-	ApplyAnimation(playerid,"ped","SEAT_down",4.0, 0, 0, 0, 0, 0);
+forward loadFurnitures();
+public loadFurnitures(){
+    if(cache_num_rows()){
+        for(new i;i<cache_num_rows();i++){ 
+            cache_get_value_name_int(i, "listid", furnituresData[i][listid]);
+	       	cache_get_value_name_int(i, "toId", furnituresData[i][toId]);
+	        cache_get_value_name_int(i, "model", furnituresData[i][model]);
+	        cache_get_value_name_int(i, "type", furnituresData[i][type]);
+	        cache_get_value_name_float(i, "coords1", furnituresData[i][coords][0]);
+	        cache_get_value_name_float(i, "coords2", furnituresData[i][coords][1]);
+	        cache_get_value_name_float(i, "coords3", furnituresData[i][coords][2]);
+	        cache_get_value_name_float(i, "coords4", furnituresData[i][coords][3]);
+	        cache_get_value_name_float(i, "coords5", furnituresData[i][coords][4]);
+	        cache_get_value_name_float(i, "coords6", furnituresData[i][coords][5]);
+	        cache_get_value_name_int(i, "placed", furnituresData[i][placed]);
+
+	        cache_get_value_name_int(i, "item1", furnituresData[i][item][0]);
+	        cache_get_value_name_int(i, "item2", furnituresData[i][item][1]);
+	        cache_get_value_name_int(i, "item3", furnituresData[i][item][2]);
+
+	        cache_get_value_name_int(i, "itemAmmount1", furnituresData[i][item][0]);
+	        cache_get_value_name_int(i, "itemAmmount2", furnituresData[i][item][1]);
+	        cache_get_value_name_int(i, "itemAmmount3", furnituresData[i][item][2]);
+	            
+			loadFurniture(i);
+        }
+    }
+}
+
+forward onCreateFurniture(modell, typee, toid);
+public onCreateFurniture(modell, typee, toid){
+	new index = getFurnitureFreeSlot();
+	if(index != -1){
+		furnituresData[index][listid] = cache_insert_id();
+		furnituresData[index][model] = modell;
+		furnituresData[index][type] = typee;
+		furnituresData[index][toId] = toid;
+		loadFurniture(index);
+	}
+}
+
+
+getFurnitureFreeSlot(){
+	for(new i;i<MAX_FURNITURES;i++){
+		if(furnituresData[i][listid] == 0) return i;
+	}
+	return -1;
 }

@@ -124,7 +124,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 		case DIALOG_MY_MARKET: {
 			if(response){
 				switch(listitem){
-					case 0: ShowFurnitures(playerid, marketData[editMarket[playerid]][listid]);
+					case 0: ShowFurnitures(playerid, marketData[editMarket[playerid]][listid], TYPE_MARKETS);
 					case 1: ShowSlotsItems(playerid, editMarket[playerid]);
 					case 2: ShowSlotsItems(playerid, editMarket[playerid]);
 					case 3: {
@@ -283,8 +283,8 @@ loadMarket(index, indexdoor){
 			if(indexdoor != -1){
 				new string[QUERY_MEDIUM];
 				if(marketData[index][sale] == HOUSE_STATE_ON_SALE){
-					format(string, sizeof(string), ""GREY"Negocio en venta "GREEN"$%i"GREY"\n %s \n Direccion: %s \n"LIME" Dirigete a una inmobiliaria para comprarla!.\n "GREY"index: %i", marketData[index][price], marketsModelsData[marketData[index][type]][name], marketData[index][direction], index);
-				} else format(string, sizeof(string), ""GREY" %S \n Direccion: %s", marketsModelsData[marketData[index][type]][name], marketData[index][direction]);
+					format(string, sizeof(string), ""GREY"Negocio en venta "GREEN"$%i"GREY"\n %s \n Direccion: %s \n "GREY"index: %i", marketData[index][price], marketsModelsData[marketData[index][type]][name], marketData[index][direction], index);
+				} else format(string, sizeof(string), ""GREY" %s \n Direccion: %s", marketsModelsData[marketData[index][type]][name], marketData[index][direction]);
 			    marketData[index][labell] = CreateDynamic3DTextLabel(string, 0xFFFFFFFF, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[indexdoor][doorVw]);
 				marketData[index][labelSell] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"Y"GREY" para comprar", 0xFFFFFFFF, marketData[index][coordsSell][0], marketData[index][coordsSell][1], marketData[index][coordsSell][2], 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, marketData[index][vw]);
 				marketData[index][pickupp] = CreateDynamicPickup(1239, 1, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], doorsInfo[indexdoor][doorVw], -1, -1, 10.0);
@@ -351,6 +351,58 @@ saveMarkets(){
             mysql_query(MYSQL_DB, query);
         }
     }
+}
+sellMarketCharacterId(playerid, index){
+	if(index != -1){
+		new doorIndex = getIndexDoorByID(marketData[index][doorid]);
+		if(doorIndex != -1){
+			if(marketData[index][characterid] > 0){
+				new bool:isconnected = false;
+				for(new i;i<MAX_PLAYERS; i++){
+					if(characterData[i][listid] == marketData[index][characterid]){
+						isconnected = true;
+						marketData[index][characterid] = characterData[playerid][listid];
+						doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
+						marketData[index][sale] = HOUSE_STATE_PURCHASE;
+						DestroyDynamicMarket(index);
+						loadMarket(index, doorIndex);
+						takeCharacterMoney(playerid, marketData[index][price]);
+						giveCharacterMoney(i, marketData[index][price]);
+						ShowTDN_OOC(playerid, "Compraste un negocio!");
+					}
+				}
+				if(!isconnected){
+					new query[QUERY_MEDIUM];
+        			mysql_format(MYSQL_DB, query, sizeof(query), "SELECT money FROM characters WHERE listid = '%i' LIMIT 1", marketData[index][characterid]);
+        			mysql_pquery(MYSQL_DB, query, "onGetMoneyCharacterMarketID", "ddd", playerid, index, doorIndex);
+				}
+			} else {
+				marketData[index][characterid] = characterData[playerid][listid];
+				doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
+				marketData[index][sale] = HOUSE_STATE_PURCHASE;
+				DestroyDynamicMarket(index);
+				loadMarket(index, doorIndex);
+				takeCharacterMoney(playerid, marketData[index][price]);
+				ShowTDN_OOC(playerid, "Compraste un negocio!");
+			}
+		}
+	}
+}
+forward onGetMoneyCharacterMarketID(playerid, index, doorIndex);
+public onGetMoneyCharacterMarketID(playerid, index, doorIndex){
+	if(cache_num_rows()){
+		new moneyy, query[QUERY_LOW];
+		cache_get_value_name_int(0, "money", moneyy);
+		mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE characters SET `money`='%d' WHERE listid = '%d' LIMIT 1", moneyy + marketData[index][price], marketData[index][listid]);
+		mysql_query(MYSQL_DB, query);
+		marketData[index][characterid] = characterData[playerid][listid];
+		marketData[index][sale] = HOUSE_STATE_PURCHASE;
+		DestroyDynamicMarket(index);
+		loadMarket(index, doorIndex);
+		doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
+		takeCharacterMoney(playerid, marketData[index][price]);
+		ShowTDN_OOC(playerid, "Compraste un negocio!");
+	}
 }
 
 forward loadMarkets();
