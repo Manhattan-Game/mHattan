@@ -1,5 +1,7 @@
 #include <YSI_Coding\y_hooks>
 
+#define TIME_TIMER_NEEDS 120000
+
 enum _pi@nfo
 {
         listid,
@@ -40,7 +42,9 @@ enum _pi@nfo
         bool:p_spawn,
 
         charactersMenu[3],
-        viewTextdraw
+        viewTextdraw,
+
+        timerNeeds
 };
 new characterData[MAX_PLAYERS][_pi@nfo];
 
@@ -53,6 +57,9 @@ new PlayerText:createCharacter_PTD[MAX_PLAYERS][4];
 new inputName[MAX_PLAYERS][MAX_PLAYER_NAME];
 new inputAge[MAX_PLAYERS];
 new inputGender[MAX_PLAYERS] = GENDER_FEMALE;
+
+new VIEW_HUD[MAX_PLAYERS];
+
 
 hook OnGameModeInit(){
         character_TD[0] = TextDrawCreate(-2.000014, -4.703687, "mdl-2001:box_pj");
@@ -235,6 +242,7 @@ hook OnPlayerConnect(playerid){
         PlayerTextDrawFont(playerid, createCharacter_PTD[playerid][3], 2);
         PlayerTextDrawSetProportional(playerid, createCharacter_PTD[playerid][3], 1);
         PlayerTextDrawSetSelectable(playerid, createCharacter_PTD[playerid][3], true);
+        characterData[playerid][timerNeeds] = SetPlayerTimerEx(playerid, "timerNeds", TIME_TIMER_NEEDS, 1, "d", playerid);
 }
 hook OP_ClickTextDraw(playerid, Text:clickedid){
         if(clickedid == createCharacter_TD[1]){
@@ -250,6 +258,9 @@ hook OP_ClickTextDraw(playerid, Text:clickedid){
 
 }
 hook OnPlayerDisconnect(playerid, reason){
+    if(characterData[playerid][p_spawn]){
+        KillPlayerTimer(characterData[playerid][timerNeeds]);
+    } 
     saveCharacter(playerid);
     characterData[playerid][p_spawn] = false;
 }
@@ -380,13 +391,13 @@ public onCreateCharacter(playerid){
 
 forward verifyNameDatabase(playerid);
 public verifyNameDatabase(playerid){
-        if(cache_num_rows()){
-                ShowPlayerDialog(playerid, DIALOG_CHARACTER_NAME, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" Character", "Nombre ocupado", "Continuar", ""RED" atras");
-        }else 
-        {
-                PlayerTextDrawSetString(playerid, createCharacter_PTD[playerid][1], inputName[playerid]);
-                SelectTextDraw(playerid, 0x87868286);
-        }
+    if(cache_num_rows()){
+            ShowPlayerDialog(playerid, DIALOG_CHARACTER_NAME, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" Character", "Nombre ocupado", "Continuar", ""RED" atras");
+    }else 
+    {
+        PlayerTextDrawSetString(playerid, createCharacter_PTD[playerid][1], inputName[playerid]);
+        SelectTextDraw(playerid, 0x87868286);
+    }
 }
 
 forward loadCharacters(playerid);
@@ -457,16 +468,14 @@ public loadCharacter(playerid){
                 characterData[playerid][posZ], characterData[playerid][angle], 0, 0, 0, 0, 0, 0);
                 SpawnPlayer(playerid);
 
-                ResetPlayerMoney(playerid);
-                GivePlayerMoney(playerid, characterData[playerid][money]);
+                giveCharacterMoney(playerid, characterData[playerid][money]);
                 SetPlayerName(playerid, characterData[playerid][name]);
-                SetPlayerHealth(playerid, characterData[playerid][life]);
-                SetPlayerArmour(playerid, characterData[playerid][armor]);
                 SetPlayerVirtualWorld(playerid, characterData[playerid][world]);
                 SetPlayerInterior(playerid, characterData[playerid][interior]);
-
                 SetPlayerColor(playerid, 0xAFAFAFAA);
                 freezeUser(playerid, 3000);
+                setLife(playerid, characterData[playerid][life]);
+                setArmor(playerid, characterData[playerid][armor]);
                 new string[128];
                 format(string, 128, "Gracias por confiar %s!.", GetFullName(playerid));
                 ShowTDN_OOC(playerid, string);
@@ -480,7 +489,7 @@ public loadCharacter(playerid){
         }
         
         ShowInfoForPlayer(playerid, "~w~ Pulsa ~y~ ~h~ N ~w~ para abrir tu inventario", 3000);
-        SendClientMessage(playerid, -1, ""GREY"[MiamiSide]"WHITE" Si tocaste la tecla ESC y un textdraw no se cerro usa "ORANGE"/select"WHITE" y cierralo de su respectivo icono");
+        
 }
 saveCharacter(playerid){
     if(characterData[playerid][p_spawn] == true){
@@ -524,6 +533,39 @@ saveCharacter(playerid){
     }
 }
 
+forward timerNeds(playerid);
+public timerNeds(playerid){
+    if(characterData[playerid][p_spawn]){
+        setDrugs(playerid, characterData[playerid][drugs]-1.1);
+        setHungry(playerid, characterData[playerid][hungry]-1.1); 
+        setThirst(playerid, characterData[playerid][thirst]-1.1);
+        setUrine(playerid, characterData[playerid][urine]-1.1);
+        setFatigue(playerid, characterData[playerid][fatigue]-1.1);
+        setStress(playerid, characterData[playerid][stress]-1.1);
+        if(VIEW_HUD[playerid] == 0){
+            updateBarDrugs(playerid);
+            updateBarHungry(playerid);
+            updateBarThirst(playerid);
+            updateBarUrine(playerid);
+            updateBarFatigue(playerid);
+            updateBarStress(playerid);
+        }
+        if(characterData[playerid][drugs] < 10.0){
+            ShowTDN_OOC(playerid, "Mira tus necesidades");
+        } else if(characterData[playerid][hungry] < 10.0){
+            ShowTDN_OOC(playerid, "Mira tus necesidades");
+        } else if(characterData[playerid][thirst] < 10.0){
+            ShowTDN_OOC(playerid, "Mira tus necesidades");
+        } else if(characterData[playerid][urine] < 10.0){
+            ShowTDN_OOC(playerid, "Mira tus necesidades");
+        } else if(characterData[playerid][fatigue] < 10.0){
+            ShowTDN_OOC(playerid, "Mira tus necesidades");
+        } else if(characterData[playerid][stress] < 10.0){
+            ShowTDN_OOC(playerid, "Mira tus necesidades");
+        }
+    }
+}
+
 getExperienceFromLevel(playerid){
     switch(characterData[playerid][level]){
         case 0 : return 5;
@@ -532,4 +574,78 @@ getExperienceFromLevel(playerid){
         case 3 : return 15;
     }
     return 5;
+}
+
+// USER ABREVIATTIONS
+
+giveCharacterMoney(playerid, ammountt){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][money] += ammountt;
+        ResetPlayerMoney(playerid);
+        GivePlayerMoney(playerid, characterData[playerid][money]);
+        updateMoney(playerid);
+    }
+}
+
+takeCharacterMoney(playerid, ammountt){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][money] -= ammountt;
+        ResetPlayerMoney(playerid);
+        GivePlayerMoney(playerid, characterData[playerid][money]);
+        updateMoney(playerid);
+    }
+}
+
+setSkin(playerid, skinn){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][skin] = skinn;
+        SetPlayerSkin(playerid, skinn);
+    }
+}
+setLife(playerid, Float:lifee){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][life] = lifee;
+        SetPlayerHealth(playerid, lifee);
+    }
+}
+setArmor(playerid, Float:armorr){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][armor] = armorr;
+        SetPlayerArmour(playerid, armorr);
+    }
+}
+
+setDrugs(playerid, Float:drugss){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][drugs] = drugss;
+    }
+}
+setHungry(playerid, Float:hungryy){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][hungry] = hungryy;
+    }
+}
+
+setThirst(playerid, Float:thirstt){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][thirst] = thirstt;
+    }
+}
+
+setUrine(playerid, Float:urinee){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][urine] = urinee;
+    }
+}
+
+setFatigue(playerid, Float:fatiguee){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][fatigue] = fatiguee;
+    }
+}
+
+setStress(playerid, Float:stresss){
+    if(characterData[playerid][p_spawn]){
+        characterData[playerid][stress] = stresss;
+    }
 }

@@ -20,7 +20,7 @@ enum inventoryModels
 };
 new inventoryModelsData[][inventoryModels] =
 {
-	{0, 19382, TYPE_NONE, {0.0, 0.0, 0.0, 1.5}, "Vacio", ""},
+	{0, TEXTDRAWS_MODEL_NONE, TYPE_NONE, {0.0, 0.0, 0.0, 1.5}, "Vacio", ""},
 
 	{1, 346, TYPE_GUNS, {ROOTS_TYPE_GUN}, "9mm-comun", "Pistola_9mm_comun"},
 	{2, 347, TYPE_GUNS, {ROOTS_TYPE_GUN}, "9mm-silenciada", "Pistola_9mm_Silenciada"},
