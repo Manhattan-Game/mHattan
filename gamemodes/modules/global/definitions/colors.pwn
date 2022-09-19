@@ -10,3 +10,5 @@
 #define BLACK "{69670C}"
 #define ICE "{03F2FF}"
 #define LIME "{00FF40}"
+#define ROL_ME "{993366}"
+#define ROL_DO "{99cc00}"

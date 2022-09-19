@@ -81,7 +81,7 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 		if(dialogid == DIALOG_ITEMS_FURNITURES){
 			if(getCountDialogItems(playerid) > 0){
 				printf("index %i", index);
-				editFurnitureID[playerid] = index-1;
+				editFurnitureID[playerid] = index;
             	ShowPlayerDialog(playerid, DIALOG_EDIT_FURNITURE, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" FURNITURES", "Mostrar/ocultar\nEditar posicion\nVender", "Continuar", ""RED" cancelar");
 			} else ShowTDN_OOC(playerid, "No tienes muebles");
 			

@@ -1,4 +1,3 @@
-// MiamiSide por Xylospeedb
 //INCLUDES
 #include <a_samp>
 
@@ -73,6 +72,11 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/markets/sell/sell.pwn"
 #include "./modules/systems/markets/sell/furnitures.pwn"
 #include "./modules/systems/markets/sell/builds.pwn"
+#include "./modules/systems/markets/sell/clothes.pwn"
+
+
+// COMMANDS
+#include "./modules/global/commands/user/rol.pwn"
 
 
 #include "./modules/global/hud.pwn"
@@ -126,7 +130,7 @@ new QUERY_BUFFER[2048];
 #define SERVER_NAME_SHORT	"ML-RP"
 #define SERVER_VERSION		"0.2"
 #define VERSION_DATE		"22/08/19"
-#define SERVER_MODE			"VC-RP "SERVER_VERSION" "RELEASE_VERSION" (BETA)(Roleplay)"
+#define SERVER_MODE			"ML-RP "SERVER_VERSION"(Roleplay)"
 //---------------------------------------------------------------------//
 
 #undef MAX_PLAYERS
@@ -140,20 +144,27 @@ main()
 #pragma warning disable 214, 237
 public OnGameModeInit()
 {
+	//Configurations
+	SetGameModeText(SERVER_MODE);
+	SendRconCommand("hostname "SERVER_HOSTNAME"");
+	SendRconCommand("weburl "SERVER_WEBSITE"");
+	SendRconCommand("mapname "SERVER_MAPNAME"");
+	SendRconCommand("language "SERVER_LANGUAGE"");
+	SendRconCommand("announce 1");
+	SendRconCommand("query 1");
+	SendRconCommand("sleep 1");
+	SendRconCommand("minconnectiontime 1000");
+    SendRconCommand("conncookies 1");
+	SendRconCommand("cookielogging 0");
+	SendRconCommand("chatlogging 0");
+	SendRconCommand("ackslimit 5000");
+
 	DisableInteriorEnterExits();
     EnableStuntBonusForAll(0);
     ShowPlayerMarkers(0);
     SetNameTagDrawDistance(23.75);
     ManualVehicleEngineAndLights();
-    //SetTimer("PayDay", 600000, false);
     UsePlayerPedAnims();
-    /*vehiclesPablo[0] = CreateVehicle(454, 1845.5741,1965.2766, 2.3443,190.4748, 1, 1, 600000);
-    vehiclesPablo[1] = CreateVehicle(452, 1830.8799,2043.0314, 1.0193,39.7599, 1, 6, 600000);
-
-	botPablo = FCNPC_Create("Pablo_Escobar");
-    FCNPC_Spawn(botPablo, 25002, 1829.9076,2044.1589,0.7059);
-    FCNPC_EnterVehicle(botPablo, vehiclesPablo[1], 0, FCNPC_MOVE_TYPE_WALK);
-    areaPablo = CreateDynamicCircle(1829.9076,2044.1589, 20.0, 0);*/
 
     mysql_pquery(MYSQL_DB, "SELECT * FROM DOORS", "loadDoors");
     return 1;
@@ -190,9 +201,9 @@ public OnPlayerText(playerid, text[])
 {
 	if(characterData[playerid][p_spawn] == true)
 	{
-		new string[200];
-		format(string, 200, ""ORANGE"[ID:%i] "GREY"%s"GREY" dice: %s", playerid, GetFullName(playerid), text);
-		sendDoubleLineMessage(playerid, 15.0, -1, string);
+		new string[248];
+		format(string, 248, ""ORANGE"[ID:%i] "GREY"%s"GREY" dice: %s.", playerid, GetFullName(playerid), text);
+		sendDoubleLineMessage(playerid, 10.0, -1, string);
 
 		
 	} else ShowTDN_OOC(playerid, "Debes ingresar al servidor antes.");

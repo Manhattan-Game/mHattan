@@ -1,6 +1,6 @@
 #include <YSI_Coding\y_hooks>
 
-#define MAX_DIALOG_ITEMS 60
+#define MAX_DIALOG_ITEMS 600
 #define MAX_DIALOG_PER_PAGE_ITEMS 10 // ! Dont' please
 
 
@@ -248,7 +248,7 @@ hook OP_ClickPlayerTextDraw(playerid, PlayerText:playertextid){
 			index = MAX_DIALOG_PER_PAGE_ITEMS * SELECTED_PAGE[playerid];
 		}
 		index = index + SELECTED_ITEM[playerid];
-		CallRemoteFunction("OnPlayerDialogItem", "ddddb", playerid, SELECTED_DIALOGID[playerid], index, DIALOG_ITEMS[playerid][index-1], true);
+		CallRemoteFunction("OnPlayerDialogItem", "ddddb", playerid, SELECTED_DIALOGID[playerid], index-1, DIALOG_ITEMS[playerid][index-1], true);
 		clearDialogItem(playerid);
 	} else if(playertextid == DIALOG_PTD[playerid][14]) {
 		clearDialogItem(playerid);
@@ -349,7 +349,8 @@ getCountDialogItems(playerid){
 getTotalPages(playerid){
 	new totalitems = getCountDialogItems(playerid);
 	new totalPages = totalitems / MAX_DIALOG_PER_PAGE_ITEMS;
-	return totalPages+1;
+	if(totalPages == 0) totalPages++;
+	return totalPages;
 
 }
 getFreeDialogItemSlot(playerid){

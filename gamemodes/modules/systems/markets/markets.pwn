@@ -146,7 +146,10 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 		case DIALOG_MY_MARKET_SELECTED_ITEM_INDEX: {
 			if(response){
 				selectedIndexItem[playerid] = listitem;
-				SelectFurnituresByType(playerid, DIALOG_SELECT_MARKET_FURNITURES);
+				switch(marketData[editMarket[playerid]][type_market]){
+					case MARKET_TYPE_FURNITURES: SelectFurnituresByType(playerid, DIALOG_SELECT_MARKET_FURNITURES);
+					case MARKET_TYPE_CLOTHES: showAllSkins(playerid);
+				}
 			} else editMarket[playerid] = -1; 
 		}
 		case DIALOG_MY_MARKET_DEPOSIT: {
@@ -312,6 +315,7 @@ ShowSlotsItems(playerid, index){
 	for(new i;i<20;i++){
 		switch(marketData[index][type_market]){
 			case MARKET_TYPE_FURNITURES: format(string, sizeof(string), "%i - %s \n", i+1, furnituresModelData[marketData[index][item][i]][name]);
+			case MARKET_TYPE_CLOTHES: format(string, sizeof(string), "%i - %s \n", i+1, skinsModelData[marketData[index][item][i]][name]);
 		}
 		strcat(stringfinal, string);
 	}
