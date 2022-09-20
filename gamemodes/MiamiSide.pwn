@@ -1,4 +1,5 @@
 //INCLUDES
+
 #include <a_samp>
 
 #include <YSI_Data\y_iterate>
@@ -17,7 +18,7 @@
 // GLOBAL
 #include "./modules/global/mysql.pwn"
 
-// MAP AND EDITOR
+// ----------- MAP, MINIMAP AND EDITOR -------------------
 #define USE_ARTWORK 1
 new QUERY_BUFFER[2048];
 #define VICE_CITY_PATH "vice_city/"
@@ -44,6 +45,9 @@ new QUERY_BUFFER[2048];
 #include "./modules/notincludes/inGameMap/streamer/config/impl"
 
 #include "./modules/notincludes/inGameMap/editor/impl"
+#include "./modules/notincludes/map/minimap"
+
+// ----------- MAP, MINIMAP AND EDITOR -------------------
 
 
 //DEFINITIONS
@@ -51,28 +55,44 @@ new QUERY_BUFFER[2048];
 #include "./modules/global/definitions/dialogs.pwn"
 #include "./modules/global/definitions/global.pwn"
 #include "./modules/global/definitions/tech.pwn"
-// USER
-#include "./modules/global/accounts.pwn"
-#include "./modules/systems/character.pwn"
-#include "./modules/systems/inventory.pwn"
-#include "./modules/notincludes/dialogs.pwn"
 
-// DOORS
-#include "./modules/systems/doors/interiors.pwn"
-#include "./modules/systems/doors/doors.pwn"
+// MODELS
+#include "./modules/global/accounts/models"
+#include "./modules/systems/character/models"
+#include "./modules/systems/doors/models"
+#include "./modules/systems/houses/models"
+#include "./modules/systems/furnitures/models"
+#include "./modules/systems/markets/models"
+#include "./modules/systems/markets/clothes/models"
+#include "./modules/systems/inventory/models"
 
-#include "./modules/systems/houses.pwn"
-// FURNITURES
-#include "./modules/systems/furnitures/models.pwn"
-#include "./modules/systems/furnitures/furnitures.pwn"
-#include "./modules/systems/furnitures/commands.pwn"
-// MARKETS
-#include "./modules/systems/markets/models.pwn"
-#include "./modules/systems/markets/markets.pwn"
-#include "./modules/systems/markets/sell/sell.pwn"
-#include "./modules/systems/markets/sell/furnitures.pwn"
-#include "./modules/systems/markets/sell/builds.pwn"
-#include "./modules/systems/markets/sell/clothes.pwn"
+#include "./modules/notincludes/dialogs"
+
+
+
+// FUNCS
+#include "./modules/global/accounts/funcs"
+#include "./modules/systems/character/funcs"
+#include "./modules/systems/doors/funcs"
+#include "./modules/systems/houses/funcs"
+#include "./modules/systems/furnitures/funcs"
+#include "./modules/systems/markets/funcs"
+#include "./modules/systems/markets/clothes/funcs"
+#include "./modules/systems/inventory/funcs"
+
+
+
+// IMPL
+#include "./modules/global/accounts/impl"
+#include "./modules/systems/character/impl"
+#include "./modules/systems/doors/impl"
+#include "./modules/systems/houses/impl"
+#include "./modules/systems/furnitures/impl"
+#include "./modules/systems/markets/impl"
+#include "./modules/systems/markets/builds/impl"
+#include "./modules/systems/markets/clothes/impl"
+#include "./modules/systems/markets/furnitures/impl"
+#include "./modules/systems/inventory/impl"
 
 
 // COMMANDS
@@ -129,7 +149,7 @@ new QUERY_BUFFER[2048];
 #define SERVER_NAME			"Mainland Roleplay"
 #define SERVER_NAME_SHORT	"ML-RP"
 #define SERVER_VERSION		"0.2"
-#define VERSION_DATE		"22/08/19"
+#define VERSION_DATE		""
 #define SERVER_MODE			"ML-RP "SERVER_VERSION"(Roleplay)"
 //---------------------------------------------------------------------//
 
