@@ -218,3 +218,72 @@
 [16:34:51] [WARNING] mysql_connect: no password specified
 [16:34:51] [WARNING] mysql_connect: no password specified
 [16:34:51] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[16:39:01] [WARNING] mysql_connect: no password specified
+[16:39:01] [WARNING] mysql_connect: no password specified
+[16:39:01] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[16:42:03] [WARNING] mysql_connect: no password specified
+[16:42:03] [WARNING] mysql_connect: no password specified
+[16:42:03] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[15:48:42] [WARNING] mysql_connect: no password specified
+[15:48:42] [WARNING] mysql_connect: no password specified
+[15:48:42] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[15:57:19] [WARNING] mysql_connect: no password specified
+[15:57:19] [WARNING] mysql_connect: no password specified
+[15:57:19] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[16:00:11] [WARNING] mysql_connect: no password specified
+[16:00:11] [WARNING] mysql_connect: no password specified
+[16:00:11] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[16:00:35] [WARNING] mysql_connect: no password specified
+[16:00:35] [WARNING] mysql_connect: no password specified
+[16:00:35] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:16:17] [WARNING] mysql_connect: no password specified
+[17:16:17] [WARNING] mysql_connect: no password specified
+[17:16:17] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:20:00] [WARNING] mysql_connect: no password specified
+[17:20:00] [WARNING] mysql_connect: no password specified
+[17:20:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:23:27] [WARNING] mysql_connect: no password specified
+[17:23:27] [WARNING] mysql_connect: no password specified
+[17:23:27] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:30:00] [WARNING] mysql_connect: no password specified
+[17:30:00] [WARNING] mysql_connect: no password specified
+[17:30:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:49:31] [WARNING] mysql_connect: no password specified
+[17:49:31] [WARNING] mysql_connect: no password specified
+[17:49:31] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:52:01] [WARNING] mysql_connect: no password specified
+[17:52:01] [WARNING] mysql_connect: no password specified
+[17:52:01] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:53:21] [WARNING] mysql_connect: no password specified
+[17:53:21] [WARNING] mysql_connect: no password specified
+[17:53:21] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:58:40] [WARNING] mysql_connect: no password specified
+[17:58:40] [WARNING] mysql_connect: no password specified
+[17:58:40] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:00:00] [WARNING] mysql_connect: no password specified
+[18:00:00] [WARNING] mysql_connect: no password specified
+[18:00:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:02:26] [WARNING] mysql_connect: no password specified
+[18:02:26] [WARNING] mysql_connect: no password specified
+[18:02:26] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:03:43] [WARNING] mysql_connect: no password specified
+[18:03:43] [WARNING] mysql_connect: no password specified
+[18:03:43] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:09:31] [WARNING] mysql_connect: no password specified
+[18:09:31] [WARNING] mysql_connect: no password specified
+[18:09:31] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:15:55] [WARNING] mysql_connect: no password specified
+[18:15:55] [WARNING] mysql_connect: no password specified
+[18:15:55] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[23:17:00] [WARNING] mysql_connect: no password specified
+[23:17:00] [WARNING] mysql_connect: no password specified
+[23:17:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[23:43:58] [WARNING] mysql_connect: no password specified
+[23:43:58] [WARNING] mysql_connect: no password specified
+[23:43:58] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[23:45:33] [WARNING] mysql_connect: no password specified
+[23:45:33] [WARNING] mysql_connect: no password specified
+[23:45:33] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[00:00:16] [WARNING] mysql_connect: no password specified
+[00:00:16] [WARNING] mysql_connect: no password specified
+[00:00:16] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'

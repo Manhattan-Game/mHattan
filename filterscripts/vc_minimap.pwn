@@ -1,11 +1,9 @@
-#include <a_samp>
-#include <streamer>
 
 //Vice City Map Limits
 #define VICE_CITY_MIN_X 4130.0
-#define VICE_CITY_MIN_Y -930.0
+#define VICE_CITY_MIN_Y 2665.0
 #define VICE_CITY_MAX_X 6975.0
-#define VICE_CITY_MAX_Y 2665.0
+#define VICE_CITY_MAX_Y -930.0
 
 //Minimap Global definitions
 #define MINIMAP_MODEL_ID -1500
