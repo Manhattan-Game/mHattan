@@ -3,7 +3,8 @@
 #define xylos_HOST "127.0.0.1"
 #define xylos_USER "root"
 #define xylos_PSS ""
-#define xylos_DB "miamiside"
+#define xylos_DB "mainland"
+#define xylos_DBMAP "mainland_map"
 
 #define QUERY_LOW 280
 #define QUERY_MEDIUM 480

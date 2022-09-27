@@ -1,7 +1,6 @@
 //INCLUDES
 
 #include <a_samp>
-
 #include <YSI_Data\y_iterate>
 #include <a_mysql>
 #include <samp_bcrypt>
@@ -10,10 +9,8 @@
 #include <GPS>
 #include <streamer>
 #include <timerFix>
-//#include <YSF>
 #include <ProgressBarNick>
 #include <ShowInfoForPlayer>
-
 
 // GLOBAL
 #include "./modules/global/mysql.pwn"
@@ -65,6 +62,8 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/markets/models"
 #include "./modules/systems/markets/clothes/models"
 #include "./modules/systems/inventory/models"
+#include "./modules/systems/vehicles/models"
+
 
 #include "./modules/notincludes/dialogs"
 
@@ -79,6 +78,7 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/markets/funcs"
 #include "./modules/systems/markets/clothes/funcs"
 #include "./modules/systems/inventory/funcs"
+#include "./modules/systems/vehicles/funcs"
 
 
 
@@ -93,6 +93,8 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/markets/clothes/impl"
 #include "./modules/systems/markets/furnitures/impl"
 #include "./modules/systems/inventory/impl"
+#include "./modules/systems/vehicles/impl"
+
 
 
 // COMMANDS
@@ -101,10 +103,7 @@ new QUERY_BUFFER[2048];
 
 #include "./modules/global/hud.pwn"
 
-#if defined CGEN_MEMORY
-#undef CGEN_MEMORY
-#define CGEN_MEMORY 66000
-#endif
+
 // NOTIFICATIONS
 
 #define MAX_TDN_IC 5
@@ -162,8 +161,8 @@ main()
 }
 #pragma compress 0
 #pragma warning disable 214, 237
-public OnGameModeInit()
-{
+
+public OnGameModeInit(){
 	//Configurations
 	SetGameModeText(SERVER_MODE);
 	SendRconCommand("hostname "SERVER_HOSTNAME"");
@@ -190,18 +189,26 @@ public OnGameModeInit()
     return 1;
 }
 
-public OnPlayerConnect(playerid)
-{
+public OnPlayerConnect(playerid){
     return 1;
 }
-
-public OnPlayerSpawn(playerid)
-{
-    return 1;
+public OnPlayerUpdate(playerid){
+	return 1;
 }
 
-public OnPlayerDisconnect(playerid, reason)
-{
+public OnPlayerSpawn(playerid){
+    return 1;
+}
+public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger){
+	return 1;
+}
+public OnPlayerExitVehicle(playerid, vehicleid){
+	return 1;
+}
+public OnPlayerStateChange(playerid, newstate, oldstate){
+	return 1;
+}
+public OnPlayerDisconnect(playerid, reason){
     return 1;
 }
 public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
@@ -217,13 +224,12 @@ public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
     return 1;
 
 }
-public OnPlayerText(playerid, text[])
-{
-	if(characterData[playerid][p_spawn] == true)
-	{
+public OnPlayerText(playerid, text[]){
+	if(characterData[playerid][p_spawn] == true){
 		new string[248];
 		format(string, 248, ""ORANGE"[ID:%i] "GREY"%s"GREY" dice: %s.", playerid, GetFullName(playerid), text);
-		sendDoubleLineMessage(playerid, 10.0, -1, string);
+		if(inVehicle[playerid] != -1) sendDoubleLineMessageVehicle(inVehicle[playerid], playerid, 10.0, -1, string);
+		else sendDoubleLineMessage(playerid, 10.0, -1, string);
 
 		
 	} else ShowTDN_OOC(playerid, "Debes ingresar al servidor antes.");
@@ -231,128 +237,15 @@ public OnPlayerText(playerid, text[])
 }
 
 
-public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
-{
-	/*
-        case d_baul:
-		{
-			if(response)
-			{
-				for(new i;i<9;i++)
-				{
-					if(vehInfo[attachandoA[playerid]][v_baul][i] == 0)
-					{
-						if(inventarioInfo[playerid][i_slot][8] != 0)
-						{
-							vehInfo[attachandoA[playerid]][v_baul][i] = inventarioInfo[playerid][i_slot][8];
-							vehInfo[attachandoA[playerid]][v_baulcant][i] = inventarioInfo[playerid][i_slotcant][8];
-
-							attachandoA[playerid] = 0;
-
-							inventarioInfo[playerid][i_slot][8] = 0;
-							inventarioInfo[playerid][i_slotcant][8] = 0;
-							inventarioInfo[playerid][i_slotocup][8] = 0;
-							enviarNotificacionG(playerid, "Guardaste un objeto en el maletero");
-							attachandoA[playerid] = 0;
-							break;
-						} else { enviarNotificacionG(playerid, "No tienes nada en la mano"); break;}
-					}
-				}
-			}
-			else
-			{
-
-				if(listitem == 0) eligiendoBaul[playerid] = 0;
-				else if(listitem == 1) eligiendoBaul[playerid] = 1;
-				else if(listitem == 2) eligiendoBaul[playerid] = 2;
-				else if(listitem == 3) eligiendoBaul[playerid] = 3;
-				else if(listitem == 4) eligiendoBaul[playerid] = 4;
-				else if(listitem == 5) eligiendoBaul[playerid] = 5;
-				else if(listitem == 6) eligiendoBaul[playerid] = 6;
-				else if(listitem == 7) eligiendoBaul[playerid] = 7;
-				else if(listitem == 8) eligiendoBaul[playerid] = 8;
-				
-				if(vehInfo[attachandoA[playerid]][v_baul][eligiendoBaul[playerid]] != 0)
-				{
-					agregarIttem(playerid, vehInfo[attachandoA[playerid]][v_baul][eligiendoBaul[playerid]], vehInfo[attachandoA[playerid]][v_baulcant][eligiendoBaul[playerid]]);
-					vehInfo[attachandoA[playerid]][v_baul][eligiendoBaul[playerid]] = 0;
-					vehInfo[attachandoA[playerid]][v_baulcant][eligiendoBaul[playerid]] = 0;
-					attachandoA[playerid] = 0;
-
-					enviarNotificacionG(playerid, "Sacaste un objeto del maletero");
-
-				}else enviarNotificacionG(playerid, "No tiene nada en esta ranura");
-			}
-		}
-		case d_gps:
-		{
-			if(response)
-			{
-				switch(listitem)
-				{
-					case 0:
-					{
-						new string1[200];
-						new stringtotal[15000];
-						for(new i;i<MAX_EMPRESAS;i++)
-						{
-							if(empresaInfo[i][e_tipo] != 0)
-							{
-								format(string1, 200, ""Chat_Gris"Tipo: %s,Nombre:"Chat_Phone"%s,"Chat_Gris" Distancia:%0.2f m \n", tipoEmpresas[empresaInfo[i][e_tipo]][tp_nombre], empresaInfo[i][e_nombre], GetPlayerDistanceFromPoint(playerid, empresaInfo[i][e_pos][0], empresaInfo[i][e_pos][1], empresaInfo[i][e_pos][2]));
-								strcat(stringtotal, string1);
-							}
-						printf("create %i", index);}
-						ShowPlayerDialog(playerid, d_gpsemp, DIALOG_STYLE_LIST, " "Chat_Phone" GPS", stringtotal, "Marcar en el GPS", "Cancelar");
-					}
-					case 1:
-					{
-						new string1[200];
-						new stringtotal[10000];
-						for(new i;i<MAX_NEGOCIOS;i++)
-						{
-							if(negocioInfo[i][n_tipo] != 0)
-							{
-								format(string1, 200, ""Chat_Gris"Tipo: %s,Nombre:"Chat_Phone"%s,"Chat_Gris" Distancia:%0.2f m \n", tipoNegocios[negocioInfo[i][n_tipo]][ne_nombre], negocioInfo[i][n_nombre], GetPlayerDistanceFromPoint(playerid, negocioInfo[i][n_pos][0], negocioInfo[i][n_pos][1], negocioInfo[i][n_pos][2]));
-								strcat(stringtotal, string1);
-							}
-						}
-						ShowPlayerDialog(playerid, d_gpsneg, DIALOG_STYLE_LIST, " "Chat_Phone" GPS", stringtotal, "Marcar en el GPS", "Cancelar");
-					}
-				}
-
-			}
-		}
-		case d_gpsemp:
-		{
-			new i = listitem;
-			new string[80];
-			initRouteNavigator(playerid, empresaInfo[i][e_pos][0], empresaInfo[i][e_pos][1], empresaInfo[i][e_pos][2]);
-			enviarNotificacionG(playerid, "Marcaste la ubicacion en el GPS");
-			format(string, 80, "~w~ Distancia: ~y~~h~ %0.2f ~w~ m", GetPlayerDistanceFromPoint(playerid, empresaInfo[i][e_pos][0], empresaInfo[i][e_pos][1], empresaInfo[i][e_pos][2]));
-			ShowInfoForPlayer(playerid, string, 3000);
-		}
-		case d_gpsneg:
-		{
-			new i = listitem;
-			new string[80];
-			initRouteNavigator(playerid, negocioInfo[i][n_pos][0], negocioInfo[i][n_pos][1], negocioInfo[i][n_pos][2]);
-			enviarNotificacionG(playerid, "Marcaste la ubicacion en el GPS");
-			format(string, 80, "~w~ Distancia: ~y~~h~ %0.2f ~w~ m", GetPlayerDistanceFromPoint(playerid, negocioInfo[i][n_pos][0], negocioInfo[i][n_pos][1], negocioInfo[i][n_pos][2]));
-			ShowInfoForPlayer(playerid, string, 3000);
-		}
-    }*/
+public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
     return 1;
 }
 
-public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
-{
+public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid){
 	return 1;
 }
-public OnPlayerClickTextDraw(playerid, Text:clickedid)
-{
-	
-	if(clickedid == Text:INVALID_TEXT_DRAW)
-	{
+public OnPlayerClickTextDraw(playerid, Text:clickedid){
+	if(clickedid == Text:INVALID_TEXT_DRAW){
 		if(characterData[playerid][p_spawn]){
 			switch(characterData[playerid][viewTextdraw]){
 				case TEXTDRAWS_INVENTORY: hideInventory(playerid);
@@ -367,18 +260,3 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 cmd:no(playerid, params[]){
 	ClearAnimations(playerid);
 }
-/*
-
-
-stock createIconEntrance(Float:x, Float:y, Float:z)
-{
-	new i;
-	CreateDynamicObject(19135, x, y, z-0.3, 0.0, 0.0, 0.0, 0);
-	i = CreateDynamicCircle(x, y, 3.0, 0);
-	return i;
-}
-
-public OnPlayerEnterDynamicArea(playerid, areaid)
-{
-	return 1;
-}*/

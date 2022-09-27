@@ -91,6 +91,7 @@ sendDoubleLineMessage(playerid, Float:range, color, const message[])
 	}
 }
 
+
 GetCompleteDate(){
 	new Hour, Minute, Second;
 	gettime(Hour, Minute, Second);

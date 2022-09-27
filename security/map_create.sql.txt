@@ -1,0 +1,57 @@
+CREATE TABLE `models` (
+  `flags` int(11) DEFAULT 0,
+  `newmodelid` int(11) NOT NULL,
+  `dffname` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
+  `txdname` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
+  `timeon` int(11) DEFAULT NULL,
+  `timeoff` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE `models_type` (
+  `modelid` int(11) NOT NULL,
+  `type` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE `models_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
+  `stream_distance` float DEFAULT 300,
+  `priority` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `models_type`
+--
+
+CREATE TABLE `nodes` (
+  `id` int(11) NOT NULL,
+  `isCrossRoad` int(11) NOT NULL DEFAULT 0,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `median` float NOT NULL DEFAULT 0,
+  `leftLanes` int(11) NOT NULL DEFAULT 1,
+  `rightLanes` int(11) NOT NULL DEFAULT 1,
+  `speedLimit` int(11) NOT NULL DEFAULT 0,
+  `flags` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+CREATE TABLE `nodes_links` (
+  `id_node` int(11) NOT NULL,
+  `linked_to` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE `objects` (
+  `id` int(11) NOT NULL,
+  `modelid` int(11) NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `rx` float DEFAULT 0,
+  `ry` float DEFAULT 0,
+  `rz` float DEFAULT 0,
+  `world` int(11) NOT NULL DEFAULT -1,
+  `interior` int(11) NOT NULL DEFAULT -1,
+  `enabled` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
