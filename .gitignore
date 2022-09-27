@@ -1,0 +1,4 @@
+server_log.txt
+logs/log-core.log
+logs/warnings.log
+logs/plugins/mysql.log

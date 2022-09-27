@@ -1,0 +1,2 @@
+AddSimpleModel(-1, 19379, -2001, "blank.dff", "account.txd");
+AddSimpleModel(-1, 19378, -1500, "blank.dff", "minimap.txd");
