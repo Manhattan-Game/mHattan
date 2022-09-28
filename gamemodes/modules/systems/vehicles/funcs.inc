@@ -8,7 +8,7 @@
 Float:GetVehicleSpeed(vehid){
 	new Float:xx, Float:yy, Float:zz, Float:total;
 	GetVehicleVelocity(vehid, xx, yy, zz);
-	total = floatround( floatsqroot( xx*xx + yy*yy + zz*zz ) * 180 );
+	total = floatround( floatsqroot( xx*xx + yy*yy + zz*zz ) * 200 );
 	return total;
 }
 bool:getVehicleParamState(param){
@@ -35,8 +35,8 @@ showVelocimeter(playerid, index){
 	}
 }
 hideVelocimeter(playerid){
-	destroyProgressBar(playerid, BAR_V_GAS);
-	destroyProgressBar(playerid, BAR_V_OIL);
+	hideProgressBar(playerid, BAR_V_GAS);
+	hideProgressBar(playerid, BAR_V_OIL);
 	TextDrawHideForPlayer(playerid, velocimeter_TD[0]);
 	for(new i;i<6;i++) PlayerTextDrawHide(playerid, velocimeter_PTD[playerid][i]);
 }

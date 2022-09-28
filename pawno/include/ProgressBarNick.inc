@@ -77,17 +77,9 @@ updateProgressBar(playerid, barid, Float:control)
 		new namber = strval(string);
 
 		new Float:f = barInfo[playerid][barid][bar_x2] - barInfo[playerid][barid][bar_min];
-		if(barInfo[playerid][barid][bar_direction] == 1) f = barInfo[playerid][barid][bar_y2] - barInfo[playerid][barid][bar_min];
+		if(barInfo[playerid][barid][bar_direction] == 1) f = barInfo[playerid][barid][bar_y2];
 		new Float:x = f / barInfo[playerid][barid][bar_max];
-		new Float:total = barInfo[playerid][barid][bar_min];
-		if(barInfo[playerid][barid][bar_direction] == 1) total = barInfo[playerid][barid][bar_y2];
-		for(new i;i<namber;i++)
-		{
-			if(barInfo[playerid][barid][bar_direction] == 1){
-				total -= x;
-			}else total +=  x;
-		}
-		printf("total: %f, x: %f", total, x);
+		
 		barInfo[playerid][barid][bar_create] = CreatePlayerTextDraw(playerid, barInfo[playerid][barid][bar_x1], barInfo[playerid][barid][bar_y1], "box");
 		PlayerTextDrawAlignment(playerid, barInfo[playerid][barid][bar_create], 1);
 		PlayerTextDrawColor(playerid, barInfo[playerid][barid][bar_create], -1);
@@ -102,13 +94,12 @@ updateProgressBar(playerid, barid, Float:control)
 
 
 		if(barInfo[playerid][barid][bar_direction] == 1){
-			total -= barInfo[playerid][barid][bar_y2];
-			PlayerTextDrawLetterSize(playerid, barInfo[playerid][barid][bar_create], 0.000000, total);
+			PlayerTextDrawLetterSize(playerid, barInfo[playerid][barid][bar_create], 0.000000, (x*namber));
 			PlayerTextDrawTextSize(playerid, barInfo[playerid][barid][bar_create], barInfo[playerid][barid][bar_x2], 0.000000);
 			
 		} else {
 			PlayerTextDrawLetterSize(playerid, barInfo[playerid][barid][bar_create], 0.000000, barInfo[playerid][barid][bar_y2]);
-			PlayerTextDrawTextSize(playerid, barInfo[playerid][barid][bar_create], total, 0.000000);
+			PlayerTextDrawTextSize(playerid, barInfo[playerid][barid][bar_create], barInfo[playerid][barid][bar_min] + (x*namber), 0.000000);
 		}
 			
 		PlayerTextDrawShow(playerid, barInfo[playerid][barid][bar_create]);

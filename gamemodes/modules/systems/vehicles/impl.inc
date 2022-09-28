@@ -14,8 +14,8 @@ hook OnGameModeInit(){
 	TextDrawSetProportional(velocimeter_TD[0], 0);
 }
 hook OnPlayerConnect(playerid){
-	createProgressBar(playerid, BAR_V_GAS, 535.505249, 357.999938, 536.000000, 4.939971, 436207871, 100.0, 1);
-	createProgressBar(playerid, BAR_V_OIL, 549.560913, 357.999938, 550.0, 4.939971, 436207871, 100.0, 1);
+	createProgressBar(playerid, BAR_V_GAS, 536.442443, 407.000000, 537.000000, -5.604755, 436207871, 100.0, 1);
+	createProgressBar(playerid, BAR_V_OIL, 549.560913, 407.000000, 550, -5.604755, 436207871, 100.0, 1);
 	velocimeter_PTD[playerid][0] = CreatePlayerTextDraw(playerid, 494.743957, 372.583343, "1");
 	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][0], 0.324568, 1.949999);
 	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][0], 0.000000, 31.000000);
@@ -101,6 +101,9 @@ hook OnPlayerStateChange(playerid, newstate, oldstate){
     	new vehicleid = GetPlayerVehicleID(playerid);
     	inVehicle[playerid] = getVehicleIndexById(vehicleid);
 		showVelocimeter(playerid, inVehicle[playerid]);
+		if(newstate == PLAYER_STATE_DRIVER){
+			vehicleData[inVehicle[playerid]][timergas] = SetPlayerTimerEx(playerid, "update", GAS_TIME_UPDATED, 1, "d", inVehicle[playerid]);
+		}
 
     }
     else if((oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER) && newstate != PLAYER_STATE_PASSENGER && newstate != PLAYER_STATE_DRIVER) {
@@ -193,8 +196,8 @@ cmd:crearvehiculo(playerid, params[]){
 	    			vehicleData[index][windows][2] = CAR_WINDOW_CLOSE;
 	    			vehicleData[index][windows][3] = CAR_WINDOW_CLOSE;
 	    			vehicleData[index][vehicle_life] = 1000.0;
-	    			vehicleData[index][gas] = 98;
-	    			vehicleData[index][oil] = 40;
+	    			vehicleData[index][gas] = 60;
+	    			vehicleData[index][oil] = 80;
 	    			vehicleData[index][kilometres] = 15;
 	    			loadVehicle(index);
 	    		} else ShowTDN_OOC(playerid, "No se pueden crear mas vehiculos.");
