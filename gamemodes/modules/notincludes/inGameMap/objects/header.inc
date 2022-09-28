@@ -1,7 +1,7 @@
 new bool:vcObjects_Debug;
 #define DEBUG_LABEL_STREAM_DISTANCE 100.0
 #define DEFAULT_VC_STREAM_DISTANCE 300.0
-#define MAX_VC_OBJECTS 8000
+#define MAX_VC_OBJECTS 15000
 
 enum enum_Vc_Objects
 {

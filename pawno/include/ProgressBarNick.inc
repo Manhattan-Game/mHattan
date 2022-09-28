@@ -61,6 +61,8 @@ destroyProgressBar(playerid, barid)
 {
 	PlayerTextDrawDestroy(playerid, barInfo[playerid][barid][bar_create]);
 	barInfo[playerid][barid][bar_used] = false;
+	barInfo[playerid][barid][bar_show] = false;
+	barInfo[playerid][barid][bar_oldcontrol] = -1;
 }
 showProgressBar(playerid, barid)
 {

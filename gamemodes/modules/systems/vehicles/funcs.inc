@@ -29,14 +29,16 @@ showVelocimeter(playerid, index){
 			updateVelocimeterLigths(playerid, getVehicleParamState(vehicleData[index][lightss]));
 			updateVelocimeterDoor(playerid, getVehicleParamState(vehicleData[index][doorr]));
 			updateVelocimeterWindows(playerid, index);
+			createProgressBar(playerid, BAR_V_GAS, 536.442443, 407.000000, 537.000000, -5.604755, 436207871, vehiclesModelData[vehicleData[index][model]][gas_limit], 1);
+			createProgressBar(playerid, BAR_V_OIL, 549.560913, 407.000000, 550, -5.604755, 436207871, 100.0, 1);
 			updateVelocimeterGas(playerid, index);
 			updateVelocimeterOil(playerid, index);
 		}
 	}
 }
 hideVelocimeter(playerid){
-	hideProgressBar(playerid, BAR_V_GAS);
-	hideProgressBar(playerid, BAR_V_OIL);
+	destroyProgressBar(playerid, BAR_V_GAS);
+	destroyProgressBar(playerid, BAR_V_OIL);
 	TextDrawHideForPlayer(playerid, velocimeter_TD[0]);
 	for(new i;i<6;i++) PlayerTextDrawHide(playerid, velocimeter_PTD[playerid][i]);
 }
@@ -126,6 +128,28 @@ getVehicleFreeSlot(){
 	}
 	return -1;
 }
+forward updateVehicleGas(playerid, index);
+public updateVehicleGas(playerid, index){
+	if(characterData[playerid][p_spawn]){
+		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER){
+			vehicleData[index][distanceAmmount]++;
+			if(vehicleData[index][distanceAmmount] > OIL_UPDATED){
+				vehicleData[index][distanceAmmount] = 0;
+				if(vehicleData[index][oil] < 1){
+					setEngine(-2, index, false);
+					KillPlayerTimer(vehicleData[index][timergas]);
+					ShowTDN_OOC(playerid, "No tienes aceite.");
+				} else vehicleData[index][oil] -= (CONSUME_PER_KILOMETER * vehiclesModelData[vehicleData[index][model]][consume]) / 100;
+			}
+			print("Paso");
+			if(vehicleData[index][gas] < 1){
+					setEngine(-2, index, false);
+					KillPlayerTimer(vehicleData[index][timergas]);
+					ShowTDN_OOC(playerid, "No tienes gasolina.");
+			} else vehicleData[index][gas] -= (CONSUME_PER_KILOMETER * vehiclesModelData[vehicleData[index][model]][consume]) / 100;
+		}
+	}
+}
 
 setWindowDriver(playerid, index, param){
 	if(playerid != -2)
@@ -195,11 +219,18 @@ setEngine(playerid, index, param){
 		if(param){
 			SetVehicleParamsEx(vehicleData[index][vehicleidd], VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
 			vehicleData[index][enginee] = VEHICLE_PARAMS_ON;
-			if(playerid != -2) ShowTDN_OOC(playerid, "Encendiste el motor.");
+
+			if(playerid != -2) {
+				vehicleData[index][timergas] = SetPlayerTimerEx(playerid, "updateVehicleGas", GAS_TIME_UPDATED, 1, "dd", playerid, index);
+				ShowTDN_OOC(playerid, "Encendiste el motor.");
+			}
 		} else 	{
 			SetVehicleParamsEx(vehicleData[index][vehicleidd], VEHICLE_PARAMS_OFF, lights, alarm, doors, bonnet, boot, objective);
 			vehicleData[index][enginee] = VEHICLE_PARAMS_OFF;
-			if(playerid != -2) ShowTDN_OOC(playerid, "Apagaste el motor.");
+			if(playerid != -2) {
+				KillPlayerTimer(vehicleData[index][timergas]);
+				ShowTDN_OOC(playerid, "Apagaste el motor.");
+			}
 		}
 	}
 }

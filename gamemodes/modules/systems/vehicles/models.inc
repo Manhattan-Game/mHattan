@@ -2,8 +2,8 @@
 #define CAR_WINDOW_OPEN 0
 
 #define GAS_TIME_UPDATED 100000
-#define OIL_TIME_UPDATED 400000
-
+#define OIL_UPDATED 4
+#define CONSUME_PER_KILOMETER 2
 enum vehicles@tpye@data{
     listid,
     characterid,
@@ -30,7 +30,6 @@ enum vehicles@tpye@data{
 
     vehicleidd,
     timergas,
-    timeroil,
     distanceAmmount
 
 };

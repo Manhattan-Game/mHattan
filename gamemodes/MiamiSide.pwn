@@ -8,7 +8,7 @@
 #include <sscanf2>
 #include <GPS>
 #include <streamer>
-#include <timerFix>
+#include <timerfix>
 #include <ProgressBarNick>
 #include <ShowInfoForPlayer>
 

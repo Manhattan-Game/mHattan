@@ -14,8 +14,6 @@ hook OnGameModeInit(){
 	TextDrawSetProportional(velocimeter_TD[0], 0);
 }
 hook OnPlayerConnect(playerid){
-	createProgressBar(playerid, BAR_V_GAS, 536.442443, 407.000000, 537.000000, -5.604755, 436207871, 100.0, 1);
-	createProgressBar(playerid, BAR_V_OIL, 549.560913, 407.000000, 550, -5.604755, 436207871, 100.0, 1);
 	velocimeter_PTD[playerid][0] = CreatePlayerTextDraw(playerid, 494.743957, 372.583343, "1");
 	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][0], 0.324568, 1.949999);
 	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][0], 0.000000, 31.000000);
@@ -101,12 +99,13 @@ hook OnPlayerStateChange(playerid, newstate, oldstate){
     	new vehicleid = GetPlayerVehicleID(playerid);
     	inVehicle[playerid] = getVehicleIndexById(vehicleid);
 		showVelocimeter(playerid, inVehicle[playerid]);
-		if(newstate == PLAYER_STATE_DRIVER){
-			vehicleData[inVehicle[playerid]][timergas] = SetPlayerTimerEx(playerid, "update", GAS_TIME_UPDATED, 1, "d", inVehicle[playerid]);
+		if(newstate == PLAYER_STATE_DRIVER && vehicleData[inVehicle[playerid]][enginee] == VEHICLE_PARAMS_ON){
+			vehicleData[inVehicle[playerid]][timergas] = SetPlayerTimerEx(playerid, "updateVehicleGas", GAS_TIME_UPDATED, 1, "dd", playerid, inVehicle[playerid]);
 		}
 
     }
     else if((oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER) && newstate != PLAYER_STATE_PASSENGER && newstate != PLAYER_STATE_DRIVER) {
+        if(newstate == PLAYER_STATE_DRIVER && vehicleData[inVehicle[playerid]][enginee] == VEHICLE_PARAMS_ON) KillPlayerTimer(vehicleData[inVehicle[playerid]][timergas]);
         inVehicle[playerid] = -1;
 		hideVelocimeter(playerid);
     }
@@ -196,8 +195,8 @@ cmd:crearvehiculo(playerid, params[]){
 	    			vehicleData[index][windows][2] = CAR_WINDOW_CLOSE;
 	    			vehicleData[index][windows][3] = CAR_WINDOW_CLOSE;
 	    			vehicleData[index][vehicle_life] = 1000.0;
-	    			vehicleData[index][gas] = 60;
-	    			vehicleData[index][oil] = 80;
+	    			vehicleData[index][gas] = 30;
+	    			vehicleData[index][oil] = 50;
 	    			vehicleData[index][kilometres] = 15;
 	    			loadVehicle(index);
 	    		} else ShowTDN_OOC(playerid, "No se pueden crear mas vehiculos.");

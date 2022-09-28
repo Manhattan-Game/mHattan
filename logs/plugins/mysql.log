@@ -315,3 +315,68 @@
 [22:13:05] [WARNING] mysql_connect: no password specified
 [23:09:12] [WARNING] mysql_connect: no password specified
 [23:09:12] [WARNING] mysql_connect: no password specified
+[08:29:02] [WARNING] mysql_connect: no password specified
+[08:29:44] [WARNING] mysql_connect: no password specified
+[08:29:44] [WARNING] mysql_connect: no password specified
+[08:29:44] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:29:44] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:29:51] [WARNING] mysql_connect: no password specified
+[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:29:51] [WARNING] mysql_connect: no password specified
+[08:29:51] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:29:51] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:30:02] [WARNING] mysql_connect: no password specified
+[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:30:02] [WARNING] mysql_connect: no password specified
+[08:30:02] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:30:02] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:38:09] [WARNING] mysql_connect: no password specified
+[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:38:09] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:38:09] [WARNING] mysql_connect: no password specified
+[08:38:09] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:38:38] [WARNING] mysql_connect: no password specified
+[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:38:38] [WARNING] mysql_connect: no password specified
+[08:38:38] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:38:38] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:39:15] [WARNING] mysql_connect: no password specified
+[08:39:15] [WARNING] mysql_connect: no password specified
+[10:28:21] [WARNING] mysql_connect: no password specified
+[10:28:21] [WARNING] mysql_connect: no password specified
+[10:58:58] [WARNING] mysql_connect: no password specified
+[10:58:58] [WARNING] mysql_connect: no password specified
+[11:04:08] [WARNING] mysql_connect: no password specified
+[11:04:08] [WARNING] mysql_connect: no password specified
+[11:09:32] [WARNING] mysql_connect: no password specified
+[11:09:32] [WARNING] mysql_connect: no password specified
+[11:14:38] [WARNING] mysql_connect: no password specified
+[11:14:38] [WARNING] mysql_connect: no password specified
+[11:16:46] [WARNING] mysql_connect: no password specified
+[11:16:46] [WARNING] mysql_connect: no password specified
+[15:21:01] [WARNING] mysql_connect: no password specified
+[15:21:03] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:05] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:08] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:10] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:10] [WARNING] mysql_connect: no password specified
+[15:21:12] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:14] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:22:45] [WARNING] mysql_connect: no password specified
+[15:22:45] [WARNING] mysql_connect: no password specified
