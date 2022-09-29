@@ -10,15 +10,26 @@ hook OnPlayerSpawn(playerid){
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
     if(characterData[playerid][p_spawn]){
-        if(newkeys == KEY_CTRL_BACK)
-        {
-            for(new did;did<MAX_DOORS-1;did++)
-            {
-                if(IsPlayerInEnterDoor(playerid, did)){
+        if(newkeys & KEY_YES){
+            new Float:range = 2.5;
+            print("0");
+            for(new did;did<MAX_DOORS-1;did++){
+                if(doorsInfo[did][doorType] == DOOR_TYPE_VEHICLE) range = 6.0;
+                if(IsPlayerInEnterDoor(playerid, range, did)){
                     if(doorsInfo[did][enterState] == DOOR_STATE_OPEN){
                         if(doorsInfo[did][doorType] != DOOR_TYPE_PHYSICAL){
                             SetPlayerPos(playerid, doorsInfo[did][exitCoords][0], doorsInfo[did][exitCoords][1], doorsInfo[did][exitCoords][2]);
                             SetPlayerVirtualWorld(playerid, doorsInfo[did][exitVw]);
+                            print("1");
+                            if(doorsInfo[did][doorType] == DOOR_TYPE_VEHICLE){
+                                print("2");
+                                if(IsPlayerInAnyVehicle(playerid)){
+                                    SetVehiclePos(GetPlayerVehicleID(playerid), doorsInfo[did][exitCoords][0], doorsInfo[did][exitCoords][1], doorsInfo[did][exitCoords][2]);
+                                    SetVehicleVirtualWorld(GetPlayerVehicleID(playerid), doorsInfo[did][exitVw]);
+                                    PutPlayerInVehicle(playerid, GetPlayerVehicleID(playerid), 0);
+                                }
+                            }
+                            break;
                         }else changeStateDoor(playerid, did);
 
                         break;
@@ -26,10 +37,17 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
                         ShowTDN_OOC(playerid, "La puerta se encuentra cerrada");
                         break;
                     }
-                }else if(IsPlayerInExitDoor(playerid, 2.5, did)){
+                }else if(IsPlayerInExitDoor(playerid, range, did)){
                     if(doorsInfo[did][enterState] == DOOR_STATE_OPEN){
                         SetPlayerPos(playerid, doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2]);
                         SetPlayerVirtualWorld(playerid, doorsInfo[did][doorVw]);
+                        if(doorsInfo[did][doorType] == DOOR_TYPE_VEHICLE){
+                            if(IsPlayerInAnyVehicle(playerid)){
+                                SetVehiclePos(GetPlayerVehicleID(playerid), doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2]);
+                                SetVehicleVirtualWorld(GetPlayerVehicleID(playerid), doorsInfo[did][doorVw]);
+                                PutPlayerInVehicle(playerid, GetPlayerVehicleID(playerid), 0);
+                            }
+                        }
                         break;
                     }else{
                         ShowTDN_OOC(playerid, "La puerta se encuentra cerrada");
@@ -173,7 +191,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 
 cmd:puerta(playerid, params[]){
     for(new i;i<MAX_DOORS-1;i++){
-        if(IsPlayerInEnterDoor(playerid, i) || IsPlayerInExitDoor(playerid, 2.0, i)){
+        if(IsPlayerInEnterDoor(playerid, 2.5, i) || IsPlayerInExitDoor(playerid, 2.5, i)){
             new string[QUERY_MEDIUM];
             if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
                 format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" Doors ID: %i", i);

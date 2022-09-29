@@ -44,6 +44,8 @@ new QUERY_BUFFER[2048];
 #include "./modules/notincludes/inGameMap/editor/impl"
 #include "./modules/notincludes/map/minimap"
 
+
+#include "./modules/notincludes/maps/houses/interiors"
 // ----------- MAP, MINIMAP AND EDITOR -------------------
 
 
@@ -144,7 +146,7 @@ new QUERY_BUFFER[2048];
 #define SERVER_WEBSITE		"https://mainland.com"
 #define SERVER_HOSTNAME		"MAINLAND ("SERVER_WEBSITE")"
 #define SERVER_MAPNAME		"Vice City"
-#define SERVER_LANGUAGE		"Español"
+#define SERVER_LANGUAGE		"Spanish"
 #define SERVER_NAME			"Mainland Roleplay"
 #define SERVER_NAME_SHORT	"ML-RP"
 #define SERVER_VERSION		"0.2"

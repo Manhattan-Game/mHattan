@@ -88,8 +88,8 @@ changeStateDoor(playerid, index){
     }
 }
 
-IsPlayerInEnterDoor(playerid, did){
-    if((IsPlayerInRangeOfPoint(playerid, 2.0, doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2])) && (doorsInfo[did][doorVw] == GetPlayerVirtualWorld(playerid))) return true;
+IsPlayerInEnterDoor(playerid, Float:range, did){
+    if((IsPlayerInRangeOfPoint(playerid, range, doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2])) && (doorsInfo[did][doorVw] == GetPlayerVirtualWorld(playerid))) return true;
     return false;
 }
 IsPlayerInExitDoor(playerid, Float:range, did){

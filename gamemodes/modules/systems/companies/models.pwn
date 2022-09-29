@@ -1,10 +1,19 @@
-
-enum company@Type{
+enum companydata@type{
+	listid,
+	characterid,
+	name,
+	type,
+	price,
+	doorid,
+	garajedoorid,
+	
+}
+enum company@models{
     listid,
     name[40]
 };
 
-new company@Type[][vehi@clsType] = {
+new companyModelDataa[][company@models] = {
 	{0, "Ford Ranger"},
     {...}
     
