@@ -134,9 +134,13 @@ public loadDoors(){
             cache_get_value_name_float(i, "enterX", doorsInfo[i][enterCoords][0]);
             cache_get_value_name_float(i, "enterY", doorsInfo[i][enterCoords][1]);
             cache_get_value_name_float(i, "enterZ", doorsInfo[i][enterCoords][2]);
+            cache_get_value_name_float(i, "enterAngle", doorsInfo[i][enterCoords][3]);
+
             cache_get_value_name_float(i, "exitX", doorsInfo[i][exitCoords][0]);
             cache_get_value_name_float(i, "exitY", doorsInfo[i][exitCoords][1]);
             cache_get_value_name_float(i, "exitZ", doorsInfo[i][exitCoords][2]);
+            cache_get_value_name_float(i, "exitAngle", doorsInfo[i][exitCoords][2]);
+
 
             cache_get_value_name_int(i, "enterState", doorsInfo[i][enterState]);
             cache_get_value_name_int(i, "doorModel", doorsInfo[i][doorModel]);
@@ -171,16 +175,18 @@ saveDoors(){
     new query[QUERY_LONG];
     for(new i; i<MAX_DOORS-1;i++){
         if(doorsInfo[i][characterID] > 0){
-            mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE doors SET `characterid`='%d', `enterX`='%f', `enterY`='%f', `enterZ`='%f', `exitX`='%f', `exitY`='%f', `exitZ`='%f', `enterState`='%d', `doorModel`='%d', \
+            mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE doors SET `characterid`='%d', `enterX`='%f', `enterY`='%f', `enterZ`='%f', `enterAngle`='%f', `exitX`='%f', `exitY`='%f', `exitZ`='%f', `exitAngle`='%f', `enterState`='%d', `doorModel`='%d', \
             `doorCoords1`='%f', `doorCoords2`='%f', `doorCoords3`='%f', `doorCoords4`='%f', `doorCoords5`='%f', `doorCoords6`='%f', `movedoorCoords1`='%f', `movedoorCoords2`='%f', `movedoorCoords3`='%f', `movedoorCoords4`='%f', `movedoorCoords5`='%f', `movedoorCoords6`='%f', \
             `doorVw`='%d', `exitVw`='%d', `doorState`='%d', `doorType`='%d' WHERE listid = '%d' LIMIT 1",
             doorsInfo[i][characterID],
             doorsInfo[i][enterCoords][0],
             doorsInfo[i][enterCoords][1],
             doorsInfo[i][enterCoords][2],
+            doorsInfo[i][enterCoords][3],
             doorsInfo[i][exitCoords][0],
             doorsInfo[i][exitCoords][1],
             doorsInfo[i][exitCoords][2],
+            doorsInfo[i][exitCoords][3],
             doorsInfo[i][enterState],
             doorsInfo[i][doorModel],
             doorsInfo[i][doorCoords][0],

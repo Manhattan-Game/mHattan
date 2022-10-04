@@ -145,9 +145,10 @@ public loadCharacter(playerid){
                 giveCharacterMoney(playerid, characterData[playerid][money]);
                 SetPlayerName(playerid, characterData[playerid][name]);
                 SetPlayerVirtualWorld(playerid, characterData[playerid][world]);
-                SetPlayerInterior(playerid, characterData[playerid][interior]);
+                //SetPlayerInterior(playerid, characterData[playerid][interior]);
                 SetPlayerColor(playerid, 0xAFAFAFAA);
                 freezeUser(playerid, 3000);
+                ShowInfoForPlayer(playerid, "Cargando...", 3000);
                 setLife(playerid, characterData[playerid][life]);
                 setArmor(playerid, characterData[playerid][armor]);
                 new string[128];
@@ -162,7 +163,7 @@ public loadCharacter(playerid){
                 showHUD(playerid);
         }
         
-        ShowInfoForPlayer(playerid, "~w~ Pulsa ~y~ ~h~ N ~w~ para abrir tu inventario", 3000);
+        
         
 }
 saveCharacter(playerid){

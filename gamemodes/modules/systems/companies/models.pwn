@@ -6,6 +6,10 @@ enum companydata@type{
 	price,
 	doorid,
 	garajedoorid,
+	Float:room_pos[3],
+	Float:job_pos[6],
+	Float:dispatch_pos[6],
+	
 	
 }
 enum company@models{

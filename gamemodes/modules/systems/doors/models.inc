@@ -38,8 +38,8 @@ enum doors_inf@o
     listid,
     characterID,
 
-    Float:enterCoords[3],
-    Float:exitCoords[3],
+    Float:enterCoords[4],
+    Float:exitCoords[4],
     enterState,
 
     pickupEnter,

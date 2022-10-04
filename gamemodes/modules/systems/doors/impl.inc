@@ -20,13 +20,13 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
                         if(doorsInfo[did][doorType] != DOOR_TYPE_PHYSICAL){
                             SetPlayerPos(playerid, doorsInfo[did][exitCoords][0], doorsInfo[did][exitCoords][1], doorsInfo[did][exitCoords][2]);
                             SetPlayerVirtualWorld(playerid, doorsInfo[did][exitVw]);
-                            print("1");
+                            SetPlayerFacingAngle(playerid, doorsInfo[did][exitCoords][3]);
                             if(doorsInfo[did][doorType] == DOOR_TYPE_VEHICLE){
-                                print("2");
                                 if(IsPlayerInAnyVehicle(playerid)){
                                     SetVehiclePos(GetPlayerVehicleID(playerid), doorsInfo[did][exitCoords][0], doorsInfo[did][exitCoords][1], doorsInfo[did][exitCoords][2]);
                                     SetVehicleVirtualWorld(GetPlayerVehicleID(playerid), doorsInfo[did][exitVw]);
                                     PutPlayerInVehicle(playerid, GetPlayerVehicleID(playerid), 0);
+                                    SetVehicleZAngle(GetPlayerVehicleID(playerid), doorsInfo[did][exitCoords][3]);
                                 }
                             }
                             break;
@@ -41,11 +41,13 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
                     if(doorsInfo[did][enterState] == DOOR_STATE_OPEN){
                         SetPlayerPos(playerid, doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2]);
                         SetPlayerVirtualWorld(playerid, doorsInfo[did][doorVw]);
+                        SetPlayerFacingAngle(playerid, doorsInfo[did][enterCoords][3]);
                         if(doorsInfo[did][doorType] == DOOR_TYPE_VEHICLE){
                             if(IsPlayerInAnyVehicle(playerid)){
                                 SetVehiclePos(GetPlayerVehicleID(playerid), doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2]);
                                 SetVehicleVirtualWorld(GetPlayerVehicleID(playerid), doorsInfo[did][doorVw]);
                                 PutPlayerInVehicle(playerid, GetPlayerVehicleID(playerid), 0);
+                                SetVehicleZAngle(GetPlayerVehicleID(playerid), doorsInfo[did][enterCoords][3]);
                             }
                         }
                         break;
@@ -138,6 +140,20 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
                             }
                             
                         }
+                        case 5: {
+                            new Float:angl;
+                            GetPlayerFacingAngle(playerid, angl);
+                            doorsInfo[index][enterCoords][3] = angl;
+                            editDoor[playerid] = -1;
+                            ShowTDN_OOC(playerid, "Editaste el angulo de la puerta entrada");
+                        }
+                        case 6: {
+                            new Float:angl;
+                            GetPlayerFacingAngle(playerid, angl);
+                            doorsInfo[index][exitCoords][3] = angl;
+                            editDoor[playerid] = -1;
+                            ShowTDN_OOC(playerid, "Editaste el angulo de la puerta salida");
+                        }
                     }
                 } else editDoor[playerid] = -1;
             }
@@ -173,7 +189,6 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
             if(response){
                 new indexDoor = editDoor[playerid];
                 doorsInfo[indexDoor][exitVw] = doorsInfo[indexDoor][listid];
-                printf("%f", houseModelsData[listitem][interiorCoords][0]);
                 doorsInfo[indexDoor][exitCoords][0] = houseModelsData[listitem][interiorCoords][0];
                 doorsInfo[indexDoor][exitCoords][1] = houseModelsData[listitem][interiorCoords][1];
                 doorsInfo[indexDoor][exitCoords][2] = houseModelsData[listitem][interiorCoords][2];
@@ -195,7 +210,7 @@ cmd:puerta(playerid, params[]){
             new string[QUERY_MEDIUM];
             if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
                 format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" Doors ID: %i", i);
-                ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR, DIALOG_STYLE_LIST, string, "Bloquear/desbloquear puerta\nEditar posicion entrada\nEditar posicion salida\nEditar puerta(Fisica)\nEditar modelo puerta(Fisica)", "Continuar", ""RED" cancelar");
+                ShowPlayerDialog(playerid, DIALOG_EDIT_DOOR, DIALOG_STYLE_LIST, string, "Bloquear/desbloquear puerta\nEditar posicion entrada\nEditar posicion salida\nEditar puerta(Fisica)\nEditar modelo puerta(Fisica)\nEditar Angle entrada\nEditar Angle salida", "Continuar", ""RED" cancelar");
                 editDoor[playerid] = i;
                 break;
             }
