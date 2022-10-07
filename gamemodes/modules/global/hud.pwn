@@ -84,14 +84,13 @@ hook OnPlayerDisconnect(playerid){
 	BAR_STRESS[playerid] = 0;
 	clearAllBars(playerid);
 }
-hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys){
-	if ((newkeys == KEY_YES)){
-		if(characterData[playerid][p_spawn]){
-			if(VIEW_HUD[playerid] == 1){
-				showNeeds(playerid);
-			} else hideNeeds(playerid);
-		} else ShowTDN_OOC(playerid, "Loguea primero");
-	}
+
+cmd:hud(playerid, params){
+	if(characterData[playerid][p_spawn]){
+		if(VIEW_HUD[playerid] == 1){
+			showNeeds(playerid);
+		} else hideNeeds(playerid);
+	} else ShowTDN_OOC(playerid, "Loguea primero");
 }
 showNeeds(playerid){
 	if(characterData[playerid][p_spawn]){

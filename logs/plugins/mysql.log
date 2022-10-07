@@ -218,3 +218,255 @@
 [16:34:51] [WARNING] mysql_connect: no password specified
 [16:34:51] [WARNING] mysql_connect: no password specified
 [16:34:51] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[16:39:01] [WARNING] mysql_connect: no password specified
+[16:39:01] [WARNING] mysql_connect: no password specified
+[16:39:01] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[16:42:03] [WARNING] mysql_connect: no password specified
+[16:42:03] [WARNING] mysql_connect: no password specified
+[16:42:03] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[15:48:42] [WARNING] mysql_connect: no password specified
+[15:48:42] [WARNING] mysql_connect: no password specified
+[15:48:42] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[15:57:19] [WARNING] mysql_connect: no password specified
+[15:57:19] [WARNING] mysql_connect: no password specified
+[15:57:19] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[16:00:11] [WARNING] mysql_connect: no password specified
+[16:00:11] [WARNING] mysql_connect: no password specified
+[16:00:11] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[16:00:35] [WARNING] mysql_connect: no password specified
+[16:00:35] [WARNING] mysql_connect: no password specified
+[16:00:35] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:16:17] [WARNING] mysql_connect: no password specified
+[17:16:17] [WARNING] mysql_connect: no password specified
+[17:16:17] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:20:00] [WARNING] mysql_connect: no password specified
+[17:20:00] [WARNING] mysql_connect: no password specified
+[17:20:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:23:27] [WARNING] mysql_connect: no password specified
+[17:23:27] [WARNING] mysql_connect: no password specified
+[17:23:27] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:30:00] [WARNING] mysql_connect: no password specified
+[17:30:00] [WARNING] mysql_connect: no password specified
+[17:30:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:49:31] [WARNING] mysql_connect: no password specified
+[17:49:31] [WARNING] mysql_connect: no password specified
+[17:49:31] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:52:01] [WARNING] mysql_connect: no password specified
+[17:52:01] [WARNING] mysql_connect: no password specified
+[17:52:01] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:53:21] [WARNING] mysql_connect: no password specified
+[17:53:21] [WARNING] mysql_connect: no password specified
+[17:53:21] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[17:58:40] [WARNING] mysql_connect: no password specified
+[17:58:40] [WARNING] mysql_connect: no password specified
+[17:58:40] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:00:00] [WARNING] mysql_connect: no password specified
+[18:00:00] [WARNING] mysql_connect: no password specified
+[18:00:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:02:26] [WARNING] mysql_connect: no password specified
+[18:02:26] [WARNING] mysql_connect: no password specified
+[18:02:26] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:03:43] [WARNING] mysql_connect: no password specified
+[18:03:43] [WARNING] mysql_connect: no password specified
+[18:03:43] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:09:31] [WARNING] mysql_connect: no password specified
+[18:09:31] [WARNING] mysql_connect: no password specified
+[18:09:31] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[18:15:55] [WARNING] mysql_connect: no password specified
+[18:15:55] [WARNING] mysql_connect: no password specified
+[18:15:55] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[23:17:00] [WARNING] mysql_connect: no password specified
+[23:17:00] [WARNING] mysql_connect: no password specified
+[23:17:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[23:43:58] [WARNING] mysql_connect: no password specified
+[23:43:58] [WARNING] mysql_connect: no password specified
+[23:43:58] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[23:45:33] [WARNING] mysql_connect: no password specified
+[23:45:33] [WARNING] mysql_connect: no password specified
+[23:45:33] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[00:00:16] [WARNING] mysql_connect: no password specified
+[00:00:16] [WARNING] mysql_connect: no password specified
+[00:00:16] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[16:34:19] [WARNING] mysql_connect: no password specified
+[16:34:19] [WARNING] mysql_connect: no password specified
+[16:38:47] [WARNING] mysql_connect: no password specified
+[16:38:47] [WARNING] mysql_connect: no password specified
+[16:42:23] [WARNING] mysql_connect: no password specified
+[16:42:23] [WARNING] mysql_connect: no password specified
+[16:46:28] [WARNING] mysql_connect: no password specified
+[16:46:28] [WARNING] mysql_connect: no password specified
+[16:48:59] [WARNING] mysql_connect: no password specified
+[16:48:59] [WARNING] mysql_connect: no password specified
+[17:08:47] [WARNING] mysql_connect: no password specified
+[17:08:47] [WARNING] mysql_connect: no password specified
+[17:18:08] [WARNING] mysql_connect: no password specified
+[17:18:08] [WARNING] mysql_connect: no password specified
+[20:31:52] [WARNING] mysql_connect: no password specified
+[20:31:52] [WARNING] mysql_connect: no password specified
+[20:39:23] [WARNING] mysql_connect: no password specified
+[20:39:23] [WARNING] mysql_connect: no password specified
+[20:43:13] [WARNING] mysql_connect: no password specified
+[20:43:13] [WARNING] mysql_connect: no password specified
+[21:59:54] [WARNING] mysql_connect: no password specified
+[21:59:54] [WARNING] mysql_connect: no password specified
+[22:05:39] [WARNING] mysql_connect: no password specified
+[22:05:39] [WARNING] mysql_connect: no password specified
+[22:13:05] [WARNING] mysql_connect: no password specified
+[22:13:05] [WARNING] mysql_connect: no password specified
+[23:09:12] [WARNING] mysql_connect: no password specified
+[23:09:12] [WARNING] mysql_connect: no password specified
+[08:29:02] [WARNING] mysql_connect: no password specified
+[08:29:44] [WARNING] mysql_connect: no password specified
+[08:29:44] [WARNING] mysql_connect: no password specified
+[08:29:44] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:29:44] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:29:51] [WARNING] mysql_connect: no password specified
+[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:29:51] [WARNING] mysql_connect: no password specified
+[08:29:51] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:29:51] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:30:02] [WARNING] mysql_connect: no password specified
+[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:30:02] [WARNING] mysql_connect: no password specified
+[08:30:02] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:30:02] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:38:09] [WARNING] mysql_connect: no password specified
+[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:38:09] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:38:09] [WARNING] mysql_connect: no password specified
+[08:38:09] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:38:38] [WARNING] mysql_connect: no password specified
+[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
+[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
+[08:38:38] [WARNING] mysql_connect: no password specified
+[08:38:38] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
+[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
+[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
+[08:38:38] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[08:39:15] [WARNING] mysql_connect: no password specified
+[08:39:15] [WARNING] mysql_connect: no password specified
+[10:28:21] [WARNING] mysql_connect: no password specified
+[10:28:21] [WARNING] mysql_connect: no password specified
+[10:58:58] [WARNING] mysql_connect: no password specified
+[10:58:58] [WARNING] mysql_connect: no password specified
+[11:04:08] [WARNING] mysql_connect: no password specified
+[11:04:08] [WARNING] mysql_connect: no password specified
+[11:09:32] [WARNING] mysql_connect: no password specified
+[11:09:32] [WARNING] mysql_connect: no password specified
+[11:14:38] [WARNING] mysql_connect: no password specified
+[11:14:38] [WARNING] mysql_connect: no password specified
+[11:16:46] [WARNING] mysql_connect: no password specified
+[11:16:46] [WARNING] mysql_connect: no password specified
+[15:21:01] [WARNING] mysql_connect: no password specified
+[15:21:03] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:05] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:08] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:10] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:10] [WARNING] mysql_connect: no password specified
+[15:21:12] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:21:14] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[15:22:45] [WARNING] mysql_connect: no password specified
+[15:22:45] [WARNING] mysql_connect: no password specified
+[21:50:13] [WARNING] mysql_connect: no password specified
+[21:50:13] [WARNING] mysql_connect: no password specified
+[22:29:21] [WARNING] mysql_connect: no password specified
+[22:29:21] [WARNING] mysql_connect: no password specified
+[22:36:53] [WARNING] mysql_connect: no password specified
+[22:36:53] [WARNING] mysql_connect: no password specified
+[22:43:41] [WARNING] mysql_connect: no password specified
+[22:43:41] [WARNING] mysql_connect: no password specified
+[22:48:53] [WARNING] mysql_connect: no password specified
+[22:48:53] [WARNING] mysql_connect: no password specified
+[22:49:32] [WARNING] mysql_connect: no password specified
+[22:49:32] [WARNING] mysql_connect: no password specified
+[22:59:17] [WARNING] mysql_connect: no password specified
+[22:59:17] [WARNING] mysql_connect: no password specified
+[00:22:21] [WARNING] mysql_connect: no password specified
+[00:22:21] [WARNING] mysql_connect: no password specified
+[00:25:56] [WARNING] mysql_connect: no password specified
+[00:25:56] [WARNING] mysql_connect: no password specified
+[11:18:44] [WARNING] mysql_connect: no password specified
+[11:18:46] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:18:48] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:18:50] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:18:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:18:52] [WARNING] mysql_connect: no password specified
+[11:18:54] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:18:56] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:18:58] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:19:00] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:19:27] [WARNING] mysql_connect: no password specified
+[11:19:29] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:19:31] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:19:39] [WARNING] mysql_connect: no password specified
+[11:19:41] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:19:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:19:45] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:20:11] [WARNING] mysql_connect: no password specified
+[11:20:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:20:15] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:20:17] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:20:19] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:20:19] [WARNING] mysql_connect: no password specified
+[11:20:24] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2013 'Lost connection to MySQL server at 'handshake: reading inital communication packet', system error: 10061'
+[11:20:26] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:20:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[11:20:30] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:28] [WARNING] mysql_connect: no password specified
+[13:02:30] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:30] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:33] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:33] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:35] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:37] [WARNING] mysql_connect: no password specified
+[13:02:39] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:41] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:46] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2013 'Lost connection to MySQL server at 'handshake: reading inital communication packet', system error: 10061'
+[13:02:48] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:48] [WARNING] mysql_connect: no password specified
+[13:02:50] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[13:02:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[14:15:41] [WARNING] mysql_connect: no password specified
+[14:15:41] [WARNING] mysql_connect: no password specified
+[14:20:08] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[19:33:43] [WARNING] mysql_connect: no password specified
+[19:33:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
+[19:33:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
+[19:33:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
+[19:33:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
+[19:33:43] [WARNING] mysql_connect: no password specified
+[19:33:43] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[19:35:13] [WARNING] mysql_connect: no password specified
+[19:35:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
+[19:35:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
+[19:35:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
+[19:35:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
+[19:35:13] [WARNING] mysql_connect: no password specified
+[19:35:13] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
+[19:35:47] [WARNING] mysql_connect: no password specified
+[19:35:47] [WARNING] mysql_connect: no password specified
+[20:02:37] [WARNING] mysql_connect: no password specified
+[20:02:37] [WARNING] mysql_connect: no password specified
+[20:07:31] [WARNING] mysql_connect: no password specified
+[20:07:31] [WARNING] mysql_connect: no password specified
+[22:52:22] [WARNING] mysql_connect: no password specified
+[22:52:22] [WARNING] mysql_connect: no password specified
+[22:53:31] [WARNING] mysql_connect: no password specified
+[22:53:31] [WARNING] mysql_connect: no password specified
+[22:55:46] [WARNING] mysql_connect: no password specified
+[22:55:46] [WARNING] mysql_connect: no password specified
+[22:59:38] [WARNING] mysql_connect: no password specified
+[22:59:38] [WARNING] mysql_connect: no password specified

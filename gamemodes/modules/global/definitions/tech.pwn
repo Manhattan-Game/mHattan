@@ -19,6 +19,10 @@
 #define BAR_HUD_FATIGUE 7
 #define BAR_HUD_STRESS 8
 
+#define BAR_V_GAS 9
+#define BAR_V_OIL 10
+
+
 // PLAYER
 #define GENDER_MALE 0
 #define GENDER_FEMALE 1

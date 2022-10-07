@@ -3,7 +3,8 @@
 #define xylos_HOST "127.0.0.1"
 #define xylos_USER "root"
 #define xylos_PSS ""
-#define xylos_DB "miamiside"
+#define xylos_DB "mainland"
+#define xylos_DBMAP "mainland_map"
 
 #define QUERY_LOW 280
 #define QUERY_MEDIUM 480
@@ -29,8 +30,8 @@ hook OnGameModeInit()
     `itemAmount1` int(10) NOT NULL, `itemAmount2` int(10) NOT NULL, `itemAmount3` int(10) NOT NULL, `itemAmount4` int(10) NOT NULL, `itemAmount5` int(10) NOT NULL, `itemAmount6` int(10) NOT NULL, `itemAmount7` int(10) NOT NULL, `itemAmount8` int(10) NOT NULL, `itemAmount9` int(10) NOT NULL, `itemAmount10` int(10) NOT NULL, `itemAmount11` int(10) NOT NULL, `itemAmount12` int(10) NOT NULL, `itemAmount13` int(10) NOT NULL, `itemAmount14` int(10) NOT NULL, `itemAmount15` int(10) NOT NULL, `itemAmount16` int(10) NOT NULL, `itemAmount17` int(10) NOT NULL, `itemAmount18` int(10) NOT NULL, `itemAmount19` int(10) NOT NULL, `itemAmount20` int(10) NOT NULL, \
     `price` int(10) NOT NULL, `direction` varchar(60) NOT NULL)");
    
-    mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `doors` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `characterid` int(10) NOT NULL, `enterX` float(10) NOT NULL, `enterY` float(10) NOT NULL, `enterZ` float(10) NOT NULL, \
-    `exitX` float(10) NOT NULL, `exitY` float(10) NOT NULL, `exitZ` float(10) NOT NULL, `enterState` int(10) NOT NULL, `doorModel` int(10) NOT NULL, \
+    mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `doors` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `characterid` int(10) NOT NULL, `enterX` float(10) NOT NULL, `enterY` float(10) NOT NULL, `enterZ` float(10) NOT NULL, `enterAngle` float(10) NOT NULL, \
+    `exitX` float(10) NOT NULL, `exitY` float(10) NOT NULL, `exitZ` float(10) NOT NULL, `exitAngle` float(10) NOT NULL, `enterState` int(10) NOT NULL, `doorModel` int(10) NOT NULL, \
     `doorCoords1` float(10) NOT NULL, `doorCoords2` float(10) NOT NULL, `doorCoords3` float(10) NOT NULL, `doorCoords4` float(10) NOT NULL, `doorCoords5` float(10) NOT NULL, `doorCoords6` float(10) NOT NULL, \
     `movedoorCoords1` float(10) NOT NULL, `movedoorCoords2` float(10) NOT NULL, `movedoorCoords3` float(10) NOT NULL, `movedoorCoords4` float(10) NOT NULL, `movedoorCoords5` float(10) NOT NULL, `movedoorCoords6` float(10) NOT NULL, \
     `doorVw` int(10) NOT NULL, `exitVw` int(10) NOT NULL, `doorState` int(10) NOT NULL, `doorType` int(10) NOT NULL )");
