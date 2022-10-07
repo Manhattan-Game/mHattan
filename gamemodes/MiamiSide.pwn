@@ -65,6 +65,7 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/markets/clothes/models"
 #include "./modules/systems/inventory/models"
 #include "./modules/systems/vehicles/models"
+#include "./modules/systems/companies/models"
 
 
 #include "./modules/notincludes/dialogs"
@@ -81,6 +82,7 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/markets/clothes/funcs"
 #include "./modules/systems/inventory/funcs"
 #include "./modules/systems/vehicles/funcs"
+#include "./modules/systems/companies/funcs"
 
 
 
@@ -96,6 +98,7 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/markets/furnitures/impl"
 #include "./modules/systems/inventory/impl"
 #include "./modules/systems/vehicles/impl"
+#include "./modules/systems/companies/impl"
 
 
 
@@ -146,7 +149,7 @@ new QUERY_BUFFER[2048];
 #define SERVER_WEBSITE		"https://mainland.com"
 #define SERVER_HOSTNAME		"MAINLAND ("SERVER_WEBSITE")"
 #define SERVER_MAPNAME		"Vice City"
-#define SERVER_LANGUAGE		"Spanish"
+#define SERVER_LANGUAGE		"Espanol"
 #define SERVER_NAME			"Mainland Roleplay"
 #define SERVER_NAME_SHORT	"ML-RP"
 #define SERVER_VERSION		"0.2"

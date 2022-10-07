@@ -237,6 +237,7 @@ cmd:editarnegocio(playerid, params[]){
 	if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
 		if(!sscanf(params, "i", index)){
 	    	if(index >= 0 && index < MAX_HOUSES){
+	    		if(!marketData[index][loadedd]) return ShowTDN_OOC(playerid, "El negocio no esta creado.");
 	    		editMarket[playerid] = index;
 	    		new string[QUERY_LOW];
 	    		format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" Market ID: %i", index);

@@ -33,6 +33,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					if(houseData[i][listid] > 0 && houseData[i][statee] == HOUSE_STATE_ON_SALE){
 						if(e == listitem){
 							if(characterData[playerid][money] >= houseData[i][price]){
+								marketData[editMarket[playerid]][safe] += (houseData[e][price] / 12);
 								sellHouseCharacterId(playerid, i);
 								break;
 							} else{
@@ -51,6 +52,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					if(marketData[i][listid] > 0 && marketData[i][sale] == HOUSE_STATE_ON_SALE){
 						if(e == listitem){
 							if(characterData[playerid][money] >= marketData[i][price]){
+								marketData[editMarket[playerid]][safe] += (marketData[e][price] / 12);
 								sellMarketCharacterId(playerid, i);
 								break;
 							} else{
