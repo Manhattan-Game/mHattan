@@ -49,8 +49,36 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 								updateDispatchExtPosition(playerid, indxx, indxdoor);
 							}else editCompany[playerid] = -1;
 						}
+						case 10: ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY_CLOTHES, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Elige el sexo al que deseas cambiarle el skin", "Mujer", "Hombre");
 					}
 				} else editCompany[playerid] = -1;
+			} else editCompany[playerid] = -1;
+		}
+		case DIALOG_EDIT_COMPANY_CLOTHES:{
+			if(response){
+				ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY_CLOTHES_FEMALE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Ingresa un ID Skin", "Continuar", ""RED" cancelar");
+			} else {
+				ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY_CLOTHES_MALE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Ingresa un ID Skin", "Continuar", ""RED" cancelar");
+			}
+		}
+		case DIALOG_EDIT_COMPANY_CLOTHES_MALE:{
+			if(response){
+				if(IsNumeric(inputtext)){
+					new indxx = editCompany[playerid];
+					companyData[indxx][jobs_skins][0] = strval(inputtext);
+					ShowTDN_OOC(playerid, "Editaste el skin HOMBRE");
+					editCompany[playerid] = -1;
+				} else ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY_CLOTHES_MALE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Ingresa un ID Skin", "Continuar", ""RED" cancelar");
+			} else editCompany[playerid] = -1;
+		}
+		case DIALOG_EDIT_COMPANY_CLOTHES_FEMALE:{
+			if(response){
+				if(IsNumeric(inputtext)){
+					new indxx = editCompany[playerid];
+					companyData[indxx][jobs_skins][1] = strval(inputtext);
+					ShowTDN_OOC(playerid, "Editaste el skin MUJER");
+					editCompany[playerid] = -1;
+				} else ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY_CLOTHES_FEMALE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Ingresa un ID Skin", "Continuar", ""RED" cancelar");
 			} else editCompany[playerid] = -1;
 		}
 		case DIALOG_EDIT_COMPANY_DIRECTION: {
@@ -190,14 +218,79 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 						ShowTDN_OOC(playerid, "Retiraste dinero de la caja fuerte.");
 						editCompany[playerid] = -1;
 					}else {
-						ShowTDN_OOC(playerid, "La caja fuerte no tiene se monto.");
+						ShowTDN_OOC(playerid, "La caja fuerte no tiene ese monto.");
 						editCompany[playerid] = -1;
 					}
 					
 				} else ShowPlayerDialog(playerid, DIALOG_MY_COMPANY_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
 			} else editCompany[playerid] = -1;
 		}
+		case DIALOG_CRAFT_COMPANY: {
+			if(response){
+				new bool:isAmmount;
+				new indexes[3];
+				new indexInventory = companyModelData[companyData[editCompany[playerid]][type_company]][fabItems][selectCraft[playerid]];
+				for(new i;i<3;i++){
+					if(inventoryModelsData[indexInventory][crafteableItems][i] != -1){
+						indexes[i] = findItemById(playerid, inventoryModelsData[indexInventory][crafteableItems][i]);
+						if(indexes[i] != -1){
+							if(!findItemByAmmount(playerid, indexes[i], inventoryModelsData[indexInventory][crafteableAmmounts][i])){
+								isAmmount = true;
+								break;
+							}
+						}
+					}
+				}
+				if(!isAmmount){
+					new ittemm = addItem(playerid, inventoryModelsData[indexInventory][model], 1);
+					if(ittemm != -1){
+						for(new e;e<3;e++){
+							if(indexes[e] != -1){
+								if(findItemByAmmount(playerid, indexes[e], inventoryModelsData[indexInventory][crafteableAmmounts][e] + 1)){
+									changeItemAmmount(playerid, indexes[e], inventoryInfo[playerid][ammount][indexes[e]] - inventoryModelsData[indexInventory][crafteableAmmounts][e]);
+								} else removeItem(playerid, indexes[e]);
+							}
+						}
+						ShowTDN_OOC(playerid, "Crafteaste un objeto");
+						editCompany[playerid] = -1;
+						selectCraft[playerid] = -1;
+					} else {
+						ShowTDN_OOC(playerid, "No tienes espacio en el inventario.");
+						editCompany[playerid] = -1;
+						selectCraft[playerid] = -1;
+					}
+				} else {
+					ShowTDN_OOC(playerid, "No tienes los elementos o la cantidad necesaria.");
+					editCompany[playerid] = -1;
+					selectCraft[playerid] = -1;
+				} 
+			} else {
+				editCompany[playerid] = -1;
+				selectCraft[playerid] = -1;
+			}
+		}
 	}
+}
+hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
+	if(response){
+		if(dialogid == DIALOG_ITEMS_CRAFT){
+			if(getCountDialogItems(playerid) > 0){
+				new indexInventory = companyModelData[companyData[editCompany[playerid]][type_company]][fabItems][index];
+				selectCraft[playerid] = index;
+				new stringgg[QUERY_MEDIUM], stringtwo[QUERY_LOW];
+				new indexCraftInventory;
+				for(new i;i<3;i++){
+					if(inventoryModelsData[indexInventory][crafteableItems][i] != -1){
+						indexCraftInventory = inventoryModelsData[indexInventory][crafteableItems][i];
+						format(stringtwo, sizeof(stringtwo), "%s x%i \n", inventoryModelsData[indexCraftInventory][name], inventoryModelsData[indexInventory][crafteableAmmounts][i]);
+						strcat(stringgg, stringtwo);
+					}
+				}
+				ShowPlayerDialog(playerid, DIALOG_CRAFT_COMPANY, DIALOG_STYLE_LIST, "Necesitas los siguientes objetos:", stringgg, "Continuar", ""RED" cancelar");
+			} else ShowTDN_OOC(playerid, "No hay nada que craftear.");
+			
+		}
+	} else editCompany[playerid] = -1;
 }
 cmd:miempresa(playerid, params[]){
 	new stringgg[QUERY_LOW];
@@ -227,13 +320,54 @@ cmd:editarempresa(playerid, params[]){
 	if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
 		if(!sscanf(params, "i", indx)){
 	    	if(indx >= 0 && indx < MAX_COMPANIES){
-	    		if(!companyData[indx][loadedd]) return ShowTDN_OOC(playerid, "La empresa no esta creada");
+	    		if(!companyData[indx][loadedd]) return ShowTDN_OOC(playerid, "La empresa no esta creada.");
 	    		editCompany[playerid] = indx;
 	    		new stringgg[QUERY_LOW];
 	    		format(stringgg, sizeof(stringgg), ""CAPTION_DIALOG_TITLE" Company ID: %i", indx);
-	    		ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY, DIALOG_STYLE_LIST, stringgg, "Editar ID puerta\nEditar ID puerta garaje\nEditar direccion\nEditar tipo\nEditar precio\nEditar posicion ropero\nEditar posicion crafteo\nEditar posicion trabajo\nEditar posicion despacho interior\nEditar posicion despacho exterior", "Continuar", ""RED" cancelar");
+	    		ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY, DIALOG_STYLE_LIST, stringgg, "Editar ID puerta\nEditar ID puerta garaje\nEditar direccion\nEditar tipo\nEditar precio\nEditar posicion ropero\nEditar posicion crafteo\nEditar posicion trabajo\nEditar posicion despacho interior\nEditar posicion despacho exterior\nEdita ropa trabajo", "Continuar", ""RED" cancelar");
 	    	} else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /editarempresa [indx]");
 	    } else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /editarempresa [indx]");
     } else ShowTDN_OOC(playerid, "No tienes permisos");
     return 1;
+}
+cmd:cambiarme(playerid, params[]){
+	new indxdoor;
+	for(new i;i<MAX_COMPANIES;i++){
+		if(companyData[i][listid] > 0){
+		 	indxdoor = getIndexDoorByID(companyData[i][doorid]);
+			if(IsPlayerInRangeOfPoint(playerid, 3.0, companyData[i][room_pos][0], companyData[i][room_pos][1], companyData[i][room_pos][2])){
+				if(doorsInfo[indxdoor][exitVw] == GetPlayerVirtualWorld(playerid)){
+					if(characterData[playerid][skin] == GetPlayerSkin(playerid)){
+						if(characterData[playerid][sex] == GENDER_MALE){
+						SetPlayerSkin(playerid, companyData[i][jobs_skins][0]);
+						} else SetPlayerSkin(playerid, companyData[i][jobs_skins][1]);
+					} else SetPlayerSkin(playerid, characterData[playerid][skin]);
+					ShowTDN_OOC(playerid, "Te cambiaste de ropa.");
+					break;
+				}
+			}
+		}
+	}
+}
+cmd:craftear(playerid, params[]){
+	new indxdoor;
+	for(new i;i<MAX_COMPANIES;i++){
+		if(companyData[i][listid] > 0){
+		 	indxdoor = getIndexDoorByID(companyData[i][doorid]);
+			if(IsPlayerInRangeOfPoint(playerid, 3.0, companyData[i][job_pos][0], companyData[i][job_pos][1], companyData[i][job_pos][2])){
+				if(doorsInfo[indxdoor][exitVw] == GetPlayerVirtualWorld(playerid)){
+					new indexClothe = 0;
+					if(characterData[playerid][sex] == GENDER_FEMALE)
+						indexClothe = 1;
+					if(companyData[i][jobs_skins][indexClothe] == GetPlayerSkin(playerid)){
+						showCraftMenu(playerid, i);
+						break;
+					}else {
+						ShowTDN_OOC(playerid, "No tienes puesta la ropa de trabajo.");
+						break;
+					}
+				}
+			}
+		}
+	}
 }

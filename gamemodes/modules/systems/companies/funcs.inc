@@ -35,6 +35,18 @@ destroyDynamicCompany(indexx){
 	}
 }
 
+showCraftMenu(playerid, indexx){
+	new indexInventory;
+	new string[QUERY_LOW];
+	for(new i;i<6;i++){
+		if(companyModelData[companyData[indexx][type_company]][fabItems][i] != -1){
+			indexInventory = companyModelData[companyData[indexx][type_company]][fabItems][i];
+			format(string, sizeof(string), "%s x%i", inventoryModelsData[indexInventory][name], companyModelData[companyData[indexx][type_company]][fabItemsAmmount][i]);
+			addDialogItem(playerid, inventoryModelsData[indexInventory][model], string);
+		}
+	}
+	ShowPlayerDialogItem(playerid, DIALOG_ITEMS_CRAFT, "Craftear", "Editar");
+}
 updateRoomPosition(playerid, indexx, indexxDoorId){
 	if(GetPlayerVirtualWorld(playerid) == doorsInfo[indexxDoorId][exitVw]){
 		new Float:xX, Float:yY, Float:zZ;
@@ -150,5 +162,58 @@ sendMemberMessageComapanyId(idd, const mssgg[]){
 				}
 			}
 		}
+	}
+}
+
+sellCompanieCharacterId(playerid, index){
+	if(index != -1){
+		new doorIndex = getIndexDoorByID(companyData[index][doorid]);
+		if(doorIndex != -1){
+			if(companyData[index][characterid] > 0){
+				new bool:isconnected = false;
+				for(new i;i<MAX_PLAYERS; i++){
+					if(characterData[i][listid] == companyData[index][characterid]){
+						isconnected = true;
+						companyData[index][characterid] = characterData[playerid][listid];
+						doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
+						companyData[index][sale] = HOUSE_STATE_PURCHASE;
+						destroyDynamicCompany(index);
+						loadCompany(index, doorIndex);
+						takeCharacterMoney(playerid, companyData[index][price]);
+						giveCharacterMoney(i, companyData[index][price]);
+						ShowTDN_OOC(playerid, "Compraste una empresa!");
+					}
+				}
+				if(!isconnected){
+					new query[QUERY_MEDIUM];
+        			mysql_format(MYSQL_DB, query, sizeof(query), "SELECT money FROM characters WHERE listid = '%i' LIMIT 1", companyData[index][characterid]);
+        			mysql_pquery(MYSQL_DB, query, "onGetMoneyCharacterCompanyID", "ddd", playerid, index, doorIndex);
+				}
+			} else {
+				companyData[index][characterid] = characterData[playerid][listid];
+				doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
+				companyData[index][sale] = HOUSE_STATE_PURCHASE;
+				destroyDynamicCompany(index);
+				loadCompany(index, doorIndex);
+				takeCharacterMoney(playerid, marketData[index][price]);
+				ShowTDN_OOC(playerid, "Compraste una empresa!");
+			}
+		}
+	}
+}
+forward onGetMoneyCharacterCompanyID(playerid, index, doorIndex);
+public onGetMoneyCharacterCompanyID(playerid, index, doorIndex){
+	if(cache_num_rows()){
+		new moneyy, query[QUERY_LOW];
+		cache_get_value_name_int(0, "money", moneyy);
+		mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE characters SET `money`='%d' WHERE listid = '%d' LIMIT 1", moneyy + companyData[index][price], companyData[index][listid]);
+		mysql_query(MYSQL_DB, query);
+		companyData[index][characterid] = characterData[playerid][listid];
+		companyData[index][sale] = HOUSE_STATE_PURCHASE;
+		DestroyDynamicMarket(index);
+		loadMarket(index, doorIndex);
+		doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
+		takeCharacterMoney(playerid, companyData[index][price]);
+		ShowTDN_OOC(playerid, "Compraste una empresa!");
 	}
 }

@@ -52,9 +52,23 @@ addItem(playerid, itemid, ammountt){
 			updateInventory(playerid, i);
 			return i;
 		}
-		if(i == 8) ShowTDN_IC(playerid, "No tienes un slot disponible.");
+		if(i == 7) ShowTDN_IC(playerid, "No tienes un slot disponible.");
 	}
 	return -1;
+}
+findItemById(playerid, itemid){
+	for(new i=0; i<8; i++){
+		if(inventoryInfo[playerid][slot][i] == itemid)
+			return i;
+	}
+	return -1;
+}
+findItemByAmmount(playerid, index, ammounnt){
+	if(inventoryInfo[playerid][ammount][index] >= ammounnt) return true;
+	return false;
+}
+changeItemAmmount(playerid, index, ammounnt){
+	inventoryInfo[playerid][ammount][index] = ammounnt;
 }
 removeItem(playerid, index){
 	inventoryInfo[playerid][slot][index] = 0;
