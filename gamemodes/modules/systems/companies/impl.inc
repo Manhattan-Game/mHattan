@@ -246,7 +246,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					if(ittemm != -1){
 						for(new e;e<3;e++){
 							if(indexes[e] != -1){
-								if(findItemByAmmount(playerid, indexes[e], inventoryModelsData[indexInventory][crafteableAmmounts][e] + 1)){
+								if(findItemByAmmount(playerid, indexes[e], inventoryModelsData[indexInventory][crafteableAmmounts][e])){
 									changeItemAmmount(playerid, indexes[e], inventoryInfo[playerid][ammount][indexes[e]] - inventoryModelsData[indexInventory][crafteableAmmounts][e]);
 								} else removeItem(playerid, indexes[e]);
 							}

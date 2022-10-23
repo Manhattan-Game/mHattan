@@ -66,6 +66,7 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/inventory/models"
 #include "./modules/systems/vehicles/models"
 #include "./modules/systems/companies/models"
+#include "./modules/systems/trade/models"
 
 
 #include "./modules/notincludes/dialogs"

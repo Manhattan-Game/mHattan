@@ -20,7 +20,40 @@
 #define MINIMAP_TEXTDRAW_ICON_SIZE_Y 8.0
 #define MINIMAP_TEXTDRAW_BORDER_SIZE 2.0
 
-//Area variables
+#define VC_TDMAP_PATH "mdl-1500:vc_map"
+#define INVALID_VC_TDMAP_ID -1
+
+#define vc_limit_X_WEST 4130.0
+#define vc_limit_X_EAST 6975.0
+#define vc_limit_Y_NORTH 2665.0
+#define vc_limit_Y_SOUTH -930.0
+
+//Global
+#define MAX_VC_TDMAPS 10
+#define MAX_VC_TDMAPS_POINTS 300
+
+enum enum_Vc_TdMaps_Points
+{
+	Text:vc_tdmap_point_TD,
+	Text:vc_tdmap_point_TD_DESCRIPTION,
+	vc_tdmap_point_ICON[64],
+	Float:vc_tdmap_point_ICON_SIZE_X,
+	Float:vc_tdmap_point_ICON_SIZE_Y,
+	vc_tdmap_point_DESCRIPTION[128],
+	Float:vc_tdmap_point_DESCR_LS_X,
+	Float:vc_tdmap_point_DESCR_LS_Y,
+	vc_tdmap_point_DESCR_OUTLINE,
+	vc_tdmap_point_DESCR_COLOR,
+	Float:vc_tdmap_point_X,
+	Float:vc_tdmap_point_Y,
+	Float:vc_tdmap_point_Z,
+	Float:vc_tdmap_point_TD_X,
+	Float:vc_tdmap_point_TD_Y,
+	vc_tdmap_point_COLOR
+};
+new Vc_TdMaps_Points[MAX_VC_TDMAPS][MAX_VC_TDMAPS_POINTS][enum_Vc_TdMaps_Points],
+	Iterator:Vc_TdMaps_Points[MAX_VC_TDMAPS]<MAX_VC_TDMAPS_POINTS>;
+
 new 
 	vcArea = INVALID_STREAMER_ID, //whole map
 	minimapAreas[15] = {INVALID_STREAMER_ID, ...}, //each minimap section
@@ -52,7 +85,7 @@ new
 	pVcMinimapCurrentArea[MAX_PLAYERS],
 	pVcMinimapTimer[MAX_PLAYERS] = {-1, ...};
 
-hook OnGameModeInit()
+hook OnFilterScriptInit()
 {
     AddSimpleModel(-1, 19379, MINIMAP_MODEL_ID, "blank.dff", "minimap.txd");
     
@@ -76,7 +109,7 @@ hook OnGameModeInit()
 	}
 }
 
-hook OnGameModeExit()
+hook OnFilterScriptExit()
 {
 	for(new i = 0; i < MAX_PLAYERS; i ++)
 	{
@@ -249,7 +282,7 @@ UpdateVcMinimapPlayerLocation(playerid)
 		pVcMinimapTextdraws[playerid][2] = CreatePlayerTextDraw(playerid, td_x - (MINIMAP_TEXTDRAW_ICON_SIZE_X / 2.0), td_y - (MINIMAP_TEXTDRAW_ICON_SIZE_Y / 2.0), GetPlayerIconByAngle(angle));
 		PlayerTextDrawTextSize(playerid, pVcMinimapTextdraws[playerid][2], MINIMAP_TEXTDRAW_ICON_SIZE_X, MINIMAP_TEXTDRAW_ICON_SIZE_Y);
 		PlayerTextDrawFont(playerid, pVcMinimapTextdraws[playerid][2], 4);
-		PlayerTextDrawColor(playerid, pVcMinimapTextdraws[playerid][2], 0xCCCEECCFF);
+		PlayerTextDrawColor(playerid, pVcMinimapTextdraws[playerid][2], 0xCCCCCCFF);
 		PlayerTextDrawShow(playerid, pVcMinimapTextdraws[playerid][2]);
 	}
 }
@@ -323,3 +356,96 @@ Vc3dTo2d(Float:map_x, Float:map_y, Float:map_size_x, Float:map_size_y, Float:x, 
 	td_x = map_x + floatmul(prop_X, x),
 	td_y = map_y + floatmul(prop_Y, y);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+stock AddPointToVcTdMap(map_index, icon[], Float:x, Float:y, Float:z, Float:icon_size_x = 5.0, Float:icon_size_y = 5.0, description[] = "", Float:description_ls_x = 0.149333, Float:description_ls_y = 0.766222, description_outline = 0, description_color = -1, color = -1)
+{
+	if(IsValidVcTdMap(map_index))
+	{
+		new index = GetFreeVcTdMapPointSlot(map_index);
+		if(index != cellmin)
+		{
+			format(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON], 64, "%s", icon);
+			format(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCRIPTION], 128, "%s", description);
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_X] = icon_size_x;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_Y] = icon_size_y;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_DESCRIPTION] = Text:INVALID_TEXT_DRAW;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_X] = x;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_Y] = y;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_Z] = z;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCR_LS_X] = description_ls_x;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCR_LS_Y] = description_ls_y;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCR_OUTLINE] = description_outline;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCR_COLOR] = description_color;
+			Vc_TdMaps_Points[map_index][index][vc_tdmap_point_COLOR] = color;
+
+
+			Vc3dTo2d(Vc_TdMaps[map_index][vc_tdmap_X], Vc_TdMaps[map_index][vc_tdmap_Y], Vc_TdMaps[map_index][vc_tdmap_SIZE_X], Vc_TdMaps[map_index][vc_tdmap_SIZE_Y], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_X], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_Y], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_Z], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_X], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_Y]);
+
+			if(!Vc_TdMaps[map_index][vc_tdmap_BIG])
+			{
+				Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD] = TextDrawCreate(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_X] - floatdiv(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_X], 2), Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_Y] - floatdiv(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_Y], 2), Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON]);
+				TextDrawTextSize(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_X], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_Y]);
+				TextDrawColor(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_COLOR]);
+				TextDrawFont(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD], 4);
+			}
+			else
+			{
+				Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD] = TextDrawCreate(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_X] - floatdiv(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_X], 2), Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_Y] - floatdiv(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_Y], 2) - 5.5, ".");
+				TextDrawLetterSize(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD], 0.262333, 1.110517);
+				TextDrawColor(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD], 0xFFFF00FF);
+				TextDrawSetShadow(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD], 0);
+				TextDrawFont(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD], 1);
+			}
+
+			if(!isnull(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCRIPTION]))
+			{
+				Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_DESCRIPTION] = TextDrawCreate(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_X] + floatdiv(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_X], 2) - 2.0, Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_Y] + floatdiv(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_ICON_SIZE_Y], 2) - 2.0, Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCRIPTION]);
+				TextDrawLetterSize(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_DESCRIPTION], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCR_LS_X], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCR_LS_Y]);
+				TextDrawSetShadow(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_DESCRIPTION], 0);
+				TextDrawSetOutline(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_DESCRIPTION], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCR_OUTLINE]);
+				TextDrawColor(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_DESCRIPTION], Vc_TdMaps_Points[map_index][index][vc_tdmap_point_DESCR_COLOR]);
+				TextDrawFont(Vc_TdMaps_Points[map_index][index][vc_tdmap_point_TD_DESCRIPTION], 1);
+			}
+
+			Iter_Add(Vc_TdMaps_Points[map_index], index);
+			return index;
+		}
+		return INVALID_VC_TDMAP_ID;
+	}
+	return INVALID_VC_TDMAP_ID;
+}
+
+
+stock UpdateVcMapPointsForPlayer(playerid, map_index)
+{
+	if(IsValidVcTdMap(map_index))
+	{
+		foreach(new i : Vc_TdMaps_Points[map_index])
+		{
+			TextDrawShowForPlayer(playerid, Vc_TdMaps_Points[map_index][i][vc_tdmap_point_TD]);
+			if(Vc_TdMaps_Points[map_index][i][vc_tdmap_point_TD_DESCRIPTION] != Text:INVALID_TEXT_DRAW) TextDrawShowForPlayer(playerid, Vc_TdMaps_Points[map_index][i][vc_tdmap_point_TD_DESCRIPTION]);
+		}
+		return 1;
+	}
+	return 0;
+}
+

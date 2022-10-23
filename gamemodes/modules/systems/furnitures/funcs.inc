@@ -83,7 +83,6 @@ unplaceFurniture(index){
 		new indexModel = furnituresData[index][model];
 		DestroyDynamicObject(furnituresData[index][object]);
 		furnituresData[index][placed] = FURNITURE_TYPE_ONPLACED;
-		printf("onplace %i", index);
 		if(furnituresModelData[indexModel][type] == FURNITURE_TYPE_BED){
 			DestroyDynamic3DTextLabel(furnituresData[index][label]);
 		}
