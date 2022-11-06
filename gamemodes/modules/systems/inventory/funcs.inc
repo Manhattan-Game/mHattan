@@ -1,15 +1,12 @@
-showInventory(playerid)
-{
-	if(characterData[playerid][p_spawn] == true)
-	{
+showInventory(playerid){
+	if(characterData[playerid][p_spawn] == true){
 
-		for(new i; i<8;i++)
-		{
+		for(new i; i<7;i++){
 			PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][i], inventoryModelsData[inventoryInfo[playerid][slot][i]][model]);
 			PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][i], inventoryModelsData[inventoryInfo[playerid][slot][i]][root][0], inventoryModelsData[inventoryInfo[playerid][slot][i]][root][1], inventoryModelsData[inventoryInfo[playerid][slot][i]][root][2], inventoryModelsData[inventoryInfo[playerid][slot][i]][root][3]);
 		}
-		PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][11], inventoryModelsData[inventoryInfo[playerid][slot][8]][model]);
-		PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][11], inventoryModelsData[inventoryInfo[playerid][slot][8]][root][0], inventoryModelsData[inventoryInfo[playerid][slot][8]][root][1], inventoryModelsData[inventoryInfo[playerid][slot][8]][root][2], inventoryModelsData[inventoryInfo[playerid][slot][8]][root][3]);
+		PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][11], inventoryModelsData[inventoryInfo[playerid][slot][7]][model]);
+		PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][11], inventoryModelsData[inventoryInfo[playerid][slot][7]][root][0], inventoryModelsData[inventoryInfo[playerid][slot][7]][root][1], inventoryModelsData[inventoryInfo[playerid][slot][7]][root][2], inventoryModelsData[inventoryInfo[playerid][slot][7]][root][3]);
 		
 
 
@@ -21,8 +18,7 @@ showInventory(playerid)
 		characterData[playerid][viewTextdraw] = TEXTDRAWS_INVENTORY;
 	}
 }
-hideInventory(playerid)
-{
+hideInventory(playerid){
 	if(characterData[playerid][p_spawn] == true && characterData[playerid][viewTextdraw] == TEXTDRAWS_INVENTORY)
 	{
 		for(new j;j<13;j++) PlayerTextDrawHide(playerid, inventarioTDD[playerid][j]);
@@ -44,7 +40,7 @@ selectTextDraw(playerid, newindex){
 }
 addItem(playerid, itemid, ammountt){
 
-	for(new i=0; i<8; i++){
+	for(new i=0; i<7; i++){
 		if(inventoryInfo[playerid][slot][i] == 0)
 		{
 			inventoryInfo[playerid][slot][i] = itemid;
@@ -64,21 +60,23 @@ findItemById(playerid, itemid){
 	return -1;
 }
 findItemByAmmount(playerid, index, ammounnt){
-	if(inventoryInfo[playerid][ammount][index] >= ammounnt) return true;
+	if(inventoryInfo[playerid][ammount][index] > ammounnt) return true;
 	return false;
 }
 changeItemAmmount(playerid, index, ammounnt){
 	inventoryInfo[playerid][ammount][index] = ammounnt;
+	if(ammounnt == 0) removeItem(playerid, index);
 }
 removeItem(playerid, index){
 	inventoryInfo[playerid][slot][index] = 0;
 	inventoryInfo[playerid][ammount][index] = 0;
 	updateInventory(playerid, index);
 }
+
 useItem(playerid, index){
 	if(inventoryInfo[playerid][slot][index] > 0){
-		inventoryInfo[playerid][slot][8] = inventoryInfo[playerid][slot][index];
-		inventoryInfo[playerid][ammount][8] = inventoryInfo[playerid][ammount][index];
+		inventoryInfo[playerid][slot][7] = inventoryInfo[playerid][slot][index];
+		inventoryInfo[playerid][ammount][7] = inventoryInfo[playerid][ammount][index];
 		updateInventory(playerid, 11);
 		removeItem(playerid, index);
 		updateInventory(playerid, index);
@@ -88,15 +86,15 @@ useItem(playerid, index){
 }
 
 saveUseItem(playerid){
-	if(inventoryInfo[playerid][slot][8] > 0){
+	if(inventoryInfo[playerid][slot][7] > 0){
 		RemovePlayerAttachedObject(playerid, 0);
-		switch(inventoryModelsData[inventoryInfo[playerid][slot][8]][type]){
+		switch(inventoryModelsData[inventoryInfo[playerid][slot][7]][type]){
 			case TYPE_GUNS: ResetPlayerWeapons(playerid);
 			case TYPE_FOOD: SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		}
 
-		addItem(playerid, inventoryInfo[playerid][slot][8], inventoryInfo[playerid][ammount][8]);
-		removeItem(playerid, 8);
+		addItem(playerid, inventoryInfo[playerid][slot][7], inventoryInfo[playerid][ammount][7]);
+		removeItem(playerid, 7);
 		updateInventory(playerid, 11);
 		updateHandItem(playerid);
 	} else ShowTDN_OOC(playerid, "No tienes un objeto en mano.");
@@ -104,7 +102,7 @@ saveUseItem(playerid){
 updateInventory(playerid, i){
 	new oldindex = i;
 	if(characterData[playerid][viewTextdraw] == TEXTDRAWS_INVENTORY){
-		if(i == 11) i = 8;
+		if(i == 11) i = 7;
 		PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][oldindex], inventoryModelsData[inventoryInfo[playerid][slot][i]][model]);
 		PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][oldindex], inventoryModelsData[inventoryInfo[playerid][slot][i]][root][0], inventoryModelsData[inventoryInfo[playerid][slot][i]][root][1], inventoryModelsData[inventoryInfo[playerid][slot][i]][root][2], inventoryModelsData[inventoryInfo[playerid][slot][i]][root][3]);
 		PlayerTextDrawShow(playerid, inventarioTDD[playerid][oldindex]);
@@ -207,7 +205,8 @@ public loadInventory(playerid){
     }
 }
 saveInventory(playerid){
-    if(characterData[playerid][p_spawn] == true){
+    if(characterData[playerid][p_spawn]){
+    	printf("%i", inventoryInfo[playerid][ammount][0]);
         new query[QUERY_LONG];
         mysql_format(MYSQL_DB, query, sizeof(query), "UPDATE inventory SET `slot1`='%d', `slot2`='%d', `slot3`='%d', `slot4`='%d', `slot5`='%d', `slot6`='%d', `slot7`='%d', `slot8`='%d', `slot9`='%d', \
         `amount1`='%d', `amount2`='%d', `amount3`='%d', `amount4`='%d', `amount5`='%d', `amount6`='%d', `amount7`='%d', `amount8`='%d', `amount9`='%d' WHERE listid = '%d' LIMIT 1",

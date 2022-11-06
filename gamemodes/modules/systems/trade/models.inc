@@ -1,15 +1,15 @@
+#include <YSI_Coding\y_hooks>
+
 #define MAX_TRADES 1000
 
 #define TRADE_STATE_ONSELL 1
 #define TRADE_STATE_TO_DELIVERIED 2
 #define TRADE_STATE_ON_DELIVERIED 3
 
-#define COMPANIES_TYPE_VEHICLES 1..3
-#define COMPANIES_TYPE_FURNITURES 4
 
 enum tradas@enm{
 	model,
-	type,
+	type_trade,
 	companieid,
 	marketid,
 	productid,
@@ -27,7 +27,7 @@ createTrade(companiieid, modell, ammt, types, prices, statte, bool:sim){
 	if(tradeindex != -1){
 		tradeData[tradeindex][model] = modell;
 		tradeData[tradeindex][companieid] = companiieid;
-		tradeData[tradeindex][type] = types;
+		tradeData[tradeindex][type_trade] = types;
 		tradeData[tradeindex][price] = prices;
 		tradeData[tradeindex][statee] = statte;
 		tradeData[tradeindex][ammount] = ammt;
@@ -70,10 +70,18 @@ addCompanieSafe(tradeindex){
 }
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 	switch(dialogid){
+		case DIALOG_TRADES:{
+			if(response){
+				switch(listitem){
+					case 0: showTradesByType(playerid, 1);
+					case 1: showTradesByType(playerid, 4);
+				}
+			} else editTrade[playerid] = -1;
+		}
 		case DIALOG_TRADES_BY_TYPE: {
 			if(response){
 				for(new i, e;i<MAX_TRADES; i++){
-					if(tradeData[i][type] == editTrade[playerid]){
+					if(tradeData[i][type_trade] == editTrade[playerid]){
 						if(e == listitem){
 							if(characterData[playerid][money] >= tradeData[i][price]){
 								new tDD[2];
@@ -97,7 +105,7 @@ showTradesByType(playerid, types){
 	editTrade[playerid] = types;
  	new stringg[QUERY_LONG], stringConcat[QUERY_LOW];
 	for(new i;i<MAX_TRADES; i++){
-		if(tradeData[i][type] == types){
+		if(tradeData[i][type_trade] == types){
 			switch(types){
 				case COMPANIES_TYPE_VEHICLES: format(stringg, sizeof(stringg), "%s $%i \n", vehiclesModelData[tradeData[i][model]][name], tradeData[i][price]);
 				case COMPANIES_TYPE_FURNITURES: format(stringg, sizeof(stringg), "%s $%i \n", furnituresModelData[tradeData[i][model]][name], tradeData[i][price]);
@@ -107,14 +115,12 @@ showTradesByType(playerid, types){
 		}
 	}
 	ShowPlayerDialog(playerid, DIALOG_TRADES_BY_TYPE, DIALOG_STYLE_LIST,  ""CAPTION_DIALOG_TITLE" Mercado", stringg, "Continuar", ""RED" cancelar");
-
-	//ShowPlayerDialog(playerid, DIALOG_TRADES, DIALOG_STYLE_LIST,  ""CAPTION_DIALOG_TITLE" Mercado", "Muebles\nVehiculos", "Continuar", ""RED" cancelar");
 }
 showTradesToDeliveried(playerid){
  	new stringg[QUERY_LONG], stringConcat[QUERY_LOW];
 	for(new i;i<MAX_TRADES; i++){
 		if(tradeData[i][statee] == TRADE_STATE_TO_DELIVERIED){
-			switch(tradeData[i][type]){
+			switch(tradeData[i][type_trade]){
 				case COMPANIES_TYPE_VEHICLES: format(stringg, sizeof(stringg), "%s \n", vehiclesModelData[tradeData[i][model]][name]);
 				case COMPANIES_TYPE_FURNITURES: format(stringg, sizeof(stringg), "%s \n", furnituresModelData[tradeData[i][model]][name]);
 
@@ -124,7 +130,7 @@ showTradesToDeliveried(playerid){
 	}
 	ShowPlayerDialog(playerid, DIALOG_TRADES_TO_DELIVERIED, DIALOG_STYLE_LIST,  ""CAPTION_DIALOG_TITLE" Mercado envios", stringg, "Continuar", ""RED" cancelar");
 }
-getFeeTrade(){
+getFreeTrade(){
 	for(new i; i<MAX_TRADES; i++){
 		if(tradeData[i][statee] == 0) return i;
 	}

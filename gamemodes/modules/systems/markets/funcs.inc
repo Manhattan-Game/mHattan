@@ -68,9 +68,6 @@ ShowSlotsItems(playerid, index){
 	}
 	ShowPlayerDialog(playerid, DIALOG_MY_MARKET_SELECTED_ITEM_INDEX, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", stringfinal, "Continuar", ""RED" cancelar");
 }
-ShowSlotsAmmountItems(playerid, index){
-	// EMPRESAS
-}
 finishEditItem(playerid, index, modell){
 	new indexItem = selectedIndexItem[playerid];
 	printf("indexitem: %i, index: %i, model: %i", indexItem, index, modell);
@@ -203,14 +200,12 @@ public onCreateMarket(playerid, index, doorId){
 		DestroyDynamicMarket(index);
 		loadMarket(index, indexdoor);
 		loadDoor(indexdoor);
-		ShowTDN_OOC(playerid, "Creaste una negocio, editalo con /editarnegocio");
+		ShowTDN_OOC(playerid, "Creaste un negocio, editalo con /editarnegocio");
 	}
 }
 
-getFreeMarketSlot()
-{
-    for(new i;i<MAX_MARKETS-1;i++)
-    {
+getFreeMarketSlot(){
+    for(new i;i<MAX_MARKETS-1;i++){
         if(marketData[i][listid] == 0) return i;
     }
     return -1;

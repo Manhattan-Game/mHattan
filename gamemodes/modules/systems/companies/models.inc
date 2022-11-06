@@ -1,7 +1,11 @@
+#define MAX_CRAFTINGS 200
+#define COMPANIES_TYPE_VEHICLES 1..3
+#define COMPANIES_TYPE_FURNITURES 4
+
 enum companydata@type{
 	listid,
 	characterid,
-	name,
+	name[60],
 	type_company,
 	price,
 	doorid,
@@ -36,10 +40,23 @@ enum company@models{
 new companyModelData[][company@models] = {
 	// si se fabrica con menos partes del total (6) setear las demas en -1
 	{0, "Nada", {-1, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1}},
-    {1, "Fabrica_de_vehiculos_Calle", {2, 4, 5, 7, 9, -1}, {1, 1, 1, 4, 1, -1}},
-    {2, "Fabrica_de_vehiculos_Roadsport", {2, 4, 5, 7, 10, -1}, {1, 1, 1, 4, 1, -1}},
-    {3, "Fabrica_de_vehiculos_Sport", {2, 4, 5, 7, 11, -1}, {1, 1, 1, 4, 1, -1}},
+    {1, "Fabrica de vehiculos Calle", {2, 4, 5, 7, 9, -1}, {1, 1, 1, 4, 1, -1}},
+    {2, "Fabrica de vehiculos Roadsport", {2, 4, 5, 7, 10, -1}, {1, 1, 1, 4, 1, -1}},
+    {3, "Fabrica de vehiculos Sport", {2, 4, 5, 7, 11, -1}, {1, 1, 1, 4, 1, -1}},
 
-    {4, "Tienda_de_muebles", {2, 4, 5, 7, 11, -1}, {1, 1, 1, 4, 1, -1}}
+    {4, "Tienda de muebles", {2, 4, 5, 7, 11, -1}, {1, 1, 1, 4, 1, -1}}
 };
+
+enum crafting@enm{
+	characterid,
+	crafting[6],
+	type_crafting,
+	progress,
+	companieid,
+	price,
+	modeel,
+	ammount,
+	Text3D:labelCrafting
+};
+new craftingData[MAX_CRAFTINGS][crafting@enm];
 

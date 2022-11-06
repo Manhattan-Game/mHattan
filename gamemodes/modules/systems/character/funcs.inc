@@ -205,6 +205,7 @@ saveCharacter(playerid){
             characterData[playerid][listid]
             );
         mysql_pquery(MYSQL_DB, query);
+        saveInventory(playerid);
     }
 }
 

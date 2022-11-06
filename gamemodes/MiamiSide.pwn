@@ -9,8 +9,8 @@
 #include <GPS>
 #include <streamer>
 #include <timerfix>
-#include <ProgressBarNick>
 #include <ShowInfoForPlayer>
+#include <progres_bar_ms>
 
 // GLOBAL
 #include "./modules/global/mysql.pwn"
@@ -19,6 +19,8 @@
 #define USE_ARTWORK 1
 new QUERY_BUFFER[2048];
 #define VICE_CITY_PATH "vice_city/"
+
+
 
 #include "./modules/notincludes/inGameMap/db/header"
 #include "./modules/notincludes/inGameMap/models_types/header"
@@ -84,6 +86,7 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/inventory/funcs"
 #include "./modules/systems/vehicles/funcs"
 #include "./modules/systems/companies/funcs"
+#include "./modules/systems/companies/vehicles/funcs"
 
 
 
@@ -100,6 +103,7 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/inventory/impl"
 #include "./modules/systems/vehicles/impl"
 #include "./modules/systems/companies/impl"
+#include "./modules/systems/companies/vehicles/impl"
 
 
 

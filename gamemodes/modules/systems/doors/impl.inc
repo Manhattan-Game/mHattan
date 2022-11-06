@@ -12,9 +12,10 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     if(characterData[playerid][p_spawn]){
         if(newkeys & KEY_YES){
             new Float:range = 2.5;
-            print("0");
             for(new did;did<MAX_DOORS-1;did++){
-                if(doorsInfo[did][doorType] == DOOR_TYPE_VEHICLE) range = 6.0;
+                if(doorsInfo[did][doorType] == DOOR_TYPE_VEHICLE) {
+                    range = 6.0;
+                }
                 if(IsPlayerInEnterDoor(playerid, range, did)){
                     if(doorsInfo[did][enterState] == DOOR_STATE_OPEN){
                         if(doorsInfo[did][doorType] != DOOR_TYPE_PHYSICAL){
@@ -39,18 +40,20 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
                     }
                 }else if(IsPlayerInExitDoor(playerid, range, did)){
                     if(doorsInfo[did][enterState] == DOOR_STATE_OPEN){
-                        SetPlayerPos(playerid, doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2]);
-                        SetPlayerVirtualWorld(playerid, doorsInfo[did][doorVw]);
-                        SetPlayerFacingAngle(playerid, doorsInfo[did][enterCoords][3]);
-                        if(doorsInfo[did][doorType] == DOOR_TYPE_VEHICLE){
-                            if(IsPlayerInAnyVehicle(playerid)){
-                                SetVehiclePos(GetPlayerVehicleID(playerid), doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2]);
-                                SetVehicleVirtualWorld(GetPlayerVehicleID(playerid), doorsInfo[did][doorVw]);
-                                PutPlayerInVehicle(playerid, GetPlayerVehicleID(playerid), 0);
-                                SetVehicleZAngle(GetPlayerVehicleID(playerid), doorsInfo[did][enterCoords][3]);
+                        if(doorsInfo[did][doorType] != DOOR_TYPE_PHYSICAL){
+                            SetPlayerPos(playerid, doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2]);
+                            SetPlayerVirtualWorld(playerid, doorsInfo[did][doorVw]);
+                            SetPlayerFacingAngle(playerid, doorsInfo[did][enterCoords][3]);
+                            if(doorsInfo[did][doorType] == DOOR_TYPE_VEHICLE){
+                                if(IsPlayerInAnyVehicle(playerid)){
+                                    SetVehiclePos(GetPlayerVehicleID(playerid), doorsInfo[did][enterCoords][0], doorsInfo[did][enterCoords][1], doorsInfo[did][enterCoords][2]);
+                                    SetVehicleVirtualWorld(GetPlayerVehicleID(playerid), doorsInfo[did][doorVw]);
+                                    PutPlayerInVehicle(playerid, GetPlayerVehicleID(playerid), 0);
+                                    SetVehicleZAngle(GetPlayerVehicleID(playerid), doorsInfo[did][enterCoords][3]);
+                                }
                             }
+                            break;
                         }
-                        break;
                     }else{
                         ShowTDN_OOC(playerid, "La puerta se encuentra cerrada");
                         break;

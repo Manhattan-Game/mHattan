@@ -1,3 +1,4 @@
+
 #include <YSI_Coding\y_hooks>
 
 
@@ -187,16 +188,16 @@ hook OnPlayerConnect(playerid){
         characterData[playerid][timerNeeds] = SetPlayerTimerEx(playerid, "timerNeds", TIME_TIMER_NEEDS, 1, "d", playerid);
 }
 hook OP_ClickTextDraw(playerid, Text:clickedid){
-        if(clickedid == createCharacter_TD[1]){
-                if((strcmp(inputName[playerid], "NULL")) && (inputAge[playerid] > 18)){
-                        for(new e;e<3;e++){
-                                if(characterData[playerid][charactersMenu][e] == -1){
-                                        createCharacter(playerid);
-                                        break;
-                                }
-                        }
-                }else ShowTDN_OOC(playerid, "Ingresa un nombre y una edad valida.");
-        }
+    if(clickedid == createCharacter_TD[1]){
+        if((strcmp(inputName[playerid], "NULL")) && (inputAge[playerid] > 18)){
+            for(new e;e<3;e++){
+                if(characterData[playerid][charactersMenu][e] == -1){
+                    createCharacter(playerid);
+                    break;
+                }
+            }
+        }else ShowTDN_OOC(playerid, "Ingresa un nombre y una edad valida.");
+    }
 
 }
 hook OnPlayerDisconnect(playerid, reason){

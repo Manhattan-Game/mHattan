@@ -36,10 +36,10 @@ loadDoor(index){
         if(doorsInfo[index][doorState] == DOOR_STATE_OPEN){
             doorsInfo[index][doorObject] = CreateDynamicObject(doorsInfo[index][doorModel], doorsInfo[index][moveDoorCoords][0], doorsInfo[index][moveDoorCoords][1], doorsInfo[index][moveDoorCoords][2], doorsInfo[index][moveDoorCoords][3], doorsInfo[index][moveDoorCoords][4], doorsInfo[index][moveDoorCoords][5], doorsInfo[index][doorVw]);
         }else doorsInfo[index][doorObject] = CreateDynamicObject(doorsInfo[index][doorModel], doorsInfo[index][doorCoords][0], doorsInfo[index][doorCoords][1], doorsInfo[index][doorCoords][2], doorsInfo[index][doorCoords][3], doorsInfo[index][doorCoords][4], doorsInfo[index][doorCoords][5], doorsInfo[index][doorVw]);
-        doorsInfo[index][labelEnter] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para abrir/cerrar", 0xFFFFFFFF, doorsInfo[index][doorCoords][0], doorsInfo[index][doorCoords][1], doorsInfo[index][doorCoords][2]+1.2, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][doorVw]);
+        doorsInfo[index][labelEnter] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"Y"GREY" para abrir/cerrar", 0xFFFFFFFF, doorsInfo[index][doorCoords][0], doorsInfo[index][doorCoords][1], doorsInfo[index][doorCoords][2]+1.2, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][doorVw]);
     } else{
-        doorsInfo[index][labelEnter] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para entrar", 0xFFFFFFFF, doorsInfo[index][enterCoords][0], doorsInfo[index][enterCoords][1], doorsInfo[index][enterCoords][2] - 0.5, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][doorVw]);
-        doorsInfo[index][labelExit] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"H"GREY" para salir", 0xFFFFFFFF, doorsInfo[index][exitCoords][0], doorsInfo[index][exitCoords][1], doorsInfo[index][exitCoords][2] - 0.5, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][exitVw]);
+        doorsInfo[index][labelEnter] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"Y"GREY" para entrar", 0xFFFFFFFF, doorsInfo[index][enterCoords][0], doorsInfo[index][enterCoords][1], doorsInfo[index][enterCoords][2] - 0.5, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][doorVw]);
+        doorsInfo[index][labelExit] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"Y"GREY" para salir", 0xFFFFFFFF, doorsInfo[index][exitCoords][0], doorsInfo[index][exitCoords][1], doorsInfo[index][exitCoords][2] - 0.5, 5, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[index][exitVw]);
     }
     doorsInfo[index][enterState] = DOOR_STATE_OPEN;
 }
@@ -119,6 +119,8 @@ public onCreateDoor(playerid, index, forModule, other){
         switch(forModule){
             case TYPE_HOUSES: createHouse(playerid, other, doorsInfo[index][listid]);
             case TYPE_MARKETS: createMarket(playerid, other, doorsInfo[index][listid]);
+            case TYPE_COMPANIES: createCompanie(playerid, other, doorsInfo[index][listid]);
+
         }
     }
     loadDoor(index);
@@ -139,7 +141,7 @@ public loadDoors(){
             cache_get_value_name_float(i, "exitX", doorsInfo[i][exitCoords][0]);
             cache_get_value_name_float(i, "exitY", doorsInfo[i][exitCoords][1]);
             cache_get_value_name_float(i, "exitZ", doorsInfo[i][exitCoords][2]);
-            cache_get_value_name_float(i, "exitAngle", doorsInfo[i][exitCoords][2]);
+            cache_get_value_name_float(i, "exitAngle", doorsInfo[i][exitCoords][3]);
 
 
             cache_get_value_name_int(i, "enterState", doorsInfo[i][enterState]);
@@ -168,6 +170,7 @@ public loadDoors(){
         }
         mysql_pquery(MYSQL_DB, "SELECT * FROM HOUSES", "loadHouses");
         mysql_pquery(MYSQL_DB, "SELECT * FROM MARKETS", "loadMarkets");
+        mysql_pquery(MYSQL_DB, "SELECT * FROM COMPANIES", "loadCompanies");
     }
 }
 

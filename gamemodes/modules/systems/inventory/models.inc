@@ -26,10 +26,10 @@ new inventoryModelsData[][inventoryModels] = {
 
 	{1, 333, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Bloque_de_hierro", "Bloque_de_hierro", {-1, -1, -1}, {-1, -1, -1}, true},
 	{2, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Tubos_de_escape", "Tubos_de_escape", {1, -1, -1}, {1, -1, -1}, false},
-	{3, 333, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Caucho", "Caucho", {-1, -1, -1}, {1, 1, -1}, true},
+	{3, 333, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Caucho", "Caucho", {-1, -1, -1}, {-1, -1, -1}, true},
 	{4, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Cuadro", "Cuadro", {1, -1, -1}, {3, -1, -1}, false},
 	{5, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Faros", "Faros", {6, 3, -1}, {1, 1, -1}, false},
-	{6, 333, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Lampara", "Lampara", {-1, -1, -1}, {1, 1, -1}, true},
+	{6, 333, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Lampara", "Lampara", {-1, -1, -1}, {-1, -1, -1}, true},
 	{7, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Rueda", "Rueda", {3, 1, -1}, {1, 1, -1}, false},
 	{8, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Pistón", "Pistón", {1, -1, -1}, {1, -1, -1}, true},
 

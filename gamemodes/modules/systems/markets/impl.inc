@@ -111,8 +111,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				switch(listitem){
 					case 0: ShowFurnitures(playerid, marketData[editMarket[playerid]][listid], TYPE_MARKETS);
 					case 1: ShowSlotsItems(playerid, editMarket[playerid]);
-					case 2: ShowSlotsItems(playerid, editMarket[playerid]);
-					case 3: {
+					case 2: {
 						new index = editMarket[playerid];
 						if(characterData[playerid][money] > marketData[index][price] * 2){
 							marketData[index][level]++;
@@ -123,8 +122,8 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 							editMarket[playerid] = -1;
 						}
 					}
-					case 4: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_DEPOSIT, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
-					case 5: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+					case 3: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_DEPOSIT, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+					case 4: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
 				}
 			} else editMarket[playerid] = -1; 
 		}
@@ -198,7 +197,7 @@ cmd:minegocio(playerid, params[]){
 			for(new e;e<MAX_HOUSES;e++){
 				if(doorsInfo[i][listid] == marketData[e][doorid]){
 					if(marketData[e][characterid] == characterData[playerid][listid]){
-						format(string, sizeof(string), "Muebles\nEditar productos(El stock vuelve a 0)\nPedir stock\nMejorar negocio("GREEN"$%i)"GREY"\nDepositar dinero caja fuerte\nRetirar dinero caja fuerte("GREEN"$%i)", marketData[e][price] * 2,  marketData[e][safe]);
+						format(string, sizeof(string), "Muebles\nEditar productos(El stock vuelve a 0)\nMejorar negocio("GREEN"$%i)"GREY"\nDepositar dinero caja fuerte\nRetirar dinero caja fuerte("GREEN"$%i)", marketData[e][price] * 2,  marketData[e][safe]);
 						ShowPlayerDialog(playerid, DIALOG_MY_MARKET, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", string, "Continuar", ""RED" cancelar");
 						editMarket[playerid] = e;
 						break;

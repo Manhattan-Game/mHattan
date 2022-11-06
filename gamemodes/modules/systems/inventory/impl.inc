@@ -264,14 +264,9 @@ hook OP_ClickPlayerTextDraw(playerid, PlayerText:playertextid)
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys){
 	if(newkeys == KEY_NO){
 		showInventory(playerid);
-	}
-	if(newkeys == KEY_CROUCH)
-	{
+	}else if(newkeys == KEY_CROUCH){
 		getDropItem(playerid);
 	}
-}
-hook OnPlayerDisconnect(playerid, reason){
-    saveInventory(playerid);
 }
 hook OnGameModeExit(){
     for(new i;i<MAX_PLAYERS; i++) saveInventory(i);
