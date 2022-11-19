@@ -168,7 +168,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					if(IsPlayerConnected(valueee)){
 						new stringgg[QUERY_MEDIUM];
 						format(stringgg, sizeof(stringgg), "Fuiste invitado a una empresa tipo %s, ¿Deseas aceptar?", companyModelData[companyData[editCompany[playerid]][type_company]][name]);
-						ShowPlayerDialog(valueee, DIALOG_MY_COMPANY_INVITE_ID, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", stringgg, "Continuar", ""RED" cancelar");
+						ShowPlayerDialog(valueee, DIALOG_MY_COMPANY_INVITE_ID, DIALOG_STYLE_MSGBOX, ""CAPTION_DIALOG_TITLE" COMPANY", stringgg, "Continuar", ""RED" cancelar");
 						editCompany[valueee] = editCompany[playerid];
 						editCompany[playerid] = -1;
 					}else{
@@ -303,7 +303,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 		}
 		case DIALOG_CRAFT_COMPANY_PRODUCT: {
 			if(response){
-				new indexx = getFreeCraftingIndex(playerid);
+				new indexx = getActiveCraftingIndex(playerid);
 				new isItem = findItemById(playerid, companyModelData[companyData[editCompany[playerid]][type_company]][fabItems][listitem]);
 				if(isItem != -1){
 					if(indexx != -1){
@@ -445,6 +445,7 @@ cmd:craftear(playerid, params[]){
 	}
 }
 
+
 cmd:trabajar(playerid, params[]){
 	new indxdoor;
 	for(new i;i<MAX_COMPANIES;i++){
@@ -457,8 +458,9 @@ cmd:trabajar(playerid, params[]){
 						indexClothe = 1;
 					}
 					if(companyData[i][jobs_skins][indexClothe] == GetPlayerSkin(playerid)){
-						new craftidx = getFreeCraftingIndex(playerid);
+						new craftidx = getActiveCraftingIndex(playerid);
 						if(craftidx != -1){
+							editCompany[playerid] = i;
 							showProgressCrafting(playerid, craftidx);
 						} else showCraftProductMenu(playerid, i);
 						break;

@@ -2,263 +2,281 @@
 
 hook OnGameModeInit()
 {
-	inventarioTD = TextDrawCreate(4.666718, 125.962905, "mdl-2001:logo_box");
-	TextDrawLetterSize(inventarioTD, 0.000000, 0.000000);
-	TextDrawTextSize(inventarioTD, 133.000000, 159.000000);
-	TextDrawAlignment(inventarioTD, 1);
-	TextDrawColor(inventarioTD, 505290495);
-	TextDrawSetShadow(inventarioTD, 0);
-	TextDrawSetOutline(inventarioTD, 0);
-	TextDrawBackgroundColor(inventarioTD, 255);
-	TextDrawFont(inventarioTD, 4);
-	TextDrawSetProportional(inventarioTD, 0);
-	TextDrawSetShadow(inventarioTD, 0);
+	inventario_TD[0] = TextDrawCreate(226.581237, 97.249984, "mdl-2001:box_box");
+	TextDrawTextSize(inventario_TD[0], 187.000000, 266.000000);
+	TextDrawAlignment(inventario_TD[0], 1);
+	TextDrawColor(inventario_TD[0], 336860360);
+	TextDrawSetShadow(inventario_TD[0], 0);
+	TextDrawBackgroundColor(inventario_TD[0], 255);
+	TextDrawFont(inventario_TD[0], 4);
+	TextDrawSetProportional(inventario_TD[0], 0);
+
+	inventario_TD[1] = TextDrawCreate(235.182998, 103.666671, "Inventario");
+	TextDrawLetterSize(inventario_TD[1], 0.376105, 1.127499);
+	TextDrawAlignment(inventario_TD[1], 1);
+	TextDrawColor(inventario_TD[1], -1);
+	TextDrawSetShadow(inventario_TD[1], 0);
+	TextDrawBackgroundColor(inventario_TD[1], 255);
+	TextDrawFont(inventario_TD[1], 1);
+	TextDrawSetProportional(inventario_TD[1], 1);
+
+	inventario_TD[2] = TextDrawCreate(400.571258, 102.500030, "x");
+	TextDrawLetterSize(inventario_TD[2], 0.315666, 1.092499);
+	TextDrawTextSize(inventario_TD[2], 412.000000, 10.000000);
+	TextDrawAlignment(inventario_TD[2], 1);
+	TextDrawColor(inventario_TD[2], -16776961);
+	TextDrawSetShadow(inventario_TD[2], 0);
+	TextDrawBackgroundColor(inventario_TD[2], 255);
+	TextDrawFont(inventario_TD[2], 2);
+	TextDrawSetProportional(inventario_TD[2], 1);
+	TextDrawSetSelectable(inventario_TD[3], true);
+
+	inventario_TD[3] = TextDrawCreate(263.294250, 335.833404, "Mano");
+	TextDrawLetterSize(inventario_TD[3], 0.292708, 1.308333);
+	TextDrawTextSize(inventario_TD[3], 15.000000, 53.000000);
+	TextDrawAlignment(inventario_TD[3], 2);
+	TextDrawColor(inventario_TD[3], -1);
+	TextDrawUseBox(inventario_TD[3], 1);
+	TextDrawBoxColor(inventario_TD[3], 168430335);
+	TextDrawSetShadow(inventario_TD[3], 0);
+	TextDrawBackgroundColor(inventario_TD[3], 255);
+	TextDrawFont(inventario_TD[3], 1);
+	TextDrawSetProportional(inventario_TD[3], 1);
+	TextDrawSetSelectable(inventario_TD[3], true);
+
+	inventario_TD[4] = TextDrawCreate(320.922485, 335.833435, "Guardar");
+	TextDrawLetterSize(inventario_TD[4], 0.292708, 1.308333);
+	TextDrawTextSize(inventario_TD[4], 15.000000, 53.000000);
+	TextDrawAlignment(inventario_TD[4], 2);
+	TextDrawColor(inventario_TD[4], -1);
+	TextDrawUseBox(inventario_TD[4], 1);
+	TextDrawBoxColor(inventario_TD[4], 168430335);
+	TextDrawSetShadow(inventario_TD[4], 0);
+	TextDrawBackgroundColor(inventario_TD[4], 255);
+	TextDrawFont(inventario_TD[4], 1);
+	TextDrawSetProportional(inventario_TD[4], 1);
+	TextDrawSetSelectable(inventario_TD[4], true);
+
+	inventario_TD[5] = TextDrawCreate(379.019348, 335.833526, "Tirar");
+	TextDrawLetterSize(inventario_TD[5], 0.292708, 1.308333);
+	TextDrawTextSize(inventario_TD[5], 15.000000, 52.000000);
+	TextDrawAlignment(inventario_TD[5], 2);
+	TextDrawColor(inventario_TD[5], -1);
+	TextDrawUseBox(inventario_TD[5], 1);
+	TextDrawBoxColor(inventario_TD[5], 168430335);
+	TextDrawSetShadow(inventario_TD[5], 0);
+	TextDrawBackgroundColor(inventario_TD[5], 255);
+	TextDrawFont(inventario_TD[5], 1);
+	TextDrawSetProportional(inventario_TD[5], 1);
+	TextDrawSetSelectable(inventario_TD[5], true);
+
+	inventario_TD[6] = TextDrawCreate(237.057052, 335.833312, "box");
+	TextDrawLetterSize(inventario_TD[6], 0.000000, 1.285507);
+	TextDrawTextSize(inventario_TD[6], 235.000000, 0.000000);
+	TextDrawAlignment(inventario_TD[6], 1);
+	TextDrawColor(inventario_TD[6], -1);
+	TextDrawUseBox(inventario_TD[6], 1);
+	TextDrawBoxColor(inventario_TD[6], 54473727);
+	TextDrawSetShadow(inventario_TD[6], 0);
+	TextDrawBackgroundColor(inventario_TD[6], 255);
+	TextDrawFont(inventario_TD[6], 2);
+	TextDrawSetProportional(inventario_TD[6], 1);
+
+	inventario_TD[7] = TextDrawCreate(294.685180, 335.833251, "box");
+	TextDrawLetterSize(inventario_TD[7], 0.000000, 1.285507);
+	TextDrawTextSize(inventario_TD[7], 293.000000, 0.000000);
+	TextDrawAlignment(inventario_TD[7], 1);
+	TextDrawColor(inventario_TD[7], -1);
+	TextDrawUseBox(inventario_TD[7], 1);
+	TextDrawBoxColor(inventario_TD[7], 54473727);
+	TextDrawSetShadow(inventario_TD[7], 0);
+	TextDrawBackgroundColor(inventario_TD[7], 255);
+	TextDrawFont(inventario_TD[7], 2);
+	TextDrawSetProportional(inventario_TD[7], 1);
+
+	inventario_TD[8] = TextDrawCreate(352.781738, 335.833404, "box");
+	TextDrawLetterSize(inventario_TD[8], 0.000000, 1.285507);
+	TextDrawTextSize(inventario_TD[8], 351.000000, 0.000000);
+	TextDrawAlignment(inventario_TD[8], 1);
+	TextDrawColor(inventario_TD[8], -1);
+	TextDrawUseBox(inventario_TD[8], 1);
+	TextDrawBoxColor(inventario_TD[8], 54473727);
+	TextDrawSetShadow(inventario_TD[8], 0);
+	TextDrawBackgroundColor(inventario_TD[8], 255);
+	TextDrawFont(inventario_TD[8], 2);
+	TextDrawSetProportional(inventario_TD[8], 1);
+
 
 	return Y_HOOKS_CONTINUE_RETURN_1;
 }
 
 hook OnPlayerConnect(playerid)
 {
-	inventarioTDD[playerid][0] = CreatePlayerTextDraw(playerid, 20.666690, 140.896347, "");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][0], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][0], 30.000000, 35.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][0], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][0], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][0], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][0], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][0], 673720575);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][0], 5);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][0], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][0], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][0], true);
-	PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][0], 19382);
-	PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][0], 0.000000, 0.000000, 0.000000, 1.000000);
+	inventario_PTD[playerid][0] = CreatePlayerTextDraw(playerid, 235.014572, 119.416679, "");
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][0], 56.000000, 63.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][0], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][0], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][0], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][0], 168430335);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][0], 5);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][0], 0);
+	PlayerTextDrawSetSelectable(playerid, inventario_PTD[playerid][0], true);
+	PlayerTextDrawSetPreviewModel(playerid, inventario_PTD[playerid][0], TEXTDRAWS_MODEL_NONE);
+	PlayerTextDrawSetPreviewRot(playerid, inventario_PTD[playerid][0], 0.000000, 0.000000, 0.000000, 1.200000);
 
-	inventarioTDD[playerid][1] = CreatePlayerTextDraw(playerid, 53.000041, 140.896408, "");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][1], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][1], 30.000000, 35.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][1], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][1], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][1], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][1], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][1], 673720575);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][1], 5);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][1], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][1], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][1], true);
-	PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][1], 19382);
-	PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][1], 0.000000, 0.000000, 0.000000, 1.000000);
+	inventario_PTD[playerid][1] = CreatePlayerTextDraw(playerid, 292.174133, 119.416687, "");
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][1], 56.000000, 63.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][1], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][1], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][1], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][1], 168430335);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][1], 5);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][1], 0);
+	PlayerTextDrawSetSelectable(playerid, inventario_PTD[playerid][1], true);
+	PlayerTextDrawSetPreviewModel(playerid, inventario_PTD[playerid][1], TEXTDRAWS_MODEL_NONE);
+	PlayerTextDrawSetPreviewRot(playerid, inventario_PTD[playerid][1], 0.000000, 0.000000, 0.000000, 1.200000);
 
-	inventarioTDD[playerid][2] = CreatePlayerTextDraw(playerid, 85.333381, 140.896362, "");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][2], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][2], 30.000000, 35.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][2], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][2], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][2], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][2], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][2], 673720575);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][2], 5);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][2], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][2], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][2], true);
-	PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][2], 19382);
-	PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][2], 0.000000, 0.000000, 0.000000, 1.000000);
+	inventario_PTD[playerid][2] = CreatePlayerTextDraw(playerid, 349.333984, 119.416671, "");
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][2], 56.000000, 63.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][2], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][2], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][2], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][2], 168430335);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][2], 5);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][2], 0);
+	PlayerTextDrawSetSelectable(playerid, inventario_PTD[playerid][2], true);
+	PlayerTextDrawSetPreviewModel(playerid, inventario_PTD[playerid][2], TEXTDRAWS_MODEL_NONE);
+	PlayerTextDrawSetPreviewRot(playerid, inventario_PTD[playerid][2], 0.000000, 0.000000, 0.000000, 1.200000);
 
-	inventarioTDD[playerid][3] = CreatePlayerTextDraw(playerid, 20.666723, 179.474075, "");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][3], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][3], 30.000000, 35.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][3], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][3], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][3], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][3], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][3], 673720575);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][3], 5);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][3], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][3], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][3], true);
-	PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][3], 19382);
-	PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][3], 0.000000, 0.000000, 0.000000, 1.000000);
+	inventario_PTD[playerid][3] = CreatePlayerTextDraw(playerid, 235.014678, 183.583328, "");
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][3], 56.000000, 63.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][3], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][3], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][3], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][3], 168430335);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][3], 5);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][3], 0);
+	PlayerTextDrawSetSelectable(playerid, inventario_PTD[playerid][3], true);
+	PlayerTextDrawSetPreviewModel(playerid, inventario_PTD[playerid][3], TEXTDRAWS_MODEL_NONE);
+	PlayerTextDrawSetPreviewRot(playerid, inventario_PTD[playerid][3], 0.000000, 0.000000, 0.000000, 1.200000);
 
-	inventarioTDD[playerid][4] = CreatePlayerTextDraw(playerid, 53.333385, 179.474044, "");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][4], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][4], 30.000000, 35.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][4], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][4], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][4], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][4], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][4], 673720575);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][4], 5);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][4], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][4], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][4], true);
-	PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][4], 19382);
-	PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][4], 0.000000, 0.000000, 0.000000, 1.000000);
+	inventario_PTD[playerid][4] = CreatePlayerTextDraw(playerid, 292.174255, 183.583312, "");
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][4], 56.000000, 63.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][4], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][4], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][4], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][4], 168430335);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][4], 5);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][4], 0);
+	PlayerTextDrawSetSelectable(playerid, inventario_PTD[playerid][4], true);
+	PlayerTextDrawSetPreviewModel(playerid, inventario_PTD[playerid][4], TEXTDRAWS_MODEL_NONE);
+	PlayerTextDrawSetPreviewRot(playerid, inventario_PTD[playerid][4], 0.000000, 0.000000, 0.000000, 1.200000);
 
-	inventarioTDD[playerid][5] = CreatePlayerTextDraw(playerid, 85.666717, 179.059234, "");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][5], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][5], 30.000000, 35.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][5], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][5], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][5], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][5], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][5], 673720575);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][5], 5);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][5], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][5], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][5], true);
-	PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][5], 19382);
-	PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][5], 0.000000, 0.000000, 0.000000, 1.000000);
+	inventario_PTD[playerid][5] = CreatePlayerTextDraw(playerid, 349.333923, 183.583312, "");
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][5], 56.000000, 63.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][5], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][5], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][5], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][5], 168430335);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][5], 5);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][5], 0);
+	PlayerTextDrawSetSelectable(playerid, inventario_PTD[playerid][5], true);
+	PlayerTextDrawSetPreviewModel(playerid, inventario_PTD[playerid][5], TEXTDRAWS_MODEL_NONE);
+	PlayerTextDrawSetPreviewRot(playerid, inventario_PTD[playerid][5], 0.000000, 0.000000, 0.000000, 1.200000);
 
+	inventario_PTD[playerid][6] = CreatePlayerTextDraw(playerid, 235.014694, 247.749969, "");
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][6], 56.000000, 63.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][6], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][6], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][6], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][6], 168430335);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][6], 5);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][6], 0);
+	PlayerTextDrawSetSelectable(playerid, inventario_PTD[playerid][6], true);
+	PlayerTextDrawSetPreviewModel(playerid, inventario_PTD[playerid][6], TEXTDRAWS_MODEL_NONE);
+	PlayerTextDrawSetPreviewRot(playerid, inventario_PTD[playerid][6], 0.000000, 0.000000, 0.000000, 1.200000);
 
-	inventarioTDD[playerid][6] = CreatePlayerTextDraw(playerid, 20.666715, 218.051834, "");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][6], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][6], 30.000000, 35.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][6], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][6], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][6], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][6], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][6], 673720575);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][6], 5);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][6], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][6], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][6], true);
-	PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][6], 19382);
-	PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][6], 0.000000, 0.000000, 0.000000, 1.000000);
+	inventario_PTD[playerid][7] = CreatePlayerTextDraw(playerid, 292.174224, 247.749969, "");
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][7], 56.000000, 63.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][7], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][7], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][7], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][7], 168430335);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][7], 5);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][7], 0);
+	PlayerTextDrawSetSelectable(playerid, inventario_PTD[playerid][7], true);
+	PlayerTextDrawSetPreviewModel(playerid, inventario_PTD[playerid][7], TEXTDRAWS_MODEL_NONE);
+	PlayerTextDrawSetPreviewRot(playerid, inventario_PTD[playerid][7], 0.000000, 0.000000, 0.000000, 1.200000);
 
-	inventarioTDD[playerid][7] = CreatePlayerTextDraw(playerid, 53.333381, 217.637039, "");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][7], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][7], 30.000000, 35.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][7], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][7], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][7], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][7], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][7], 673720575);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][7], 5);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][7], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][7], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][7], true);
-	PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][7], 19382);
-	PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][7], 0.000000, 0.000000, 0.000000, 1.000000);
+	inventario_PTD[playerid][8] = CreatePlayerTextDraw(playerid, 349.333831, 247.749938, "");
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][8], 56.000000, 63.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][8], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][8], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][8], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][8], 336860415);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][8], 5);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][8], 0);
+	PlayerTextDrawSetSelectable(playerid, inventario_PTD[playerid][8], true);
+	PlayerTextDrawSetPreviewModel(playerid, inventario_PTD[playerid][8], TEXTDRAWS_MODEL_NONE);
+	PlayerTextDrawSetPreviewRot(playerid, inventario_PTD[playerid][8], 0.000000, 0.000000, 0.000000, 1.200000);
 
-
-
-	inventarioTDD[playerid][8] = CreatePlayerTextDraw(playerid, 86.999992, 257.614715, "Usar");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][8], 0.214666, 1.579258);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][8], 115.000000, 10.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][8], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][8], -1);
-	PlayerTextDrawUseBox(playerid, inventarioTDD[playerid][8], 1);
-	PlayerTextDrawBoxColor(playerid, inventarioTDD[playerid][8], 673720575);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][8], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][8], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][8], 255);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][8], 1);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][8], 1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][8], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][8], true);
-
-	
-	inventarioTDD[playerid][9] = CreatePlayerTextDraw(playerid, 54.666652, 258.029541, "Tirar");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][9], 0.214666, 1.579258);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][9], 82.000000, 10.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][9], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][9], -1);
-	PlayerTextDrawUseBox(playerid, inventarioTDD[playerid][9], 1);
-	PlayerTextDrawBoxColor(playerid, inventarioTDD[playerid][9], 673720575);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][9], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][9], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][9], 255);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][9], 1);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][9], 1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][9], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][9], true);
-
-	inventarioTDD[playerid][10] = CreatePlayerTextDraw(playerid, 15.666699, 132.600006, "mdl-2001:logo_cancel");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][10], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][10], 8.000000, 8.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][10], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][10], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][10], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][10], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][10], 255);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][10], 4);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][10], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][10], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][10], true);
-
-	inventarioTDD[playerid][11] = CreatePlayerTextDraw(playerid, 85.666717, 217.637054, "");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][11], 0.000000, 0.000000);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][11], 30.000000, 35.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][11], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][11], -1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][11], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][11], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][11], -421075276);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][11], 5);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][11], 0);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][11], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][11], true);
-	PlayerTextDrawSetPreviewModel(playerid, inventarioTDD[playerid][11], 19382);
-	PlayerTextDrawSetPreviewRot(playerid, inventarioTDD[playerid][11], 0.000000, 0.000000, 0.000000, 1.000000);
-
-	inventarioTDD[playerid][12] = CreatePlayerTextDraw(playerid, 21.333322, 258.029541, "Guardar");
-	PlayerTextDrawLetterSize(playerid, inventarioTDD[playerid][12], 0.214665, 1.579257);
-	PlayerTextDrawTextSize(playerid, inventarioTDD[playerid][12], 50.000000, 10.000000);
-	PlayerTextDrawAlignment(playerid, inventarioTDD[playerid][12], 1);
-	PlayerTextDrawColor(playerid, inventarioTDD[playerid][12], -1);
-	PlayerTextDrawUseBox(playerid, inventarioTDD[playerid][12], 1);
-	PlayerTextDrawBoxColor(playerid, inventarioTDD[playerid][12], 673720575);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][12], 0);
-	PlayerTextDrawSetOutline(playerid, inventarioTDD[playerid][12], 0);
-	PlayerTextDrawBackgroundColor(playerid, inventarioTDD[playerid][12], 255);
-	PlayerTextDrawFont(playerid, inventarioTDD[playerid][12], 1);
-	PlayerTextDrawSetProportional(playerid, inventarioTDD[playerid][12], 1);
-	PlayerTextDrawSetShadow(playerid, inventarioTDD[playerid][12], 0);
-	PlayerTextDrawSetSelectable(playerid, inventarioTDD[playerid][12], true);
+	inventario_PTD[playerid][9] = CreatePlayerTextDraw(playerid, 236.588577, 315.999908, "Selecciona un item");
+	PlayerTextDrawLetterSize(playerid, inventario_PTD[playerid][9], 0.206500, 1.139166);
+	PlayerTextDrawTextSize(playerid, inventario_PTD[playerid][9], 403.000000, 0.000000);
+	PlayerTextDrawAlignment(playerid, inventario_PTD[playerid][9], 1);
+	PlayerTextDrawColor(playerid, inventario_PTD[playerid][9], -1);
+	PlayerTextDrawSetShadow(playerid, inventario_PTD[playerid][9], 0);
+	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][9], 255);
+	PlayerTextDrawFont(playerid, inventario_PTD[playerid][9], 2);
+	PlayerTextDrawSetProportional(playerid, inventario_PTD[playerid][9], 1);
 	return Y_HOOKS_CONTINUE_RETURN_1;
+}
+hook OnPlayerClickTextDraw(playerid, Text:clickedid){
+	if(clickedid == inventario_TD[3]){
+		useItem(playerid, inventoryInfo[playerid][selectedIndex]);
+	}
+	else if(clickedid == inventario_TD[5]){
+		dropItem(playerid, inventoryInfo[playerid][selectedIndex]);
+	}
+	else if(clickedid == inventario_TD[4]){
+		saveUseItem(playerid);
+	} else if(clickedid == inventario_TD[2]){
+		hideInventory(playerid);
+	}
 }
 hook OP_ClickPlayerTextDraw(playerid, PlayerText:playertextid)
 {
-	if(playertextid == inventarioTDD[playerid][0])
+	if(playertextid == inventario_PTD[playerid][0])
 	{
 		selectTextDraw(playerid, 0);
 	}
-	else if(playertextid == inventarioTDD[playerid][1])
+	else if(playertextid == inventario_PTD[playerid][1])
 	{
 		selectTextDraw(playerid, 1);
 	}
-	else if(playertextid == inventarioTDD[playerid][2])
+	else if(playertextid == inventario_PTD[playerid][2])
 	{
 		selectTextDraw(playerid, 2);
 	}
-	else if(playertextid == inventarioTDD[playerid][3])
+	else if(playertextid == inventario_PTD[playerid][3])
 	{
 		selectTextDraw(playerid, 3);
 	}
-	else if(playertextid == inventarioTDD[playerid][4])
+	else if(playertextid == inventario_PTD[playerid][4])
 	{
 		selectTextDraw(playerid, 4);
 	}
-	else if(playertextid == inventarioTDD[playerid][5])
+	else if(playertextid == inventario_PTD[playerid][5])
 	{
 		selectTextDraw(playerid, 5);
 	}
-	else if(playertextid == inventarioTDD[playerid][6])
+	else if(playertextid == inventario_PTD[playerid][6])
 	{
 		selectTextDraw(playerid, 6);
 	}
-	else if(playertextid == inventarioTDD[playerid][7])
+	else if(playertextid == inventario_PTD[playerid][7])
 	{
 		selectTextDraw(playerid, 7);
-	}
-	else if(playertextid == inventarioTDD[playerid][8]){
-		useItem(playerid, inventoryInfo[playerid][selectedIndex]);
-	}
-	else if(playertextid == inventarioTDD[playerid][9]){
-		dropItem(playerid, inventoryInfo[playerid][selectedIndex]);
-	}
-	else if(playertextid == inventarioTDD[playerid][12]){
-		saveUseItem(playerid);
 	}
 }
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys){

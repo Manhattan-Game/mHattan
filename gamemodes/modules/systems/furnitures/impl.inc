@@ -13,7 +13,7 @@ hook OnPlayerDisconnect(playerid, reason){
 hook OP_EditDynamicObject(playerid, objectid, response, Float:xx, Float:yy, Float:zz, Float:rx, Float:ry, Float:rz){
     if(response == EDIT_RESPONSE_FINAL){
         new index = INDEX_REAL_FURNITURE[playerid][editFurnitureID[playerid]];
-        printf("edit %i", index);
+        printf("edit %f, %f, %f", rx, ry, rz);
         if(index != -1){
             ShowTDN_OOC(playerid, "Editaste el mueble.");
             furnituresData[index][coords][0] = xx;

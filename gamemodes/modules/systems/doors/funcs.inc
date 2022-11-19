@@ -171,6 +171,8 @@ public loadDoors(){
         mysql_pquery(MYSQL_DB, "SELECT * FROM HOUSES", "loadHouses");
         mysql_pquery(MYSQL_DB, "SELECT * FROM MARKETS", "loadMarkets");
         mysql_pquery(MYSQL_DB, "SELECT * FROM COMPANIES", "loadCompanies");
+        mysql_pquery(MYSQL_DB, "SELECT * FROM FURNITURES", "loadFurnitures");
+
     }
 }
 

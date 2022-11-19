@@ -316,6 +316,7 @@ enum furnituresDa@tes{
     vw_furniture,
     model,
     type_furniture,
+    type_use,
     Float:coords[6],
     placed,
     object,

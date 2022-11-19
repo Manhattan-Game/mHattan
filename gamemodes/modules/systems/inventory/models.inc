@@ -6,8 +6,8 @@
 
 
 #define ROOTS_TYPE_GUN 0.0, 0.0, 0.0, 1.3
-new Text:inventarioTD;
-new PlayerText:inventarioTDD[MAX_PLAYERS][13];
+new Text:inventario_TD[9];
+new PlayerText:inventario_PTD[MAX_PLAYERS][10];
 
 enum inventoryModels
 {

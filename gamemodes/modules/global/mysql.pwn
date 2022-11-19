@@ -38,7 +38,7 @@ hook OnGameModeInit()
     `movedoorCoords1` float(10) NOT NULL, `movedoorCoords2` float(10) NOT NULL, `movedoorCoords3` float(10) NOT NULL, `movedoorCoords4` float(10) NOT NULL, `movedoorCoords5` float(10) NOT NULL, `movedoorCoords6` float(10) NOT NULL, \
     `doorVw` int(10) NOT NULL, `exitVw` int(10) NOT NULL, `doorState` int(10) NOT NULL, `doorType` int(10) NOT NULL )");
 
-    mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `furnitures` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `toId` int(10) NOT NULL, `vw` int(10) NOT NULL, `model` int(10) NOT NULL, `type` int(10) NOT NULL, \
+    mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `furnitures` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `toId` int(10) NOT NULL, `vw` int(10) NOT NULL, `model` int(10) NOT NULL, `type` int(10) NOT NULL, `type_use` int(10) NOT NULL, \
         `coords1` float(10) NOT NULL, `coords2` float(10) NOT NULL, `coords3` float(10) NOT NULL, `coords4` float(10) NOT NULL, `coords5` float(10) NOT NULL, `coords6` float(10) NOT NULL, `placed` int(10) NOT NULL, \
         `item1` int(10) NOT NULL, `item2` int(10) NOT NULL, `item3` int(10) NOT NULL, `itemAmmount1` int(10) NOT NULL, `itemAmmount2` int(10) NOT NULL, `itemAmmount3` int(10) NOT NULL)");
 

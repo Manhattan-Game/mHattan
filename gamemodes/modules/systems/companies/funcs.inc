@@ -314,18 +314,18 @@ public onCreateCompanie(playerid, index, doorId){
 }
 showProgressCrafting(playerid, indexx){
 	new companieIndex = craftingData[indexx][companieid];
-	new indexCraftInventory, stringgg[QUERY_MEDIUM], stringtwo[QUERY_LOW];
+	new indexCompanieInventory, stringgg[QUERY_MEDIUM], stringtwo[QUERY_LOW];
 	for(new i;i<6;i++){
-		if(companyModelData[companyData[companieIndex][type_company]][fabItems][i] != -1){
-			indexCraftInventory = inventoryModelsData[companyModelData[companyData[companieIndex][type_company]][fabItems][i]][crafteableItems][i];
-			format(stringtwo, sizeof(stringtwo), "%s (x%i), Tienes: %i \n", inventoryModelsData[indexCraftInventory][name], companyModelData[companyData[companieIndex][type_company]][fabItemsAmmount][i], craftingData[indexx][crafting][i]);
+		if(companyModelData[companyData[companieIndex][type_company]][fabItems][i] > 0){
+			indexCompanieInventory = companyModelData[companyData[companieIndex][type_company]][fabItems][i];
+			format(stringtwo, sizeof(stringtwo), "%s (x%i), Tienes: %i \n", inventoryModelsData[indexCompanieInventory][name], companyModelData[companyData[companieIndex][type_company]][fabItemsAmmount][i], craftingData[indexx][crafting][i]);
 			strcat(stringgg, stringtwo);
 		}
 	}
 	ShowPlayerDialog(playerid, DIALOG_CRAFT_COMPANY_PRODUCT, DIALOG_STYLE_LIST, "Necesitas los siguientes objetos:", stringgg, "Agregar", ""RED" cancelar");
 }
 createCrafting(playerid, typess, modell, companiieid, pricee, ammts){
-	new indexx = getFreeCraftingIndex(playerid);
+	new indexx = getFreeCraftingIndex();
 	if(indexx != -1){
 		craftingData[indexx][characterid] = characterData[playerid][listid];
 		for(new i;i<6;i++){
@@ -339,7 +339,7 @@ createCrafting(playerid, typess, modell, companiieid, pricee, ammts){
 		craftingData[indexx][progress] = 0;
 		showProgressCrafting(playerid, indexx);
 
-	} else ShowTDN_OOC(playerid, "Ya tienes un crafteo activo.");
+	} else ShowTDN_OOC(playerid, "No se puede producir ahora.");
 	return indexx;
 }
 craftingIsReady(playerid, indexx){
@@ -365,15 +365,18 @@ deleteCrafting(index){
 	craftingData[index][progress] = 0;
 }
 
-getFreeCraftingIndex(playerid){
+getActiveCraftingIndex(playerid){
 	for(new i;i<MAX_CRAFTINGS;i++){
 		if(craftingData[i][characterid] == characterData[playerid][listid]) {
-			return -1;
+			return i;
 		}
 		
 	}
+	return -1;
+}
+getFreeCraftingIndex(){
 	for(new i;i<MAX_CRAFTINGS;i++){
-		if(craftingData[i][characterid] == 0) {
+		if(craftingData[i][characterid] == 0){
 			return i;
 		}
 	}

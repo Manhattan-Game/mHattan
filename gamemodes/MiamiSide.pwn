@@ -11,7 +11,6 @@
 #include <timerfix>
 #include <ShowInfoForPlayer>
 #include <progres_bar_ms>
-
 // GLOBAL
 #include "./modules/global/mysql.pwn"
 
@@ -151,15 +150,15 @@ new QUERY_BUFFER[2048];
 #include <td-notification-OOC>
 
 //---------------------------------------------------------------------//
-#define SERVER_WEBSITE		"https://mainland.com"
-#define SERVER_HOSTNAME		"MAINLAND ("SERVER_WEBSITE")"
-#define SERVER_MAPNAME		"Vice City"
-#define SERVER_LANGUAGE		"Espanol"
-#define SERVER_NAME			"Mainland Roleplay"
-#define SERVER_NAME_SHORT	"ML-RP"
-#define SERVER_VERSION		"0.2"
+#define SERVER_WEBSITE		"https://studio.com"
+#define SERVER_HOSTNAME		"Central Park ("SERVER_WEBSITE")"
+#define SERVER_MAPNAME		"New York"
+#define SERVER_LANGUAGE		"Spanish"
+#define SERVER_NAME			"Central Park"
+#define SERVER_NAME_SHORT	"CP-RP"
+#define SERVER_VERSION		"0.0.4"
 #define VERSION_DATE		""
-#define SERVER_MODE			"ML-RP "SERVER_VERSION"(Roleplay)"
+#define SERVER_MODE			"CP-RP "SERVER_VERSION"(Roleplay)"
 //---------------------------------------------------------------------//
 
 #undef MAX_PLAYERS
@@ -170,6 +169,7 @@ main()
  	bcrypt_set_thread_limit(6);   
 }
 #pragma compress 0
+#pragma dynamic 40000
 #pragma warning disable 214, 237
 
 public OnGameModeInit(){
@@ -269,4 +269,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid){
 
 cmd:no(playerid, params[]){
 	ClearAnimations(playerid);
+}
+cmd:city(playerid, params[]){
+	SetPlayerPos(playerid, 778.4303,1871.3485,4.9062);
 }

@@ -12,5 +12,5 @@ showVehiclesMenuCraft(playerid, empindexx){
 			addDialogItem(playerid, vehiclesModelData[i][model], string);
 		}
 	}
-	ShowPlayerDialogItem(playerid, DIALOG_ITEMS_CRAFT_PRODUCT_VEHI, "Producir", "Cancelar");
+	ShowPlayerDialogItem(playerid, DIALOG_ITEMS_CRAFT_PRODUCT_VEHI, "Vehiculos", "Producir");
 }
