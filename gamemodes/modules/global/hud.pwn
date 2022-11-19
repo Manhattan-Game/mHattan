@@ -93,7 +93,7 @@ hook OnPlayerConnect(playerid){
 	PlayerTextDrawBackgroundColor(playerid, HUD_PTD[playerid][0], 336860415);
 	PlayerTextDrawFont(playerid, HUD_PTD[playerid][0], 5);
 	PlayerTextDrawSetProportional(playerid, HUD_PTD[playerid][0], 0);
-	PlayerTextDrawSetPreviewModel(playerid, HUD_PTD[playerid][0], 3434);
+	PlayerTextDrawSetPreviewModel(playerid, HUD_PTD[playerid][0], TEXTDRAWS_MODEL_NONE);
 	PlayerTextDrawSetPreviewRot(playerid, HUD_PTD[playerid][0], 0.000000, 0.000000, 0.000000, 1.200000);
 
 	HUD_PTD[playerid][1] = CreatePlayerTextDraw(playerid, 561.742309, 28.416667, "");
