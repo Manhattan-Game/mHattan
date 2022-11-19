@@ -151,14 +151,14 @@ new QUERY_BUFFER[2048];
 
 //---------------------------------------------------------------------//
 #define SERVER_WEBSITE		"https://studio.com"
-#define SERVER_HOSTNAME		"Central Park ("SERVER_WEBSITE")"
+#define SERVER_HOSTNAME		"Manhattan ("SERVER_WEBSITE")"
 #define SERVER_MAPNAME		"New York"
 #define SERVER_LANGUAGE		"Spanish"
-#define SERVER_NAME			"Central Park"
+#define SERVER_NAME			"Manhattan"
 #define SERVER_NAME_SHORT	"CP-RP"
 #define SERVER_VERSION		"0.0.4"
 #define VERSION_DATE		""
-#define SERVER_MODE			"CP-RP "SERVER_VERSION"(Roleplay)"
+#define SERVER_MODE			"Manhattan "SERVER_VERSION"(Rol)"
 //---------------------------------------------------------------------//
 
 #undef MAX_PLAYERS
