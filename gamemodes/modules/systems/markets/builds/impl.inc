@@ -46,7 +46,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 								sellHouseCharacterId(playerid, i);
 								break;
 							} else{
-								ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+								ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
 								break;
 							}
 						}
@@ -65,7 +65,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 								sellMarketCharacterId(playerid, i);
 								break;
 							} else{
-								ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+								ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
 								break;
 							}
 						}
@@ -84,7 +84,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 								sellCompanieCharacterId(playerid, i);
 								break;
 							} else{
-								ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+								ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
 								break;
 							}
 						}

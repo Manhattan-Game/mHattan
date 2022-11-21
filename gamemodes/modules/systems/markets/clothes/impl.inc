@@ -4,7 +4,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
     if(dialogid == DIALOG_SELECT_MARKET_SELL_SKIN){
         if(response){
             setSkin(playerid, skinsModelData[selectedIndexItem[playerid]][model]);
-            ShowTDN_OOC(playerid, "Cambiaste de ropa.");
+            ShowTDN_IC(playerid, "Cambiaste de ropa.");
             selectedIndexItem[playerid] = -1;
         }else{
             //falta
@@ -17,7 +17,7 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
             if(response){
                 if(getCountDialogItems(playerid) > 0){
                 finishEditItem(playerid, editMarket[playerid], index);
-                } else ShowTDN_OOC(playerid, "No hay skins.");
+                } else ShowTDN_IC(playerid, "No hay skins.");
             } else editMarket[playerid] = -1;
         }
         case DIALOG_SELL_SELECT_SKIN_MARKET: {
@@ -42,13 +42,13 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
                                     selectedIndexItem[playerid] = i;
                                     ShowPlayerDialog(playerid, DIALOG_SELECT_MARKET_SELL_SKIN, DIALOG_STYLE_MSGBOX,  ""CAPTION_DIALOG_TITLE" MARKET", "¿Como quieres llevar la ropa?", "Puesta", "En bolsa");
                                 } else {
-                                    ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+                                    ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
                                     editMarket[playerid] = -1;
                                     break;
                                 }
                                 
                             }else {
-                                ShowTDN_OOC(playerid, "El negocio no tiene stock sobre este producto.");
+                                ShowTDN_IC(playerid, "El negocio no tiene stock sobre este producto.");
                                 editMarket[playerid] = -1;
                                 break;
                             } 
