@@ -51,11 +51,11 @@ editFurniture(playerid, index){
         	SetDynamicObjectPos(furnituresData[index][object], posXEdit, posYEdit, posZEdit);
 			Streamer_UpdateEx(playerid, posXEdit, posYEdit, posZEdit);
     		EditDynamicObject(playerid, furnituresData[index][object]);
-    		ShowTDN_OOC(playerid, "Edita el mueble");
+    		ShowTDN_IC(playerid, "Edita el mueble");
     	}
     	
 
-    } else ShowTDN_OOC(playerid, "El mueble no esta colocado");
+    } else ShowTDN_IC(playerid, "El mueble no esta colocado");
     
 }
 useFurniture(playerid){

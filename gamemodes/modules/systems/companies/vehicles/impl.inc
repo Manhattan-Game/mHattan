@@ -12,7 +12,7 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 					}
 				}
 				
-			} else ShowTDN_OOC(playerid, "No hay nada que producir.");
+			} else ShowTDN_IC(playerid, "No hay nada que producir.");
 			
 		} else editCompany[playerid] = -1;
 	}

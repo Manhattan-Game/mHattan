@@ -81,7 +81,7 @@ useItem(playerid, index){
 		updateInventory(playerid, index);
 		updateHandItem(playerid);
 		//useAnimationItem(playerid, 8);
-	} else ShowTDN_OOC(playerid, "No tienes un objeto en este indice.");
+	} else ShowTDN_IC(playerid, "No tienes un objeto en este indice.");
 }
 
 saveUseItem(playerid){
@@ -96,7 +96,7 @@ saveUseItem(playerid){
 		removeItem(playerid, 8);
 		updateInventory(playerid, 8);
 		updateHandItem(playerid);
-	} else ShowTDN_OOC(playerid, "No tienes un objeto en mano.");
+	} else ShowTDN_IC(playerid, "No tienes un objeto en mano.");
 }
 updateInventory(playerid, i){
 	new oldindex = i;
@@ -122,7 +122,7 @@ getDropItem(playerid){
 					if(addItem(playerid, droppedObjects[i][model], droppedObjects[i][ammount]) != -1){
 						DestroyDynamicObject(droppedObjects[i][objectID]);
 						DestroyDynamic3DTextLabel(droppedObjects[i][labelID]);
-						ShowTDN_OOC(playerid, "Agarraste un objeto del suelo");
+						ShowTDN_IC(playerid, "Agarraste un objeto del suelo");
 						droppedObjects[i][x] = 0;
 						droppedObjects[i][y] = 0;
 						droppedObjects[i][z] = 0;
@@ -132,7 +132,7 @@ getDropItem(playerid){
 						ApplyAnimation(playerid, "BOMBER","BOM_Plant_Loop", 4.0,0,0,0,0,0);
 						break;
 					} else{
-						ShowTDN_OOC(playerid, "No tienes un slot disponible");
+						ShowTDN_IC(playerid, "No tienes un slot disponible");
 						break;
 					}
 				}
@@ -164,7 +164,7 @@ dropItem(playerid, index){
 				break;
 			}
 		}
-	} else ShowTDN_OOC(playerid, "No tienes un objeto en este indice.");
+	} else ShowTDN_IC(playerid, "No tienes un objeto en este indice.");
 }
 
 createInventory(characterMkid){

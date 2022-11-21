@@ -59,7 +59,7 @@ sellHouseCharacterId(playerid, index){
 						loadHouse(index, doorIndex);
 						takeCharacterMoney(playerid, houseData[index][price]);
 						giveCharacterMoney(i, houseData[index][price]);
-						ShowTDN_OOC(playerid, "Compraste una casa!");
+						ShowTDN_IC(playerid, "Compraste una casa!");
 					}
 				}
 				if(!isconnected){
@@ -74,7 +74,7 @@ sellHouseCharacterId(playerid, index){
 				DestroyDynamicHouse(index);
 				loadHouse(index, doorIndex);
 				takeCharacterMoney(playerid, houseData[index][price]);
-				ShowTDN_OOC(playerid, "Compraste una casa!");
+				ShowTDN_IC(playerid, "Compraste una casa!");
 			}
 		}
 	}
@@ -92,7 +92,7 @@ public onGetMoneyCharacterHouseID(playerid, index, doorIndex){
 		loadHouse(index, doorIndex);
 		doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
 		takeCharacterMoney(playerid, houseData[index][price]);
-		ShowTDN_OOC(playerid, "Compraste una casa!");
+		ShowTDN_IC(playerid, "Compraste una casa!");
 	}
 }
 saveHouses(){
@@ -155,7 +155,7 @@ public onCreateHouse(playerid, index, doorId){
 		DestroyDynamicHouse(index);
 		loadHouse(index, indexdoor);
 		loadDoor(indexdoor);
-		ShowTDN_OOC(playerid, "Creaste una casa, editala con /editarcasa");
+		ShowTDN_IC(playerid, "Creaste una casa, editala con /editarcasa");
 	}
 }
 

@@ -73,11 +73,11 @@ updateRoomPosition(playerid, indexx, indexxDoorId){
 		companyData[indexx][room_pos][2] = zZ;
 		destroyDynamicCompany(indexx);
 		loadCompany(indexx, indexxDoorId);
-		ShowTDN_OOC(playerid, "Editaste la posicion del ropero.");
+		ShowTDN_IC(playerid, "Editaste la posicion del ropero.");
 		editCompany[playerid] = -1;
 	} else {
 		editCompany[playerid] = -1;
-		ShowTDN_OOC(playerid, "Debes estar en el interior");
+		ShowTDN_IC(playerid, "Debes estar en el interior");
 	}
 }
 updateCraftPosition(playerid, indexx, indexxDoorId){
@@ -89,11 +89,11 @@ updateCraftPosition(playerid, indexx, indexxDoorId){
 		companyData[indexx][job_pos][2] = zZ;
 		destroyDynamicCompany(indexx);
 		loadCompany(indexx, indexxDoorId);
-		ShowTDN_OOC(playerid, "Editaste la posicion de crafteo.");
+		ShowTDN_IC(playerid, "Editaste la posicion de crafteo.");
 		editCompany[playerid] = -1;
 	} else {
 		editCompany[playerid] = -1;
-		ShowTDN_OOC(playerid, "Debes estar en el interior");
+		ShowTDN_IC(playerid, "Debes estar en el interior");
 	}
 }
 updateJobPosition(playerid, indexx, indexxDoorId){
@@ -105,11 +105,11 @@ updateJobPosition(playerid, indexx, indexxDoorId){
 		companyData[indexx][job_pos][5] = zZ;
 		destroyDynamicCompany(indexx);
 		loadCompany(indexx, indexxDoorId);
-		ShowTDN_OOC(playerid, "Editaste la posicion de trabajo.");
+		ShowTDN_IC(playerid, "Editaste la posicion de trabajo.");
 		editCompany[playerid] = -1;
 	} else {
 		editCompany[playerid] = -1;
-		ShowTDN_OOC(playerid, "Debes estar en el interior");
+		ShowTDN_IC(playerid, "Debes estar en el interior");
 	}
 }
 
@@ -122,11 +122,11 @@ updateDispatchIntPosition(playerid, indexx, indexxDoorId){
 		companyData[indexx][dispatch_pos][2] = zZ;
 		destroyDynamicCompany(indexx);
 		loadCompany(indexx, indexxDoorId);
-		ShowTDN_OOC(playerid, "Editaste la posicion del despacho Interior.");
+		ShowTDN_IC(playerid, "Editaste la posicion del despacho Interior.");
 		editCompany[playerid] = -1;
 	} else {
 		editCompany[playerid] = -1;
-		ShowTDN_OOC(playerid, "Debes estar en el interior");
+		ShowTDN_IC(playerid, "Debes estar en el interior");
 	}
 }
 updateDispatchExtPosition(playerid, indexx, indexxDoorId){
@@ -138,11 +138,11 @@ updateDispatchExtPosition(playerid, indexx, indexxDoorId){
 		companyData[indexx][dispatch_pos][5] = zZ;
 		destroyDynamicCompany(indexx);
 		loadCompany(indexx, indexxDoorId);
-		ShowTDN_OOC(playerid, "Editaste la posicion del despacho Exterior.");
+		ShowTDN_IC(playerid, "Editaste la posicion del despacho Exterior.");
 		editCompany[playerid] = -1;
 	} else {
 		editCompany[playerid] = -1;
-		ShowTDN_OOC(playerid, "Debes estar en el exterior");
+		ShowTDN_IC(playerid, "Debes estar en el exterior");
 	}
 }
 getFreeCompanySlot()
@@ -198,7 +198,7 @@ sellCompanieCharacterId(playerid, index){
 						loadCompany(index, doorIndex);
 						takeCharacterMoney(playerid, companyData[index][price]);
 						giveCharacterMoney(i, companyData[index][price]);
-						ShowTDN_OOC(playerid, "Compraste una empresa!");
+						ShowTDN_IC(playerid, "Compraste una empresa!");
 					}
 				}
 				if(!isconnected){
@@ -213,7 +213,7 @@ sellCompanieCharacterId(playerid, index){
 				destroyDynamicCompany(index);
 				loadCompany(index, doorIndex);
 				takeCharacterMoney(playerid, marketData[index][price]);
-				ShowTDN_OOC(playerid, "Compraste una empresa!");
+				ShowTDN_IC(playerid, "Compraste una empresa!");
 			}
 		}
 	}
@@ -231,7 +231,7 @@ public onGetMoneyCharacterCompanyID(playerid, index, doorIndex){
 		loadMarket(index, doorIndex);
 		doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
 		takeCharacterMoney(playerid, companyData[index][price]);
-		ShowTDN_OOC(playerid, "Compraste una empresa!");
+		ShowTDN_IC(playerid, "Compraste una empresa!");
 	}
 }
 saveCompanies(){
@@ -309,7 +309,7 @@ public onCreateCompanie(playerid, index, doorId){
 		destroyDynamicCompany(index);
 		loadCompany(index, indexdoor);
 		loadDoor(indexdoor);
-		ShowTDN_OOC(playerid, "Creaste una empressa, editalo con /editarempresa");
+		ShowTDN_IC(playerid, "Creaste una empressa, editalo con /editarempresa");
 	}
 }
 showProgressCrafting(playerid, indexx){
@@ -339,7 +339,7 @@ createCrafting(playerid, typess, modell, companiieid, pricee, ammts){
 		craftingData[indexx][progress] = 0;
 		showProgressCrafting(playerid, indexx);
 
-	} else ShowTDN_OOC(playerid, "No se puede producir ahora.");
+	} else ShowTDN_IC(playerid, "No se puede producir ahora.");
 	return indexx;
 }
 craftingIsReady(playerid, indexx){
@@ -352,7 +352,7 @@ craftingIsReady(playerid, indexx){
 	}
 	if(status){
 		createTrade(companyData[companieIndex][listid], craftingData[indexx][modeel], craftingData[indexx][ammount], craftingData[indexx][type_crafting], craftingData[indexx][price], TRADE_STATE_ONSELL, false);
-		ShowTDN_OOC(playerid, "Agregaste un producto al mercado.");
+		ShowTDN_IC(playerid, "Agregaste un producto al mercado.");
 		deleteCrafting(indexx);
 	}
 }

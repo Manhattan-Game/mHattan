@@ -116,15 +116,15 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 							editTypeMarkets[playerid] = -1;
 							selectedIndexItem[playerid] = -1;
 							editMarket[playerid] = -1;
-							ShowTDN_OOC(playerid, "Compraste un mueble");
+							ShowTDN_IC(playerid, "Compraste un mueble");
             			} else {
-            				ShowTDN_OOC(playerid, "El negocio no tiene stock sobre este producto.");
+            				ShowTDN_IC(playerid, "El negocio no tiene stock sobre este producto.");
             				editTypeMarkets[playerid] = -1;
 							selectedIndexItem[playerid] = -1;
 							editMarket[playerid] = -1;
             			}
             		} else {
-            			ShowTDN_OOC(playerid, "No tienes dinero en mano.");
+            			ShowTDN_IC(playerid, "No tienes dinero en mano.");
             			editTypeMarkets[playerid] = -1;
 						selectedIndexItem[playerid] = -1;
 						editMarket[playerid] = -1;
@@ -134,7 +134,7 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 					selectedIndexItem[playerid] = -1;
 					editMarket[playerid] = -1;
 				}
-            } else ShowTDN_OOC(playerid, "No hay muebles en venta");
+            } else ShowTDN_IC(playerid, "No hay muebles en venta");
 		} else {
 			editTypeMarkets[playerid] = -1;
 			selectedIndexItem[playerid] = -1;

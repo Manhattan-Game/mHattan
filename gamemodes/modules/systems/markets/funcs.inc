@@ -54,7 +54,7 @@ updateSellPosition(playerid, index, indexDoorId){
 	marketData[index][vw] = GetPlayerVirtualWorld(playerid);
 	DestroyDynamicMarket(index);
 	loadMarket(index, indexDoorId);
-	ShowTDN_OOC(playerid, "Editaste la posicion de compra");
+	ShowTDN_IC(playerid, "Editaste la posicion de compra");
 	editMarket[playerid] = -1;
 }
 ShowSlotsItems(playerid, index){
@@ -74,7 +74,7 @@ finishEditItem(playerid, index, modell){
 	if((index != -1) && (modell != -1) && (indexItem != -1)){
 		marketData[index][item][indexItem] = modell;
 		marketData[index][itemAmmount][indexItem] = 0;
-		ShowTDN_OOC(playerid, "Editaste un item");
+		ShowTDN_IC(playerid, "Editaste un item");
 		editMarket[playerid] = -1;
 		selectedIndexItem[playerid] = -1;
 	}
@@ -116,7 +116,7 @@ sellMarketCharacterId(playerid, index){
 						loadMarket(index, doorIndex);
 						takeCharacterMoney(playerid, marketData[index][price]);
 						giveCharacterMoney(i, marketData[index][price]);
-						ShowTDN_OOC(playerid, "Compraste un negocio!");
+						ShowTDN_IC(playerid, "Compraste un negocio!");
 					}
 				}
 				if(!isconnected){
@@ -131,7 +131,7 @@ sellMarketCharacterId(playerid, index){
 				DestroyDynamicMarket(index);
 				loadMarket(index, doorIndex);
 				takeCharacterMoney(playerid, marketData[index][price]);
-				ShowTDN_OOC(playerid, "Compraste un negocio!");
+				ShowTDN_IC(playerid, "Compraste un negocio!");
 			}
 		}
 	}
@@ -149,7 +149,7 @@ public onGetMoneyCharacterMarketID(playerid, index, doorIndex){
 		loadMarket(index, doorIndex);
 		doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
 		takeCharacterMoney(playerid, marketData[index][price]);
-		ShowTDN_OOC(playerid, "Compraste un negocio!");
+		ShowTDN_IC(playerid, "Compraste un negocio!");
 	}
 }
 
@@ -200,7 +200,7 @@ public onCreateMarket(playerid, index, doorId){
 		DestroyDynamicMarket(index);
 		loadMarket(index, indexdoor);
 		loadDoor(indexdoor);
-		ShowTDN_OOC(playerid, "Creaste un negocio, editalo con /editarnegocio");
+		ShowTDN_IC(playerid, "Creaste un negocio, editalo con /editarnegocio");
 	}
 }
 

@@ -59,17 +59,17 @@ editPHYSICALdoor(playerid, index){
         EditDynamicObject(playerid, doorsInfo[index][doorObject]);
         editDoor[playerid] = index;
         doorsInfo[index][doorStep] = 1;
-        ShowTDN_OOC(playerid, "Edita la posicion de la puerta CERRADA");
+        ShowTDN_IC(playerid, "Edita la posicion de la puerta CERRADA");
     }
 }
 
 changeEnterState(playerid, index){
     if(doorsInfo[index][enterState] == DOOR_STATE_CLOSE){
         doorsInfo[index][enterState] = DOOR_STATE_OPEN;
-        ShowTDN_OOC(playerid, "Desbloqueaste la puerta.");
+        ShowTDN_IC(playerid, "Desbloqueaste la puerta.");
     }else {
         doorsInfo[index][enterState] = DOOR_STATE_CLOSE;
-        ShowTDN_OOC(playerid, "Bloqueaste la puerta.");
+        ShowTDN_IC(playerid, "Bloqueaste la puerta.");
     }
 }
 changeStateDoor(playerid, index){
@@ -78,13 +78,13 @@ changeStateDoor(playerid, index){
             if(doorsInfo[index][doorState] == DOOR_STATE_CLOSE){
             MoveDynamicObject(doorsInfo[index][doorObject], doorsInfo[index][moveDoorCoords][0], doorsInfo[index][moveDoorCoords][1], doorsInfo[index][moveDoorCoords][2], 14.0, doorsInfo[index][moveDoorCoords][3], doorsInfo[index][moveDoorCoords][4], doorsInfo[index][moveDoorCoords][5]);
             doorsInfo[index][doorState] = DOOR_STATE_OPEN;
-            ShowTDN_OOC(playerid, "Abriste la puerta.");
+            ShowTDN_IC(playerid, "Abriste la puerta.");
             }else{
                 MoveDynamicObject(doorsInfo[index][doorObject], doorsInfo[index][doorCoords][0], doorsInfo[index][doorCoords][1], doorsInfo[index][doorCoords][2], 14.0, doorsInfo[index][doorCoords][3], doorsInfo[index][doorCoords][4], doorsInfo[index][doorCoords][5]);
                 doorsInfo[index][doorState] = DOOR_STATE_CLOSE;
-                ShowTDN_OOC(playerid, "Cerraste la puerta.");
+                ShowTDN_IC(playerid, "Cerraste la puerta.");
             }
-        } else ShowTDN_OOC(playerid, "La puerta se encuentra cerrada.");
+        } else ShowTDN_IC(playerid, "La puerta se encuentra cerrada.");
     }
 }
 

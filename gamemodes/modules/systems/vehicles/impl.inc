@@ -4,87 +4,125 @@
 
 hook OnGameModeInit(){
 	
-	velocimeter_TD[0] = TextDrawCreate(462.885162, 333.266967, "mdl-2001:box_velocimeter");
-	TextDrawTextSize(velocimeter_TD[0], 178.000000, 109.000000);
+	velocimeter_TD[0] = TextDrawCreate(525.497985, 386.583496, "mdl-2001:box_box");
+	TextDrawTextSize(velocimeter_TD[0], 111.000000, 56.000000);
 	TextDrawAlignment(velocimeter_TD[0], 1);
-	TextDrawColor(velocimeter_TD[0], -1);
+	TextDrawColor(velocimeter_TD[0], 168430335);
 	TextDrawSetShadow(velocimeter_TD[0], 0);
 	TextDrawBackgroundColor(velocimeter_TD[0], 255);
 	TextDrawFont(velocimeter_TD[0], 4);
 	TextDrawSetProportional(velocimeter_TD[0], 0);
+
+	velocimeter_TD[1] = TextDrawCreate(472.086822, 381.333465, "mdl-2001:circle");
+	TextDrawTextSize(velocimeter_TD[1], 54.000000, 65.000000);
+	TextDrawAlignment(velocimeter_TD[1], 1);
+	TextDrawColor(velocimeter_TD[1], 168430335);
+	TextDrawSetShadow(velocimeter_TD[1], 0);
+	TextDrawBackgroundColor(velocimeter_TD[1], 255);
+	TextDrawFont(velocimeter_TD[1], 4);
+	TextDrawSetProportional(velocimeter_TD[1], 0);
+
+	velocimeter_TD[2] = TextDrawCreate(616.391357, 390.666534, "mdl-2001:gas");
+	TextDrawTextSize(velocimeter_TD[2], 16.000000, 12.000000);
+	TextDrawAlignment(velocimeter_TD[2], 1);
+	TextDrawColor(velocimeter_TD[2], -1);
+	TextDrawSetShadow(velocimeter_TD[2], 0);
+	TextDrawBackgroundColor(velocimeter_TD[2], 255);
+	TextDrawFont(velocimeter_TD[2], 4);
+	TextDrawSetProportional(velocimeter_TD[2], 0);
+
+	velocimeter_TD[3] = TextDrawCreate(618.734069, 404.083251, "mdl-2001:oil");
+	TextDrawTextSize(velocimeter_TD[3], 15.000000, 20.000000);
+	TextDrawAlignment(velocimeter_TD[3], 1);
+	TextDrawColor(velocimeter_TD[3], -1);
+	TextDrawSetShadow(velocimeter_TD[3], 0);
+	TextDrawBackgroundColor(velocimeter_TD[3], 255);
+	TextDrawFont(velocimeter_TD[3], 4);
+	TextDrawSetProportional(velocimeter_TD[3], 0);
+
+	velocimeter_TD[4] = TextDrawCreate(491.464324, 420.999969, "km/h");
+	TextDrawLetterSize(velocimeter_TD[4], 0.242108, 0.777500);
+	TextDrawAlignment(velocimeter_TD[4], 1);
+	TextDrawColor(velocimeter_TD[4], -1);
+	TextDrawSetShadow(velocimeter_TD[4], 0);
+	TextDrawBackgroundColor(velocimeter_TD[4], 255);
+	TextDrawFont(velocimeter_TD[4], 1);
+	TextDrawSetProportional(velocimeter_TD[4], 1);
 }
 hook OnPlayerConnect(playerid){
-	velocimeter_PTD[playerid][0] = CreatePlayerTextDraw(playerid, 494.743957, 372.583343, "1");
-	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][0], 0.324568, 1.949999);
-	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][0], 0.000000, 31.000000);
-	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][0], 2);
-	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][0], -1523963137);
-	PlayerTextDrawUseBox(playerid, velocimeter_PTD[playerid][0], 1);
-	PlayerTextDrawBoxColor(playerid, velocimeter_PTD[playerid][0], 0);
+	velocimeter_PTD[playerid][0] = CreatePlayerTextDraw(playerid, 526.903625, 418.666564, "mdl-2001:circle");
+	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][0], 21.000000, 22.000000);
+	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][0], 1);
+	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][0], 589505535);
 	PlayerTextDrawSetShadow(playerid, velocimeter_PTD[playerid][0], 0);
 	PlayerTextDrawBackgroundColor(playerid, velocimeter_PTD[playerid][0], 255);
-	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][0], 2);
-	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][0], 1);
+	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][0], 4);
+	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][0], 0);
 
-	velocimeter_PTD[playerid][1] = CreatePlayerTextDraw(playerid, 595.007385, 378.416534, "Admiral");
-	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][1], 0.184480, 1.139166);
-	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][1], 0.000000, 74.000000);
-	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][1], 2);
-	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][1], 436207871);
-	PlayerTextDrawUseBox(playerid, velocimeter_PTD[playerid][1], 1);
-	PlayerTextDrawBoxColor(playerid, velocimeter_PTD[playerid][1], 0);
+	velocimeter_PTD[playerid][1] = CreatePlayerTextDraw(playerid, 548.455627, 418.666625, "mdl-2001:circle");
+	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][1], 21.000000, 22.000000);
+	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][1], 1);
+	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][1], 54473727);
 	PlayerTextDrawSetShadow(playerid, velocimeter_PTD[playerid][1], 0);
 	PlayerTextDrawBackgroundColor(playerid, velocimeter_PTD[playerid][1], 255);
-	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][1], 2);
-	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][1], 1);
+	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][1], 4);
+	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][1], 0);
 
-	velocimeter_PTD[playerid][2] = CreatePlayerTextDraw(playerid, 581.888854, 390.666656, "off");
-	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][2], 0.168081, 1.004999);
-	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][2], 0.000000, 89.000000);
-	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][2], 2);
-	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][2], 436207871);
-	PlayerTextDrawUseBox(playerid, velocimeter_PTD[playerid][2], 1);
-	PlayerTextDrawBoxColor(playerid, velocimeter_PTD[playerid][2], 0);
+	velocimeter_PTD[playerid][2] = CreatePlayerTextDraw(playerid, 570.007507, 418.666503, "mdl-2001:circle");
+	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][2], 21.000000, 22.000000);
+	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][2], 1);
+	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][2], 589505535);
 	PlayerTextDrawSetShadow(playerid, velocimeter_PTD[playerid][2], 0);
 	PlayerTextDrawBackgroundColor(playerid, velocimeter_PTD[playerid][2], 255);
-	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][2], 2);
-	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][2], 1);
+	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][2], 4);
+	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][2], 0);
 
-	velocimeter_PTD[playerid][3] = CreatePlayerTextDraw(playerid, 602.035400, 390.666656, "off");
-	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][3], 0.168081, 1.004999);
-	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][3], 0.000000, 89.000000);
-	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][3], 2);
-	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][3], 436207871);
-	PlayerTextDrawUseBox(playerid, velocimeter_PTD[playerid][3], 1);
-	PlayerTextDrawBoxColor(playerid, velocimeter_PTD[playerid][3], 0);
+	velocimeter_PTD[playerid][3] = CreatePlayerTextDraw(playerid, 531.588867, 420.416717, "mdl-2001:doors");
+	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][3], 12.000000, 16.000000);
+	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][3], 1);
+	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][3], -1);
 	PlayerTextDrawSetShadow(playerid, velocimeter_PTD[playerid][3], 0);
 	PlayerTextDrawBackgroundColor(playerid, velocimeter_PTD[playerid][3], 255);
-	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][3], 2);
-	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][3], 1);
+	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][3], 4);
+	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][3], 0);
 
-	velocimeter_PTD[playerid][4] = CreatePlayerTextDraw(playerid, 621.713806, 390.083312, "off");
-	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][4], 0.168081, 1.004999);
-	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][4], 0.000000, 89.000000);
-	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][4], 2);
-	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][4], 436207871);
-	PlayerTextDrawUseBox(playerid, velocimeter_PTD[playerid][4], 1);
-	PlayerTextDrawBoxColor(playerid, velocimeter_PTD[playerid][4], 0);
+	velocimeter_PTD[playerid][4] = CreatePlayerTextDraw(playerid, 552.203796, 422.166778, "mdl-2001:windows");
+	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][4], 14.000000, 14.000000);
+	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][4], 1);
+	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][4], -1);
 	PlayerTextDrawSetShadow(playerid, velocimeter_PTD[playerid][4], 0);
 	PlayerTextDrawBackgroundColor(playerid, velocimeter_PTD[playerid][4], 255);
-	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][4], 2);
-	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][4], 1);
+	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][4], 4);
+	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][4], 0);
 
-	velocimeter_PTD[playerid][5] = CreatePlayerTextDraw(playerid, 599.224609, 404.666687, "9999");
-	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][5], 0.100614, 1.284999);
-	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][5], 0.000000, 30.000000);
-	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][5], 2);
-	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][5], 436207871);
-	PlayerTextDrawUseBox(playerid, velocimeter_PTD[playerid][5], 1);
-	PlayerTextDrawBoxColor(playerid, velocimeter_PTD[playerid][5], 0);
+
+	velocimeter_PTD[playerid][5] = CreatePlayerTextDraw(playerid, 573.755859, 420.999969, "mdl-2001:lights");
+	PlayerTextDrawTextSize(playerid, velocimeter_PTD[playerid][5], 14.000000, 17.000000);
+	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][5], 1);
+	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][5], -1);
 	PlayerTextDrawSetShadow(playerid, velocimeter_PTD[playerid][5], 0);
 	PlayerTextDrawBackgroundColor(playerid, velocimeter_PTD[playerid][5], 255);
-	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][5], 2);
-	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][5], 1);
+	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][5], 4);
+	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][5], 0);
+
+
+	velocimeter_PTD[playerid][6] = CreatePlayerTextDraw(playerid, 593.133605, 420.999938, "Kilometraje: 38473");
+	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][6], 0.212591, 0.964165);
+	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][6], 1);
+	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][6], -1061109505);
+	PlayerTextDrawSetShadow(playerid, velocimeter_PTD[playerid][6], 0);
+	PlayerTextDrawBackgroundColor(playerid, velocimeter_PTD[playerid][6], 255);
+	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][6], 1);
+	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][6], 1);
+
+	velocimeter_PTD[playerid][7] = CreatePlayerTextDraw(playerid, 499.429473, 403.499969, "232");
+	PlayerTextDrawLetterSize(playerid, velocimeter_PTD[playerid][7], 0.348931, 1.308332);
+	PlayerTextDrawAlignment(playerid, velocimeter_PTD[playerid][7], 2);
+	PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][7], 54473727);
+	PlayerTextDrawSetShadow(playerid, velocimeter_PTD[playerid][7], 0);
+	PlayerTextDrawBackgroundColor(playerid, velocimeter_PTD[playerid][7], 255);
+	PlayerTextDrawFont(playerid, velocimeter_PTD[playerid][7], 2);
+	PlayerTextDrawSetProportional(playerid, velocimeter_PTD[playerid][7], 1);
 
 
 }
@@ -173,8 +211,8 @@ cmd:vmenu(playerid, params[]){
 		if(stt == PLAYER_STATE_DRIVER){
 			//PERMISSION
 			ShowPlayerDialog(playerid, DIALOG_VEHICLE, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" VEHICLE","Motor(Encender/apagar)\nLuces(Encender/apagar)\nPuertas(Abrir/cerrar)\nBaul(Abrir/cerrar)\nCapo(Abrir/cerrar)\nAlarma(Prender/apagar)\nVentanas\nToys", "Continuar", ""RED" cancelar");
-		} else ShowTDN_OOC(playerid, "No eres el conductor.");
-	} else ShowTDN_OOC(playerid, "No estas en un vehiculo.");
+		} else ShowTDN_IC(playerid, "No eres el conductor.");
+	} else ShowTDN_IC(playerid, "No estas en un vehiculo.");
 }
 cmd:crearvehiculo(playerid, params[]){
 	new mdll;
@@ -195,12 +233,13 @@ cmd:crearvehiculo(playerid, params[]){
 	    			vehicleData[index][windows][2] = CAR_WINDOW_CLOSE;
 	    			vehicleData[index][windows][3] = CAR_WINDOW_CLOSE;
 	    			vehicleData[index][vehicle_life] = 1000.0;
-	    			vehicleData[index][gas] = 30;
+	    			vehicleData[index][vehicle_vw] = GetPlayerVirtualWorld(playerid);
+	    			vehicleData[index][gas] = 40;
 	    			vehicleData[index][oil] = 50;
-	    			vehicleData[index][kilometres] = 15;
+	    			vehicleData[index][kilometres] = 77;
 	    			loadVehicle(index);
-	    		} else ShowTDN_OOC(playerid, "No se pueden crear mas vehiculos.");
+	    		} else ShowTDN_IC(playerid, "No se pueden crear mas vehiculos.");
 	    	} else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearvehiculo [modelo]");
 	    } else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /crearvehiculo [modelo]");
-    } else ShowTDN_OOC(playerid, "No tienes permisos");
+    } else ShowTDN_IC(playerid, "No tienes permisos");
 }

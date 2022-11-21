@@ -25,6 +25,7 @@ createProgressBar(playerid, barid, Float:x1, Float:y1, Float:x2, Float:y2, color
 {
 
 	barInfo[playerid][barid][bar_id] = barid;
+	barInfo[playerid][barid][bar_oldcontrol] = -1;
 	barInfo[playerid][barid][bar_min] = x1;
 	barInfo[playerid][barid][bar_x1] = x1;
 	barInfo[playerid][barid][bar_y1] = y1;
@@ -72,7 +73,7 @@ showProgressBar(playerid, barid)
 updateProgressBar(playerid, barid, Float:control)
 {
 	if(control != barInfo[playerid][barid][bar_oldcontrol])
-	{
+	{	
 		PlayerTextDrawDestroy(playerid, barInfo[playerid][barid][bar_create]);
 
 		new string[20]; format(string, 20, "%f", control);

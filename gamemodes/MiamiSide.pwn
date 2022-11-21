@@ -116,31 +116,31 @@ new QUERY_BUFFER[2048];
 // NOTIFICATIONS
 
 #define MAX_TDN_IC 5
-#define TDN_POS_X_IC 4.666673
-#define TDN_POS_Y_IC 370.829650
+#define TDN_POS_X_IC 498.492004
+#define TDN_POS_Y_IC 123.583343
 #define TDN_FONT_IC 1
-#define TDN_LETTER_SIZE_X_IC 0.250000
-#define TDN_LETTER_SIZE_Y_IC 1.000000
-#define TDN_SIZE_IC 134.333327
+#define TDN_LETTER_SIZE_X_IC 0.150000
+#define TDN_LETTER_SIZE_Y_IC 1.241436
+#define TDN_SIZE_IC 120.000000
 #define TDN_COLOR_IC 0xFFFFFFFF
-#define TDN_COLOR_BOX_IC 0x1E1E1EFF
+#define TDN_COLOR_BOX_IC 168430335
 #define TDN_PROPORTIONAL_IC 1
 #define TDN_DISTANCE_IC 5
-#define TDN_MODE_UP_IC
+#define TDN_MODE_DOWN_IC
 #define TDN_TIME_IC 4000
 #define MAX_TDN_TEXT_IC 800
 
 #include <td-notification-IC>
 
 #define MAX_TDN_OOC 5
-#define TDN_POS_X_OOC 490.000000
-#define TDN_POS_Y_OOC 180.000000
+#define TDN_POS_X_OOC 498.492004
+#define TDN_POS_Y_OOC 15.000013
 #define TDN_FONT_OOC 1
-#define TDN_LETTER_SIZE_X_OOC 0.250000
-#define TDN_LETTER_SIZE_Y_OOC 1.000000
-#define TDN_SIZE_OOC 137.000000
+#define TDN_LETTER_SIZE_X_OOC 0.150000
+#define TDN_LETTER_SIZE_Y_OOC 1.241436
+#define TDN_SIZE_OOC 120.000000
 #define TDN_COLOR_OOC 0xFFFFFFFF
-#define TDN_COLOR_BOX_OOC 0x3C3C3CFF
+#define TDN_COLOR_BOX_OOC 54473727
 #define TDN_PROPORTIONAL_OOC 1
 #define TDN_DISTANCE_OOC 5
 #define TDN_MODE_DOWN_OOC
@@ -237,7 +237,7 @@ public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
 public OnPlayerText(playerid, text[]){
 	if(characterData[playerid][p_spawn] == true){
 		new string[248];
-		format(string, 248, ""ORANGE"[ID:%i] "GREY"%s"GREY" dice: %s.", playerid, GetFullName(playerid), text);
+		format(string, 248, ""GREY"[ID:%i] "GREY"%s"GREY" dice: %s.", playerid, GetFullName(playerid), text);
 		if(inVehicle[playerid] != -1) sendDoubleLineMessageVehicle(inVehicle[playerid], playerid, 10.0, -1, string);
 		else sendDoubleLineMessage(playerid, 10.0, -1, string);
 

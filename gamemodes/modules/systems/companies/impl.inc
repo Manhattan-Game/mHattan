@@ -6,12 +6,12 @@ hook OnGameModeInit(){
 cmd:mercado(playerid, params[]){
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, 5126.4902,490.7930, 5.8064)){
 		ShowPlayerDialog(playerid, DIALOG_TRADES, DIALOG_STYLE_LIST,  ""CAPTION_DIALOG_TITLE" Mercado", "Muebles\nVehiculos", "Continuar", ""RED" cancelar");
-	} else ShowTDN_OOC(playerid, "No estas en el mercado.");
+	} else ShowTDN_IC(playerid, "No estas en el mercado.");
 }
 cmd:mercadoenvios(playerid, params[]){
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, 5117.5137,474.4400, 5.8176)){
 		showTradesToDeliveried(playerid);
-	} else ShowTDN_OOC(playerid, "No estas en mercado envios.");
+	} else ShowTDN_IC(playerid, "No estas en mercado envios.");
 }
 hook OnPlayerConnect(playerid){
 	editCompany[playerid] = -1;
@@ -86,7 +86,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				if(IsNumeric(inputtext)){
 					new indxx = editCompany[playerid];
 					companyData[indxx][jobs_skins][0] = strval(inputtext);
-					ShowTDN_OOC(playerid, "Editaste el skin HOMBRE");
+					ShowTDN_IC(playerid, "Editaste el skin HOMBRE");
 					editCompany[playerid] = -1;
 				} else ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY_CLOTHES_MALE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Ingresa un ID Skin", "Continuar", ""RED" cancelar");
 			} else editCompany[playerid] = -1;
@@ -96,7 +96,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				if(IsNumeric(inputtext)){
 					new indxx = editCompany[playerid];
 					companyData[indxx][jobs_skins][1] = strval(inputtext);
-					ShowTDN_OOC(playerid, "Editaste el skin MUJER");
+					ShowTDN_IC(playerid, "Editaste el skin MUJER");
 					editCompany[playerid] = -1;
 				} else ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY_CLOTHES_FEMALE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Ingresa un ID Skin", "Continuar", ""RED" cancelar");
 			} else editCompany[playerid] = -1;
@@ -108,7 +108,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				format(companyData[indxx][direction], 60, "%s", inputtext);
 				destroyDynamicCompany(indxx);
 				loadCompany(indxx, indxdoor);
-				ShowTDN_OOC(playerid, "Editaste la direccion.");
+				ShowTDN_IC(playerid, "Editaste la direccion.");
 				editCompany[playerid] = -1;
 			} else editCompany[playerid] = -1;
 		}
@@ -119,7 +119,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				companyData[indxx][type_company] = listitem+1;
 				destroyDynamicCompany(indxx);
 				loadCompany(indxx, indxdoor);
-				ShowTDN_OOC(playerid, "Editaste el tipo.");
+				ShowTDN_IC(playerid, "Editaste el tipo.");
 				editCompany[playerid] = -1;
 			} else editCompany[playerid] = -1;
 		}
@@ -131,7 +131,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					companyData[indxx][price] = strval(inputtext);
 					destroyDynamicCompany(indxx);
 					loadCompany(indxx, indxdoor);
-					ShowTDN_OOC(playerid, "Editaste el precio.");
+					ShowTDN_IC(playerid, "Editaste el precio.");
 					editCompany[playerid] = -1;
 				} else ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY_PRICE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Ingresa un precio(Solo numeros)", "Continuar", ""RED" cancelar");
 			} else editCompany[playerid] = -1;
@@ -172,7 +172,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 						editCompany[valueee] = editCompany[playerid];
 						editCompany[playerid] = -1;
 					}else{
-						ShowTDN_OOC(playerid, "Jugador no conectado.");
+						ShowTDN_IC(playerid, "Jugador no conectado.");
 						editCompany[playerid] = -1;
 					}
 				} else ShowPlayerDialog(playerid, DIALOG_MY_COMPANY_INVITE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" COMPANY", "Ingresa el ID que quieres invitar", "Continuar", ""RED" cancelar");
@@ -182,12 +182,12 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 			if(response){
 				new stringgg[QUERY_MEDIUM];
 				format(stringgg, sizeof(stringgg), ""GREY" El jugador %s se unio a tu empresa.", GetFullName(playerid));
-				ShowTDN_OOC(playerid, "Aceptaste la oferta.");
+				ShowTDN_IC(playerid, "Aceptaste la oferta.");
 				characterData[playerid][biz] = companyData[editCompany[playerid]][listid];
 				sendMemberMessageComapanyId(companyData[editCompany[playerid]][listid], stringgg);
 			} else {
 				editCompany[playerid] = -1;
-				ShowTDN_OOC(playerid, "Rechazaste la oferta.");
+				ShowTDN_IC(playerid, "Rechazaste la oferta.");
 			}
 		}
 		case DIALOG_MY_COMPANY_DISMISS:{
@@ -198,8 +198,8 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 							if(characterData[i][biz] == companyData[editCompany[playerid]][listid]){
 								if(listitem == e){
 									characterData[i][biz] = 0;
-									ShowTDN_OOC(i, "Te despidieron de la empresa.");
-									ShowTDN_OOC(playerid, "Despediste al jugador.");
+									ShowTDN_IC(i, "Te despidieron de la empresa.");
+									ShowTDN_IC(playerid, "Despediste al jugador.");
 									break;
 								}
 								e++;
@@ -217,10 +217,10 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 						new indx = editCompany[playerid];
 						companyData[indx][safe] += ammountss;
 						takeCharacterMoney(playerid, ammountss);
-						ShowTDN_OOC(playerid, "Depositaste dinero en la caja fuerte.");
+						ShowTDN_IC(playerid, "Depositaste dinero en la caja fuerte.");
 						editCompany[playerid] = -1;
 					}else {
-						ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+						ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
 						editCompany[playerid] = -1;
 					}
 					
@@ -235,10 +235,10 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					if(companyData[indx][safe] >= ammountss){
 						companyData[indx][safe] -= ammountss;
 						giveCharacterMoney(playerid, ammountss);
-						ShowTDN_OOC(playerid, "Retiraste dinero de la caja fuerte.");
+						ShowTDN_IC(playerid, "Retiraste dinero de la caja fuerte.");
 						editCompany[playerid] = -1;
 					}else {
-						ShowTDN_OOC(playerid, "La caja fuerte no tiene ese monto.");
+						ShowTDN_IC(playerid, "La caja fuerte no tiene ese monto.");
 						editCompany[playerid] = -1;
 					}
 					
@@ -283,16 +283,16 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 								} else removeItem(playerid, indexes[e]);
 							}
 						}
-						ShowTDN_OOC(playerid, "Crafteaste un objeto");
+						ShowTDN_IC(playerid, "Crafteaste un objeto");
 						editCompany[playerid] = -1;
 						selectCraft[playerid] = -1;
 					} else {
-						ShowTDN_OOC(playerid, "No tienes espacio en el inventario.");
+						ShowTDN_IC(playerid, "No tienes espacio en el inventario.");
 						editCompany[playerid] = -1;
 						selectCraft[playerid] = -1;
 					}
 				} else {
-					ShowTDN_OOC(playerid, "No tienes los elementos o la cantidad necesaria.");
+					ShowTDN_IC(playerid, "No tienes los elementos o la cantidad necesaria.");
 					editCompany[playerid] = -1;
 					selectCraft[playerid] = -1;
 				} 
@@ -309,16 +309,16 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					if(indexx != -1){
 						craftingData[indexx][crafting][listitem]++;
 						changeItemAmmount(playerid, isItem, inventoryInfo[playerid][ammount][isItem] - 1);
-						ShowTDN_OOC(playerid, "Añadiste un objeto al trabajo.");
+						ShowTDN_IC(playerid, "Añadiste un objeto al trabajo.");
 						editCompany[playerid] = -1;
 						craftingIsReady(playerid, indexx);
 					} else {
-						ShowTDN_OOC(playerid, "No tienes un trabajo activo.");
+						ShowTDN_IC(playerid, "No tienes un trabajo activo.");
 						editCompany[playerid] = -1;
 					}
 
 				} else {
-					ShowTDN_OOC(playerid, "No tienes este objeto en el inventario.");
+					ShowTDN_IC(playerid, "No tienes este objeto en el inventario.");
 					editCompany[playerid] = -1;
 				}
 			} else editCompany[playerid] = -1;
@@ -341,7 +341,7 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 					}
 				}
 				ShowPlayerDialog(playerid, DIALOG_CRAFT_COMPANY, DIALOG_STYLE_LIST, "Necesitas los siguientes objetos:", stringgg, "Continuar", ""RED" cancelar");
-			} else ShowTDN_OOC(playerid, "No hay nada que craftear.");
+			} else ShowTDN_IC(playerid, "No hay nada que craftear.");
 			
 		} else editCompany[playerid] = -1;
 	} 
@@ -376,7 +376,7 @@ cmd:miempresa(playerid, params[]){
 						editCompany[playerid] = e;
 						break;
 					} else {
-						ShowTDN_OOC(playerid, "No eres el dueño de esta empresa.");
+						ShowTDN_IC(playerid, "No eres el dueño de esta empresa.");
 						break;
 					}
 				}
@@ -392,14 +392,14 @@ cmd:editarempresa(playerid, params[]){
 	if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
 		if(!sscanf(params, "i", indx)){
 	    	if(indx >= 0 && indx < MAX_COMPANIES){
-	    		if(!companyData[indx][loadedd]) return ShowTDN_OOC(playerid, "La empresa no esta creada.");
+	    		if(!companyData[indx][loadedd]) return ShowTDN_IC(playerid, "La empresa no esta creada.");
 	    		editCompany[playerid] = indx;
 	    		new stringgg[QUERY_LOW];
 	    		format(stringgg, sizeof(stringgg), ""CAPTION_DIALOG_TITLE" Company ID: %i", indx);
 	    		ShowPlayerDialog(playerid, DIALOG_EDIT_COMPANY, DIALOG_STYLE_LIST, stringgg, "Editar ID puerta\nEditar ID puerta garaje\nEditar direccion\nEditar tipo\nEditar precio\nEditar posicion ropero\nEditar posicion crafteo\nEditar posicion trabajo\nEditar posicion despacho interior\nEditar posicion despacho exterior\nEdita ropa trabajo", "Continuar", ""RED" cancelar");
 	    	} else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /editarempresa [indx]");
 	    } else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /editarempresa [indx]");
-    } else ShowTDN_OOC(playerid, "No tienes permisos");
+    } else ShowTDN_IC(playerid, "No tienes permisos");
     return 1;
 }
 cmd:cambiarme(playerid, params[]){
@@ -414,7 +414,7 @@ cmd:cambiarme(playerid, params[]){
 						SetPlayerSkin(playerid, companyData[i][jobs_skins][0]);
 						} else SetPlayerSkin(playerid, companyData[i][jobs_skins][1]);
 					} else SetPlayerSkin(playerid, characterData[playerid][skin]);
-					ShowTDN_OOC(playerid, "Te cambiaste de ropa.");
+					ShowTDN_IC(playerid, "Te cambiaste de ropa.");
 					break;
 				}
 			}
@@ -436,7 +436,7 @@ cmd:craftear(playerid, params[]){
 						showCraftMenu(playerid, i);
 						break;
 					}else {
-						ShowTDN_OOC(playerid, "No tienes puesta la ropa de trabajo.");
+						ShowTDN_IC(playerid, "No tienes puesta la ropa de trabajo.");
 						break;
 					}
 				}
@@ -465,7 +465,7 @@ cmd:trabajar(playerid, params[]){
 						} else showCraftProductMenu(playerid, i);
 						break;
 					}else {
-						ShowTDN_OOC(playerid, "No tienes puesta la ropa de trabajo.");
+						ShowTDN_IC(playerid, "No tienes puesta la ropa de trabajo.");
 						break;
 					}
 				}

@@ -151,7 +151,7 @@ public loadCharacter(playerid){
                 setArmor(playerid, characterData[playerid][armor]);
                 new string[128];
                 format(string, 128, "Gracias por confiar %s!.", GetFullName(playerid));
-                ShowTDN_OOC(playerid, string);
+                ShowTDN_IC(playerid, string);
                 ApplyAnimation(playerid, "BOMBER","BOM_Plant_Loop", 4.0,0,0,0,0,0);
 
                 characterData[playerid][viewTextdraw] = -1;
@@ -221,13 +221,13 @@ public timerNeds(playerid){
             updateBarFatigue(playerid);
         }
         if(characterData[playerid][hungry] > 80.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
+            ShowTDN_IC(playerid, "Mira tus necesidades");
         } else if(characterData[playerid][thirst] > 80.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
+            ShowTDN_IC(playerid, "Mira tus necesidades");
         } else if(characterData[playerid][urine] > 80.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
+            ShowTDN_IC(playerid, "Mira tus necesidades");
         } else if(characterData[playerid][fatigue] > 80.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
+            ShowTDN_IC(playerid, "Mira tus necesidades");
         }
     }
 }

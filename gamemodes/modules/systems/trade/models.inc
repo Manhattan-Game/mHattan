@@ -89,8 +89,8 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 								if(tDD[0] != -1){
 									takeCharacterMoney(playerid, tradeData[i][price]);
 									if(addCompanieSafe(i)) toDeliveriedTrade(i, tDD[0], tDD[1]);
-								} else ShowTDN_OOC(playerid, "No tienes este producto u tipo de negocio.");
-							} else ShowTDN_OOC(playerid, "No tienes dinero suficiente.");
+								} else ShowTDN_IC(playerid, "No tienes este producto u tipo de negocio.");
+							} else ShowTDN_IC(playerid, "No tienes dinero suficiente.");
 							break;
 						}
 						e++;
