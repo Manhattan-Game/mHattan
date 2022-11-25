@@ -1,4 +1,4 @@
-[19:27:15] [plugins/mysql] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
-[19:27:15] [plugins/mysql] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
-[19:27:15] [plugins/mysql] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
-[19:27:15] [plugins/mysql] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:27:24] [plugins/mysql] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:27:24] [plugins/mysql] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:27:24] [plugins/mysql] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:27:24] [plugins/mysql] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist

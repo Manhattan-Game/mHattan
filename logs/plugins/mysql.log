@@ -318,3 +318,194 @@
 [19:27:15] [WARNING] mysql_connect: no password specified
 [19:27:15] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
 [19:27:15] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:24:22] [WARNING] mysql_connect: no password specified
+[18:24:22] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:24:22] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:24:22] [WARNING] mysql_connect: no password specified
+[18:24:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:24:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:29:49] [WARNING] mysql_connect: no password specified
+[18:29:49] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:29:49] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:29:49] [WARNING] mysql_connect: no password specified
+[18:29:49] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:29:49] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:33:47] [WARNING] mysql_connect: no password specified
+[18:33:47] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:33:47] [WARNING] mysql_connect: no password specified
+[18:33:47] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:33:47] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:33:47] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:54:04] [WARNING] mysql_connect: no password specified
+[18:54:04] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:54:04] [WARNING] mysql_connect: no password specified
+[18:54:04] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:54:04] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:54:04] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:21:56] [WARNING] mysql_connect: no password specified
+[19:21:56] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:21:56] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:21:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:21:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:21:56] [WARNING] mysql_connect: no password specified
+[19:24:31] [WARNING] mysql_connect: no password specified
+[19:24:31] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:24:31] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:24:31] [WARNING] mysql_connect: no password specified
+[19:24:31] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:24:31] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:28:53] [WARNING] mysql_connect: no password specified
+[19:28:53] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:28:53] [WARNING] mysql_connect: no password specified
+[19:28:53] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:28:53] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:28:53] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:38:50] [WARNING] mysql_connect: no password specified
+[19:38:50] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:38:50] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:38:50] [WARNING] mysql_connect: no password specified
+[19:38:50] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:38:50] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:23:30] [WARNING] mysql_connect: no password specified
+[16:23:30] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:23:30] [WARNING] mysql_connect: no password specified
+[16:23:30] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:23:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:23:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:39:31] [WARNING] mysql_connect: no password specified
+[16:39:31] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:39:31] [WARNING] mysql_connect: no password specified
+[16:39:31] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:39:31] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:39:31] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:54:58] [WARNING] mysql_connect: no password specified
+[16:54:58] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:54:58] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:54:58] [WARNING] mysql_connect: no password specified
+[16:54:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:54:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:59:41] [WARNING] mysql_connect: no password specified
+[16:59:41] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:59:41] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:59:41] [WARNING] mysql_connect: no password specified
+[16:59:41] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:59:41] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:08:04] [WARNING] mysql_connect: no password specified
+[17:08:04] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:08:04] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:08:04] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:08:04] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:08:04] [WARNING] mysql_connect: no password specified
+[17:15:05] [WARNING] mysql_connect: no password specified
+[17:15:05] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:15:05] [WARNING] mysql_connect: no password specified
+[17:15:05] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:15:05] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:15:05] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:23:18] [WARNING] mysql_connect: no password specified
+[17:23:18] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:23:18] [WARNING] mysql_connect: no password specified
+[17:23:18] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:23:18] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:23:18] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:27:55] [WARNING] mysql_connect: no password specified
+[17:27:55] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:27:55] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:27:55] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:27:55] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:27:55] [WARNING] mysql_connect: no password specified
+[17:35:44] [WARNING] mysql_connect: no password specified
+[17:35:44] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:35:44] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:35:44] [WARNING] mysql_connect: no password specified
+[17:35:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:35:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:40:37] [WARNING] mysql_connect: no password specified
+[17:40:37] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:40:37] [WARNING] mysql_connect: no password specified
+[17:40:37] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:40:37] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:40:37] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:44:19] [WARNING] mysql_connect: no password specified
+[17:44:19] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:44:19] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:44:19] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:44:19] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:44:19] [WARNING] mysql_connect: no password specified
+[17:53:56] [WARNING] mysql_connect: no password specified
+[17:53:56] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:53:56] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:53:56] [WARNING] mysql_connect: no password specified
+[17:53:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:53:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:05:17] [WARNING] mysql_connect: no password specified
+[18:05:17] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:05:17] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:05:17] [WARNING] mysql_connect: no password specified
+[18:05:17] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:05:17] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:09:22] [WARNING] mysql_connect: no password specified
+[18:09:22] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:09:22] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:09:22] [WARNING] mysql_connect: no password specified
+[18:09:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:09:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:12:30] [WARNING] mysql_connect: no password specified
+[18:12:30] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:12:30] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:12:30] [WARNING] mysql_connect: no password specified
+[18:12:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:12:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:20:10] [WARNING] mysql_connect: no password specified
+[18:20:10] [WARNING] mysql_connect: no password specified
+[18:20:10] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:20:10] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:20:10] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:20:10] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:42:25] [WARNING] mysql_connect: no password specified
+[17:42:25] [WARNING] mysql_connect: no password specified
+[17:42:25] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:42:25] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:42:25] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:42:25] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:48:59] [WARNING] mysql_connect: no password specified
+[17:48:59] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:48:59] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:48:59] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:48:59] [WARNING] mysql_connect: no password specified
+[17:48:59] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:32:14] [WARNING] mysql_connect: no password specified
+[18:32:14] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:32:14] [WARNING] mysql_connect: no password specified
+[18:32:14] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:32:14] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:32:14] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:38:06] [WARNING] mysql_connect: no password specified
+[18:38:06] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:38:06] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:38:06] [WARNING] mysql_connect: no password specified
+[18:38:06] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:59:58] [WARNING] mysql_connect: no password specified
+[18:59:58] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:59:58] [WARNING] mysql_connect: no password specified
+[18:59:58] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:59:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:59:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:07:07] [WARNING] mysql_connect: no password specified
+[19:07:07] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:07:07] [WARNING] mysql_connect: no password specified
+[19:07:07] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:07:07] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:07:07] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:13:51] [WARNING] mysql_connect: no password specified
+[19:13:51] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:13:51] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:13:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:13:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:13:51] [WARNING] mysql_connect: no password specified
+[19:27:24] [WARNING] mysql_connect: no password specified
+[19:27:24] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:27:24] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:27:24] [WARNING] mysql_connect: no password specified
+[19:27:24] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:27:24] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
