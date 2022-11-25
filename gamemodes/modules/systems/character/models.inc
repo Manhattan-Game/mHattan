@@ -46,8 +46,8 @@ enum _pi@nfo
 };
 new characterData[MAX_PLAYERS][_pi@nfo];
 
-new Text:character_TD[1];
-new PlayerText:character_PTD[MAX_PLAYERS][9];
+new Text:character_TD[4];
+new PlayerText:character_PTD[MAX_PLAYERS][6];
 
 new Text:createCharacter_TD[2];
 new PlayerText:createCharacter_PTD[MAX_PLAYERS][4];

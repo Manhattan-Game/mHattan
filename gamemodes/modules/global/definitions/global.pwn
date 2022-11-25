@@ -1,4 +1,4 @@
-#define CAPTION_TEXT_TITLE ""GREY" MAINLAND :"
+#define CAPTION_TEXT_TITLE ""SERVER_PRIMARY" CENTRAL PARK :"
 
 
 // ADM
@@ -125,7 +125,10 @@ public unfreezeUser(playerid)
 	KillTimer(freezeuser[playerid]);
 	return 1;
 }
-
+sendChatLines(playerid, lines){
+	for(new i; i<lines; i++)
+		SendClientMessage(playerid, -1, ""SERVER_PRIMARY"");
+}
 _@IsNumeric(const string[]){
     for(new i = 0, j = strlen(string); i < j; i++){
         if(string[i] > '9' || string[i] < '0') return 0;

@@ -24,6 +24,15 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 						}
 						ShowPlayerDialog(playerid, DIALOG_SELECT_MARKET_SELL_MARKETS, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", stringfinal, "Comprar", ""RED" cancelar");
 					}
+					case 2: {
+						for(new i;i<MAX_COMPANIES;i++){
+							if(companyData[i][listid] > 0 && companyData[i][sale] == HOUSE_STATE_ON_SALE){
+								format(stringConcat, sizeof(stringConcat), "Direccion: %s, Precio: "GREEN"$%i \n", companyData[i][direction], companyData[i][price]);
+								strcat(stringfinal, stringConcat);
+							}
+						}
+						ShowPlayerDialog(playerid, DIALOG_SELECT_MARKET_SELL_COMPANIES, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", stringfinal, "Comprar", ""RED" cancelar");
+					}
 				}
 			}else editMarket[playerid] = -1;
 		}
@@ -37,7 +46,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 								sellHouseCharacterId(playerid, i);
 								break;
 							} else{
-								ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+								ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
 								break;
 							}
 						}
@@ -56,7 +65,26 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 								sellMarketCharacterId(playerid, i);
 								break;
 							} else{
-								ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+								ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
+								break;
+							}
+						}
+						e++;
+					}
+				}
+			} else editMarket[playerid] = -1;
+		}
+		case DIALOG_SELECT_MARKET_SELL_COMPANIES: {
+			if(response){
+				for(new i, e;i<MAX_MARKETS;i++){
+					if(companyData[i][listid] > 0 && companyData[i][sale] == HOUSE_STATE_ON_SALE){
+						if(e == listitem){
+							if(characterData[playerid][money] >= companyData[i][price]){
+								marketData[editMarket[playerid]][safe] += (companyData[e][price] / 12);
+								sellCompanieCharacterId(playerid, i);
+								break;
+							} else{
+								ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
 								break;
 							}
 						}

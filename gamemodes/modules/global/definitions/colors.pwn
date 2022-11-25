@@ -12,3 +12,5 @@
 #define LIME "{00FF40}"
 #define ROL_ME "{993366}"
 #define ROL_DO "{99cc00}"
+
+#define SERVER_PRIMARY "{033F33}"

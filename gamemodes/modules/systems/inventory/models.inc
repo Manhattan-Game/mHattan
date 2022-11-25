@@ -1,11 +1,13 @@
 #define TYPE_NONE 0
 #define TYPE_GUNS 1
 #define TYPE_FOOD 2
+#define TYPE_CRAFTEABLE 3
+#define TYPE_PRIMARY 4
 
 
 #define ROOTS_TYPE_GUN 0.0, 0.0, 0.0, 1.3
-new Text:inventarioTD;
-new PlayerText:inventarioTDD[MAX_PLAYERS][13];
+new Text:inventario_TD[9];
+new PlayerText:inventario_PTD[MAX_PLAYERS][10];
 
 enum inventoryModels
 {
@@ -14,12 +16,30 @@ enum inventoryModels
 	type,
 	Float:root[4],
 	name[24],
-	description[64]
+	description[64],
+	crafteableItems[3],
+	crafteableAmmounts[3],
+	bool:saveable
 };
 new inventoryModelsData[][inventoryModels] = {
 	{0, TEXTDRAWS_MODEL_NONE, TYPE_NONE, {0.0, 0.0, 0.0, 1.5}, "Vacio", ""},
 
-	{1, 346, TYPE_GUNS, {ROOTS_TYPE_GUN}, "9mm-comun", "Pistola_9mm_comun"},
+	{1, 1510, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Bloque de hierro", "Bloque de hierro", {-1, -1, -1}, {-1, -1, -1}, true},
+	{2, 1104, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Tubos de escape", "Tubos de escape", {1, -1, -1}, {1, -1, -1}, false},
+	{3, 2006, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Caucho", "Caucho", {-1, -1, -1}, {-1, -1, -1}, true},
+	{4, 3067, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Cuadro", "Cuadro", {1, -1, -1}, {3, -1, -1}, false},
+	{5, 1013, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Faros", "Faros", {6, 3, -1}, {1, 1, -1}, false},
+	{6, 18648, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Lampara", "Lampara", {-1, -1, -1}, {-1, -1, -1}, true},
+	{7, 1081, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Rueda", "Rueda", {3, 1, -1}, {1, 1, -1}, false},
+	{8, 13667, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Pistón", "Pistón", {1, -1, -1}, {1, -1, -1}, true},
+
+	{9, 19917, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Motor Calle", "Motor Calle", {8, 1, -1}, {4, 1, -1}, false},
+	{10, 19917, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Motor Roadsport", "Motor Roadsport", {8, 1, -1}, {6, 1, -1}, false},
+	{11, 19917, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Motor Sport", "Motor Sport", {8, 1, -1}, {8, 2, -1}, false}
+
+
+
+	/*{1, 346, TYPE_GUNS, {ROOTS_TYPE_GUN}, "9mm-comun", "Pistola_9mm_comun"},
 	{2, 347, TYPE_GUNS, {ROOTS_TYPE_GUN}, "9mm-silenciada", "Pistola_9mm_Silenciada"},
 	{3, 348, TYPE_GUNS, {ROOTS_TYPE_GUN}, "Desert-Eagle", "Pistola_Desert-eagle"},
 	{4, 349, TYPE_GUNS, {ROOTS_TYPE_GUN}, "Escopeta", "Escopeta-Comun"},
@@ -31,7 +51,7 @@ new inventoryModelsData[][inventoryModels] = {
 	{10, 358, TYPE_GUNS, {ROOTS_TYPE_GUN}, "Rifle_Francotirador", "Rifle_francotirador_con_mira"}
 
 
-	/*{11, 1210, {0.0, 0.0, 0.0, 0.0}, "Maletin", "Maletin_con_dinero"},
+	{11, 1210, {0.0, 0.0, 0.0, 0.0}, "Maletin", "Maletin_con_dinero"},
 	{12, 19054, {0.0, 0.0, 0.0, 1.0}, "Regalo", "Regalo_de_miamiside"},
 
 	{13, 19942, {0.0, 0.0, 0.0, 1.0}, "Radio-Comunicador", "Radio-Comunicador-con-frecuencias"},

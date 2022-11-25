@@ -584,11 +584,11 @@ _FIXES_FUNC_PAWNDOC(CONST_PAWNDOC(const symbol[] = 0));
  * attached to it.  This seems to be the best way to prevent the documentation
  * from appearing in XML (<c>-r</c>) output - even conditional compilation
  * doesn't work on comments.  Used internally as <c>_FIXES_HIDE_PAWNDOC</c>.
- * <p />
+ * <p/>
  * The input should have some unique name, so when using it within an ifdef
  * block, don't use the same name as the tested symbol, because the the
  * replacement in question will be applied to the hidden variable as well.
- * <p />
+ * <p/>
  * This should also be a globally unique symbol name, because this only works
  * with `<c>const</c>`, not `<c>static const</c>`.
  * </remarks>
@@ -10614,13 +10614,13 @@ _FIXES_STATIC_STOCK
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
-	 * <p />
+	 * <p/>
 	 * <ul>
 	 * <li>P = Previous.</li>
 	 * <li>L = Lower.</li>
 	 * <li>U = Upper.</li>
 	 * </ul>
-	 * <p />
+	 * <p/>
 	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
 	 * array takes up more space because it needs the array header, and takes
 	 * more code to access, because it needs to look up offsets.
@@ -10638,13 +10638,13 @@ _FIXES_STATIC_STOCK
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
-	 * <p />
+	 * <p/>
 	 * <ul>
 	 * <li>P = Previous.</li>
 	 * <li>L = Lower.</li>
 	 * <li>U = Upper.</li>
 	 * </ul>
-	 * <p />
+	 * <p/>
 	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
 	 * array takes up more space because it needs the array header, and takes
 	 * more code to access, because it needs to look up offsets.
@@ -10662,13 +10662,13 @@ _FIXES_STATIC_STOCK
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
-	 * <p />
+	 * <p/>
 	 * <ul>
 	 * <li>P = Previous.</li>
 	 * <li>L = Lower.</li>
 	 * <li>U = Upper.</li>
 	 * </ul>
-	 * <p />
+	 * <p/>
 	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
 	 * array takes up more space because it needs the array header, and takes
 	 * more code to access, because it needs to look up offsets.
@@ -10686,13 +10686,13 @@ _FIXES_STATIC_STOCK
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
-	 * <p />
+	 * <p/>
 	 * <ul>
 	 * <li>P = Previous.</li>
 	 * <li>L = Lower.</li>
 	 * <li>U = Upper.</li>
 	 * </ul>
-	 * <p />
+	 * <p/>
 	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
 	 * array takes up more space because it needs the array header, and takes
 	 * more code to access, because it needs to look up offsets.
@@ -10710,13 +10710,13 @@ _FIXES_STATIC_STOCK
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
-	 * <p />
+	 * <p/>
 	 * <ul>
 	 * <li>P = Previous.</li>
 	 * <li>L = Lower.</li>
 	 * <li>U = Upper.</li>
 	 * </ul>
-	 * <p />
+	 * <p/>
 	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
 	 * array takes up more space because it needs the array header, and takes
 	 * more code to access, because it needs to look up offsets.
@@ -10734,13 +10734,13 @@ _FIXES_STATIC_STOCK
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
-	 * <p />
+	 * <p/>
 	 * <ul>
 	 * <li>P = Previous.</li>
 	 * <li>L = Lower.</li>
 	 * <li>U = Upper.</li>
 	 * </ul>
-	 * <p />
+	 * <p/>
 	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
 	 * array takes up more space because it needs the array header, and takes
 	 * more code to access, because it needs to look up offsets.
@@ -10758,13 +10758,13 @@ _FIXES_STATIC_STOCK
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
-	 * <p />
+	 * <p/>
 	 * <ul>
 	 * <li>P = Previous.</li>
 	 * <li>L = Lower.</li>
 	 * <li>U = Upper.</li>
 	 * </ul>
-	 * <p />
+	 * <p/>
 	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
 	 * array takes up more space because it needs the array header, and takes
 	 * more code to access, because it needs to look up offsets.
@@ -15706,7 +15706,6 @@ static stock _FIXES_CheckMaxPlayers()
 					Text:t;
 
 			#if FIX_GameTextStyles
-
 				// Global style 7 (vehicle name).
 				t = FIXES_gsGTStyle[7] = TextDrawCreate__(608.0, 344.0, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 1.0, 3.0),
@@ -15832,7 +15831,6 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000080),
 				TextDrawTextSize__(t, 230.5, 200.0);
-
 			#endif
 
 				// Global style 0.
@@ -15939,7 +15937,6 @@ static stock _FIXES_CheckMaxPlayers()
 					PlayerText:t;
 
 			#if FIX_GameTextStyles
-
 				// Global style 7 (playerid, vehicle name).
 				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw__(playerid, 608.0, 344.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 1.0, 3.0),
@@ -16065,7 +16062,6 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000080),
 				PlayerTextDrawTextSize__(playerid, t, 230.5, 200.0);
-
 			#endif
 
 				// Global style 0.
@@ -16714,8 +16710,9 @@ static stock _FIXES_CountFilterscripts()
 		// Reset the frame header.
 
 		// Adjust the parameter count.
+		const minus8 = -8;
 		#emit LOAD.S.pri       8
-		#emit ADD.C            0xFFFFFFF8
+		#emit ADD.C            minus8
 		#emit STOR.S.pri       16
 
 		// Move the return address.
@@ -24029,6 +24026,7 @@ native BAD_memcpy(dest[], const source[], index = 0, numbytes, maxlength = sizeo
 			if (numbytes <= _FIXES_CELLBYTES)
 			{
 				// Silly case.
+				small[1] = dest[0];
 				if (memcpy(small, source[index], _FIXES_CELLBYTES - fraction, numbytes + fraction, 2))
 				{
 					return
@@ -24039,7 +24037,7 @@ native BAD_memcpy(dest[], const source[], index = 0, numbytes, maxlength = sizeo
 			else
 			{
 				if (memcpy(small, source[index], _FIXES_CELLBYTES - fraction, _FIXES_CELLBYTES + fraction, 2) &&
-					memcpy(dest, source[index + 1], _FIXES_CELLBYTES - fraction, numbytes - _FIXES_CELLBYTES + fraction, 2))
+					memcpy(dest, source[index + 1], _FIXES_CELLBYTES - fraction, numbytes - _FIXES_CELLBYTES + fraction, numbytes))
 				{
 					return
 						dest[0] = small[1],
@@ -25638,7 +25636,7 @@ native bool:BAD_ispacked(const string[]) = ispacked;
 	// function with the same name as a `native` for one compiler pass.  It also
 	// doesn't seem to appear in the compiled output, which was an effect I
 	// tried to create for a long time then gave up on (see
-	// <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ()</c> for my alternative work-around).
+	// <c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz()</c> for my alternative work-around).
 	_FIXES_FUNC_PAWNDOC(bool:ispacked(const packedString[]));
 	#if _FIXES_SAMP
 		#define _ALS_ispacked
@@ -27243,15 +27241,15 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 		generated documentation always.  This is the best way to hide them.  You
 		still see one function (this one), but at least the documentation for
 		this one function can explain why it exists.
-		<p />
-		This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> and starts the internal
+		<p/>
+		This is <c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> and starts the internal
 		functions block.  This is the last possible name before the first
 		character is <c>_</c> when the functions are sorted lexicographically
-		(alphabetically).  There's also <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>
+		(alphabetically).  There's also <c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c>
 		that starts the variables block; they could have the same name if they
 		were not declared in the same scope, but they might not always be
 		separately defined.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		here and ended by a later variable.
 	</remarks>
@@ -27259,7 +27257,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	<!--
 */
 
-static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
+static stock Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 
 /**
 	<library>fixes.inc</library>
@@ -27271,9 +27269,9 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
 		common pattern used throughout fixes.inc (and most of programming).
 		Unfortunately these weirdly named internal functions appear in the
 		generated documentation always.  This is the best way to hide them.  You
-		still see one function (<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c>), but at
+		still see one function (<c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c>), but at
 		least the documentation for that can explain why it exists.
-		<p />
+		<p/>
 		This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> and ends the internal
 		functions block.  This is the last possible name before the first
 		character is no longer <c>_</c> when the functions are sorted
@@ -27281,7 +27279,7 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
 		<c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> that ends the variables block;
 		they could have the same name if they were not declared in the same
 		scope, but they might not always be separately defined.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		earlier and ended here.
 	</remarks>
@@ -27303,15 +27301,15 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 		generated documentation always.  This is the best way to hide them.  You
 		still see one variable (this one), but at least the documentation for
 		this one variable can explain why it exists.
-		<p />
-		This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c> and starts the internal
+		<p/>
+		This is <c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> and starts the internal
 		variables block.  This is the last possible name, except one, before the
 		first character is <c>_</c> when the functions are sorted
 		lexicographically (alphabetically).  There's also
-		<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> that starts the functions block;
+		<c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> that starts the functions block;
 		they could have the same name if they were not declared in the same
 		scope, but they might not always be separately defined.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		here and ended by a later variable.
 	</remarks>
@@ -27319,7 +27317,7 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 	<!--
 */
 
-static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
+static stock Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 
 /**
 	<library>fixes.inc</library>
@@ -27331,9 +27329,9 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 		common pattern used throughout fixes.inc (and most of programming).
 		Unfortunately these weirdly named internal variables appear in the
 		generated documentation always.  This is the best way to hide them.  You
-		still see one variable (<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>), but at
+		still see one variable (<c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c>), but at
 		least the documentation for that can explain why it exists.
-		<p />
+		<p/>
 		This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> and ends the internal
 		variables block.  This is the last possible name before the first
 		character is no longer <c>_</c>, except for one, when the functions are
@@ -27341,7 +27339,7 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 		<c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> that ends the functions block;
 		they could have the same name if they were not declared in the same
 		scope, but they might not always be separately defined.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		earlier and ended here.
 	</remarks>
@@ -27365,7 +27363,7 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 		an external setting and needs its documentation exposing, unless the
 		library is built with <c>FIXES_NoPawndoc</c>, in which case these are
 		hidden as well.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		here and ended by a later variable.
 	</remarks>
@@ -27393,7 +27391,7 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 		an external setting and needs its documentation exposing, unless the
 		library is built with <c>FIXES_NoPawndoc</c>, in which case these are
 		hidden as well.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		earlier and ended here.
 	</remarks>
@@ -27414,7 +27412,7 @@ static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
 		This variable only exists to hide other variables.  It starts a massive
 		comment block in the pawndoc XML output that hides all fixes.inc
 		options, i.e. those that start with <c>FIX_</c>.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		here and ended by a later variable.
 	</remarks>
@@ -27431,7 +27429,7 @@ static stock FIX_;
 		This variable only exists to hide other variables.  It ends a massive
 		comment block in the pawndoc XML output that hides all fixes.inc
 		options, i.e. those that start with <c>FIX_</c>.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		earlier and ended here.
 	</remarks>
@@ -27448,7 +27446,7 @@ static stock FIX_zzzzzzzzzzzzzzzzzzzzzzzzzzy;
 		This enum only exists to hide other enums.  It starts a massive comment
 		block in the pawndoc XML output that hides all fixes.inc enums when the
 		library is built with <c>FIXES_NoPawndoc</c>.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		here and ended by a later variable.
 	</remarks>
@@ -27473,7 +27471,7 @@ _FIXES_ENUM_PAWNDOC(e_FIXES);
 		This enum only exists to hide other enums.  It ends a massive comment
 		block in the pawndoc XML output that hides all fixes.inc enums when the
 		library is built with <c>FIXES_NoPawndoc</c>.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		earlier and ended here.
 	</remarks>
@@ -27499,7 +27497,7 @@ _FIXES_ENUM_PAWNDOC(e_FIXESzzzzzzzzzzzzzzzzzzzzzz);
 		This constant only exists to hide other consts.  It ends a massive
 		comment block in the pawndoc XML output that hides all fixes.inc
 		consts when the library is built with <c>FIXES_NoPawndoc</c>.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		earlier and ended here.
 	</remarks>
@@ -27517,7 +27515,7 @@ const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESz
 		comment block in the pawndoc XML output that hides all fixes.inc
 		functions when the library is built with <c>FIXES_NoPawndoc</c>.  It is
 		the last valid function name where they start with <c>FIXES_</c>.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		earlier and ended here.
 	</remarks>
@@ -27534,7 +27532,7 @@ static stock e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:FIXES_zzzzzzzzzzzzzzzzzzzzzzzzz() {
 		This constant only exists to hide other consts.  It starts a massive
 		comment block in the pawndoc XML output that hides all fixes.inc
 		consts when the library is built with <c>FIXES_NoPawndoc</c>.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		here and ended by a later variable.
 	</remarks>
@@ -27552,7 +27550,7 @@ const e_FIXES:e_FIXES_ = e_FIXES;
 		comment block in the pawndoc XML output that hides all fixes.inc
 		functions when the library is built with <c>FIXES_NoPawndoc</c>.  It is
 		the last valid function name before they start with <c>FIXES_</c>.
-		<p />
+		<p/>
 		Note that the actual hiding itself is done by an XML comment started
 		here and ended by a later variable.
 	</remarks>

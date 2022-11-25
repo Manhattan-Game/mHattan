@@ -1,472 +1,511 @@
-[20:06:20] [WARNING] mysql_connect: no password specified
-[20:07:50] [WARNING] mysql_connect: no password specified
-[20:10:09] [WARNING] mysql_connect: no password specified
-[20:12:32] [WARNING] mysql_connect: no password specified
-[20:15:16] [WARNING] mysql_connect: no password specified
-[20:20:11] [WARNING] mysql_connect: no password specified
-[20:24:25] [WARNING] mysql_connect: no password specified
-[20:25:30] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5512.317871', `enterY`='2029.377563', `enterZ`='142.256683', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='5513.000000', `doorCoords2`='2027.960815', `doorCoords3`='141.258377', `doorCoords4`='1.000000', `doorCoords5`='1.000000', `doorCoords6`='86.900078', `movedoorCoords1`='5513.000000', `movedoorCoords2`='2027.960815', `movedoorCoords3`='141.258377', `movedoorCoords4`='1.000000', `movedoorCoords5`='1.000000', `movedoorCoords6`='12.700167', `dorVw`='0', `exitVw`='0', `doorState`='0', `doorType`='1' WHERE listid = '4' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[20:27:06] [WARNING] mysql_connect: no password specified
-[20:27:13] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5512.319824', `enterY`='2029.380005', `enterZ`='2029.380005', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='0.000000', `doorCoords2`='0.000000', `doorCoords3`='0.000000', `doorCoords4`='0.000000', `doorCoords5`='0.000000', `doorCoords6`='0.000000', `movedoorCoords1`='0.000000', `movedoorCoords2`='0.000000', `movedoorCoords3`='0.000000', `movedoorCoords4`='0.000000', `movedoorCoords5`='0.000000', `movedoorCoords6`='0.000000', `dorVw`='0', `exitVw`='0', `doorState`='0', `doorType`='1' WHERE listid = '4' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[20:32:16] [WARNING] mysql_connect: no password specified
-[20:33:12] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5512.319824', `enterY`='2029.380005', `enterZ`='2029.380005', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='0.000000', `doorCoords2`='0.000000', `doorCoords3`='0.000000', `doorCoords4`='0.000000', `doorCoords5`='0.000000', `doorCoords6`='0.000000', `movedoorCoords1`='0.000000', `movedoorCoords2`='0.000000', `movedoorCoords3`='0.000000', `movedoorCoords4`='0.000000', `movedoorCoords5`='0.000000', `movedoorCoords6`='0.000000', `dorVw`='0', `exitVw`='0', `doorState`='0', `doorType`='1' WHERE listid = '4' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[20:33:12] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5513.839844', `enterY`='2027.561768', `enterZ`='142.272644', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='5513.839844', `doorCoords2`='2027.561768', `doorCoords3`='141.272644', `doorCoords4`='1.000000', `doorCoords5`='1.000000', `doorCoords6`='1.000000', `movedoorCoords1`='5513.839844', `movedoorCoords2`='2027.561768', `movedoorCoords3`='141.272644', `movedoorCoords4`='1.000000', `movedoorCoords5`='1.000000', `movedoorCoords6`='-82.999969', `dorVw`='0', `exitVw`='0', `doorState`='0', `doorType`='1' WHERE listid = '5' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[20:39:21] [WARNING] mysql_connect: no password specified
-[20:40:27] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5514.932617', `enterY`='2027.948486', `enterZ`='142.272644', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='5513.029785', `doorCoords2`='2027.967041', `doorCoords3`='141.294830', `doorCoords4`='1.000000', `doorCoords5`='1.000000', `doorCoords6`='89.800026', `movedoorCoords1`='5513.029785', `movedoorCoords2`='2027.967041', `movedoorCoords3`='141.294830', `movedoorCoords4`='1.000000', `movedoorCoords5`='1.000000', `movedoorCoords6`='2.800082', `dorVw`='0', `exitVw`='0', `doorState`='0', `doorType`='1' WHERE listid = '6' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[21:29:03] [WARNING] mysql_connect: no password specified
-[21:31:38] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5511.826172', `enterY`='2028.160767', `enterZ`='142.256683', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='5512.442383', `doorCoords2`='2028.992188', `doorCoords3`='141.256683', `doorCoords4`='1.000000', `doorCoords5`='1.000000', `doorCoords6`='1.000000', `movedoorCoords1`='5512.442383', `movedoorCoords2`='2028.992188', `movedoorCoords3`='141.256683', `movedoorCoords4`='1.000000', `movedoorCoords5`='1.000000', `movedoorCoords6`='84.300018', `dorVw`='0', `exitVw`='0', `doorState`='1', `doorType`='1' WHERE listid = '7' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[21:32:25] [WARNING] mysql_connect: no password specified
-[21:33:15] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5512.140137', `enterY`='2028.729980', `enterZ`='2028.729980', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='0.000000', `doorCoords2`='0.000000', `doorCoords3`='0.000000', `doorCoords4`='0.000000', `doorCoords5`='0.000000', `doorCoords6`='0.000000', `movedoorCoords1`='0.000000', `movedoorCoords2`='0.000000', `movedoorCoords3`='0.000000', `movedoorCoords4`='0.000000', `movedoorCoords5`='0.000000', `movedoorCoords6`='0.000000', `dorVw`='0', `exitVw`='0', `doorState`='0', `doorType`='1' WHERE listid = '7' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[21:33:15] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5512.858398', `enterY`='2028.803833', `enterZ`='142.256683', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='5512.601563', `doorCoords2`='2028.639648', `doorCoords3`='141.256683', `doorCoords4`='1.000000', `doorCoords5`='1.000000', `doorCoords6`='1.000000', `movedoorCoords1`='5512.601563', `movedoorCoords2`='2028.639648', `movedoorCoords3`='141.256683', `movedoorCoords4`='1.000000', `movedoorCoords5`='1.000000', `movedoorCoords6`='-120.800003', `dorVw`='0', `exitVw`='0', `doorState`='1', `doorType`='1' WHERE listid = '8' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[21:35:11] [WARNING] mysql_connect: no password specified
-[21:36:53] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5512.771973', `enterY`='2029.127075', `enterZ`='142.256683', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='5513.008789', `doorCoords2`='2028.120728', `doorCoords3`='141.256058', `doorCoords4`='1.000000', `doorCoords5`='1.000000', `doorCoords6`='88.199913', `movedoorCoords1`='5513.008789', `movedoorCoords2`='2028.120728', `movedoorCoords3`='141.256058', `movedoorCoords4`='1.000000', `movedoorCoords5`='1.000000', `movedoorCoords6`='3.099929', `dorVw`='0', `exitVw`='0', `doorState`='1', `doorType`='1' WHERE listid = '9' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[21:37:45] [WARNING] mysql_connect: no password specified
-[21:38:34] [ERROR] error #1054 while executing query "UPDATE doors SET `characterid`='1', `enterX`='5512.433594', `enterY`='2028.576294', `enterZ`='142.256683', `exitX`='0.000000', `exitY`='0.000000', `exitZ`='0.000000', `enterState`='1', `doorModel`='1557', `doorCoords1`='5512.433594', `doorCoords2`='2028.576294', `doorCoords3`='141.256683', `doorCoords4`='1.000000', `doorCoords5`='1.000000', `doorCoords6`='1.000000', `movedoorCoords1`='5512.433594', `movedoorCoords2`='2028.576294', `movedoorCoords3`='141.256683', `movedoorCoords4`='1.000000', `movedoorCoords5`='1.000000', `movedoorCoords6`='-84.900017', `dorVw`='0', `exitVw`='0', `doorState`='0', `doorType`='1' WHERE listid = '10' LIMIT 1": Unknown column 'dorVw' in 'field list'
-[21:40:41] [WARNING] mysql_connect: no password specified
-[21:42:41] [WARNING] mysql_connect: no password specified
-[21:45:42] [WARNING] mysql_connect: no password specified
-[21:53:54] [WARNING] mysql_connect: no password specified
-[21:55:53] [WARNING] mysql_connect: no password specified
-[00:18:00] [WARNING] mysql_connect: no password specified
-[00:22:35] [WARNING] mysql_connect: no password specified
-[00:23:49] [WARNING] mysql_connect: no password specified
-[00:24:43] [WARNING] mysql_connect: no password specified
-[00:33:55] [WARNING] mysql_connect: no password specified
-[00:38:01] [WARNING] mysql_connect: no password specified
-[00:38:56] [WARNING] mysql_connect: no password specified
-[01:07:30] [WARNING] mysql_connect: no password specified
-[11:50:14] [WARNING] mysql_connect: no password specified
-[23:58:23] [WARNING] mysql_connect: no password specified
-[00:08:30] [WARNING] mysql_connect: no password specified
-[00:08:43] [WARNING] mysql_connect: no password specified
-[00:12:34] [WARNING] mysql_connect: no password specified
-[00:14:46] [WARNING] mysql_connect: no password specified
-[00:15:41] [WARNING] mysql_connect: no password specified
-[00:17:17] [WARNING] mysql_connect: no password specified
-[00:18:05] [WARNING] mysql_connect: no password specified
-[00:18:57] [WARNING] mysql_connect: no password specified
-[00:20:59] [WARNING] mysql_connect: no password specified
-[00:23:09] [WARNING] mysql_connect: no password specified
-[00:29:30] [WARNING] mysql_connect: no password specified
-[00:35:08] [WARNING] mysql_connect: no password specified
-[00:35:08] [ERROR] cache_get_value_name_int: invalid row index '5671852' (number of rows: '2')
-[00:37:48] [WARNING] mysql_connect: no password specified
-[11:34:14] [WARNING] mysql_connect: no password specified
-[11:34:16] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:34:18] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:34:20] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:34:22] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:34:39] [WARNING] mysql_connect: no password specified
-[11:52:20] [WARNING] mysql_connect: no password specified
-[11:54:57] [WARNING] mysql_connect: no password specified
-[11:56:36] [WARNING] mysql_connect: no password specified
-[11:59:32] [WARNING] mysql_connect: no password specified
-[12:01:41] [WARNING] mysql_connect: no password specified
-[12:06:20] [WARNING] mysql_connect: no password specified
-[15:58:27] [WARNING] mysql_connect: no password specified
-[16:02:52] [WARNING] mysql_connect: no password specified
-[16:04:56] [WARNING] mysql_connect: no password specified
-[16:08:39] [WARNING] mysql_connect: no password specified
-[16:11:22] [WARNING] mysql_connect: no password specified
-[16:46:39] [WARNING] mysql_connect: no password specified
-[20:37:13] [WARNING] mysql_connect: no password specified
-[20:41:00] [WARNING] mysql_connect: no password specified
-[20:45:00] [WARNING] mysql_connect: no password specified
-[23:31:59] [WARNING] mysql_connect: no password specified
-[23:36:36] [WARNING] mysql_connect: no password specified
-[23:39:17] [WARNING] mysql_connect: no password specified
-[23:52:14] [WARNING] mysql_connect: no password specified
-[23:54:25] [WARNING] mysql_connect: no password specified
-[23:56:20] [WARNING] mysql_connect: no password specified
-[23:59:22] [WARNING] mysql_connect: no password specified
-[00:03:11] [WARNING] mysql_connect: no password specified
-[00:06:30] [WARNING] mysql_connect: no password specified
-[00:08:57] [WARNING] mysql_connect: no password specified
-[00:10:23] [WARNING] mysql_connect: no password specified
-[00:12:39] [WARNING] mysql_connect: no password specified
-[00:13:46] [WARNING] mysql_connect: no password specified
-[00:15:16] [WARNING] mysql_connect: no password specified
-[00:21:01] [WARNING] mysql_connect: no password specified
-[00:27:48] [WARNING] mysql_connect: no password specified
-[00:31:34] [WARNING] mysql_connect: no password specified
-[00:34:03] [WARNING] mysql_connect: no password specified
-[00:35:06] [WARNING] mysql_connect: no password specified
-[00:38:29] [WARNING] mysql_connect: no password specified
-[12:05:43] [WARNING] mysql_connect: no password specified
-[12:33:33] [WARNING] mysql_connect: no password specified
-[12:35:04] [WARNING] mysql_connect: no password specified
-[12:36:16] [WARNING] mysql_connect: no password specified
-[12:37:16] [WARNING] mysql_connect: no password specified
-[12:38:17] [WARNING] mysql_connect: no password specified
-[18:21:23] [WARNING] mysql_connect: no password specified
-[18:23:33] [WARNING] mysql_connect: no password specified
+[17:32:17] [WARNING] mysql_connect: no password specified
+[17:32:17] [WARNING] mysql_connect: no password specified
+[17:32:43] [WARNING] mysql_connect: no password specified
+[17:32:43] [WARNING] mysql_connect: no password specified
+[17:46:42] [WARNING] mysql_connect: no password specified
+[17:46:42] [WARNING] mysql_connect: no password specified
+[17:53:19] [WARNING] mysql_connect: no password specified
+[17:53:19] [WARNING] mysql_connect: no password specified
+[17:57:58] [WARNING] mysql_connect: no password specified
+[17:57:58] [WARNING] mysql_connect: no password specified
+[18:06:06] [WARNING] mysql_connect: no password specified
+[18:06:06] [WARNING] mysql_connect: no password specified
+[18:16:17] [WARNING] mysql_connect: no password specified
+[18:16:17] [WARNING] mysql_connect: no password specified
+[18:31:33] [WARNING] mysql_connect: no password specified
+[18:31:33] [WARNING] mysql_connect: no password specified
+[18:44:34] [WARNING] mysql_connect: no password specified
+[18:44:34] [WARNING] mysql_connect: no password specified
+[19:01:56] [WARNING] mysql_connect: no password specified
+[19:01:56] [WARNING] mysql_connect: no password specified
+[18:01:20] [WARNING] mysql_connect: no password specified
+[18:01:20] [WARNING] mysql_connect: no password specified
+[18:05:52] [WARNING] mysql_connect: no password specified
+[18:05:52] [WARNING] mysql_connect: no password specified
+[18:21:19] [WARNING] mysql_connect: no password specified
+[18:21:19] [WARNING] mysql_connect: no password specified
 [18:24:42] [WARNING] mysql_connect: no password specified
-[22:12:19] [WARNING] mysql_connect: no password specified
-[22:12:21] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[22:12:23] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[22:12:25] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[22:12:36] [WARNING] mysql_connect: no password specified
-[22:14:58] [WARNING] mysql_connect: no password specified
-[22:54:59] [WARNING] mysql_connect: no password specified
-[22:58:19] [WARNING] mysql_connect: no password specified
-[23:02:01] [WARNING] mysql_connect: no password specified
-[23:03:22] [WARNING] mysql_connect: no password specified
-[23:04:18] [WARNING] mysql_connect: no password specified
-[23:04:49] [WARNING] mysql_connect: no password specified
-[23:07:52] [WARNING] mysql_connect: no password specified
-[23:54:03] [WARNING] mysql_connect: no password specified
-[00:00:30] [WARNING] mysql_connect: no password specified
-[18:50:02] [WARNING] mysql_connect: no password specified
-[18:50:03] [ERROR] error #1064 while executing query "CREATE TABLE IF NOT EXISTS `markets` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `characterid` int(10) NOT NULL, `doorid` int(10) NOT NULL, `safe` int(10) NOT NULL, `level` int(10) NOT NULL, `type` int(10) NOT NULL, `coordsSell1` float(10) NOT NULL, `coordsSell2` float(10) NOT NULL, `coordsSell3` float(10) NOT NULL, `sale` int(10) NOT NULL, `vw` int(10) NOT NULL, `item1` int(10) NOT NULL, `item2` int(10) NOT NULL, `item3` int(10) NOT NULL, `item4` int(10) NOT NULL, `item5` int(10) NOT NULL, `item6` int(10) NOT NULL, `item7` int(10) NOT NULL, `item8` int(10) NOT NULL, `item9` int(10) NOT NULL, `item10` int(10) NOT NULL, `item11` int(10) NOT NULL, `item12` int(10) NOT NULL, `item13` int(10) NOT NULL, `item14` int(10) NOT NULL), `item15` int(10) NOT NULL, `item16` int(10) NOT NULL, `item17` int(10) NOT NULL, `item18` int(10) NOT NULL, `item19` int(10) NOT NULL, `item20` int(10) NOT NULL, `itemAmount1` int(10) NOT NULL, `itemAmount2` int(10) NOT NULL, `itemAmount3` int(10) NOT NULL, `itemAmount4` int(10) NOT NULL, `itemAmount5` int(10) NOT NULL, `itemAmount6` int(10) NOT NULL, `itemAmount7` int(10) NOT NULL, `itemAmount8` int(10) NOT NULL, `itemAmount9` int(10) NOT NULL, `itemAmount10` int(10) NOT NULL, `itemAmount11` int(10) NOT NULL, `itemAmount12` int(10) NOT NULL, `itemAmount13` int(10) NOT NULL, `itemAmount14` int(10) NOT NULL), `itemAmount15` int(10) NOT NULL, `itemAmount16` int(10) NOT NULL, `itemAmount17` int(10) NOT NULL, `itemAmount18` int(10) NOT NULL, `itemAmount19` int(10) NOT NULL, `itemAmount20` int(10) NOT NULL, `price` int(10) NOT NULL, `direction` varchar(60) NOT NULL)": You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' `item15` int(10) NOT NULL, `item16` int(10) NOT NULL, `item17` int(10) NOT N...' at line 1
-[18:50:03] [ERROR] error #1146 while executing query "SELECT * FROM MARKETS": Table 'miamiside.markets' doesn't exist
-[18:54:11] [WARNING] mysql_connect: no password specified
-[18:59:07] [WARNING] mysql_connect: no password specified
-[19:00:01] [ERROR] error #1064 while executing query "INSERT INTO markets(doorid, type, vw) VALUES ('16', '0', '0'": You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
-[20:35:22] [WARNING] mysql_connect: no password specified
-[20:36:03] [WARNING] mysql_connect: no password specified
-[22:40:53] [WARNING] mysql_connect: no password specified
-[22:46:17] [WARNING] mysql_connect: no password specified
-[22:51:25] [WARNING] mysql_connect: no password specified
-[22:55:05] [WARNING] mysql_connect: no password specified
-[22:57:40] [WARNING] mysql_connect: no password specified
-[22:57:46] [ERROR] mysql_format: destination size '780' is too small
-[22:57:46] [ERROR] error #1065 while executing query "": Query was empty
-[22:57:46] [ERROR] mysql_format: destination size '780' is too small
-[22:57:46] [ERROR] error #1065 while executing query "": Query was empty
-[23:00:53] [WARNING] mysql_connect: no password specified
-[23:02:29] [ERROR] error #1054 while executing query "UPDATE houses SET `characterid`='0', `doorid`='17', `safe`='0', `level`='0', `type`='9', `coordsSell1`='4641.501953', `coordsSell2`='481.314545', `coordsSell3`='1411.913330', `sale`='0', `vw`='17', `price`='1500000', `direction`='', `item1`='0', `item2`='0', `item3`='0', `item4`='0', `item5`='0', `item6`='0', `item7`='0', `item8`='0', `item9`='0', `item10`='0', `item11`='0', `item12`='0', `item13`='0', `item14`='0', `item15`='0', `item16`='0', `item17`='0', `item18`='0', `item19`='0', `item20`='0', `itemAmount1`='0', `itemAmount2`='0', `itemAmount3`='0', `itemAmount4`='0', `itemAmount5`='0', `itemAmount6`='0', `itemAmount7`='0', `itemAmount8`='0', `itemAmount9`='0', `itemAmount10`='0', `itemAmount11`='0', `itemAmount12`='0', `itemAmount13`='0', `itemAmount14`='0', `itemAmount15`='0', `itemAmount16`='0', `itemAmount17`='0', `itemAmount18`='0', `item19`='0', `itemAmount20`='0' WHERE listid = '1' LIMIT 1": Unknown column 'coordsSell1' in 'field list'
-[23:02:29] [ERROR] error #1054 while executing query "UPDATE houses SET `characterid`='0', `doorid`='18', `safe`='0', `level`='0', `type`='4', `coordsSell1`='0.000000', `coordsSell2`='0.000000', `coordsSell3`='0.000000', `sale`='0', `vw`='0', `price`='0', `direction`='', `item1`='0', `item2`='0', `item3`='0', `item4`='0', `item5`='0', `item6`='0', `item7`='0', `item8`='0', `item9`='0', `item10`='0', `item11`='0', `item12`='0', `item13`='0', `item14`='0', `item15`='0', `item16`='0', `item17`='0', `item18`='0', `item19`='0', `item20`='0', `itemAmount1`='0', `itemAmount2`='0', `itemAmount3`='0', `itemAmount4`='0', `itemAmount5`='0', `itemAmount6`='0', `itemAmount7`='0', `itemAmount8`='0', `itemAmount9`='0', `itemAmount10`='0', `itemAmount11`='0', `itemAmount12`='0', `itemAmount13`='0', `itemAmount14`='0', `itemAmount15`='0', `itemAmount16`='0', `itemAmount17`='0', `itemAmount18`='0', `item19`='0', `itemAmount20`='0' WHERE listid = '2' LIMIT 1": Unknown column 'coordsSell1' in 'field list'
-[23:06:10] [WARNING] mysql_connect: no password specified
-[00:02:36] [WARNING] mysql_connect: no password specified
-[00:06:53] [WARNING] mysql_connect: no password specified
-[00:08:48] [WARNING] mysql_connect: no password specified
-[15:01:35] [WARNING] mysql_connect: no password specified
-[15:03:06] [WARNING] mysql_connect: no password specified
-[15:05:29] [WARNING] mysql_connect: no password specified
-[15:19:21] [WARNING] mysql_connect: no password specified
-[15:24:33] [WARNING] mysql_connect: no password specified
-[17:15:02] [WARNING] mysql_connect: no password specified
-[17:19:38] [WARNING] mysql_connect: no password specified
+[18:24:42] [WARNING] mysql_connect: no password specified
+[18:28:16] [WARNING] mysql_connect: no password specified
+[18:28:16] [WARNING] mysql_connect: no password specified
+[18:35:20] [WARNING] mysql_connect: no password specified
+[18:35:20] [WARNING] mysql_connect: no password specified
+[18:37:28] [WARNING] mysql_connect: no password specified
+[18:37:28] [WARNING] mysql_connect: no password specified
+[18:51:53] [WARNING] mysql_connect: no password specified
+[18:51:53] [WARNING] mysql_connect: no password specified
+[18:57:33] [WARNING] mysql_connect: no password specified
+[18:57:33] [WARNING] mysql_connect: no password specified
+[19:09:17] [WARNING] mysql_connect: no password specified
+[19:09:17] [WARNING] mysql_connect: no password specified
+[19:19:10] [WARNING] mysql_connect: no password specified
+[19:19:10] [WARNING] mysql_connect: no password specified
+[17:21:27] [WARNING] mysql_connect: no password specified
+[17:21:29] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[17:21:31] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[17:21:33] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[17:31:21] [WARNING] mysql_connect: no password specified
+[17:31:21] [WARNING] mysql_connect: no password specified
+[17:33:16] [WARNING] mysql_connect: no password specified
+[17:33:16] [WARNING] mysql_connect: no password specified
+[11:18:20] [WARNING] mysql_connect: no password specified
+[11:18:20] [WARNING] mysql_connect: no password specified
+[13:12:14] [WARNING] mysql_connect: no password specified
+[13:12:14] [WARNING] mysql_connect: no password specified
+[13:56:47] [WARNING] mysql_connect: no password specified
+[13:56:47] [WARNING] mysql_connect: no password specified
+[14:00:38] [WARNING] mysql_connect: no password specified
+[14:00:38] [WARNING] mysql_connect: no password specified
+[14:15:13] [WARNING] mysql_connect: no password specified
+[14:15:13] [WARNING] mysql_connect: no password specified
+[14:19:09] [WARNING] mysql_connect: no password specified
+[14:19:09] [WARNING] mysql_connect: no password specified
+[14:19:09] [ERROR] error #1064 while executing query "CREATE TABLE IF NOT EXISTS `furnitures` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `toId` int(10) NOT NULL, `vw` int(10) NOT NULL, `model` int(10) NOT NULL, `type` int(10) NOT NULL, `type_use` int(10) NOT NULL `coords1` float(10) NOT NULL, `coords2` float(10) NOT NULL, `coords3` float(10) NOT NULL, `coords4` float(10) NOT NULL, `coords5` float(10) NOT NULL, `coords6` float(10) NOT NULL, `placed` int(10) NOT NULL, `item1` int(10) NOT NULL, `item2` int(10) NOT NULL, `item3` int(10) NOT NULL, `itemAmmount1` int(10) NOT NULL, `itemAmmount2` int(10) NOT NULL, `itemAmmount3` int(10) NOT NULL)": You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'float(10) NOT NULL, `coords2` float(10) NOT NULL, `coords3` float(10) NOT NUL...' at line 1
+[14:20:31] [WARNING] mysql_connect: no password specified
+[14:20:31] [WARNING] mysql_connect: no password specified
+[15:57:30] [WARNING] mysql_connect: no password specified
+[15:57:30] [WARNING] mysql_connect: no password specified
+[16:05:59] [WARNING] mysql_connect: no password specified
+[16:05:59] [WARNING] mysql_connect: no password specified
+[16:09:36] [WARNING] mysql_connect: no password specified
+[16:09:36] [WARNING] mysql_connect: no password specified
+[16:21:21] [WARNING] mysql_connect: no password specified
+[16:21:21] [WARNING] mysql_connect: no password specified
+[16:26:37] [WARNING] mysql_connect: no password specified
+[16:26:37] [WARNING] mysql_connect: no password specified
+[16:32:47] [WARNING] mysql_connect: no password specified
+[16:32:47] [WARNING] mysql_connect: no password specified
+[16:37:04] [WARNING] mysql_connect: no password specified
+[16:37:04] [WARNING] mysql_connect: no password specified
+[16:42:19] [WARNING] mysql_connect: no password specified
+[16:42:19] [WARNING] mysql_connect: no password specified
+[16:48:31] [WARNING] mysql_connect: no password specified
+[16:48:31] [WARNING] mysql_connect: no password specified
+[16:54:17] [WARNING] mysql_connect: no password specified
+[16:54:17] [WARNING] mysql_connect: no password specified
+[17:02:24] [WARNING] mysql_connect: no password specified
+[17:02:24] [WARNING] mysql_connect: no password specified
+[17:09:03] [WARNING] mysql_connect: no password specified
+[17:09:03] [WARNING] mysql_connect: no password specified
+[17:13:08] [WARNING] mysql_connect: no password specified
+[17:13:08] [WARNING] mysql_connect: no password specified
+[17:22:14] [WARNING] mysql_connect: no password specified
+[17:22:14] [WARNING] mysql_connect: no password specified
+[17:40:10] [WARNING] mysql_connect: no password specified
+[17:40:10] [WARNING] mysql_connect: no password specified
+[17:44:28] [WARNING] mysql_connect: no password specified
+[17:44:28] [WARNING] mysql_connect: no password specified
+[17:50:32] [WARNING] mysql_connect: no password specified
+[17:50:32] [WARNING] mysql_connect: no password specified
+[18:05:06] [WARNING] mysql_connect: no password specified
+[18:05:06] [WARNING] mysql_connect: no password specified
+[18:13:10] [WARNING] mysql_connect: no password specified
+[18:13:10] [WARNING] mysql_connect: no password specified
+[18:17:32] [WARNING] mysql_connect: no password specified
+[18:17:32] [WARNING] mysql_connect: no password specified
+[18:21:38] [WARNING] mysql_connect: no password specified
+[18:21:38] [WARNING] mysql_connect: no password specified
+[18:27:23] [WARNING] mysql_connect: no password specified
+[18:27:23] [WARNING] mysql_connect: no password specified
+[18:28:56] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[16:34:23] [WARNING] mysql_connect: no password specified
+[16:34:23] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:34:23] [WARNING] mysql_connect: no password specified
+[16:34:23] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:34:23] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:34:23] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:42:17] [WARNING] mysql_connect: no password specified
+[16:42:17] [WARNING] mysql_connect: no password specified
+[16:42:17] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:42:17] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:42:17] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:42:17] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:49:40] [WARNING] mysql_connect: no password specified
+[16:49:40] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:49:40] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:49:40] [WARNING] mysql_connect: no password specified
+[16:49:40] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:49:40] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:25:29] [WARNING] mysql_connect: no password specified
+[16:25:29] [WARNING] mysql_connect: no password specified
+[16:25:29] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:25:29] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:25:29] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:25:29] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:33:39] [WARNING] mysql_connect: no password specified
+[16:33:39] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:33:39] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:33:39] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:33:39] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:33:39] [WARNING] mysql_connect: no password specified
+[16:39:30] [WARNING] mysql_connect: no password specified
+[16:39:30] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:39:30] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:39:30] [WARNING] mysql_connect: no password specified
+[16:39:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:39:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[10:36:58] [WARNING] mysql_connect: no password specified
+[10:36:58] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[10:36:58] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[10:36:58] [WARNING] mysql_connect: no password specified
+[10:36:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[10:36:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[10:38:19] [WARNING] mysql_connect: no password specified
+[10:38:19] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[10:38:19] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[10:38:19] [WARNING] mysql_connect: no password specified
+[10:38:19] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[10:38:19] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[10:42:40] [WARNING] mysql_connect: no password specified
+[10:42:40] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[10:42:40] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[10:42:40] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[10:42:40] [WARNING] mysql_connect: no password specified
+[10:42:40] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[11:25:26] [WARNING] mysql_connect: no password specified
+[11:25:27] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[11:25:27] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[11:25:27] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[11:25:27] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[11:25:27] [WARNING] mysql_connect: no password specified
+[11:30:54] [WARNING] mysql_connect: no password specified
+[11:30:54] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[11:30:54] [WARNING] mysql_connect: no password specified
+[11:30:54] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[11:30:55] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[11:30:55] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[11:35:53] [WARNING] mysql_connect: no password specified
+[11:35:53] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[11:35:53] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[11:35:53] [WARNING] mysql_connect: no password specified
+[11:35:53] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[11:35:53] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[11:44:25] [WARNING] mysql_connect: no password specified
+[11:44:25] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[11:44:25] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[11:44:25] [WARNING] mysql_connect: no password specified
+[11:44:25] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[11:44:25] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[12:17:11] [WARNING] mysql_connect: no password specified
+[12:17:11] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[12:17:11] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[12:17:11] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[12:17:11] [WARNING] mysql_connect: no password specified
+[12:17:11] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:18:54] [WARNING] mysql_connect: no password specified
+[17:18:54] [WARNING] mysql_connect: no password specified
+[17:18:54] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:18:54] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:18:54] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:18:54] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:24:11] [WARNING] mysql_connect: no password specified
+[17:24:11] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:24:11] [WARNING] mysql_connect: no password specified
+[17:24:11] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:24:11] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:24:11] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:31:02] [WARNING] mysql_connect: no password specified
+[17:31:02] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:31:02] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:31:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:31:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:31:02] [WARNING] mysql_connect: no password specified
+[17:35:58] [WARNING] mysql_connect: no password specified
+[17:35:58] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:35:58] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:35:58] [WARNING] mysql_connect: no password specified
+[17:35:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:35:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:41:28] [WARNING] mysql_connect: no password specified
+[17:41:28] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:41:28] [WARNING] mysql_connect: no password specified
+[17:41:28] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:41:28] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:41:28] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:52:18] [WARNING] mysql_connect: no password specified
+[17:52:18] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:52:18] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:52:18] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:52:18] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:52:18] [WARNING] mysql_connect: no password specified
+[17:53:53] [WARNING] mysql_connect: no password specified
+[17:53:53] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:53:53] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:53:53] [WARNING] mysql_connect: no password specified
+[17:53:53] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:53:53] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:16:01] [WARNING] mysql_connect: no password specified
+[18:16:01] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:16:02] [WARNING] mysql_connect: no password specified
+[18:16:02] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:16:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:16:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:17:49] [WARNING] mysql_connect: no password specified
+[18:17:49] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:17:49] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:17:49] [WARNING] mysql_connect: no password specified
+[18:17:49] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:17:49] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:22:34] [WARNING] mysql_connect: no password specified
+[18:22:34] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:22:34] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:22:34] [WARNING] mysql_connect: no password specified
+[18:22:34] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:22:34] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:01:22] [WARNING] mysql_connect: no password specified
+[19:01:22] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:01:22] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:01:22] [WARNING] mysql_connect: no password specified
+[19:01:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:01:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:06:50] [WARNING] mysql_connect: no password specified
+[19:06:50] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:06:50] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:06:50] [WARNING] mysql_connect: no password specified
+[19:06:50] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:06:50] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:08:56] [WARNING] mysql_connect: no password specified
+[19:08:56] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:08:56] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:08:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:08:56] [WARNING] mysql_connect: no password specified
+[19:08:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:12:16] [WARNING] mysql_connect: no password specified
+[19:12:16] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:12:16] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:12:16] [WARNING] mysql_connect: no password specified
+[19:12:16] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:12:16] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:16:28] [WARNING] mysql_connect: no password specified
+[19:16:28] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:16:28] [WARNING] mysql_connect: no password specified
+[19:16:28] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:16:28] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:16:28] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:17:26] [WARNING] mysql_connect: no password specified
+[19:17:26] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:17:26] [WARNING] mysql_connect: no password specified
+[19:17:26] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:17:26] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:17:26] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:18:49] [WARNING] mysql_connect: no password specified
+[19:18:49] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:18:49] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:18:49] [WARNING] mysql_connect: no password specified
+[19:18:49] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:18:49] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:20:47] [WARNING] mysql_connect: no password specified
+[19:20:47] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:20:47] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:20:47] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:20:47] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:20:47] [WARNING] mysql_connect: no password specified
+[19:25:00] [WARNING] mysql_connect: no password specified
+[19:25:00] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:25:00] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:25:00] [WARNING] mysql_connect: no password specified
+[19:25:00] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:25:00] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:26:08] [WARNING] mysql_connect: no password specified
+[19:26:08] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:26:08] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:26:08] [WARNING] mysql_connect: no password specified
+[19:26:08] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:26:08] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:27:15] [WARNING] mysql_connect: no password specified
+[19:27:15] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:27:15] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:27:15] [WARNING] mysql_connect: no password specified
+[19:27:15] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:27:15] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:24:22] [WARNING] mysql_connect: no password specified
+[18:24:22] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:24:22] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:24:22] [WARNING] mysql_connect: no password specified
+[18:24:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:24:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:29:49] [WARNING] mysql_connect: no password specified
+[18:29:49] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:29:49] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:29:49] [WARNING] mysql_connect: no password specified
+[18:29:49] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:29:49] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:33:47] [WARNING] mysql_connect: no password specified
+[18:33:47] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:33:47] [WARNING] mysql_connect: no password specified
+[18:33:47] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:33:47] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:33:47] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:54:04] [WARNING] mysql_connect: no password specified
+[18:54:04] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:54:04] [WARNING] mysql_connect: no password specified
+[18:54:04] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:54:04] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:54:04] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:21:56] [WARNING] mysql_connect: no password specified
+[19:21:56] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:21:56] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:21:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:21:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:21:56] [WARNING] mysql_connect: no password specified
+[19:24:31] [WARNING] mysql_connect: no password specified
+[19:24:31] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:24:31] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:24:31] [WARNING] mysql_connect: no password specified
+[19:24:31] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:24:31] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:28:53] [WARNING] mysql_connect: no password specified
+[19:28:53] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:28:53] [WARNING] mysql_connect: no password specified
+[19:28:53] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:28:53] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:28:53] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:38:50] [WARNING] mysql_connect: no password specified
+[19:38:50] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:38:50] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:38:50] [WARNING] mysql_connect: no password specified
+[19:38:50] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:38:50] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:23:30] [WARNING] mysql_connect: no password specified
+[16:23:30] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:23:30] [WARNING] mysql_connect: no password specified
+[16:23:30] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:23:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:23:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:39:31] [WARNING] mysql_connect: no password specified
+[16:39:31] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:39:31] [WARNING] mysql_connect: no password specified
+[16:39:31] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:39:31] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:39:31] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:54:58] [WARNING] mysql_connect: no password specified
+[16:54:58] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:54:58] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:54:58] [WARNING] mysql_connect: no password specified
+[16:54:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:54:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[16:59:41] [WARNING] mysql_connect: no password specified
+[16:59:41] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[16:59:41] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[16:59:41] [WARNING] mysql_connect: no password specified
+[16:59:41] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[16:59:41] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:08:04] [WARNING] mysql_connect: no password specified
+[17:08:04] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:08:04] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:08:04] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:08:04] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:08:04] [WARNING] mysql_connect: no password specified
+[17:15:05] [WARNING] mysql_connect: no password specified
+[17:15:05] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:15:05] [WARNING] mysql_connect: no password specified
+[17:15:05] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:15:05] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:15:05] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
 [17:23:18] [WARNING] mysql_connect: no password specified
-[17:30:40] [WARNING] mysql_connect: no password specified
-[17:45:18] [WARNING] mysql_connect: no password specified
-[17:54:48] [WARNING] mysql_connect: no password specified
-[17:56:02] [WARNING] mysql_connect: no password specified
-[01:38:02] [WARNING] mysql_connect: no password specified
-[11:27:37] [WARNING] mysql_connect: no password specified
-[11:27:39] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:27:41] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:27:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:27:45] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:36:23] [WARNING] mysql_connect: no password specified
-[11:38:53] [WARNING] mysql_connect: no password specified
-[12:57:14] [WARNING] mysql_connect: no password specified
-[13:04:11] [WARNING] mysql_connect: no password specified
-[13:43:41] [WARNING] mysql_connect: no password specified
-[15:45:33] [WARNING] mysql_connect: no password specified
-[16:37:52] [WARNING] mysql_connect: no password specified
-[16:39:22] [WARNING] mysql_connect: no password specified
-[16:40:09] [ERROR] mysql_format: no value for specifier '%d' passed
-[16:40:09] [ERROR] error #1065 while executing query "": Query was empty
-[16:42:04] [WARNING] mysql_connect: no password specified
-[16:43:28] [WARNING] mysql_connect: no password specified
-[17:12:36] [WARNING] mysql_connect: no password specified
-[17:22:32] [WARNING] mysql_connect: no password specified
-[20:47:30] [WARNING] mysql_connect: no password specified
-[21:12:42] [WARNING] mysql_connect: no password specified
-[23:23:42] [WARNING] mysql_connect: no password specified
-[23:23:42] [ERROR] error #1064 while executing query "CREATE TABLE IF NOT EXISTS `furnitures` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `toId` int(10) NOT NULL, `vw` int(10) NOT NULL, `model` int(10) NOT NULL, `type` int(10) NOT NULL, `toId` int(10) NOT NULL, `coords1` float(10) NOT NULL, `coords2` float(10) NOT NULL, `coords3` float(10) NOT NULL, `coords4` float(10) NOT NULL, `coords5` float(10) NOT NULL, `coords6` float(10) NOT NULL, `placed` int(10) NOT NULL, `item1` int(10) NOT NULL, item2` int(10) NOT NULL, item3` int(10) NOT NULL, itemAmmount1` int(10) NOT NULL, itemAmmount2` int(10) NOT NULL, itemAmmount3` int(10) NOT NULL)": You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'int(10) NOT NULL, itemAmmount1` int(10) NOT NULL, itemAmmount2` int(10) NOT N...' at line 1
-[23:24:15] [WARNING] mysql_connect: no password specified
-[23:24:15] [ERROR] error #1064 while executing query "CREATE TABLE IF NOT EXISTS `furnitures` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `toId` int(10) NOT NULL, `vw` int(10) NOT NULL, `model` int(10) NOT NULL, `type` int(10) NOT NULL, `toId` int(10) NOT NULL, `coords1` float(10) NOT NULL, `coords2` float(10) NOT NULL, `coords3` float(10) NOT NULL, `coords4` float(10) NOT NULL, `coords5` float(10) NOT NULL, `coords6` float(10) NOT NULL, `placed` int(10) NOT NULL, `item1` int(10) NOT NULL, item2` int(10) NOT NULL, item3` int(10) NOT NULL, itemAmmount1` int(10) NOT NULL, itemAmmount2` int(10) NOT NULL, itemAmmount3` int(10) NOT NULL)": You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'int(10) NOT NULL, itemAmmount1` int(10) NOT NULL, itemAmmount2` int(10) NOT N...' at line 1
-[23:25:45] [WARNING] mysql_connect: no password specified
-[23:25:45] [ERROR] error #1060 while executing query "CREATE TABLE IF NOT EXISTS `furnitures` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `toId` int(10) NOT NULL, `vw` int(10) NOT NULL, `model` int(10) NOT NULL, `type` int(10) NOT NULL, `toId` int(10) NOT NULL, `coords1` float(10) NOT NULL, `coords2` float(10) NOT NULL, `coords3` float(10) NOT NULL, `coords4` float(10) NOT NULL, `coords5` float(10) NOT NULL, `coords6` float(10) NOT NULL, `placed` int(10) NOT NULL, `item1` int(10) NOT NULL, `item2` int(10) NOT NULL, `item3` int(10) NOT NULL, `itemAmmount1` int(10) NOT NULL, `itemAmmount2` int(10) NOT NULL, `itemAmmount3` int(10) NOT NULL)": Duplicate column name 'toId'
-[23:26:27] [WARNING] mysql_connect: no password specified
-[23:29:10] [WARNING] mysql_connect: no password specified
-[23:42:20] [WARNING] mysql_connect: no password specified
-[23:47:17] [WARNING] mysql_connect: no password specified
-[16:23:11] [ERROR] mysql_connect_file: handle error: invalid connection file specified (file: "vc_map_db.ini")
-[16:23:11] [ERROR] mysql_errno: invalid connection handle '0'
-[16:23:11] [ERROR] mysql_errno: invalid connection handle '0'
-[16:23:11] [ERROR] mysql_pquery: invalid connection handle '0'
-[16:23:11] [ERROR] mysql_pquery: invalid connection handle '0'
-[16:23:11] [ERROR] mysql_tquery: invalid connection handle '0'
-[16:23:11] [ERROR] mysql_tquery: invalid connection handle '0'
-[16:23:11] [ERROR] mysql_tquery: invalid connection handle '0'
-[16:23:11] [WARNING] mysql_connect: no password specified
-[16:23:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[16:23:15] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[16:23:17] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[16:23:19] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[16:25:15] [WARNING] mysql_connect: no password specified
-[16:25:17] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[16:25:19] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[16:25:21] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[16:25:23] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[16:25:23] [WARNING] mysql_connect: no password specified
-[16:25:23] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[16:25:51] [WARNING] mysql_connect: no password specified
-[16:25:51] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
-[16:25:51] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
-[16:25:51] [WARNING] mysql_connect: no password specified
-[16:25:51] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[16:25:51] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
-[16:25:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
-[16:25:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
-[16:30:51] [WARNING] mysql_connect: no password specified
-[16:30:51] [WARNING] mysql_connect: no password specified
-[16:30:51] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[16:34:51] [WARNING] mysql_connect: no password specified
-[16:34:51] [WARNING] mysql_connect: no password specified
-[16:34:51] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[16:39:01] [WARNING] mysql_connect: no password specified
-[16:39:01] [WARNING] mysql_connect: no password specified
-[16:39:01] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[16:42:03] [WARNING] mysql_connect: no password specified
-[16:42:03] [WARNING] mysql_connect: no password specified
-[16:42:03] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[15:48:42] [WARNING] mysql_connect: no password specified
-[15:48:42] [WARNING] mysql_connect: no password specified
-[15:48:42] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[15:57:19] [WARNING] mysql_connect: no password specified
-[15:57:19] [WARNING] mysql_connect: no password specified
-[15:57:19] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[16:00:11] [WARNING] mysql_connect: no password specified
-[16:00:11] [WARNING] mysql_connect: no password specified
-[16:00:11] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[16:00:35] [WARNING] mysql_connect: no password specified
-[16:00:35] [WARNING] mysql_connect: no password specified
-[16:00:35] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[17:16:17] [WARNING] mysql_connect: no password specified
-[17:16:17] [WARNING] mysql_connect: no password specified
-[17:16:17] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[17:20:00] [WARNING] mysql_connect: no password specified
-[17:20:00] [WARNING] mysql_connect: no password specified
-[17:20:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[17:23:27] [WARNING] mysql_connect: no password specified
-[17:23:27] [WARNING] mysql_connect: no password specified
-[17:23:27] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[17:30:00] [WARNING] mysql_connect: no password specified
-[17:30:00] [WARNING] mysql_connect: no password specified
-[17:30:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[17:49:31] [WARNING] mysql_connect: no password specified
-[17:49:31] [WARNING] mysql_connect: no password specified
-[17:49:31] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[17:52:01] [WARNING] mysql_connect: no password specified
-[17:52:01] [WARNING] mysql_connect: no password specified
-[17:52:01] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[17:53:21] [WARNING] mysql_connect: no password specified
-[17:53:21] [WARNING] mysql_connect: no password specified
-[17:53:21] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[17:58:40] [WARNING] mysql_connect: no password specified
-[17:58:40] [WARNING] mysql_connect: no password specified
-[17:58:40] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[18:00:00] [WARNING] mysql_connect: no password specified
-[18:00:00] [WARNING] mysql_connect: no password specified
-[18:00:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[18:02:26] [WARNING] mysql_connect: no password specified
-[18:02:26] [WARNING] mysql_connect: no password specified
-[18:02:26] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[18:03:43] [WARNING] mysql_connect: no password specified
-[18:03:43] [WARNING] mysql_connect: no password specified
-[18:03:43] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[18:09:31] [WARNING] mysql_connect: no password specified
-[18:09:31] [WARNING] mysql_connect: no password specified
-[18:09:31] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[18:15:55] [WARNING] mysql_connect: no password specified
-[18:15:55] [WARNING] mysql_connect: no password specified
-[18:15:55] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[23:17:00] [WARNING] mysql_connect: no password specified
-[23:17:00] [WARNING] mysql_connect: no password specified
-[23:17:00] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[23:43:58] [WARNING] mysql_connect: no password specified
-[23:43:58] [WARNING] mysql_connect: no password specified
-[23:43:58] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[23:45:33] [WARNING] mysql_connect: no password specified
-[23:45:33] [WARNING] mysql_connect: no password specified
-[23:45:33] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[00:00:16] [WARNING] mysql_connect: no password specified
-[00:00:16] [WARNING] mysql_connect: no password specified
-[00:00:16] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[16:34:19] [WARNING] mysql_connect: no password specified
-[16:34:19] [WARNING] mysql_connect: no password specified
-[16:38:47] [WARNING] mysql_connect: no password specified
-[16:38:47] [WARNING] mysql_connect: no password specified
-[16:42:23] [WARNING] mysql_connect: no password specified
-[16:42:23] [WARNING] mysql_connect: no password specified
-[16:46:28] [WARNING] mysql_connect: no password specified
-[16:46:28] [WARNING] mysql_connect: no password specified
-[16:48:59] [WARNING] mysql_connect: no password specified
-[16:48:59] [WARNING] mysql_connect: no password specified
-[17:08:47] [WARNING] mysql_connect: no password specified
-[17:08:47] [WARNING] mysql_connect: no password specified
-[17:18:08] [WARNING] mysql_connect: no password specified
-[17:18:08] [WARNING] mysql_connect: no password specified
-[20:31:52] [WARNING] mysql_connect: no password specified
-[20:31:52] [WARNING] mysql_connect: no password specified
-[20:39:23] [WARNING] mysql_connect: no password specified
-[20:39:23] [WARNING] mysql_connect: no password specified
-[20:43:13] [WARNING] mysql_connect: no password specified
-[20:43:13] [WARNING] mysql_connect: no password specified
-[21:59:54] [WARNING] mysql_connect: no password specified
-[21:59:54] [WARNING] mysql_connect: no password specified
-[22:05:39] [WARNING] mysql_connect: no password specified
-[22:05:39] [WARNING] mysql_connect: no password specified
-[22:13:05] [WARNING] mysql_connect: no password specified
-[22:13:05] [WARNING] mysql_connect: no password specified
-[23:09:12] [WARNING] mysql_connect: no password specified
-[23:09:12] [WARNING] mysql_connect: no password specified
-[08:29:02] [WARNING] mysql_connect: no password specified
-[08:29:44] [WARNING] mysql_connect: no password specified
-[08:29:44] [WARNING] mysql_connect: no password specified
-[08:29:44] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
-[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
-[08:29:44] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
-[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
-[08:29:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
-[08:29:51] [WARNING] mysql_connect: no password specified
-[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
-[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
-[08:29:51] [WARNING] mysql_connect: no password specified
-[08:29:51] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[08:29:51] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
-[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
-[08:29:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
-[08:30:02] [WARNING] mysql_connect: no password specified
-[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
-[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
-[08:30:02] [WARNING] mysql_connect: no password specified
-[08:30:02] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[08:30:02] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
-[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
-[08:30:02] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
-[08:38:09] [WARNING] mysql_connect: no password specified
-[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
-[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
-[08:38:09] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
-[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
-[08:38:09] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
-[08:38:09] [WARNING] mysql_connect: no password specified
-[08:38:09] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[08:38:38] [WARNING] mysql_connect: no password specified
-[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM models_types": Table 'miamiside.models_types' doesn't exist
-[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'miamiside.models' doesn't exist
-[08:38:38] [WARNING] mysql_connect: no password specified
-[08:38:38] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'miamiside.objects' doesn't exist
-[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'miamiside.nodes' doesn't exist
-[08:38:38] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'miamiside.nodes_links' doesn't exist
-[08:38:38] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[08:39:15] [WARNING] mysql_connect: no password specified
-[08:39:15] [WARNING] mysql_connect: no password specified
-[10:28:21] [WARNING] mysql_connect: no password specified
-[10:28:21] [WARNING] mysql_connect: no password specified
-[10:58:58] [WARNING] mysql_connect: no password specified
-[10:58:58] [WARNING] mysql_connect: no password specified
-[11:04:08] [WARNING] mysql_connect: no password specified
-[11:04:08] [WARNING] mysql_connect: no password specified
-[11:09:32] [WARNING] mysql_connect: no password specified
-[11:09:32] [WARNING] mysql_connect: no password specified
-[11:14:38] [WARNING] mysql_connect: no password specified
-[11:14:38] [WARNING] mysql_connect: no password specified
-[11:16:46] [WARNING] mysql_connect: no password specified
-[11:16:46] [WARNING] mysql_connect: no password specified
-[15:21:01] [WARNING] mysql_connect: no password specified
-[15:21:03] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[15:21:05] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[15:21:08] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[15:21:10] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[15:21:10] [WARNING] mysql_connect: no password specified
-[15:21:12] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[15:21:14] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[15:22:45] [WARNING] mysql_connect: no password specified
-[15:22:45] [WARNING] mysql_connect: no password specified
-[21:50:13] [WARNING] mysql_connect: no password specified
-[21:50:13] [WARNING] mysql_connect: no password specified
-[22:29:21] [WARNING] mysql_connect: no password specified
-[22:29:21] [WARNING] mysql_connect: no password specified
-[22:36:53] [WARNING] mysql_connect: no password specified
-[22:36:53] [WARNING] mysql_connect: no password specified
-[22:43:41] [WARNING] mysql_connect: no password specified
-[22:43:41] [WARNING] mysql_connect: no password specified
-[22:48:53] [WARNING] mysql_connect: no password specified
-[22:48:53] [WARNING] mysql_connect: no password specified
-[22:49:32] [WARNING] mysql_connect: no password specified
-[22:49:32] [WARNING] mysql_connect: no password specified
-[22:59:17] [WARNING] mysql_connect: no password specified
-[22:59:17] [WARNING] mysql_connect: no password specified
-[00:22:21] [WARNING] mysql_connect: no password specified
-[00:22:21] [WARNING] mysql_connect: no password specified
-[00:25:56] [WARNING] mysql_connect: no password specified
-[00:25:56] [WARNING] mysql_connect: no password specified
-[11:18:44] [WARNING] mysql_connect: no password specified
-[11:18:46] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:18:48] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:18:50] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:18:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:18:52] [WARNING] mysql_connect: no password specified
-[11:18:54] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:18:56] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:18:58] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:19:00] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:19:27] [WARNING] mysql_connect: no password specified
-[11:19:29] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:19:31] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:19:39] [WARNING] mysql_connect: no password specified
-[11:19:41] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:19:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:19:45] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:20:11] [WARNING] mysql_connect: no password specified
-[11:20:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:20:15] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:20:17] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:20:19] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:20:19] [WARNING] mysql_connect: no password specified
-[11:20:24] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2013 'Lost connection to MySQL server at 'handshake: reading inital communication packet', system error: 10061'
-[11:20:26] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:20:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[11:20:30] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:28] [WARNING] mysql_connect: no password specified
-[13:02:30] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:30] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:33] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:33] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:35] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:37] [WARNING] mysql_connect: no password specified
-[13:02:39] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:41] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:46] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2013 'Lost connection to MySQL server at 'handshake: reading inital communication packet', system error: 10061'
-[13:02:48] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:48] [WARNING] mysql_connect: no password specified
-[13:02:50] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[13:02:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
-[14:15:41] [WARNING] mysql_connect: no password specified
-[14:15:41] [WARNING] mysql_connect: no password specified
-[14:20:08] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
-[19:33:43] [WARNING] mysql_connect: no password specified
-[19:33:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
-[19:33:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
-[19:33:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
-[19:33:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
-[19:33:43] [WARNING] mysql_connect: no password specified
-[19:33:43] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[19:35:13] [WARNING] mysql_connect: no password specified
-[19:35:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
-[19:35:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
-[19:35:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
-[19:35:13] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1049 'Unknown database 'miamiside''
-[19:35:13] [WARNING] mysql_connect: no password specified
-[19:35:13] [WARNING] duplicate connection detected: handle id 1 already exists with host = '127.0.0.1', username = 'root' and database = 'miamiside'
-[19:35:47] [WARNING] mysql_connect: no password specified
-[19:35:47] [WARNING] mysql_connect: no password specified
-[20:02:37] [WARNING] mysql_connect: no password specified
-[20:02:37] [WARNING] mysql_connect: no password specified
-[20:07:31] [WARNING] mysql_connect: no password specified
-[20:07:31] [WARNING] mysql_connect: no password specified
-[22:52:22] [WARNING] mysql_connect: no password specified
-[22:52:22] [WARNING] mysql_connect: no password specified
-[22:53:31] [WARNING] mysql_connect: no password specified
-[22:53:31] [WARNING] mysql_connect: no password specified
-[22:55:46] [WARNING] mysql_connect: no password specified
-[22:55:46] [WARNING] mysql_connect: no password specified
-[22:59:38] [WARNING] mysql_connect: no password specified
-[22:59:38] [WARNING] mysql_connect: no password specified
+[17:23:18] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:23:18] [WARNING] mysql_connect: no password specified
+[17:23:18] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:23:18] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:23:18] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:27:55] [WARNING] mysql_connect: no password specified
+[17:27:55] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:27:55] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:27:55] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:27:55] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:27:55] [WARNING] mysql_connect: no password specified
+[17:35:44] [WARNING] mysql_connect: no password specified
+[17:35:44] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:35:44] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:35:44] [WARNING] mysql_connect: no password specified
+[17:35:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:35:44] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:40:37] [WARNING] mysql_connect: no password specified
+[17:40:37] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:40:37] [WARNING] mysql_connect: no password specified
+[17:40:37] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:40:37] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:40:37] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:44:19] [WARNING] mysql_connect: no password specified
+[17:44:19] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:44:19] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:44:19] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:44:19] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:44:19] [WARNING] mysql_connect: no password specified
+[17:53:56] [WARNING] mysql_connect: no password specified
+[17:53:56] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:53:56] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:53:56] [WARNING] mysql_connect: no password specified
+[17:53:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:53:56] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:05:17] [WARNING] mysql_connect: no password specified
+[18:05:17] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:05:17] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:05:17] [WARNING] mysql_connect: no password specified
+[18:05:17] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:05:17] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:09:22] [WARNING] mysql_connect: no password specified
+[18:09:22] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:09:22] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:09:22] [WARNING] mysql_connect: no password specified
+[18:09:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:09:22] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:12:30] [WARNING] mysql_connect: no password specified
+[18:12:30] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:12:30] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:12:30] [WARNING] mysql_connect: no password specified
+[18:12:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:12:30] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:20:10] [WARNING] mysql_connect: no password specified
+[18:20:10] [WARNING] mysql_connect: no password specified
+[18:20:10] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:20:10] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:20:10] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:20:10] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:42:25] [WARNING] mysql_connect: no password specified
+[17:42:25] [WARNING] mysql_connect: no password specified
+[17:42:25] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:42:25] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:42:25] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:42:25] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[17:48:59] [WARNING] mysql_connect: no password specified
+[17:48:59] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[17:48:59] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[17:48:59] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[17:48:59] [WARNING] mysql_connect: no password specified
+[17:48:59] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:32:14] [WARNING] mysql_connect: no password specified
+[18:32:14] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:32:14] [WARNING] mysql_connect: no password specified
+[18:32:14] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:32:14] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:32:14] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:38:06] [WARNING] mysql_connect: no password specified
+[18:38:06] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:38:06] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:38:06] [WARNING] mysql_connect: no password specified
+[18:38:06] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[18:59:58] [WARNING] mysql_connect: no password specified
+[18:59:58] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[18:59:58] [WARNING] mysql_connect: no password specified
+[18:59:58] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[18:59:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[18:59:58] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:07:07] [WARNING] mysql_connect: no password specified
+[19:07:07] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:07:07] [WARNING] mysql_connect: no password specified
+[19:07:07] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:07:07] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:07:07] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:13:51] [WARNING] mysql_connect: no password specified
+[19:13:51] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:13:51] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:13:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:13:51] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist
+[19:13:51] [WARNING] mysql_connect: no password specified
+[19:27:24] [WARNING] mysql_connect: no password specified
+[19:27:24] [ERROR] error #1146 while executing query "SELECT * FROM models": Table 'mainland_map.models' doesn't exist
+[19:27:24] [ERROR] error #1146 while executing query "SELECT objects.*, models_type.type FROM objects INNER JOIN models_type on objects.modelid = models_type.modelid WHERE objects.enabled = '1';": Table 'mainland_map.objects' doesn't exist
+[19:27:24] [WARNING] mysql_connect: no password specified
+[19:27:24] [ERROR] error #1146 while executing query "SELECT * FROM nodes LIMIT 4000": Table 'mainland_map.nodes' doesn't exist
+[19:27:24] [ERROR] error #1146 while executing query "SELECT * FROM nodes_links": Table 'mainland_map.nodes_links' doesn't exist

@@ -6,7 +6,15 @@ public OnPlayerRequestHome(playerid){
         cache_get_value_name(0, "_password", accounts[playerid][_password]);
         cache_get_value_name(0, "_whitelist", accounts[playerid][_whitelist]);
         loadLogin(playerid);
-    } else loadRegister(playerid);
+    } else {
+        loadRegister(playerid);
+    }
+
+    PlayerTextDrawSetString(playerid, home_PTD[playerid][0], "Haz click aqui.");
+    PlayerTextDrawSetString(playerid, home_PTD[playerid][0], "Haz click aqui.");
+    inputPassword[playerid] = "NULL";
+    inputEmail[playerid] = "NULL";
+    sendChatLines(playerid, 50);
 
 }
 
@@ -20,24 +28,22 @@ public OnRegisterAccount(playerid)
 }
 
 loadRegister(playerid){
-    for(new e; e<2; e++) TextDrawShowForPlayer(playerid, home_TD[e]);
+    for(new e; e<3; e++) TextDrawShowForPlayer(playerid, home_TD[e]);
     for(new i; i<3; i++) PlayerTextDrawShow(playerid, home_PTD[playerid][i]);
     accounts[playerid][type] = 0;
+    new stringHome[QUERY_MEDIUM];
+    format(stringHome, sizeof(stringHome), "Bienvenido %s, Registrate.", GetFullName(playerid));
+    PlayerTextDrawSetString(playerid, home_PTD[playerid][2], stringHome);
 }
 loadLogin(playerid){
-    for(new e; e<2; e++) TextDrawShowForPlayer(playerid, home_TD[e]);
+    for(new e; e<3; e++) TextDrawShowForPlayer(playerid, home_TD[e]);
     for(new i; i<3; i++) PlayerTextDrawShow(playerid, home_PTD[playerid][i]);
-    
-
-    PlayerTextDrawSetSelectable(playerid, home_PTD[playerid][2], false);
-
-    PlayerTextDrawSetString(playerid, home_PTD[playerid][2], "------@hotmail.com");
-    PlayerTextDrawSetString(playerid, home_PTD[playerid][0], "Haz click aqui.");
-    PlayerTextDrawHide(playerid, home_PTD[playerid][2]);
+    new stringHome[QUERY_MEDIUM];
+    format(stringHome, sizeof(stringHome), "Bienvenido %s, Inicia.", GetFullName(playerid));
+    PlayerTextDrawSetString(playerid, home_PTD[playerid][2], stringHome);
+    PlayerTextDrawHide(playerid, home_PTD[playerid][0]);
 
     accounts[playerid][type] = 1;
-    inputPassword[playerid] = "NULL";
-    inputEmail[playerid] = "NULL";
 }
 
 forward OnPassswordHash(playerid);
@@ -61,7 +67,6 @@ public OnPasswordVerify(playerid, bool:success){
         new query[QUERY_LOW];
         mysql_format(MYSQL_DB, query, sizeof(query), "SELECT * FROM accounts WHERE _name = '%e' LIMIT 1", GetFullName(playerid));
         mysql_pquery(MYSQL_DB, query, "loadDataAccount", "d", playerid);
-        ShowTDN_OOC(playerid, "Cuenta logueada, estamos cargando tus datos");
     } else{
         ShowTDN_OOC(playerid, "Password incorrecta.");
     }
@@ -85,7 +90,7 @@ public loadDataAccount(playerid)
             Kick(playerid);
         }
         accounts[playerid][loggedin] = true;
-        for(new e; e<2; e++) TextDrawHideForPlayer(playerid, home_TD[e]);
+        for(new e; e<3; e++) TextDrawHideForPlayer(playerid, home_TD[e]);
         for(new i; i<3; i++) PlayerTextDrawHide(playerid, home_PTD[playerid][i]);
         showSelectCharacter(playerid,  accounts[playerid][_dbid]);
     } else loadRegister(playerid);

@@ -11,7 +11,7 @@ hook OnGameModeExit(){
 	saveMarkets();
 }
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys){
-	if(newkeys == KEY_YES){
+	if(newkeys == KEY_CTRL_BACK){
 		for(new i;i<MAX_MARKETS;i++){
 			if(marketData[i][listid] > 0){
 				if(IsPlayerInRangeOfPoint(playerid, 2.5, marketData[i][coordsSell][0], marketData[i][coordsSell][1], marketData[i][coordsSell][2]) && marketData[i][vw] == GetPlayerVirtualWorld(playerid)){
@@ -63,7 +63,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 							}
 							DestroyDynamicHouse(index);
 							loadMarket(index, indexdoor);
-							ShowTDN_OOC(playerid, "Editaste el index puerta con el que interactua el negocio.");
+							ShowTDN_IC(playerid, "Editaste el index puerta con el que interactua el negocio.");
 							editMarket[playerid] = -1;
 						}else ShowPlayerDialog(playerid, DIALOG_EDIT_MARKET_DOORID, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKETS", "Ingresa un index valido", "Continuar", ""RED" cancelar");
 					}else ShowPlayerDialog(playerid, DIALOG_EDIT_MARKET_DOORID, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKETS", "Ingresa un index valido", "Continuar", ""RED" cancelar");
@@ -78,7 +78,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				format(marketData[index][direction], 60, "%s", inputtext);
 				DestroyDynamicMarket(index);
 				loadMarket(index, indexdoor);
-				ShowTDN_OOC(playerid, "Editaste la direccion");
+				ShowTDN_IC(playerid, "Editaste la direccion");
 				editMarket[playerid] = -1;
 			} else editMarket[playerid] = -1;
 		}
@@ -89,7 +89,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				marketData[index][type_market] = listitem+1;
 				DestroyDynamicMarket(index);
 				loadMarket(index, indexdoor);
-				ShowTDN_OOC(playerid, "Editaste el tipo");
+				ShowTDN_IC(playerid, "Editaste el tipo");
 				editMarket[playerid] = -1;
 			} else editMarket[playerid] = -1;
 		}
@@ -101,7 +101,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					marketData[index][price] = strval(inputtext);
 					DestroyDynamicMarket(index);
 					loadMarket(index, indexdoor);
-					ShowTDN_OOC(playerid, "Editaste el precio");
+					ShowTDN_IC(playerid, "Editaste el precio");
 					editMarket[playerid] = -1;
 				} else ShowPlayerDialog(playerid, DIALOG_EDIT_MARKET_PRICE, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKETS", "Ingresa un precio(Solo numeros)", "Continuar", ""RED" cancelar");
 			} else editMarket[playerid] = -1;
@@ -111,20 +111,19 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 				switch(listitem){
 					case 0: ShowFurnitures(playerid, marketData[editMarket[playerid]][listid], TYPE_MARKETS);
 					case 1: ShowSlotsItems(playerid, editMarket[playerid]);
-					case 2: ShowSlotsItems(playerid, editMarket[playerid]);
-					case 3: {
+					case 2: {
 						new index = editMarket[playerid];
 						if(characterData[playerid][money] > marketData[index][price] * 2){
 							marketData[index][level]++;
-							ShowTDN_OOC(playerid, "Mejoraste tu negocio, utiliza /ayuda para saber tus beneficios");
+							ShowTDN_IC(playerid, "Mejoraste tu negocio, utiliza /ayuda para saber tus beneficios");
 							editMarket[playerid] = -1;
 						} else {
-							ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+							ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
 							editMarket[playerid] = -1;
 						}
 					}
-					case 4: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_DEPOSIT, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
-					case 5: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+					case 3: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_DEPOSIT, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
+					case 4: ShowPlayerDialog(playerid, DIALOG_MY_MARKET_WITHDRAW, DIALOG_STYLE_INPUT, ""CAPTION_DIALOG_TITLE" MARKET", "Ingresa un monto(Solo numeros)", "Continuar", ""RED" cancelar");
 				}
 			} else editMarket[playerid] = -1; 
 		}
@@ -145,10 +144,10 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 						new index = editHouse[playerid];
 						marketData[index][safe] += ammounts;
 						takeCharacterMoney(playerid, ammounts);
-						ShowTDN_OOC(playerid, "Depositaste dinero en la caja fuerte");
+						ShowTDN_IC(playerid, "Depositaste dinero en la caja fuerte");
 						editMarket[playerid] = -1;
 					}else {
-						ShowTDN_OOC(playerid, "No tienes el dinero suficiente.");
+						ShowTDN_IC(playerid, "No tienes el dinero suficiente.");
 						editMarket[playerid] = -1;
 					}
 					
@@ -163,10 +162,10 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 					if(marketData[index][safe] >= ammounts){
 						marketData[index][safe] -= ammounts;
 						giveCharacterMoney(playerid, ammounts);
-						ShowTDN_OOC(playerid, "Retiraste dinero de la caja fuerte");
+						ShowTDN_IC(playerid, "Retiraste dinero de la caja fuerte");
 						editMarket[playerid] = -1;
 					}else {
-						ShowTDN_OOC(playerid, "La caja fuerte no tiene se monto");
+						ShowTDN_IC(playerid, "La caja fuerte no tiene se monto");
 						editMarket[playerid] = -1;
 					}
 					
@@ -186,7 +185,7 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 						break;
             		}
             	}
-            } else ShowTDN_OOC(playerid, "No tienes muebles");
+            } else ShowTDN_IC(playerid, "No tienes muebles");
             
         }
     } else editMarket[playerid] = -1;
@@ -198,12 +197,12 @@ cmd:minegocio(playerid, params[]){
 			for(new e;e<MAX_HOUSES;e++){
 				if(doorsInfo[i][listid] == marketData[e][doorid]){
 					if(marketData[e][characterid] == characterData[playerid][listid]){
-						format(string, sizeof(string), "Muebles\nEditar productos(El stock vuelve a 0)\nPedir stock\nMejorar negocio("GREEN"$%i)"GREY"\nDepositar dinero caja fuerte\nRetirar dinero caja fuerte("GREEN"$%i)", marketData[e][price] * 2,  marketData[e][safe]);
+						format(string, sizeof(string), "Muebles\nEditar productos(El stock vuelve a 0)\nMejorar negocio("GREEN"$%i)"GREY"\nDepositar dinero caja fuerte\nRetirar dinero caja fuerte("GREEN"$%i)", marketData[e][price] * 2,  marketData[e][safe]);
 						ShowPlayerDialog(playerid, DIALOG_MY_MARKET, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", string, "Continuar", ""RED" cancelar");
 						editMarket[playerid] = e;
 						break;
 					} else {
-						ShowTDN_OOC(playerid, "No eres el dueño de este negocio.");
+						ShowTDN_IC(playerid, "No eres el dueño de este negocio.");
 						break;
 					}
 				}
@@ -237,13 +236,13 @@ cmd:editarnegocio(playerid, params[]){
 	if(accounts[playerid][_admin] > STAFF_RANK_ADMINISTRATOR_C){
 		if(!sscanf(params, "i", index)){
 	    	if(index >= 0 && index < MAX_HOUSES){
-	    		if(!marketData[index][loadedd]) return ShowTDN_OOC(playerid, "El negocio no esta creado.");
+	    		if(!marketData[index][loadedd]) return ShowTDN_IC(playerid, "El negocio no esta creado.");
 	    		editMarket[playerid] = index;
 	    		new string[QUERY_LOW];
 	    		format(string, sizeof(string), ""CAPTION_DIALOG_TITLE" Market ID: %i", index);
 	    		ShowPlayerDialog(playerid, DIALOG_EDIT_MARKET, DIALOG_STYLE_LIST, string, "Editar ID puerta\nEditar posicion compra\nEditar tipo\nEditar direccion\nEditar precio", "Continuar", ""RED" cancelar");
 	    	} else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /editarnegocio [index]");
 	    } else SendClientMessage(playerid, -1, ""CAPTION_TEXT_TITLE" "GREY" /editarnegocio [index]");
-    } else ShowTDN_OOC(playerid, "No tienes permisos");
+    } else ShowTDN_IC(playerid, "No tienes permisos");
     return 1;
 }

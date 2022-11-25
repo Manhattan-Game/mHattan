@@ -1,6 +1,8 @@
 //INCLUDES
 
 #include <a_samp>
+#include <fixes>
+
 #include <YSI_Data\y_iterate>
 #include <a_mysql>
 #include <samp_bcrypt>
@@ -9,9 +11,8 @@
 #include <GPS>
 #include <streamer>
 #include <timerfix>
-#include <ProgressBarNick>
 #include <ShowInfoForPlayer>
-
+#include <progres_bar_ms>
 // GLOBAL
 #include "./modules/global/mysql.pwn"
 
@@ -19,6 +20,8 @@
 #define USE_ARTWORK 1
 new QUERY_BUFFER[2048];
 #define VICE_CITY_PATH "vice_city/"
+
+
 
 #include "./modules/notincludes/inGameMap/db/header"
 #include "./modules/notincludes/inGameMap/models_types/header"
@@ -66,9 +69,9 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/inventory/models"
 #include "./modules/systems/vehicles/models"
 #include "./modules/systems/companies/models"
+#include "./modules/systems/trade/models"
 
 
-#include "./modules/notincludes/dialogs"
 
 
 
@@ -83,6 +86,7 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/inventory/funcs"
 #include "./modules/systems/vehicles/funcs"
 #include "./modules/systems/companies/funcs"
+#include "./modules/systems/companies/vehicles/funcs"
 
 
 
@@ -99,7 +103,9 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/inventory/impl"
 #include "./modules/systems/vehicles/impl"
 #include "./modules/systems/companies/impl"
+#include "./modules/systems/companies/vehicles/impl"
 
+#include "./modules/notincludes/dialogs"
 
 
 // COMMANDS
@@ -112,31 +118,31 @@ new QUERY_BUFFER[2048];
 // NOTIFICATIONS
 
 #define MAX_TDN_IC 5
-#define TDN_POS_X_IC 4.666673
-#define TDN_POS_Y_IC 370.829650
+#define TDN_POS_X_IC 498.492004
+#define TDN_POS_Y_IC 123.583343
 #define TDN_FONT_IC 1
 #define TDN_LETTER_SIZE_X_IC 0.250000
-#define TDN_LETTER_SIZE_Y_IC 1.000000
-#define TDN_SIZE_IC 134.333327
+#define TDN_LETTER_SIZE_Y_IC 1.241436
+#define TDN_SIZE_IC 130.000000
 #define TDN_COLOR_IC 0xFFFFFFFF
-#define TDN_COLOR_BOX_IC 0x1E1E1EFF
+#define TDN_COLOR_BOX_IC 168430335
 #define TDN_PROPORTIONAL_IC 1
 #define TDN_DISTANCE_IC 5
-#define TDN_MODE_UP_IC
+#define TDN_MODE_DOWN_IC
 #define TDN_TIME_IC 4000
 #define MAX_TDN_TEXT_IC 800
 
 #include <td-notification-IC>
 
 #define MAX_TDN_OOC 5
-#define TDN_POS_X_OOC 490.000000
-#define TDN_POS_Y_OOC 180.000000
+#define TDN_POS_X_OOC 498.492004
+#define TDN_POS_Y_OOC 15.000013
 #define TDN_FONT_OOC 1
 #define TDN_LETTER_SIZE_X_OOC 0.250000
-#define TDN_LETTER_SIZE_Y_OOC 1.000000
-#define TDN_SIZE_OOC 137.000000
+#define TDN_LETTER_SIZE_Y_OOC 1.241436
+#define TDN_SIZE_OOC 130.000000
 #define TDN_COLOR_OOC 0xFFFFFFFF
-#define TDN_COLOR_BOX_OOC 0x3C3C3CFF
+#define TDN_COLOR_BOX_OOC 54473727
 #define TDN_PROPORTIONAL_OOC 1
 #define TDN_DISTANCE_OOC 5
 #define TDN_MODE_DOWN_OOC
@@ -146,15 +152,15 @@ new QUERY_BUFFER[2048];
 #include <td-notification-OOC>
 
 //---------------------------------------------------------------------//
-#define SERVER_WEBSITE		"https://mainland.com"
-#define SERVER_HOSTNAME		"MAINLAND ("SERVER_WEBSITE")"
-#define SERVER_MAPNAME		"Vice City"
-#define SERVER_LANGUAGE		"Espanol"
-#define SERVER_NAME			"Mainland Roleplay"
-#define SERVER_NAME_SHORT	"ML-RP"
-#define SERVER_VERSION		"0.2"
+#define SERVER_WEBSITE		"https://studio.com"
+#define SERVER_HOSTNAME		"Manhattan ("SERVER_WEBSITE")"
+#define SERVER_MAPNAME		"New York"
+#define SERVER_LANGUAGE		"Spanish"
+#define SERVER_NAME			"Manhattan"
+#define SERVER_NAME_SHORT	"CP-RP"
+#define SERVER_VERSION		"0.0.4"
 #define VERSION_DATE		""
-#define SERVER_MODE			"ML-RP "SERVER_VERSION"(Roleplay)"
+#define SERVER_MODE			"Manhattan "SERVER_VERSION"(Rol)"
 //---------------------------------------------------------------------//
 
 #undef MAX_PLAYERS
@@ -165,6 +171,7 @@ main()
  	bcrypt_set_thread_limit(6);   
 }
 #pragma compress 0
+#pragma dynamic 40000
 #pragma warning disable 214, 237
 
 public OnGameModeInit(){
@@ -232,7 +239,7 @@ public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
 public OnPlayerText(playerid, text[]){
 	if(characterData[playerid][p_spawn] == true){
 		new string[248];
-		format(string, 248, ""ORANGE"[ID:%i] "GREY"%s"GREY" dice: %s.", playerid, GetFullName(playerid), text);
+		format(string, 248, ""GREY"[ID:%i] "GREY"%s"GREY" dice: %s.", playerid, GetFullName(playerid), text);
 		if(inVehicle[playerid] != -1) sendDoubleLineMessageVehicle(inVehicle[playerid], playerid, 10.0, -1, string);
 		else sendDoubleLineMessage(playerid, 10.0, -1, string);
 
@@ -264,4 +271,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid){
 
 cmd:no(playerid, params[]){
 	ClearAnimations(playerid);
+}
+cmd:city(playerid, params[]){
+	SetPlayerPos(playerid, 778.4303,1871.3485,4.9062);
 }

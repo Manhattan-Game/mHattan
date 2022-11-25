@@ -16,12 +16,13 @@ hook OnGameModeInit(){
 	DIALOG_TD[0] = TextDrawCreate(185.000000, 91.118515, "mdl-2001:box_box");
 	TextDrawTextSize(DIALOG_TD[0], 276.000000, 199.000000);
 	TextDrawAlignment(DIALOG_TD[0], 1);
-	TextDrawColor(DIALOG_TD[0], 673720550);
+	TextDrawColor(DIALOG_TD[0], 336860415);
 	TextDrawSetShadow(DIALOG_TD[0], 0);
 	TextDrawBackgroundColor(DIALOG_TD[0], 255);
 	TextDrawFont(DIALOG_TD[0], 4);
 	TextDrawSetProportional(DIALOG_TD[0], 0);
-
+	TextDrawSetSelectable(DIALOG_TD[0], false);
+	
 	DIALOG_TD[1] = TextDrawCreate(413.333435, 248.488830, "<");
 	TextDrawLetterSize(DIALOG_TD[1], 0.254333, 1.575111);
 	TextDrawTextSize(DIALOG_TD[1], 420.000000, 10.000000);
@@ -201,7 +202,7 @@ hook OnPlayerConnect(playerid){
 	PlayerTextDrawAlignment(playerid, DIALOG_PTD[playerid][13], 2);
 	PlayerTextDrawColor(playerid, DIALOG_PTD[playerid][13], -1);
 	PlayerTextDrawUseBox(playerid, DIALOG_PTD[playerid][13], 1);
-	PlayerTextDrawBoxColor(playerid, DIALOG_PTD[playerid][13], 336860415);
+	PlayerTextDrawBoxColor(playerid, DIALOG_PTD[playerid][13], 54473727);
 	PlayerTextDrawSetShadow(playerid, DIALOG_PTD[playerid][13], 0);
 	PlayerTextDrawBackgroundColor(playerid, DIALOG_PTD[playerid][13], 255);
 	PlayerTextDrawFont(playerid, DIALOG_PTD[playerid][13], 1);

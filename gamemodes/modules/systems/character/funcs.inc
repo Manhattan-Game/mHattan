@@ -1,5 +1,5 @@
 showSelectCharacter(playerid, makeId){
-        TextDrawShowForPlayer(playerid, character_TD[0]);
+        for(new i;i<4;i++) TextDrawShowForPlayer(playerid, character_TD[i]);
         for(new e;e<3;e++) characterData[playerid][charactersMenu][e] = -1;
 
         new query[QUERY_MEDIUM];
@@ -14,8 +14,8 @@ showCreateCharacter(playerid){
         PlayerTextDrawSetString(playerid, createCharacter_PTD[playerid][1], ".");
         PlayerTextDrawSetString(playerid, createCharacter_PTD[playerid][2], ".");
         PlayerTextDrawSetString(playerid, createCharacter_PTD[playerid][3], "Mujer");
-        TextDrawHideForPlayer(playerid, character_TD[0]);
-        for(new i;i<9;i++) PlayerTextDrawHide(playerid, character_PTD[playerid][i]);
+        for(new e;e<4;e++) TextDrawHideForPlayer(playerid, character_TD[e]);
+        for(new i;i<6;i++) PlayerTextDrawHide(playerid, character_PTD[playerid][i]);
 
         
         for(new j;j<2;j++) TextDrawShowForPlayer(playerid, createCharacter_TD[j]);
@@ -56,8 +56,8 @@ public onCreateCharacter(playerid){
         for(new j;j<2;j++) TextDrawHideForPlayer(playerid, createCharacter_TD[j]);
         for(new i;i<4;i++) PlayerTextDrawHide(playerid, createCharacter_PTD[playerid][i]);
 
-        TextDrawShowForPlayer(playerid, character_TD[0]);
-        for(new e;e<9;e++) PlayerTextDrawShow(playerid, character_PTD[playerid][e]);
+        for(new i;i<4;i++) TextDrawShowForPlayer(playerid, character_TD[i]);
+        for(new e;e<6;e++) PlayerTextDrawShow(playerid, character_PTD[playerid][e]);
 
         showSelectCharacter(playerid, accounts[playerid][_dbid]);
         createInventory(cache_insert_id());
@@ -76,23 +76,21 @@ public verifyNameDatabase(playerid){
 
 forward loadCharacters(playerid);
 public loadCharacters(playerid){
-        new skinUsed; 
-        new nameUsed[MAX_PLAYER_NAME];
-        if(cache_num_rows() > 0){
-                for(new i;i<cache_num_rows();i++){
-                       if(i < 3){
-                            cache_get_value_name_int(i, "listid", characterData[playerid][charactersMenu][i]);
-                            cache_get_value_name_int(i, "skin", skinUsed);
-                            cache_get_value_name(i, "name", nameUsed);
+    new skinUsed; 
+    new nameUsed[MAX_PLAYER_NAME];
+    if(cache_num_rows() > 0){
+        for(new i;i<cache_num_rows();i++){
+            if(i < 3){
+                cache_get_value_name_int(i, "listid", characterData[playerid][charactersMenu][i]);
+                cache_get_value_name_int(i, "skin", skinUsed);
+                cache_get_value_name(i, "name", nameUsed);
 
-                            PlayerTextDrawSetString(playerid, character_PTD[playerid][3+i], "Seleccionar");
-                            PlayerTextDrawSetString(playerid, character_PTD[playerid][6+i], nameUsed);
-
-                            PlayerTextDrawSetPreviewModel(playerid, character_PTD[playerid][i], skinUsed);
-                       }
-                }
+                PlayerTextDrawSetString(playerid, character_PTD[playerid][3+i], nameUsed);
+                PlayerTextDrawSetPreviewModel(playerid, character_PTD[playerid][i], skinUsed);
+            }
         }
-        for(new i;i<9;i++) PlayerTextDrawShow(playerid, character_PTD[playerid][i]);
+    }
+    for(new i;i<6;i++) PlayerTextDrawShow(playerid, character_PTD[playerid][i]);
 }
 loadCharacterByID(playerid, cid){
         new query[QUERY_MEDIUM];
@@ -136,7 +134,7 @@ public loadCharacter(playerid){
                 cache_get_value_name_int(0, "biz", characterData[playerid][biz]);
                 cache_get_value_name_int(0, "bizRank", characterData[playerid][bizRank]);
                 CancelSelectTextDraw(playerid);
-                TogglePlayerSpectating(playerid, 0);
+                TogglePlayerSpectating(playerid, bool:0);
 
                 SetSpawnInfo(playerid, 0, characterData[playerid][skin], characterData[playerid][posX], characterData[playerid][posY], 
                 characterData[playerid][posZ], characterData[playerid][angle], 0, 0, 0, 0, 0, 0);
@@ -152,13 +150,10 @@ public loadCharacter(playerid){
                 setLife(playerid, characterData[playerid][life]);
                 setArmor(playerid, characterData[playerid][armor]);
                 new string[128];
-                format(string, 128, "Gracias por confiar %s!.", GetFullName(playerid));
-                ShowTDN_OOC(playerid, string);
-
 
                 characterData[playerid][viewTextdraw] = -1;
-                TextDrawHideForPlayer(playerid, character_TD[0]);
-                for(new i;i<9;i++) PlayerTextDrawHide(playerid, character_PTD[playerid][i]);
+                for(new e;e<4;e++) TextDrawHideForPlayer(playerid, character_TD[e]);
+                for(new i;i<6;i++) PlayerTextDrawHide(playerid, character_PTD[playerid][i]);
                 characterData[playerid][p_spawn] = true;
                 showHUD(playerid);
         }
@@ -205,38 +200,31 @@ saveCharacter(playerid){
             characterData[playerid][listid]
             );
         mysql_pquery(MYSQL_DB, query);
+        saveInventory(playerid);
     }
 }
 
 forward timerNeds(playerid);
 public timerNeds(playerid){
     if(characterData[playerid][p_spawn]){
-        setDrugs(playerid, characterData[playerid][drugs]-1.1);
-        setHungry(playerid, characterData[playerid][hungry]-1.1); 
-        setThirst(playerid, characterData[playerid][thirst]-1.1);
-        setUrine(playerid, characterData[playerid][urine]-1.1);
-        setFatigue(playerid, characterData[playerid][fatigue]-1.1);
-        setStress(playerid, characterData[playerid][stress]-1.1);
+        setHungry(playerid, characterData[playerid][hungry]+1.1); 
+        setThirst(playerid, characterData[playerid][thirst]+1.1);
+        setUrine(playerid, characterData[playerid][urine]+1.1);
+        setFatigue(playerid, characterData[playerid][fatigue]+1.1);
         if(VIEW_HUD[playerid] == 0){
-            updateBarDrugs(playerid);
             updateBarHungry(playerid);
             updateBarThirst(playerid);
             updateBarUrine(playerid);
             updateBarFatigue(playerid);
-            updateBarStress(playerid);
         }
-        if(characterData[playerid][drugs] < 10.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
-        } else if(characterData[playerid][hungry] < 10.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
-        } else if(characterData[playerid][thirst] < 10.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
-        } else if(characterData[playerid][urine] < 10.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
-        } else if(characterData[playerid][fatigue] < 10.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
-        } else if(characterData[playerid][stress] < 10.0){
-            ShowTDN_OOC(playerid, "Mira tus necesidades");
+        if(characterData[playerid][hungry] > 80.0){
+            ShowTDN_IC(playerid, "Mira tus necesidades");
+        } else if(characterData[playerid][thirst] > 80.0){
+            ShowTDN_IC(playerid, "Mira tus necesidades");
+        } else if(characterData[playerid][urine] > 80.0){
+            ShowTDN_IC(playerid, "Mira tus necesidades");
+        } else if(characterData[playerid][fatigue] > 80.0){
+            ShowTDN_IC(playerid, "Mira tus necesidades");
         }
     }
 }
@@ -290,11 +278,7 @@ setArmor(playerid, Float:armorr){
     }
 }
 
-setDrugs(playerid, Float:drugss){
-    if(characterData[playerid][p_spawn]){
-        characterData[playerid][drugs] = drugss;
-    }
-}
+
 setHungry(playerid, Float:hungryy){
     if(characterData[playerid][p_spawn]){
         characterData[playerid][hungry] = hungryy;
@@ -316,11 +300,5 @@ setUrine(playerid, Float:urinee){
 setFatigue(playerid, Float:fatiguee){
     if(characterData[playerid][p_spawn]){
         characterData[playerid][fatigue] = fatiguee;
-    }
-}
-
-setStress(playerid, Float:stresss){
-    if(characterData[playerid][p_spawn]){
-        characterData[playerid][stress] = stresss;
     }
 }

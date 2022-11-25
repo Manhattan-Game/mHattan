@@ -19,7 +19,7 @@ enum _min@f@o
 };
 new accounts[MAX_PLAYERS][_min@f@o];
 
-new Text:home_TD[2];
+new Text:home_TD[3];
 new PlayerText:home_PTD[MAX_PLAYERS][3];
 
 new inputPassword[MAX_PLAYERS][MAX_PASSWORD_LENGTH];

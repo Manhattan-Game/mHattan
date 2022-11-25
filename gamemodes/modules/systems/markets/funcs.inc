@@ -36,7 +36,7 @@ loadMarket(index, indexdoor){
 					format(string, sizeof(string), ""GREY"Negocio en venta "GREEN"$%i"GREY"\n %s \n Direccion: %s \n "GREY"index: %i", marketData[index][price], marketsModelsData[marketData[index][type_market]][name], marketData[index][direction], index);
 				} else format(string, sizeof(string), ""GREY" %s \n Direccion: %s", marketsModelsData[marketData[index][type_market]][name], marketData[index][direction]);
 			    marketData[index][labell] = CreateDynamic3DTextLabel(string, 0xFFFFFFFF, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[indexdoor][doorVw]);
-				marketData[index][labelSell] = CreateDynamic3DTextLabel(""GREY"Pulsa "ORANGE"Y"GREY" para comprar", 0xFFFFFFFF, marketData[index][coordsSell][0], marketData[index][coordsSell][1], marketData[index][coordsSell][2], 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[indexdoor][exitVw]);
+				marketData[index][labelSell] = CreateDynamic3DTextLabel(""GREY"Pulsa "SERVER_PRIMARY"H"GREY" para comprar", 0xFFFFFFFF, marketData[index][coordsSell][0], marketData[index][coordsSell][1], marketData[index][coordsSell][2], 10, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, doorsInfo[indexdoor][exitVw]);
 				marketData[index][pickupp] = CreateDynamicPickup(1239, 1, doorsInfo[indexdoor][enterCoords][0], doorsInfo[indexdoor][enterCoords][1], doorsInfo[indexdoor][enterCoords][2], doorsInfo[indexdoor][doorVw], -1, -1, 10.0);
 				marketData[index][loadedd] = true;
 			}
@@ -54,7 +54,7 @@ updateSellPosition(playerid, index, indexDoorId){
 	marketData[index][vw] = GetPlayerVirtualWorld(playerid);
 	DestroyDynamicMarket(index);
 	loadMarket(index, indexDoorId);
-	ShowTDN_OOC(playerid, "Editaste la posicion de compra");
+	ShowTDN_IC(playerid, "Editaste la posicion de compra");
 	editMarket[playerid] = -1;
 }
 ShowSlotsItems(playerid, index){
@@ -68,16 +68,13 @@ ShowSlotsItems(playerid, index){
 	}
 	ShowPlayerDialog(playerid, DIALOG_MY_MARKET_SELECTED_ITEM_INDEX, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" MARKET", stringfinal, "Continuar", ""RED" cancelar");
 }
-ShowSlotsAmmountItems(playerid, index){
-	// EMPRESAS
-}
 finishEditItem(playerid, index, modell){
 	new indexItem = selectedIndexItem[playerid];
 	printf("indexitem: %i, index: %i, model: %i", indexItem, index, modell);
 	if((index != -1) && (modell != -1) && (indexItem != -1)){
 		marketData[index][item][indexItem] = modell;
 		marketData[index][itemAmmount][indexItem] = 0;
-		ShowTDN_OOC(playerid, "Editaste un item");
+		ShowTDN_IC(playerid, "Editaste un item");
 		editMarket[playerid] = -1;
 		selectedIndexItem[playerid] = -1;
 	}
@@ -119,7 +116,7 @@ sellMarketCharacterId(playerid, index){
 						loadMarket(index, doorIndex);
 						takeCharacterMoney(playerid, marketData[index][price]);
 						giveCharacterMoney(i, marketData[index][price]);
-						ShowTDN_OOC(playerid, "Compraste un negocio!");
+						ShowTDN_IC(playerid, "Compraste un negocio!");
 					}
 				}
 				if(!isconnected){
@@ -134,7 +131,7 @@ sellMarketCharacterId(playerid, index){
 				DestroyDynamicMarket(index);
 				loadMarket(index, doorIndex);
 				takeCharacterMoney(playerid, marketData[index][price]);
-				ShowTDN_OOC(playerid, "Compraste un negocio!");
+				ShowTDN_IC(playerid, "Compraste un negocio!");
 			}
 		}
 	}
@@ -152,7 +149,7 @@ public onGetMoneyCharacterMarketID(playerid, index, doorIndex){
 		loadMarket(index, doorIndex);
 		doorsInfo[doorIndex][characterID] = characterData[playerid][listid];
 		takeCharacterMoney(playerid, marketData[index][price]);
-		ShowTDN_OOC(playerid, "Compraste un negocio!");
+		ShowTDN_IC(playerid, "Compraste un negocio!");
 	}
 }
 
@@ -203,14 +200,12 @@ public onCreateMarket(playerid, index, doorId){
 		DestroyDynamicMarket(index);
 		loadMarket(index, indexdoor);
 		loadDoor(indexdoor);
-		ShowTDN_OOC(playerid, "Creaste una negocio, editalo con /editarnegocio");
+		ShowTDN_IC(playerid, "Creaste un negocio, editalo con /editarnegocio");
 	}
 }
 
-getFreeMarketSlot()
-{
-    for(new i;i<MAX_MARKETS-1;i++)
-    {
+getFreeMarketSlot(){
+    for(new i;i<MAX_MARKETS-1;i++){
         if(marketData[i][listid] == 0) return i;
     }
     return -1;

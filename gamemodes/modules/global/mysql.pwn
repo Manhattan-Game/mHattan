@@ -11,6 +11,8 @@
 #define QUERY_LONG 780
 new MySQL:MYSQL_DB;
 
+
+
 hook OnGameModeInit()
 {
     MYSQL_DB = mysql_connect(xylos_HOST, xylos_USER, xylos_PSS, xylos_DB);
@@ -36,9 +38,15 @@ hook OnGameModeInit()
     `movedoorCoords1` float(10) NOT NULL, `movedoorCoords2` float(10) NOT NULL, `movedoorCoords3` float(10) NOT NULL, `movedoorCoords4` float(10) NOT NULL, `movedoorCoords5` float(10) NOT NULL, `movedoorCoords6` float(10) NOT NULL, \
     `doorVw` int(10) NOT NULL, `exitVw` int(10) NOT NULL, `doorState` int(10) NOT NULL, `doorType` int(10) NOT NULL )");
 
-    mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `furnitures` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `toId` int(10) NOT NULL, `vw` int(10) NOT NULL, `model` int(10) NOT NULL, `type` int(10) NOT NULL, \
+    mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `furnitures` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `toId` int(10) NOT NULL, `vw` int(10) NOT NULL, `model` int(10) NOT NULL, `type` int(10) NOT NULL, `type_use` int(10) NOT NULL, \
         `coords1` float(10) NOT NULL, `coords2` float(10) NOT NULL, `coords3` float(10) NOT NULL, `coords4` float(10) NOT NULL, `coords5` float(10) NOT NULL, `coords6` float(10) NOT NULL, `placed` int(10) NOT NULL, \
         `item1` int(10) NOT NULL, `item2` int(10) NOT NULL, `item3` int(10) NOT NULL, `itemAmmount1` int(10) NOT NULL, `itemAmmount2` int(10) NOT NULL, `itemAmmount3` int(10) NOT NULL)");
+
+    mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `companies` (`listid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `characterid` int(10) NOT NULL, `name` varchar(60) NOT NULL, `type_company` int(10) NOT NULL, `price` int(10) NOT NULL, \
+    `doorid` int(10) NOT NULL, `garajedoorid` int(10) NOT NULL, `direction` varchar(60) NOT NULL, `jobskin1` int(10) NOT NULL, `jobskin2` int(10) NOT NULL, `safe` int(10) NOT NULL, `sale` int(10) NOT NULL, \
+    `room1` float(10) NOT NULL, `room2` float(10) NOT NULL, `room3` float(10) NOT NULL, `job1` float(10) NOT NULL, `job2` float(10) NOT NULL, `job3` float(10) NOT NULL, `job4` float(10) NOT NULL, `job5` float(10) NOT NULL, `job6` float(10) NOT NULL, \
+    `dispatch1` float(10) NOT NULL, `dispatch2` float(10) NOT NULL, `dispatch3` float(10) NOT NULL, `dispatch4` float(10) NOT NULL, `dispatch5` float(10) NOT NULL, `dispatch6` float(10) NOT NULL)");
+
 
     //mysql_query(MYSQL_DB, "CREATE TABLE IF NOT EXISTS `phones` (`c_id` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, `c_mkid` int(10) NOT NULL, `c_numero` int(10) NOT NULL, `c_contacto1` int(10) NOT NULL, `c_contacto2` int(10) NOT NULL, `c_contacto3` int(10) NOT NULL, `c_contacto4` int(10) NOT NULL, `c_contacto5` int(10) NOT NULL, `c_contacto6` int(10) NOT NULL, `c_contactonombre1` varchar(28) NOT NULL, `c_contactonombre2` varchar(28) NOT NULL, `c_contactonombre3` varchar(28) NOT NULL, `c_contactonombre4` varchar(28) NOT NULL, `c_contactonombre5` varchar(28) NOT NULL, `c_contactonombre6` varchar(28) NOT NULL, `c_bateria` int(10) NOT NULL, `c_sim` int(2) NOT NULL, `c_saldo` int(10) NOT NULL, `c_estado` int(2) NOT NULL, `c_mensaje1` varchar(128) NOT NULL, `c_mensaje2` varchar(128) NOT NULL, `c_mensaje3` varchar(128) NOT NULL, `c_mensaje4` varchar(128) NOT NULL, `c_mensaje5` varchar(128) NOT NULL, `c_mensaje6` varchar(128) NOT NULL, `c_mensaje7` varchar(128) NOT NULL,`c_mensaje8` varchar(128) NOT NULL) ");
     
