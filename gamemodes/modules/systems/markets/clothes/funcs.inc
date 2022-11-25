@@ -21,5 +21,5 @@ showAllSkins(playerid){
         addDialogItem(playerid, skinsModelData[i][model], string);
         
     }
-    ShowPlayerDialogItem(playerid, DIALOG_SELL_SELECT_SKIN, "SKINS", "Comprar");
+    ShowPlayerDialogItem(playerid, DIALOG_SELL_SELECT_SKIN, "SKINS", "Editar");
 }

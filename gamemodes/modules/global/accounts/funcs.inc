@@ -67,7 +67,6 @@ public OnPasswordVerify(playerid, bool:success){
         new query[QUERY_LOW];
         mysql_format(MYSQL_DB, query, sizeof(query), "SELECT * FROM accounts WHERE _name = '%e' LIMIT 1", GetFullName(playerid));
         mysql_pquery(MYSQL_DB, query, "loadDataAccount", "d", playerid);
-        ShowTDN_OOC(playerid, "Cuenta logueada, estamos cargando tus datos");
     } else{
         ShowTDN_OOC(playerid, "Password incorrecta.");
     }

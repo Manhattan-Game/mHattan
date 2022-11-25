@@ -5,7 +5,6 @@
 
 hook OnPlayerConnect(playerid){
 	editFurnitureID[playerid] = -1;
-	editFurnitureID[playerid] = -1;
 }
 hook OnPlayerDisconnect(playerid, reason){
 	saveFurnitures();
@@ -13,7 +12,7 @@ hook OnPlayerDisconnect(playerid, reason){
 hook OP_EditDynamicObject(playerid, objectid, response, Float:xx, Float:yy, Float:zz, Float:rx, Float:ry, Float:rz){
     if(response == EDIT_RESPONSE_FINAL){
         new index = INDEX_REAL_FURNITURE[playerid][editFurnitureID[playerid]];
-        printf("edit %f, %f, %f", rx, ry, rz);
+        printf("edit %f, %f, %f, %f, %f, %f",xx, yy, zz, rx, ry, rz);
         if(index != -1){
             ShowTDN_OOC(playerid, "Editaste el mueble.");
             furnituresData[index][coords][0] = xx;
@@ -23,17 +22,19 @@ hook OP_EditDynamicObject(playerid, objectid, response, Float:xx, Float:yy, Floa
             furnituresData[index][coords][4] = ry;
             furnituresData[index][coords][5] = rz;
             furnituresData[index][vw_furniture] = GetPlayerVirtualWorld(playerid);
-            loadFurniture(index);
+            unplaceFurniture(index);
+            placeFurniture(index);
             editFurnitureID[playerid] = -1;
 
         }
+    } else if(response == EDIT_RESPONSE_CANCEL){
+    	editFurnitureID[playerid] = -1;
     }
 }
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]){
 	if(dialogid == DIALOG_EDIT_FURNITURE){
 		if(editFurnitureID[playerid] != -1){
 			new index = INDEX_REAL_FURNITURE[playerid][editFurnitureID[playerid]];
-			printf("dialog %i", index);
 			if(response){
 				switch(listitem){
 					case 0:{
@@ -72,7 +73,6 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 	if(response){
 		if(dialogid == DIALOG_ITEMS_FURNITURES){
 			if(getCountDialogItems(playerid) > 0){
-				printf("index %i", index);
 				editFurnitureID[playerid] = index;
             	ShowPlayerDialog(playerid, DIALOG_EDIT_FURNITURE, DIALOG_STYLE_LIST, ""CAPTION_DIALOG_TITLE" FURNITURES", "Mostrar/ocultar\nEditar posicion\nVender", "Continuar", ""RED" cancelar");
 			} else ShowTDN_OOC(playerid, "No tienes muebles");
@@ -82,6 +82,10 @@ hook OnPlayerDialogItem(playerid, dialogid, index, modelid, bool:response){
 }
 
 cmd:dormir(playerid, params[]){
+	useFurniture(playerid);
+	return 1;
+}
+cmd:sentarse(playerid, params[]){
 	useFurniture(playerid);
 	return 1;
 }

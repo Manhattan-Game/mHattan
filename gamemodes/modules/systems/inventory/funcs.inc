@@ -29,7 +29,9 @@ hideInventory(playerid){
 selectTextDraw(playerid, newindex){
 	new string[300];
 	new oldIndex = inventoryInfo[playerid][selectedIndex];
-	PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][oldIndex], 168430335);
+	if(oldIndex == 8) {
+		PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][oldIndex], 336860415);
+	} else PlayerTextDrawBackgroundColor(playerid, inventario_PTD[playerid][oldIndex], 168430335);
 	PlayerTextDrawShow(playerid, inventario_PTD[playerid][oldIndex]);
 	inventoryInfo[playerid][selectedIndex] = newindex;
 	format(string, 300, "%s", inventoryModelsData[inventoryInfo[playerid][slot][newindex]][name]);
@@ -38,17 +40,18 @@ selectTextDraw(playerid, newindex){
 	PlayerTextDrawShow(playerid, inventario_PTD[playerid][newindex]);
 }
 addItem(playerid, itemid, ammountt){
-
-	for(new i=0; i<7; i++){
-		if(inventoryInfo[playerid][slot][i] == 0)
-		{
-			inventoryInfo[playerid][slot][i] = itemid;
-			inventoryInfo[playerid][ammount][i] = ammountt;
-			updateInventory(playerid, i);
-			return i;
+	if(inventoryModelsData[itemid][saveable]){
+		for(new i=0; i<7; i++){
+			if(inventoryInfo[playerid][slot][i] == 0)
+			{
+				inventoryInfo[playerid][slot][i] = itemid;
+				inventoryInfo[playerid][ammount][i] = ammountt;
+				updateInventory(playerid, i);
+				return i;
+			}
+			if(i == 7) ShowTDN_IC(playerid, "No tienes un slot disponible.");
 		}
-		if(i == 7) ShowTDN_IC(playerid, "No tienes un slot disponible.");
-	}
+	} else ShowTDN_IC(playerid, "Este item no se puede guardar.");
 	return -1;
 }
 findItemById(playerid, itemid){
@@ -86,16 +89,17 @@ useItem(playerid, index){
 
 saveUseItem(playerid){
 	if(inventoryInfo[playerid][slot][8] > 0){
-		RemovePlayerAttachedObject(playerid, 0);
-		switch(inventoryModelsData[inventoryInfo[playerid][slot][8]][type]){
-			case TYPE_GUNS: ResetPlayerWeapons(playerid);
-			case TYPE_FOOD: SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+		if(addItem(playerid, inventoryInfo[playerid][slot][8], inventoryInfo[playerid][ammount][8]) != -1){
+			removeItem(playerid, 8);
+			updateInventory(playerid, 8);
+			updateHandItem(playerid);
+			RemovePlayerAttachedObject(playerid, 0);
+			switch(inventoryModelsData[inventoryInfo[playerid][slot][8]][type]){
+				case TYPE_GUNS: ResetPlayerWeapons(playerid);
+				case TYPE_FOOD: SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+			}
 		}
-
-		addItem(playerid, inventoryInfo[playerid][slot][8], inventoryInfo[playerid][ammount][8]);
-		removeItem(playerid, 8);
-		updateInventory(playerid, 8);
-		updateHandItem(playerid);
+		
 	} else ShowTDN_IC(playerid, "No tienes un objeto en mano.");
 }
 updateInventory(playerid, i){
@@ -168,15 +172,15 @@ dropItem(playerid, index){
 }
 
 createInventory(characterMkid){
-		new query[QUERY_LONG];
-        mysql_format(MYSQL_DB, query, sizeof(query), "INSERT INTO inventory(characterid, slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, amount1, amount2, amount3, amount4, amount5, amount6, amount7, amount8, amount9) VALUES ('%d', 0, 0, 0, 0, 0, 0, 0, 0, 0,   0, 0, 0, 0, 0, 0, 0, 0, 0)", characterMkid); 
-        mysql_pquery(MYSQL_DB, query);
+	new query[QUERY_LONG];
+    mysql_format(MYSQL_DB, query, sizeof(query), "INSERT INTO inventory(characterid, slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, amount1, amount2, amount3, amount4, amount5, amount6, amount7, amount8, amount9) VALUES ('%d', 0, 0, 0, 0, 0, 0, 0, 0, 0,   0, 0, 0, 0, 0, 0, 0, 0, 0)", characterMkid); 
+    mysql_pquery(MYSQL_DB, query);
 
 }
 loadInventoryByID(playerid, characterIDd){
-        new query[QUERY_MEDIUM];
-        mysql_format(MYSQL_DB, query, sizeof(query), "SELECT * FROM inventory WHERE characterid = '%d' LIMIT 1", characterIDd);
-        mysql_pquery(MYSQL_DB, query, "loadInventory", "d", playerid);
+    new query[QUERY_MEDIUM];
+    mysql_format(MYSQL_DB, query, sizeof(query), "SELECT * FROM inventory WHERE characterid = '%d' LIMIT 1", characterIDd);
+    mysql_pquery(MYSQL_DB, query, "loadInventory", "d", playerid);
 }
 forward loadInventory(playerid);
 public loadInventory(playerid){

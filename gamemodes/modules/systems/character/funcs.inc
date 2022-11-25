@@ -134,7 +134,7 @@ public loadCharacter(playerid){
                 cache_get_value_name_int(0, "biz", characterData[playerid][biz]);
                 cache_get_value_name_int(0, "bizRank", characterData[playerid][bizRank]);
                 CancelSelectTextDraw(playerid);
-                TogglePlayerSpectating(playerid, 0);
+                TogglePlayerSpectating(playerid, bool:0);
 
                 SetSpawnInfo(playerid, 0, characterData[playerid][skin], characterData[playerid][posX], characterData[playerid][posY], 
                 characterData[playerid][posZ], characterData[playerid][angle], 0, 0, 0, 0, 0, 0);
@@ -150,9 +150,6 @@ public loadCharacter(playerid){
                 setLife(playerid, characterData[playerid][life]);
                 setArmor(playerid, characterData[playerid][armor]);
                 new string[128];
-                format(string, 128, "Gracias por confiar %s!.", GetFullName(playerid));
-                ShowTDN_IC(playerid, string);
-                ApplyAnimation(playerid, "BOMBER","BOM_Plant_Loop", 4.0,0,0,0,0,0);
 
                 characterData[playerid][viewTextdraw] = -1;
                 for(new e;e<4;e++) TextDrawHideForPlayer(playerid, character_TD[e]);

@@ -11,7 +11,7 @@ hook OnGameModeExit(){
 	saveMarkets();
 }
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys){
-	if(newkeys == KEY_YES){
+	if(newkeys == KEY_CTRL_BACK){
 		for(new i;i<MAX_MARKETS;i++){
 			if(marketData[i][listid] > 0){
 				if(IsPlayerInRangeOfPoint(playerid, 2.5, marketData[i][coordsSell][0], marketData[i][coordsSell][1], marketData[i][coordsSell][2]) && marketData[i][vw] == GetPlayerVirtualWorld(playerid)){

@@ -1,6 +1,8 @@
 //INCLUDES
 
 #include <a_samp>
+#include <fixes>
+
 #include <YSI_Data\y_iterate>
 #include <a_mysql>
 #include <samp_bcrypt>
@@ -70,7 +72,6 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/trade/models"
 
 
-#include "./modules/notincludes/dialogs"
 
 
 
@@ -104,6 +105,7 @@ new QUERY_BUFFER[2048];
 #include "./modules/systems/companies/impl"
 #include "./modules/systems/companies/vehicles/impl"
 
+#include "./modules/notincludes/dialogs"
 
 
 // COMMANDS
@@ -119,9 +121,9 @@ new QUERY_BUFFER[2048];
 #define TDN_POS_X_IC 498.492004
 #define TDN_POS_Y_IC 123.583343
 #define TDN_FONT_IC 1
-#define TDN_LETTER_SIZE_X_IC 0.150000
+#define TDN_LETTER_SIZE_X_IC 0.250000
 #define TDN_LETTER_SIZE_Y_IC 1.241436
-#define TDN_SIZE_IC 120.000000
+#define TDN_SIZE_IC 130.000000
 #define TDN_COLOR_IC 0xFFFFFFFF
 #define TDN_COLOR_BOX_IC 168430335
 #define TDN_PROPORTIONAL_IC 1
@@ -136,9 +138,9 @@ new QUERY_BUFFER[2048];
 #define TDN_POS_X_OOC 498.492004
 #define TDN_POS_Y_OOC 15.000013
 #define TDN_FONT_OOC 1
-#define TDN_LETTER_SIZE_X_OOC 0.150000
+#define TDN_LETTER_SIZE_X_OOC 0.250000
 #define TDN_LETTER_SIZE_Y_OOC 1.241436
-#define TDN_SIZE_OOC 120.000000
+#define TDN_SIZE_OOC 130.000000
 #define TDN_COLOR_OOC 0xFFFFFFFF
 #define TDN_COLOR_BOX_OOC 54473727
 #define TDN_PROPORTIONAL_OOC 1

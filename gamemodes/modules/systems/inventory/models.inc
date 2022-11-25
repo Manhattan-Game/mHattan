@@ -24,18 +24,18 @@ enum inventoryModels
 new inventoryModelsData[][inventoryModels] = {
 	{0, TEXTDRAWS_MODEL_NONE, TYPE_NONE, {0.0, 0.0, 0.0, 1.5}, "Vacio", ""},
 
-	{1, 333, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Bloque_de_hierro", "Bloque_de_hierro", {-1, -1, -1}, {-1, -1, -1}, true},
-	{2, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Tubos_de_escape", "Tubos_de_escape", {1, -1, -1}, {1, -1, -1}, false},
-	{3, 333, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Caucho", "Caucho", {-1, -1, -1}, {-1, -1, -1}, true},
-	{4, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Cuadro", "Cuadro", {1, -1, -1}, {3, -1, -1}, false},
-	{5, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Faros", "Faros", {6, 3, -1}, {1, 1, -1}, false},
-	{6, 333, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Lampara", "Lampara", {-1, -1, -1}, {-1, -1, -1}, true},
-	{7, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Rueda", "Rueda", {3, 1, -1}, {1, 1, -1}, false},
-	{8, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Pistón", "Pistón", {1, -1, -1}, {1, -1, -1}, true},
+	{1, 1510, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Bloque de hierro", "Bloque de hierro", {-1, -1, -1}, {-1, -1, -1}, true},
+	{2, 1104, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Tubos de escape", "Tubos de escape", {1, -1, -1}, {1, -1, -1}, false},
+	{3, 2006, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Caucho", "Caucho", {-1, -1, -1}, {-1, -1, -1}, true},
+	{4, 3067, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Cuadro", "Cuadro", {1, -1, -1}, {3, -1, -1}, false},
+	{5, 1013, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Faros", "Faros", {6, 3, -1}, {1, 1, -1}, false},
+	{6, 18648, TYPE_PRIMARY, {ROOTS_TYPE_GUN}, "Lampara", "Lampara", {-1, -1, -1}, {-1, -1, -1}, true},
+	{7, 1081, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Rueda", "Rueda", {3, 1, -1}, {1, 1, -1}, false},
+	{8, 13667, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Pistón", "Pistón", {1, -1, -1}, {1, -1, -1}, true},
 
-	{9, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Motor_Calle", "Motor_Calle", {8, 1, -1}, {4, 1, -1}, false},
-	{10, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Motor_Roadsport", "Motor_Roadsport", {8, 1, -1}, {6, 1, -1}, false},
-	{11, 333, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Motor_Sport", "Motor_Sport", {8, 1, -1}, {8, 2, -1}, false}
+	{9, 19917, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Motor Calle", "Motor Calle", {8, 1, -1}, {4, 1, -1}, false},
+	{10, 19917, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Motor Roadsport", "Motor Roadsport", {8, 1, -1}, {6, 1, -1}, false},
+	{11, 19917, TYPE_CRAFTEABLE, {ROOTS_TYPE_GUN}, "Motor Sport", "Motor Sport", {8, 1, -1}, {8, 2, -1}, false}
 
 
 

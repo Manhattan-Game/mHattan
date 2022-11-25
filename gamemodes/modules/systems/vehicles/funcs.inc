@@ -1,7 +1,5 @@
 // kilometraje, a parte de tanto es deterioro + restauracion
 // guiñes
-// ventanillas
-// tunning nativo
 // tunnin objetos
 // desgaste de llantas
 // BAul
@@ -21,15 +19,15 @@ bool:getVehicleParamState(param){
 showVelocimeter(playerid, index){
 	if(characterData[playerid][p_spawn]){
 		if(IsValidVehicle(vehicleData[index][vehicleidd])){
-			for(new e;e<5;e++) TextDrawShowForPlayer(playerid, velocimeter_TD[e]);
+			for(new e;e<7;e++) TextDrawShowForPlayer(playerid, velocimeter_TD[e]);
 			for(new i;i<8;i++) PlayerTextDrawShow(playerid, velocimeter_PTD[playerid][i]);
 			updateVelocimeterVelocity(playerid, index);
 			updateVelocimeterKilometres(playerid, index);
 			updateVelocimeterLigths(playerid, getVehicleParamState(vehicleData[index][lightss]));
 			updateVelocimeterDoor(playerid, getVehicleParamState(vehicleData[index][doorr]));
 			updateVelocimeterWindows(playerid, index);
-			createProgressBar(playerid, BAR_V_GAS, 530.820190, 397.083404, 613.000000, 0.020498, -1061109505, vehiclesModelData[vehicleData[index][model]][gas_limit], 0);
-			createProgressBar(playerid, BAR_V_OIL, 530.820190, 412.250213, 613.000000, 0.067351, -2139094785, 100.0, 0);
+			createProgressBar(playerid, BAR_V_GAS, 509.736724, 417.500122, 559.000000, 0.207907, -1061109505, vehiclesModelData[vehicleData[index][model]][gas_limit], 0);
+			createProgressBar(playerid, BAR_V_OIL, 509.736724, 430.333465, 559.000000, 0.207907, -2139094785, 100.0, 0);
 			updateVelocimeterGas(playerid, index);
 			updateVelocimeterOil(playerid, index);
 		}
@@ -38,13 +36,13 @@ showVelocimeter(playerid, index){
 hideVelocimeter(playerid){
 	destroyProgressBar(playerid, BAR_V_GAS);
 	destroyProgressBar(playerid, BAR_V_OIL);
-	for(new e;e<5;e++) TextDrawHideForPlayer(playerid, velocimeter_TD[e]);
+	for(new e;e<7;e++) TextDrawHideForPlayer(playerid, velocimeter_TD[e]);
 	for(new i;i<8;i++) PlayerTextDrawHide(playerid, velocimeter_PTD[playerid][i]);
 }
 updateVelocimeterVelocity(playerid, index){
 	new Float:speed = GetVehicleSpeed(vehicleData[index][vehicleidd]);
 	new string[QUERY_LOW];
-	format(string, sizeof(string), "%.0f", speed);
+	format(string, sizeof(string), "%.0f_km/h", speed);
 	PlayerTextDrawSetString(playerid, velocimeter_PTD[playerid][7], string);
 }
 /*updateVelocimeterVehicleName(playerid, index){
@@ -61,9 +59,9 @@ updateVelocimeterWindows(playerid, index){
 		}
 	}
 	if(param){
-		PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][1], 54473727);
-	} else PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][1], 589505535);
-	PlayerTextDrawShow(playerid, velocimeter_PTD[playerid][1]);
+		PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][2], 54473727);
+	} else PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][2], 589505535);
+	PlayerTextDrawShow(playerid, velocimeter_PTD[playerid][2]);
 }
 updateVelocimeterGas(playerid, index){
 	updateProgressBar(playerid, BAR_V_GAS, vehicleData[index][gas]);
@@ -73,9 +71,9 @@ updateVelocimeterOil(playerid, index){
 }
 updateVelocimeterLigths(playerid, bool:param){
 	if(param){
-		PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][2], 54473727);
-	} else PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][2], 589505535);
-	PlayerTextDrawShow(playerid, velocimeter_PTD[playerid][2]);
+		PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][1], 54473727);
+	} else PlayerTextDrawColor(playerid, velocimeter_PTD[playerid][1], 589505535);
+	PlayerTextDrawShow(playerid, velocimeter_PTD[playerid][1]);
 }
 updateVelocimeterDoor(playerid, bool:param){
 	if(param){
@@ -85,7 +83,7 @@ updateVelocimeterDoor(playerid, bool:param){
 }
 updateVelocimeterKilometres(playerid, index){
 	new string[QUERY_LOW];
-	format(string, sizeof(string), "%i KMS", vehicleData[index][kilometres]);
+	format(string, sizeof(string), "000%i", vehicleData[index][kilometres]);
 	PlayerTextDrawSetString(playerid, velocimeter_PTD[playerid][6], string);
 }
 loadVehicle(index){
@@ -274,14 +272,14 @@ setDoors(playerid, index, param){
 			SetVehicleParamsEx(vehicleData[index][vehicleidd], engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
 			vehicleData[index][doorr] = VEHICLE_PARAMS_ON;
 			if(playerid != -2) {
-				ShowTDN_IC(playerid, "Abriste las puertas.");
+				ShowTDN_IC(playerid, "Cerraste las puertas.");
 				if(inVehicle[playerid] != -1) updateVelocimeterDoor(playerid, true);
 			}
 		} else 	{
 			SetVehicleParamsEx(vehicleData[index][vehicleidd], engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective);
 			vehicleData[index][doorr] = VEHICLE_PARAMS_OFF;
 			if(playerid != -2) {
-				ShowTDN_IC(playerid, "Cerraste las puertas.");
+				ShowTDN_IC(playerid, "Abriste las puertas.");
 				if(inVehicle[playerid] != -1) updateVelocimeterDoor(playerid, false);
 			}
 		}

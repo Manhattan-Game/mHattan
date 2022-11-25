@@ -37,7 +37,7 @@ new vehicleData[MAX_VEHICLES][vehicles@tpye@data];
 new inVehicle[MAX_PLAYERS];
 
 new PlayerText:velocimeter_PTD[MAX_PLAYERS][8];
-new Text:velocimeter_TD[5];
+new Text:velocimeter_TD[7];
 
 
 #define VEHICLES_TYPE_PLANES 0

@@ -239,7 +239,9 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid){
 		dropItem(playerid, inventoryInfo[playerid][selectedIndex]);
 	}
 	else if(clickedid == inventario_TD[4]){
-		saveUseItem(playerid);
+		if(inventoryInfo[playerid][selectedIndex] != 8){
+			saveUseItem(playerid);
+		} else ShowTDN_IC(playerid, "No puedes en este indice.");
 	} else if(clickedid == inventario_TD[2]){
 		hideInventory(playerid);
 	}
@@ -277,6 +279,10 @@ hook OP_ClickPlayerTextDraw(playerid, PlayerText:playertextid)
 	else if(playertextid == inventario_PTD[playerid][7])
 	{
 		selectTextDraw(playerid, 7);
+	}
+	if(playertextid == inventario_PTD[playerid][8])
+	{
+		selectTextDraw(playerid, 8);
 	}
 }
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys){
